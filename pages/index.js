@@ -20,7 +20,7 @@ export default function Home() {
          somos un grupo de apasionados que se divierten construyendo tus sueños 
         </p>
 
-        <div>
+        <div className={styles.cardContainer}>
         <div className={styles.grid}>
           <a href="https://github.com/Nicolas-pc-dev" className={styles.card}>
             <h2>Nicolas</h2>
