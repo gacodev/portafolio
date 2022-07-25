@@ -86,15 +86,16 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 25%;
+  max-width: 25vw;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  width: 400px;
+ /* width: 400px;
   transition: ease-out ;
   transition-delay: 5s;
+  */
   color: #0070f3;
   border-color: #0070f3;
 }
