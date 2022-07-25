@@ -22,16 +22,16 @@ export default function Home() {
 
         <div>
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+          <a href="https://github.com/Nicolas-pc-dev" className={styles.card}>
             <h2>Nicolas</h2>
-            <Image src="/profile.jpeg" alt="nicolas Profile" className={styles.profile} width={150} height={150} />
+            <Image src="/profile.webp" alt="nicolas Profile" className={styles.profile} width={150} height={150} />
             <p>Frontend <br></br> Developer</p>
             <hr></hr>
           </a>
 
           <a href="https://github.com/gabrielcontrerasv" className={styles.card}>
             <h2>Gabriel</h2>
-            <Image src="/gabriel.jpg" alt="gabriel profiel" className={styles.profile} width={150} height={150} />
+            <Image src="/gabriel.webp" alt="gabriel profiel" className={styles.profile} width={150} height={150} />
             <p>Backend <br></br> Developer</p>
             <hr></hr>
           </a>
@@ -41,7 +41,7 @@ export default function Home() {
             className={styles.card}
           >
             <h2>Santiago</h2>
-            <Image src="/tiago.jpg" alt="santiago profile" className={styles.profile}  width={150} height={150} />
+            <Image src="/tiago.webp" alt="santiago profile" className={styles.profile}  width={150} height={150} />
             <p>Web <br></br>Developer</p>
             <hr></hr>
           </a>
@@ -51,7 +51,7 @@ export default function Home() {
             className={styles.card}
           >
             <h2>Marco </h2>
-            <Image src="/marcos.png" alt="marco profile" className={styles.profile}  width={150} height={150} />
+            <Image src="/marcos.webp" alt="marco profile" className={styles.profile}  width={150} height={150} />
             <p>Web <br></br>Developer</p>
             <hr></hr>
           </a>
@@ -66,7 +66,7 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           Powered by 
-            <Image src="/team.png" alt="Team Logo" width={72} height={60} />
+            <Image src="/team.webp" alt="Team Logo" width={72} height={60} />
         </a>
       </footer>
     </div>
