@@ -18,7 +18,7 @@ export default function Home() {
           <div className={styles.grid}>
             <p className={styles.description}>
               Desarrollador Backend , con un amplio conocimiento en construccion de aplicaciones del lado del servidor utilizando Node JS o PHP, tengo conocimiento en ReactJS y Experiencia
-              trabajando base de datos SQL y No SQL para generar API y servicios REST y/o GRAPHQL me gusta trabajar utilizando Docker y Vagrant Ansible por la practiciadad y porque me ayudan a ser mas productivo tanto en administracion de Servidores como en desarrollo de Software soy Apasionado,Flexible y soy analista de propio trabajo siempre con el animo mejorar y crecer o ayudar a mi grupo de trabajo a lograr metas complejas, siempre tendras mi conocimiento a disposicion pues me gusta ayudar a las personas y hacer de su vida algo mas sencillo
+              trabajando base de datos SQL y No SQL para generar API y servicios REST y/o GRAPHQL me gusta trabajar utilizando Docker, Vagrant y Ansible por la practiciadad y porque me ayudan a ser mas productivo tanto en administracion de Servidores como en desarrollo de Software soy Apasionado,Flexible y soy analista de propio trabajo siempre con el animo mejorar y crecer o ayudar a mi grupo de trabajo a lograr metas complejas, siempre tendras mi conocimiento a disposicion pues me gusta ayudar a las personas y hacer de su vida algo mas sencillo
             </p>
             <a
               href="https://github.com/gabrielcontrerasv"
