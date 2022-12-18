@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
@@ -12,50 +12,216 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h2 className={styles.title}>
-          Nuestro Equipo
-        </h2>
-
-        <p className={styles.description}>
-         somos un grupo de apasionados que se divierten construyendo tus sueños 
-        </p>
+        <h2 className={styles.title}>Ingeniero de Sistemas</h2>
 
         <div className={styles.cardContainer}>
-        <div className={styles.grid}>
-          <a href="https://github.com/Nicolas-pc-dev" className={styles.card}>
-            <h2>Nicolas</h2>
-            <Image src="/profile.webp" alt="nicolas Profile" className={styles.profile} width={150} height={150} />
-            <p>Frontend <br></br> Developer</p>
-            <hr></hr>
-          </a>
+          <div className={styles.grid}>
+            <p className={styles.description}>
+              Desarrollador Backend , con un amplio conocimiento en construccion de aplicaciones del lado del servidor utilizando Node JS o PHP, tengo conocimiento en ReactJS y Experiencia
+              trabajando base de datos SQL y No SQL para generar API y servicios REST y/o GRAPHQL me gusta trabajar utilizando Docker y Vagrant Ansible por la practiciadad y porque me ayudan a ser mas productivo tanto en administracion de Servidores como en desarrollo de Software soy Apasionado,Flexible y soy analista de propio trabajo siempre con el animo mejorar y crecer o ayudar a mi grupo de trabajo a lograr metas complejas, siempre tendras mi conocimiento a disposicion pues me gusta ayudar a las personas y hacer de su vida algo mas sencillo
+            </p>
+            <a
+              href="https://github.com/gabrielcontrerasv"
+              className={styles.card}
+            >
+              <h2>Gabriel</h2>
+              <Image
+                src="/gabriel.webp"
+                alt="gabriel profiel"
+                className={styles.profile}
+                width={150}
+                height={150}
+              />
+              <p>
+                Backend <br></br> Developer
+              </p>
+              <hr></hr>
+              <h2>Tenologias</h2>
+              <ul className={styles.lists}>
+                <div>
+                <li>ReactJS </li>
+                <Image
+                  src="/tecnologies/react.png"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
+                
+                <div>
+                <li>NodeJS </li>
+                <Image
+                  src="/tecnologies/nodejs.png"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
+                <div>
+                <li>MongoDB </li>
+                <Image
+                  src="/tecnologies/mongoDB.jpg"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
+                <div>
+                <li>Sequelize</li>
+                <Image
+                  src="/tecnologies/sequelize.png"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
+               
+                <div>
+                <li>TypeOrm</li>
+                <Image
+                  src="/tecnologies/typeorm.jpeg"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
 
-          <a href="https://github.com/gabrielcontrerasv" className={styles.card}>
-            <h2>Gabriel</h2>
-            <Image src="/gabriel.webp" alt="gabriel profiel" className={styles.profile} width={150} height={150} />
-            <p>Backend <br></br> Developer</p>
-            <hr></hr>
-          </a>
+                <div>
+                <li>MySQL</li>
+                <Image
+                  src="/tecnologies/mysql.jpeg"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
+                
+                <div>
+                <li>PostgreSQL</li>
+                <Image
+                  src="/tecnologies/postgres.png"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
+                
+                <div>
+                <li>NestJS</li>
+                <Image
+                  src="/tecnologies/nestjs.png"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
+              
+                
+                <div>
+                <li>Linux</li>
+                <Image
+                  src="/tecnologies/linux.png"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
 
-          <a
-            href="https://github.com/TiagoBG"
-            className={styles.card}
-          >
-            <h2>Santiago</h2>
-            <Image src="/tiago.webp" alt="santiago profile" className={styles.profile}  width={150} height={150} />
-            <p>Web <br></br>Developer</p>
-            <hr></hr>
-          </a>
+                <div>
+                <li>Windows Server</li>
+                <Image
+                  src="/tecnologies/win.svg"
+                  alt="nacionalidad"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+                </div>
+              </ul>
+              <hr></hr>
+            </a>
+          </div>
 
-          <a
-            href="https://github.com/marcosihe"
-            className={styles.card}
-          >
-            <h2>Marco </h2>
-            <Image src="/marcos.webp" alt="marco profile" className={styles.profile}  width={150} height={150} />
-            <p>Web <br></br>Developer</p>
-            <hr></hr>
-          </a>
-        </div>
+          <h2 className={styles.experience}>Mi Experiencia</h2>
+          <div className={styles.projects}>
+            <div className={styles.experienceCard}>
+              <a href="https://www.instagram.com/mideberesmiderecho/?hl=es-la">
+                <h2>Mi deber es mi derecho</h2>
+                <Image
+                  src="/projects/mideber.png"
+                  alt="gabriel profiel"
+                  width={150}
+                  height={150}
+                  className={styles.images}
+                />
+                <p>
+                  Backend <br></br> Developer
+                </p>
+                <ul>
+                  <li>MySQL</li>
+                  <li>PHP</li>
+                  <li>ReactJS</li>
+                </ul>
+                <hr></hr>
+              </a>
+            </div>
+
+            <div className={styles.experienceCard}>
+              <a href="https://www.comfama.com">
+                <h2>Aula digital Comfama</h2>
+                <Image
+                  src="/projects/comfama.png"
+                  alt="gabriel profiel"
+                  width={150}
+                  height={150}
+                  className={styles.images}
+                />
+                <p>
+                  Backend <br></br> Developer
+                </p>
+                <ul>
+                  <li>MySQL</li>
+                  <li>PHP</li>
+                  <li>Moodle</li>
+                  <li>Docker</li>
+                  <li>AzureDevops</li>
+                  <li>JavaScript</li>
+                </ul>
+                <hr></hr>
+              </a>
+            </div>
+
+            <div className={styles.experienceCard}>
+              <a href="https://www.emavi.edu.co/interescuelas2022">
+                <h2>Interescuelas 2022</h2>
+                <Image
+                  src="/projects/interescuelas.png"
+                  alt="gabriel profiel"
+                  width={150}
+                  height={150}
+                  className={styles.images}
+                />
+                <p>
+                  FullStack <br></br> Developer
+                </p>
+                <ul>
+                  <li>MySQL</li>
+                  <li>Laravel</li>
+                  <li>ReactJS - INERTIA</li>
+                </ul>
+                <hr></hr>
+              </a>
+            </div>
+          </div>
         </div>
       </main>
 
@@ -65,10 +231,16 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by 
-            <Image src="/team.webp" alt="Team Logo" width={72} height={60} />
+          Orgullosamente 
+          <Image
+                  src="/bandera.png"
+                  alt="nacionalidad"
+                  width={50}
+                  height={50}
+                  className={styles.images}
+                />
         </a>
       </footer>
     </div>
-  )
+  );
 }
