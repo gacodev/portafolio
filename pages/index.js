@@ -16,7 +16,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div class={styles.main}>
+      <div className={styles.main}>
         <div className={styles.profileContent}>
           <div className={styles.profile}>
             <a
