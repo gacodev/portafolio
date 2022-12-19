@@ -57,6 +57,12 @@
   justify-content: space-between;
   
 }
+
+.skillslist li:before {
+  content: '✓';
+  margin: 3px;
+  color: green;
+}
 .skillslist{
   list-style: none;
   border-radius: 10px;

@@ -253,6 +253,7 @@ export default function Home() {
                 <li>ReactJS</li>
                 <li>Styled Components</li>
                 <li>Axios</li>
+                <li>MongoDB</li>
               </ul>
               <hr></hr>
             </a>
@@ -303,6 +304,7 @@ export default function Home() {
                 <li>Psysh</li>
                 <li>Styled Components</li>
                 <li>ReactJS - INERTIA</li>
+                <li>MongoDB</li>
               </ul>
               <hr></hr>
             </a>
