@@ -56,6 +56,7 @@
   display: inline-block;
   justify-content: space-between;
   
+  
 }
 
 .skillslist li:before {
@@ -66,8 +67,7 @@
 .skillslist{
   list-style: none;
   border-radius: 10px;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
 }
 
 
