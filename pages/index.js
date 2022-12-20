@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
@@ -10,7 +9,7 @@ export default function Home() {
           <a href="/spanish">
             <div className={styles.langs}>Espanol</div>
           </a>
-          <a href="/spanish">
+          <a href="/english">
             <div className={styles.langs}>English</div>
           </a>
         </div>
@@ -19,10 +18,9 @@ export default function Home() {
       <div className={styles.main}>
         <div className={styles.profileContent}>
           <div className={styles.profile}>
-            <a
-              href="https://github.com/gabrielcontrerasv"
-              className={styles.card}
-            >
+          <div className={styles.card}>
+
+       
               <p>Ingeniero de Sistemas</p>
               <Image
                 src="/gabriel.webp"
@@ -63,11 +61,13 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className={styles.social}>
+              <div>
                 <h1>Redes Sociales</h1>
+                <div className={styles.social}>
 
-                <a href="https://api.whatsapp.com/send?phone=3123702296">
-                  <div>
+               
+                <div>
+                  <a href="https://api.whatsapp.com/send?phone=3123702296">
                     <Image
                       src="/socialmedia/whatsapp.png"
                       alt="whatsapp"
@@ -75,10 +75,10 @@ export default function Home() {
                       height={60}
                       className={styles.images}
                     />
-                  </div>
-                </a>
-                <a href="https://www.linkedin.com/in/gabrielcontrerasv3">
-                  <div>
+                  </a>
+                </div>
+                <div>
+                  <a href="https://www.linkedin.com/in/gabrielcontrerasv3">
                     <Image
                       src="/socialmedia/linkedin.webp"
                       alt="Linkedin"
@@ -86,8 +86,8 @@ export default function Home() {
                       height={60}
                       className={styles.images}
                     />
-                  </div>
-                </a>
+                  </a>
+                </div>
                 <a href="mailto:gabriel.contrerasv3@gmail.com">
                   <div>
                     <Image
@@ -100,7 +100,8 @@ export default function Home() {
                   </div>
                 </a>
               </div>
-            </a>
+              </div>
+          </div>
           </div>
           <div className={styles.description}>
             <p>
@@ -319,16 +320,12 @@ export default function Home() {
             </a>
           </div>
         </div>
+
+
       </div>
 
-      <footer className={styles.footer}>
-        <div>
-          <a href="https://www.teaminternational.com/">
-            <div>
+        <footer className={styles.footer}>
               <p>Orgullosamente</p>
-            </div>
-
-            <div>
               <Image
                 src="/bandera.png"
                 alt="nacionalidad"
@@ -336,10 +333,7 @@ export default function Home() {
                 height={50}
                 className={styles.images}
               />
-            </div>
-          </a>
-        </div>
-      </footer>
+        </footer>
     </div>
   );
 }

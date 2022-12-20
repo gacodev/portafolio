@@ -39,10 +39,9 @@
   font-size: 20px;
 }
 .social {
-  display: block;
-  justify-content: space-around;
+  display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  
 }
 
 .social > div {
@@ -54,9 +53,7 @@
 
 .skills{
   display: inline-block;
-  justify-content: space-between;
-  
-  
+  justify-content: space-around;
 }
 
 .skillslist li:before {
