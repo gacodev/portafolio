@@ -105,11 +105,11 @@ export default function Home() {
           </div>
           <div className={styles.description}>
             <p>
-              Desarrollador Backend , con un amplio conocimiento en construccion
+              Desarrollador Backend, con un amplio conocimiento en construccion
               de aplicaciones del lado del servidor utilizando Node JS/NestJS o
               PHP/Laravel, tengo conocimiento y experiencia trabajando con
               ReactJS, base de datos SQL y No SQL para generar API con el fin
-              consumirse como servicios REST y/o GRAPHQL
+              consumirse como servicios REST y/o GRAPHQL entre otras habilidades...
             </p>
           </div>
         </div>
@@ -236,8 +236,8 @@ export default function Home() {
             compañeros, siempre con el animo de mejorar,crecer y/o ayudar a mi
             grupo de trabajo a lograr las metas propuestas, siempre tendras en
             mi un profesional comprometido con los proyectos, perseverante y
-            siempre actualizado alguien quien comparte lo que aprende pues me
-            gusta ayudar a las personas y hacer de su vida algo mas sencillo.
+            actualizado alguien quien comparte lo que aprende y con la idea de
+            ayudar a las personas con lo poco que se y hacer su vida algo mas sencilla.
           </p>
         </div>
 
