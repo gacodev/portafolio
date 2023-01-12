@@ -108,7 +108,7 @@ export default function Home() {
               Backend Developer, with extensive knowledge in building
               server-side applications using Node JS/NestJS or PHP/Laravel, I
               have knowledge and experience working with ReactJS, SQL and No SQL
-              databases to generate API's to be consumed as REST and/or GRAPHQL
+              databases to generate API to be consumed as REST and/or GRAPHQL
               services among other skills...
             </p>
           </div>
