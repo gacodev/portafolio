@@ -168,6 +168,17 @@
   
 }
 
+.ideas{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 5;
+  text-align: center;
+  padding: 3;
+  font-size: 25px;
+}
+
+
 .description{
   border-radius: 50%;
   min-width: 20vw;
@@ -176,11 +187,25 @@
   text-align: justify;
 }
 
+.titles {
+  font-size: 2rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: yellowgreen;
+  padding: 2;
+}
+
 .langs{
   margin: 15px;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
   Bitstream Vera Sans Mono, Courier New, monospace;
   
+}
+
+.langs > a :active {
+  color: yellowgreen;
 }
 .title {
   font-size: 2rem;
@@ -292,7 +317,7 @@
     font-size: 30px;
   }
   .techparagraph{
-    min-width: 70vw;
+    min-width: 60vw;
     font-size: 25px;
   }
 }

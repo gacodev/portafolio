@@ -1,18 +1,17 @@
 import Image from "next/image";
-import Link from "next/link";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.menu}>
-          <Link href="/">
-            <div className={styles.langs}>Español</div>
-          </Link>
-          < Link href="/english">
+          <a href="/">
+            <div className={styles.langs}>Spanish</div>
+          </a>
+          <a href="/english">
             <div className={styles.langs}>English</div>
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -20,7 +19,7 @@ export default function Home() {
         <div className={styles.profileContent}>
           <div className={styles.profile}>
             <div className={styles.card}>
-              <p>Ingeniero de Sistemas</p>
+              <p>Software Engineer</p>
               <Image
                 src="/gabriel.webp"
                 alt="profile picture of Gabriel Contreras"
@@ -29,7 +28,7 @@ export default function Home() {
                 height={150}
               />
               <p>
-                Desarrollador <br></br> Backend
+                Backend <br></br> Developer
               </p>
               <hr></hr>
               <div className={styles.skills}>
@@ -43,25 +42,27 @@ export default function Home() {
                   <li>ReactJS</li>
                   <li>SQL</li>
                   <li>NodeJS</li>
+                  <li>PHP Laravel</li>
                 </ul>
               </div>
 
               <div className={styles.skills}>
                 <h2>Soft Skills</h2>
                 <ul className={styles.skillslist}>
-                  <li>Solucion de Problemas</li>
-                  <li>Escucha Activa</li>
-                  <li>Persistencia</li>
-                  <li>Flexibilidad</li>
-                  <li>Comunicacion Asertiva</li>
-                  <li>Gestion del tiempo</li>
-                  <li>Gestion de conflictos</li>
-                  <li>Inteligencia emocional</li>
+                  <li>Problem Solving</li>
+                  <li>Active Listening</li>
+                  <li>Persistence</li>
+                  <li>Flexibility</li>
+                  <li>Assertive Communication</li>
+                  <li>Time Management</li>
+                  <li>Conflict Resolution</li>
+                  <li>Emotional Intelligence</li>
+                  <li>Teamwork</li>
                 </ul>
               </div>
 
               <div>
-                <h1>Redes Sociales</h1>
+                <h1>Social Media</h1>
                 <div className={styles.social}>
                   <div>
                     <a href="https://api.whatsapp.com/send?phone=3123702296">
@@ -100,21 +101,19 @@ export default function Home() {
               </div>
             </div>
           </div>
+
           <div className={styles.description}>
             <p>
-              Desarrollador Backend, con un amplio conocimiento en construccion
-              de aplicaciones del lado del servidor utilizando Node JS/NestJS o
-              PHP/Laravel, tengo conocimiento y experiencia trabajando con
-              ReactJS, base de datos SQL y No SQL para generar API con el fin
-              consumirse como servicios REST y/o GRAPHQL entre otras
-              habilidades...
+              Backend Developer, with extensive knowledge in building
+              server-side applications using Node JS/NestJS or PHP/Laravel, I
+              have knowledge and experience working with ReactJS, SQL and No SQL
+              databases to generate API's to be consumed as REST and/or GRAPHQL
+              services among other skills...
             </p>
           </div>
         </div>
-
-        
         <div className={styles.tecnologies}>
-        <h1 className={styles.titles}>He trabajado con</h1>
+          <h1 className={styles.titles}>I have worked with</h1>
           <ul className={styles.lists}>
             <div>
               <li>ReactJS </li>
@@ -247,19 +246,21 @@ export default function Home() {
           <hr></hr>
           <div>
             <p className={styles.techparagraph}>
-              Me apasiona trabajar con herramientas como Docker, Vagrant y
-              Ansible, ya que me permiten ser más eficiente y productivo tanto
-              en la administración de servidores como en el desarrollo de
-              software. Actualmente estoy aprendiendo Springboot con el objetivo
-              de ampliar mis conocimientos y aplicar patrones de diseño de
-              software en diferentes entornos.
+              I am passionate about using tools such as Docker, Vagrant, and
+              Ansible in my work because they make my work more efficient and
+              productive, both in terms of server administration and software
+              development. I am currently learning Springboot in order to expand
+              my knowledge and apply software design patterns in different
+              environments. I am an analytical and flexible professional who is
+              always looking to improve, grow and help my team achieve their
+              goals.
             </p>
           </div>
         </div>
 
         <div className={styles.projects}>
           <div className={styles.experience}>
-            <h1 className={styles.titles}>Mi Experiencia</h1>
+            <h1 className={styles.titles}>Professional Experience</h1>
           </div>
           <div className={styles.experienceCard}>
             <a href="https://www.instagram.com/mideberesmiderecho/?hl=es-la">
@@ -335,21 +336,17 @@ export default function Home() {
               <hr></hr>
             </a>
           </div>
-
-         
         </div>
         <div className={styles.ideas}>
-            <h1 className={styles.titles}>¿Quién soy?</h1>
-            <p>
-            Soy un <strong> Ingeniero </strong> analítico y flexible que siempre busca mejorar,
-            crecer y ayudar a mi equipo a alcanzar sus metas. Me comprometo con
-            los proyectos en los que trabajo, soy perseverante y siempre trato
-            de mantenerme actualizado. También soy alguien que está dispuesto a
-            compartir su conocimiento y experiencia para hacer la vida de los
-            demás más sencilla.
-            </p>
-            
-          </div>
+          <h1 className={styles.titles}>¿Who I am?</h1>
+          <p>
+            {" "}
+            I am Software Engineer dedicated to the projects I work on, persistent and always
+            strive to stay up-to-date. I am also someone who is always willing
+            to share their knowledge and experience to make the lives of others
+            simpler.
+          </p>
+        </div>
       </div>
 
       <footer className={styles.footer}>
