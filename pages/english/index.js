@@ -5,13 +5,13 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div className={styles.menu}>
-          <a href="/">
+      <div className={styles.menu}>
+          <Link href="/">
             <div className={styles.langs}>Spanish</div>
-          </a>
-          <a href="/english">
+          </Link>
+          < Link href="/english">
             <div className={styles.langs}>English</div>
-          </a>
+          </Link>
         </div>
       </div>
 
