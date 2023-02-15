@@ -3,6 +3,14 @@ import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 
 export default function Home() {
+    const handleDownload = () => {
+      const link = document.createElement('a');
+      link.href = '/docs/cv.pdf';
+      link.download = 'cv.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -101,6 +109,22 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <div className={styles.cvcard}>
+              <h3>Curriculum vitae</h3>
+              <Image
+                src="/images/cv.jpg"
+                alt="profile picture of Gabriel Contreras"
+                className={styles.profile}
+                width={150}
+                height={150}
+              />
+              
+              <p>
+              <button onClick={handleDownload}>Descargar</button>  
+              
+              </p>
+              <hr></hr>
+            </div>
           </div>
 
           <div className={styles.description}>
@@ -112,8 +136,8 @@ export default function Home() {
               services among other skills...
             </p>
           </div>
-        </div>
-        <div className={styles.tecnologies}>
+
+          <div className={styles.tecnologies}>
           <h1 className={styles.titles}>I have worked with</h1>
           <ul className={styles.lists}>
             <div>
@@ -243,6 +267,17 @@ export default function Home() {
                 className={styles.images}
               />
             </div>
+
+            <div>
+              <li>Azure Devops</li>
+              <Image
+                src="/tecnologies/azure.webp"
+                alt="azure"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
           </ul>
           <hr></hr>
           <div>
@@ -348,6 +383,8 @@ export default function Home() {
             simpler.
           </p>
         </div>
+        </div>
+     
       </div>
 
       <footer className={styles.footer}>
