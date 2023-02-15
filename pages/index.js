@@ -126,7 +126,6 @@ export default function Home() {
               <hr></hr>
             </div>
           </div>
-
           <div className={styles.description}>
             <p>
               Desarrollador Backend, con un amplio conocimiento en construccion
