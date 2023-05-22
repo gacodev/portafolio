@@ -28,7 +28,7 @@ export default function Home() {
         <div className={styles.profileContent}>
           <div className={styles.profile}>
             <div className={styles.card}>
-              <p>Software Engineer</p>
+              <p>Systems Engineer</p>
               <Image
                 src="/gabriel.webp"
                 alt="profile picture of Gabriel Contreras"
