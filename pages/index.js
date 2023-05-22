@@ -1,18 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from "react";
 
 export default function Home() {
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/docs/hv.pdf';
-    link.download = 'hv.pdf';
+    const link = document.createElement("a");
+    link.href = "/docs/hv.pdf";
+    link.download = "hv.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -118,10 +118,9 @@ export default function Home() {
                 width={150}
                 height={150}
               />
-              
+
               <p>
-              <button onClick={handleDownload}>Descargar</button>  
-              
+                <button onClick={handleDownload}>Descargar</button>
               </p>
               <hr></hr>
             </div>
@@ -180,7 +179,58 @@ export default function Home() {
                   className={styles.images}
                 />
               </div>
+              <div>
+                <li>Prisma ORM</li>
+                <Image
+                  src="/tecnologies/prisma.webp"
+                  alt="prisma Orm"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+              </div>
 
+              <div>
+                <li>Netlify</li>
+                <Image
+                  src="/tecnologies/netlify.png"
+                  alt="netlify"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+              </div>
+              <div>
+                <li>Vercel</li>
+                <Image
+                  src="/tecnologies/vercel.jpg"
+                  alt="Vercel"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+              </div>
+              <div>
+                <li>Typescript</li>
+                <Image
+                  src="/tecnologies/typescript.png"
+                  alt="Typescript"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+              </div>
+
+              <div>
+                <li>Next js</li>
+                <Image
+                  src="/tecnologies/nextjs.jpeg"
+                  alt="nextjs"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+              </div>
               <div>
                 <li>TypeOrm</li>
                 <Image
@@ -216,7 +266,7 @@ export default function Home() {
               <div>
                 <li>Laravel </li>
                 <Image
-                  src="/tecnologies/laravel.png"
+                  src="/tecnologies/laravel.jpg"
                   alt="laravel"
                   width={100}
                   height={100}
@@ -267,15 +317,15 @@ export default function Home() {
                 />
               </div>
               <div>
-              <li>Azure Devops</li>
-              <Image
-                src="/tecnologies/azure.webp"
-                alt="azure"
-                width={100}
-                height={100}
-                className={styles.images}
-              />
-            </div>
+                <li>Azure Devops</li>
+                <Image
+                  src="/tecnologies/azure.webp"
+                  alt="azure"
+                  width={100}
+                  height={100}
+                  className={styles.images}
+                />
+              </div>
             </ul>
             <hr></hr>
             <div>
