@@ -27,7 +27,7 @@ export default function Home() {
       <div className={styles.main}>
         <div className={styles.profileContent}>
           <div className={styles.profile}>
-            <div className={styles.card}>
+            <div className={styles.profileCard}>
               <p>Systems Engineer</p>
               <Image
                 src="/gabriel.webp"
@@ -37,7 +37,7 @@ export default function Home() {
                 height={150}
               />
               <p>
-                Backend <br></br> Developer
+                Backend <br></br> Engineer
               </p>
               <hr></hr>
               <div className={styles.skills}>
@@ -64,7 +64,7 @@ export default function Home() {
                   <li>Flexibility</li>
                   <li>Assertive Communication</li>
                   <li>Time Management</li>
-                  <li>Conflict Resolution</li>
+                  <li>Conflict Management</li>
                   <li>Emotional Intelligence</li>
                   <li>Teamwork</li>
                 </ul>
@@ -109,7 +109,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className={styles.cvcard}>
+            <div className={`${styles.cvcard} mobile-width`}>
               <h3>Curriculum vitae</h3>
               <Image
                 src="/images/cv.jpg"
@@ -120,236 +120,314 @@ export default function Home() {
               />
 
               <p>
-                <button onClick={handleDownload}>Descargar</button>
+                <button onClick={handleDownload}>Download</button>
               </p>
               <hr></hr>
+
+              <div>
+                <p> Phone </p>
+                <h1> +573126004185</h1>
+              </div>
             </div>
           </div>
-
           <div className={styles.description}>
             <p>
-              Backend Developer, with extensive knowledge in building
-              server-side applications using Node JS/NestJS or PHP/Laravel, I
-              have knowledge and experience working with ReactJS, SQL and No SQL
-              databases to generate API to be consumed as REST and/or GRAPHQL
-              services among other skills...
+              Backend Developer, with extensive knowledge in server-side
+              application development using Node.js/NestJS or PHP/Laravel. I
+              have knowledge and experience working with ReactJS, SQL and NoSQL
+              databases to generate APIs that can be consumed as REST and/or
+              GraphQL services, among other skills.
             </p>
           </div>
-
-          <div className={styles.tecnologies}>
-            <h1 className={styles.titles}>I have worked with</h1>
-            <ul className={styles.lists}>
-              <div>
-                <li>ReactJS </li>
-                <Image
-                  src="/tecnologies/react.png"
-                  alt="react"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-
-              <div>
-                <li>NodeJS </li>
-                <Image
-                  src="/tecnologies/nodejs.png"
-                  alt="nodejs"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-              <div>
-                <li>MongoDB </li>
-                <Image
-                  src="/tecnologies/mongoDB.jpg"
-                  alt="mongodb"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-              <div>
-                <li>Sequelize</li>
-                <Image
-                  src="/tecnologies/sequelize.png"
-                  alt="sequelize"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-              <div>
-                <li>Prisma ORM</li>
-                <Image
-                  src="/tecnologies/prisma.webp"
-                  alt="prisma Orm"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-
-              <div>
-                <li>Netlify</li>
-                <Image
-                  src="/tecnologies/netlify.png"
-                  alt="netlify"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-              <div>
-                <li>Vercel</li>
-                <Image
-                  src="/tecnologies/vercel.jpg"
-                  alt="Vercel"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-              <div>
-                <li>Typescript</li>
-                <Image
-                  src="/tecnologies/typescript.png"
-                  alt="Typescript"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-
-              <div>
-                <li>Next js</li>
-                <Image
-                  src="/tecnologies/nextjs.jpeg"
-                  alt="nextjs"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-              <div>
-                <li>TypeOrm</li>
-                <Image
-                  src="/tecnologies/typeorm.jpeg"
-                  alt="typeorm"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-
-              <div>
-                <li>MySQL</li>
-                <Image
-                  src="/tecnologies/mysql.jpeg"
-                  alt="mysql"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-
-              <div>
-                <li>PostgreSQL</li>
-                <Image
-                  src="/tecnologies/postgres.png"
-                  alt="postgreSQL"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-              <div>
-                <li>Laravel </li>
-                <Image
-                  src="/tecnologies/laravel.jpg"
-                  alt="laravel"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-              <div>
-                <li>NestJS</li>
-                <Image
-                  src="/tecnologies/nestjs.png"
-                  alt="nestjs"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-
-              <div>
-                <li>Graphql</li>
-                <Image
-                  src="/tecnologies/graph.png"
-                  alt="graphql"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-
-              <div>
-                <li>Linux</li>
-                <Image
-                  src="/tecnologies/linux.png"
-                  alt="linux"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-
-              <div>
-                <li>Windows Server</li>
-                <Image
-                  src="/tecnologies/win.svg"
-                  alt="windows"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-              <div>
-                <li>Azure Devops</li>
-                <Image
-                  src="/tecnologies/azure.webp"
-                  alt="azure"
-                  width={100}
-                  height={100}
-                  className={styles.images}
-                />
-              </div>
-            </ul>
-            <hr></hr>
+        </div>
+        <div className={styles.tecnologies}>
+          <ul className={styles.lists}>
             <div>
-              <p className={styles.techparagraph}>
-                I am passionate about using tools such as Docker, Vagrant, and
-                Ansible in my work because they make my work more efficient and
-                productive, both in terms of server administration and software
-                development. I am currently learning Springboot in order to
-                expand my knowledge and apply software design patterns in
-                different environments. I am an analytical and flexible
-                professional who is always looking to improve, grow and help my
-                team achieve their goals.
-              </p>
+              <li>ReactJS </li>
+              <Image
+                src="/tecnologies/react.png"
+                alt="react"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
             </div>
+
+            <div>
+              <li>NodeJS </li>
+              <Image
+                src="/tecnologies/nodejs.png"
+                alt="nodejs"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>MongoDB </li>
+              <Image
+                src="/tecnologies/mongoDB.jpg"
+                alt="mongodb"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>Sequelize</li>
+              <Image
+                src="/tecnologies/sequelize.png"
+                alt="sequelize"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>Prisma ORM</li>
+              <Image
+                src="/tecnologies/prisma.webp"
+                alt="prisma Orm"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>Netlify</li>
+              <Image
+                src="/tecnologies/netlify.png"
+                alt="netlify"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>Vercel</li>
+              <Image
+                src="/tecnologies/vercel.jpg"
+                alt="Vercel"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>Typescript</li>
+              <Image
+                src="/tecnologies/typescript.png"
+                alt="Typescript"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>Next js</li>
+              <Image
+                src="/tecnologies/nextjs.jpeg"
+                alt="nextjs"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>TypeOrm</li>
+              <Image
+                src="/tecnologies/typeorm.jpeg"
+                alt="typeorm"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>MySQL</li>
+              <Image
+                src="/tecnologies/mysql.jpeg"
+                alt="mysql"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>PostgreSQL</li>
+              <Image
+                src="/tecnologies/postgres.png"
+                alt="postgreSQL"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>Laravel </li>
+              <Image
+                src="/tecnologies/laravel.jpg"
+                alt="laravel"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>NestJS</li>
+              <Image
+                src="/tecnologies/nestjs.png"
+                alt="nestjs"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>Graphql</li>
+              <Image
+                src="/tecnologies/graph.png"
+                alt="graphql"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>Linux</li>
+              <Image
+                src="/tecnologies/linux.png"
+                alt="linux"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>Windows Server</li>
+              <Image
+                src="/tecnologies/win.svg"
+                alt="windows"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>Azure Devops</li>
+              <Image
+                src="/tecnologies/azure.webp"
+                alt="azure"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+          </ul>
+          <hr></hr>
+        </div>
+
+        <div className={styles.cloud}>
+          <div className={styles.cloudFirstSection}>
+            <h2>Cloud Experiencie </h2>
           </div>
 
-          <div className={styles.projects}>
-            <div className={styles.experience}>
-              <h1 className={styles.titles}>Professional Experience</h1>
+          <div className={styles.providers}>
+            <div className={styles.provider}>
+              <h2>Azure Cloud</h2>
+              <Image
+                src="/images/azure.svg"
+                alt="Azure Cloud"
+                className={styles.profile}
+                width={100}
+                height={100}
+              />
+
+              <ul>
+                <li>SQL Databases</li>
+                <li>Azure Active Directory</li>
+                <li>Azure IAM</li>
+                <li>Azure Policies</li>
+                <li>Web Apps</li>
+                <li>API Management</li>
+                <li>Functions</li>
+                <li>Backups</li>
+                <li>Cost Management</li>
+                <li>Virtual Machines</li>
+                <li>Azure Blob Storage</li>
+                <li>Key Vault</li>
+                <li>Azure DevOps</li>
+              </ul>
             </div>
+            <div className={styles.provider}>
+              <h2>Amazon Web Services</h2>
+              <Image
+                src="/images/aws.svg"
+                alt="AWS Cloud"
+                className={styles.profile}
+                width={100}
+                height={100}
+              />
+              <ul>
+                <li>EC2</li>
+                <li>S3</li>
+                <li>Route 53</li>
+                <li>CloudFront</li>
+                <li>AWS lambdas</li>
+                <li>CloudWatch</li>
+                <li>CloudFormation</li>
+              </ul>
+            </div>
+            <div className={styles.provider}>
+              <h2>Google Cloud</h2>
+              <Image
+                src="/images/gcp.svg"
+                alt="Google Cloud"
+                className={styles.profile}
+                width={100}
+                height={100}
+              />
+
+              <ul>
+                <li>Compute Engine</li>
+                <li>Cloud Storage</li>
+                <li>Cloud Functions</li>
+                <li>Cloud SQL</li>
+                <li>Cloud DNS</li>
+                <li>Cloud CDN</li>
+                <li>Cloud Build</li>
+                <li>Cloud Source Repositories</li>
+                <li>Cloud IAM</li>
+                <li>Cloud Deployment Manager</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className={styles.techparagraph}>
+          <p>
+            I am passionate about working with tools like Docker, Vagrant, and
+            Ansible as they allow me to be more efficient and productive in both
+            server administration and software development. Currently, I am
+            learning Springboot with the goal of expanding my knowledge and
+            applying software design patterns in different environments.
+          </p>
+        </div>
+
+        <div className={styles.projects}>
+          <div className={styles.projectsFirstSection}>
+            <h1 className={styles.titles}>Software Projects</h1>
+          </div>
+          <div className={styles.projectsSecondSection}>
             <div className={styles.experienceCard}>
               <a href="https://www.instagram.com/mideberesmiderecho/?hl=es-la">
-                <h2>Mi deber es mi derecho</h2>
+                <h1 className={styles.title}>Mi deber es mi derecho</h1>
                 <Image
                   src="/projects/mideber.png"
                   alt="gabriel profiel"
@@ -360,7 +438,7 @@ export default function Home() {
                 <p>
                   FullStack <br></br> Developer
                 </p>
-                <ul>
+                <ul className={styles.stack}>
                   <li>MySQL</li>
                   <li>PHP</li>
                   <li>ReactJS</li>
@@ -368,13 +446,12 @@ export default function Home() {
                   <li>Axios</li>
                   <li>MongoDB</li>
                 </ul>
-                <hr></hr>
               </a>
             </div>
 
             <div className={styles.experienceCard}>
               <a href="https://www.comfama.com">
-                <h2>Aula digital Comfama</h2>
+                <h1 className={styles.title}>Aula digital comfama</h1>
                 <Image
                   src="/projects/comfama.png"
                   alt="gabriel profiel"
@@ -385,7 +462,7 @@ export default function Home() {
                 <p>
                   Backend <br></br> Developer
                 </p>
-                <ul>
+                <ul className={styles.stack}>
                   <li>MySQL</li>
                   <li>PHP</li>
                   <li>Moodle</li>
@@ -393,16 +470,15 @@ export default function Home() {
                   <li>AzureDevops</li>
                   <li>JavaScript</li>
                 </ul>
-                <hr></hr>
               </a>
             </div>
 
             <div className={styles.experienceCard}>
               <a href="https://www.emavi.edu.co/interescuelas2022">
-                <h2>Interescuelas 2022 FFMM</h2>
+                <h1 className={styles.title}>Interescuelas 2022 FFMM</h1>
                 <Image
                   src="/projects/interescuelas.png"
-                  alt="gabriel profiel"
+                  alt="gabriel profile"
                   width={150}
                   height={150}
                   className={styles.images}
@@ -410,7 +486,7 @@ export default function Home() {
                 <p>
                   FullStack <br></br> Developer
                 </p>
-                <ul>
+                <ul className={styles.stack}>
                   <li>MySQL</li>
                   <li>Laravel</li>
                   <li>Psysh</li>
@@ -418,32 +494,23 @@ export default function Home() {
                   <li>ReactJS - INERTIA</li>
                   <li>MongoDB</li>
                 </ul>
-                <hr></hr>
               </a>
             </div>
-          </div>
-          <div className={styles.ideas}>
-            <h1 className={styles.titles}>¿Who I am?</h1>
-            <p>
-              {" "}
-              I am Software Engineer dedicated to the projects I work on,
-              persistent and always strive to stay up-to-date. I am also someone
-              who is always willing to share their knowledge and experience to
-              make the lives of others simpler.
-            </p>
           </div>
         </div>
       </div>
 
       <footer className={styles.footer}>
-        <p>Orgullosamente</p>
-        <Image
-          src="/bandera.png"
-          alt="nacionalidad"
-          width={50}
-          height={50}
-          className={styles.images}
-        />
+        <p>Proudly</p>
+        <div>
+          <Image
+            src="/bandera.png"
+            alt="nacionalidad"
+            width={50}
+            height={50}
+            className={styles.images}
+          />
+        </div>
       </footer>
     </div>
   );
