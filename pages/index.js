@@ -141,6 +141,9 @@ export default function Home() {
             </p>
           </div>
         </div>
+        <div className={styles.cloudFirstSection}>
+          <h2 className={styles.titles}>He trabajado Con </h2>
+        </div>
         <div className={styles.tecnologies}>
           <ul className={styles.lists}>
             <div>
@@ -148,6 +151,17 @@ export default function Home() {
               <Image
                 src="/tecnologies/react.png"
                 alt="react"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>tailwind Css</li>
+              <Image
+                src="/tecnologies/tailwind.svg"
+                alt="tailwind"
                 width={100}
                 height={100}
                 className={styles.images}
@@ -301,10 +315,64 @@ export default function Home() {
             </div>
 
             <div>
+              <li>Github Actions</li>
+              <Image
+                src="/tecnologies/gha.webp"
+                alt="github actions"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>Jest</li>
+              <Image
+                src="/tecnologies/jest.avif"
+                alt="jest"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>puppeter</li>
+              <Image
+                src="/tecnologies/puppeter.png"
+                alt="puppeter"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>docker</li>
+              <Image
+                src="/tecnologies/docker.png"
+                alt="docker"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
               <li>Linux</li>
               <Image
                 src="/tecnologies/linux.png"
                 alt="linux"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>Ansible</li>
+              <Image
+                src="/tecnologies/ansible.png"
+                alt="ansible"
                 width={100}
                 height={100}
                 className={styles.images}
@@ -412,12 +480,14 @@ export default function Home() {
 
         <div className={styles.techparagraph}>
           <p>
-            Me apasiona trabajar con herramientas como Docker, Vagrant y
-            Ansible, ya que me permiten ser más eficiente y productivo tanto en
-            la administración de servidores como en el desarrollo de software.
-            Actualmente estoy aprendiendo Springboot con el objetivo de ampliar
-            mis conocimientos y aplicar patrones de diseño de software en
-            diferentes entornos.
+            Prefiero usar herramientas de vanguardia en la administración de
+            servidores y el desarrollo de software, como Docker, Vagrant y
+            Ansible. Estas herramientas me han permitido optimizar mi eficiencia
+            y productividad en proyectos anteriores y asi poder evitar tareas
+            repetitivas. Tiendo a automatizar labores de aprovisionamiento para
+            estar preparado en situaciones hostiles. Mi experiencia con estas
+            tecnologías demuestra mi capacidad para implementar soluciones
+            rápidas y confiables.
           </p>
         </div>
 

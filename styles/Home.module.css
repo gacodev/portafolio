@@ -133,15 +133,24 @@
 }
 
 .tecnologies {
-  width: 80vw;
+  width: 55vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2;
-  padding: 2;
+  gap: 1;
+  padding: 1;
   margin: auto;
 }
 
+.tecnologies > ul > div > li {
+  border: solid whitesmoke 1px;
+  margin: 5px;
+}
+
+.tecnologies > ul > div > img {
+  border: solid whitesmoke 5px;
+  margin: 5px;
+}
 .lists {
   list-style: none;
   display: flex;
@@ -437,5 +446,14 @@
     text-align: justify;
     font-size: 25px;
     padding: 2rem;
+  }
+
+  .tecnologies {
+    width: 90vw;
+    padding: 1.5;
+  }
+
+  .tecnologies > ul > div > li {
+    border: solid whitesmoke 1px;
   }
 }

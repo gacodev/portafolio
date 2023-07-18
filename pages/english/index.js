@@ -140,6 +140,9 @@ export default function Home() {
             </p>
           </div>
         </div>
+        <div className={styles.cloudFirstSection}>
+          <h2 className={styles.titles}>I have worked with </h2>
+        </div>
         <div className={styles.tecnologies}>
           <ul className={styles.lists}>
             <div>
@@ -147,6 +150,17 @@ export default function Home() {
               <Image
                 src="/tecnologies/react.png"
                 alt="react"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>Docker</li>
+              <Image
+                src="/tecnologies/docker.png"
+                alt="docker"
                 width={100}
                 height={100}
                 className={styles.images}
@@ -300,6 +314,49 @@ export default function Home() {
             </div>
 
             <div>
+              <li>Github Actions</li>
+              <Image
+                src="/tecnologies/gha.webp"
+                alt="github actions"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>Jest</li>
+              <Image
+                src="/tecnologies/jest.avif"
+                alt="jest"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+            <div>
+              <li>puppeter</li>
+              <Image
+                src="/tecnologies/puppeter.png"
+                alt="puppeter"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
+              <li>tailwind</li>
+              <Image
+                src="/tecnologies/tailwind.svg"
+                alt="tailwind"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
+
+            <div>
               <li>Linux</li>
               <Image
                 src="/tecnologies/linux.png"
@@ -309,7 +366,16 @@ export default function Home() {
                 className={styles.images}
               />
             </div>
-
+            <div>
+              <li>Ansible</li>
+              <Image
+                src="/tecnologies/ansible.png"
+                alt="ansible"
+                width={100}
+                height={100}
+                className={styles.images}
+              />
+            </div>
             <div>
               <li>Windows Server</li>
               <Image
@@ -336,7 +402,7 @@ export default function Home() {
 
         <div className={styles.cloud}>
           <div className={styles.cloudFirstSection}>
-            <h2>Cloud Experiencie </h2>
+            <h2 className={styles.titles}>Cloud Experiencie </h2>
           </div>
 
           <div className={styles.providers}>
@@ -412,11 +478,13 @@ export default function Home() {
         </div>
         <div className={styles.techparagraph}>
           <p>
-            I am passionate about working with tools like Docker, Vagrant, and
-            Ansible as they allow me to be more efficient and productive in both
-            server administration and software development. Currently, I am
-            learning Springboot with the goal of expanding my knowledge and
-            applying software design patterns in different environments.
+            I prefer to use cutting-edge tools in server administration and
+            software development, such as Docker, Vagrant, and Ansible. These
+            tools have allowed me to optimize my efficiency and productivity in
+            previous projects and avoid repetitive tasks. I tend to automate
+            provisioning tasks to be prepared in hostile situations. My
+            experience with these technologies demonstrates my ability to
+            implement fast and reliable solutions.
           </p>
         </div>
 
