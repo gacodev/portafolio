@@ -52,6 +52,7 @@ export const ProfileContainer = () => {
               <li>Gestion del tiempo</li>
               <li>Gestion de conflictos</li>
               <li>Inteligencia emocional</li>
+              <li>Trabajo en equipo</li>
             </ul>
           </div>
 
