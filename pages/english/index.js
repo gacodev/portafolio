@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Home() {
   const handleDownload = () => {
@@ -13,6 +14,10 @@ export default function Home() {
   };
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Backend Developer</title>
+        <meta name="description" content="Portfolio" />
+      </Head>
       <div className={styles.header}>
         <div className={styles.menu}>
           <Link href="/">
@@ -37,7 +42,7 @@ export default function Home() {
                 height={150}
               />
               <p>
-                Backend <br></br> Engineer
+                Backend <br></br> Developer
               </p>
               <hr></hr>
               <div className={styles.skills}>
