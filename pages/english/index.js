@@ -85,6 +85,17 @@ export default function Home() {
                     </a>
                   </div>
                   <div>
+                    <a href="https://github.com/gabrielcontrerasv">
+                      <Image
+                        src="/socialmedia/github.png"
+                        alt="github"
+                        width={60}
+                        height={60}
+                        className={styles.images}
+                      />
+                    </a>
+                  </div>
+                  <div>
                     <a href="https://www.linkedin.com/in/gabrielcontrerasv3">
                       <Image
                         src="/socialmedia/linkedin.webp"
