@@ -60,7 +60,7 @@ export const ProfileContainer = () => {
             <h1>Redes Sociales</h1>
             <div className={styles.social}>
               <div>
-                <a href="https://api.whatsapp.com/send?phone=3123702296">
+                <a href="https://api.whatsapp.com/send?phone=3126004185">
                   <Image
                     src="/socialmedia/whatsapp.png"
                     alt="whatsapp"
