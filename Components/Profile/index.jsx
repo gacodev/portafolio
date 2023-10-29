@@ -112,17 +112,26 @@ export const ProfileContainer = () => {
             src="/images/cv.jpg"
             alt="profile picture of Gabriel Contreras"
             className={styles.profile}
-            width={150}
-            height={150}
+            width={120}
+            height={120}
           />
-
           <p>
-            <button onClick={handleDownload}>Descargar</button>
+            <button className={styles.actions} onClick={handleDownload}>
+              Descargar
+            </button>
           </p>
+
           <hr></hr>
           <div>
-            <p> Telefono</p>
-            <h1> +573126004185</h1>
+            <label for="phone">Teléfono:</label>
+            <strong id="phone">+573126004185</strong>
+          </div>
+
+          <div>
+            <label for="email">Correo:</label>
+            <a id="email" href="mailto:gabriel.contrerasv3@gmail.com">
+              gabrielcontrerasv3@gmail.com
+            </a>
           </div>
         </div>
       </div>

@@ -1,0 +1,15 @@
+.stacks {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+.stacks > div {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }  

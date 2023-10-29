@@ -1,10 +1,13 @@
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 
-export const CloudProviderList = () => {
+export const CloudProviderList = ({ lang }) => {
   return (
     <div className={styles.cloud}>
-      <h2 className={styles.titles}>Experiencia en Nube</h2>
+      <h2 className={styles.titles}>
+        {" "}
+        {lang === "en" ? "Cloud Experience" : "Experiencia en nube"}{" "}
+      </h2>
       <div className={styles.providers}>
         <div className={styles.provider}>
           <h2>Azure Cloud</h2>
@@ -20,11 +23,8 @@ export const CloudProviderList = () => {
             <li>SQL Databases</li>
             <li>Azure Active Directory</li>
             <li>Azure IAM</li>
-            <li>Azure Policies</li>
-            <li>Web Apps</li>
             <li>API Management</li>
             <li>Functions</li>
-            <li>Backups</li>
             <li>Cost Management</li>
             <li>Virtual Machines</li>
             <li>Azure Blob Storage</li>
@@ -45,11 +45,16 @@ export const CloudProviderList = () => {
           <ul>
             <li>EC2</li>
             <li>S3</li>
+            <li>IAM</li>
+            <li>SQL Aurora</li>
             <li>Route 53</li>
             <li>CloudFront</li>
             <li>AWS lambdas</li>
             <li>CloudWatch</li>
             <li>CloudFormation</li>
+            <li>AWS Lightsail</li>
+            <li>CloudFormation</li>
+            <li>ECS</li>
           </ul>
         </div>
         <div className={styles.provider}>

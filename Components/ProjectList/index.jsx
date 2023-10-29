@@ -1,11 +1,13 @@
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 
-export const ProjectList = () => {
+export const ProjectList = ({ lang }) => {
   return (
     <div className={styles.projects}>
       <div className={styles.projectsFirstSection}>
-        <h1 className={styles.titles}>Proyectos de software</h1>
+        <h1 className={styles.titles}>
+          {lang === "en" ? "Software Projects" : "Proyectos de software"}
+        </h1>
       </div>
       <div className={styles.projectsSecondSection}>
         <div className={styles.experienceCard}>
@@ -33,11 +35,11 @@ export const ProjectList = () => {
         </div>
 
         <div className={styles.experienceCard}>
-          <a href="https://www.comfama.com">
+          <a href="https://www.auladigital.comfama.com">
             <h1 className={styles.title}>Aula digital comfama</h1>
             <Image
               src="/projects/comfama.png"
-              alt="gabriel profiel"
+              alt="auladigital"
               width={150}
               height={150}
               className={styles.images}

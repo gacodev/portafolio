@@ -6,16 +6,12 @@ import styles from "../../styles/404.module.css";
 function NotFound() {
   return (
     <div className={styles.container}>
-      <Image
-        src="/404.svg"
-        alt="404"
-        width={500}
-        height={500}
-        layout="intrinsic"
-      />
       <h1>¿Te perdiste?</h1>
       <Link href="/">
-        <div className={styles.langs}> <button>Regresar</button></div>
+        <div className={styles.langs}>
+          {" "}
+          <button className={styles.actions}>Regresar</button>
+        </div>
       </Link>
     </div>
   );

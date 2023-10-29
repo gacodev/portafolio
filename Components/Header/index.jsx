@@ -8,7 +8,7 @@ export const Header = () => {
         <Link href="/">
           <div className={styles.langs}>Español</div>
         </Link>
-        <Link href="/english">
+        <Link href="/en">
           <div className={styles.langs}>English</div>
         </Link>
       </div>
