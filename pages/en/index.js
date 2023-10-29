@@ -5,6 +5,7 @@ import Head from "next/head";
 import { CloudProviderList } from "../../Components/CloudProviderList";
 import { ProjectList } from "../../Components/ProjectList";
 import { TechList } from "../../Components/TechList";
+import { RoleChanger } from "../../Components/RoleChanger";
 
 export default function Home() {
   const handleDownload = () => {
@@ -44,9 +45,7 @@ export default function Home() {
                 width={150}
                 height={150}
               />
-              <p>
-                Backend <br></br> Developer
-              </p>
+              <RoleChanger lang="en" />
               <hr></hr>
               <div className={styles.skills}>
                 <h2>Hard Skills</h2>
@@ -146,12 +145,12 @@ export default function Home() {
               <hr></hr>
 
               <div>
-                <label for="phone">Teléfono:</label>
+                <label htmlFor="phone">Teléfono:</label>
                 <strong id="phone">+573126004185</strong>
               </div>
 
               <div>
-                <label for="email">Correo:</label>
+                <label htmlFor="email">Correo:</label>
                 <a id="email" href="mailto:gabriel.contrerasv3@gmail.com">
                   gabrielcontrerasv3@gmail.com
                 </a>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
+import { RoleChanger } from "../RoleChanger";
 
 export const ProfileContainer = () => {
   const handleDownload = () => {
@@ -22,9 +23,7 @@ export const ProfileContainer = () => {
             width={150}
             height={150}
           />
-          <p>
-            Desarrollador <br></br> Backend
-          </p>
+          <RoleChanger lang="es" />
           <hr></hr>
           <div className={styles.skills}>
             <h2>Hard Skills</h2>
@@ -123,12 +122,12 @@ export const ProfileContainer = () => {
 
           <hr></hr>
           <div>
-            <label for="phone">Teléfono:</label>
+            <label htmlFor="phone">Teléfono:</label>
             <strong id="phone">+573126004185</strong>
           </div>
 
           <div>
-            <label for="email">Correo:</label>
+            <label htmlFor="email">Correo:</label>
             <a id="email" href="mailto:gabriel.contrerasv3@gmail.com">
               gabrielcontrerasv3@gmail.com
             </a>
