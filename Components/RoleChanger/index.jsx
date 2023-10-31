@@ -6,14 +6,14 @@ export const RoleChanger = ({ lang }) => {
 
   if (lang === "en") {
     roles = [
-      "Backend Developer",
+      "Backend Engineer",
       "DevOps Engineer",
       "Software Engineer",
       "Infrastructure Consultant",
     ];
   } else {
     roles = [
-      "Desarrollador Backend",
+      "Ingeniero Backend",
       "Ingeniero DevOps",
       "Ingenieria de Software",
       "Consultor de Infraestructura",
