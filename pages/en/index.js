@@ -127,14 +127,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className={`${styles.cvcard} mobile-width`}>
+            <div className={styles.cvcard}>
               <h3>Curriculum vitae</h3>
               <Image
                 src="/images/cv.jpg"
                 alt="profile picture of Gabriel Contreras"
-                className={styles.profile}
-                width={120}
-                height={120}
+                className={styles.cvImage}
+                width={350}
+                height={350}
               />
 
               <p>
@@ -145,12 +145,12 @@ export default function Home() {
               <hr></hr>
 
               <div>
-                <label htmlFor="phone">Teléfono:</label>
+                Teléfono:
                 <strong id="phone">+573126004185</strong>
               </div>
 
               <div>
-                <label htmlFor="email">Correo:</label>
+                Correo:
                 <a id="email" href="mailto:gabriel.contrerasv3@gmail.com">
                   gabrielcontrerasv3@gmail.com
                 </a>

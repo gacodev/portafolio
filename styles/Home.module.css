@@ -323,6 +323,7 @@
     flex-direction: column;
     justify-content: center;
   }
+
   .description {
     display: flex;
     max-width: 90vw;
