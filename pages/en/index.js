@@ -6,6 +6,8 @@ import { CloudProviderList } from "../../Components/CloudProviderList";
 import { ProjectList } from "../../Components/ProjectList";
 import { TechList } from "../../Components/TechList";
 import { RoleChanger } from "../../Components/RoleChanger";
+import { Footer } from "../../Components/Footer";
+import { MigrationComponent } from "../../Components/Migrations";
 
 export default function Home() {
   const handleDownload = () => {
@@ -170,33 +172,12 @@ export default function Home() {
         <TechList lang={"en"} />
 
         <CloudProviderList lang={"en"} />
-        <div className={styles.techparagraph}>
-          <p>
-            I prefer to use cutting-edge tools in server administration and
-            software development, such as Docker, Vagrant, and Ansible. These
-            tools have allowed me to optimize my efficiency and productivity in
-            previous projects and avoid repetitive tasks. I tend to automate
-            provisioning tasks to be prepared in hostile situations. My
-            experience with these technologies demonstrates my ability to
-            implement fast and reliable solutions.
-          </p>
-        </div>
 
         <ProjectList lang={"en"} />
+        <MigrationComponent lang={"en"} />
       </div>
 
-      <footer className={styles.footer}>
-        <p>Proudly</p>
-        <div>
-          <Image
-            src="/bandera.png"
-            alt="nacionalidad"
-            width={50}
-            height={50}
-            className={styles.images}
-          />
-        </div>
-      </footer>
+      <Footer lang="en" />
     </div>
   );
 }

@@ -122,6 +122,29 @@
   justify-content: center;
 }
 
+.migrationsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.migrations {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  border-radius: 10px;
+  border: 1px solid whitesmoke;
+  padding: 1rem;
+}
+
+.migrations > h3 {
+  text-align: center;
+  color: yellowgreen;
+}
+
 .titles {
   font-size: 2rem;
   font-weight: 600;
@@ -131,6 +154,7 @@
   color: yellowgreen;
   padding: 2;
   font-family: "Edu VIC WA NT Beginner", cursive;
+  margin: 3px;
 }
 
 .cloud {
@@ -142,21 +166,13 @@
   padding: 2;
   font-size: 25px;
   min-width: 70vw;
-  margin: 2rem;
   align-items: center;
-}
-
-.cloud > h1 {
-  justify-content: space-around;
-  align-content: center;
-  color: yellowgreen;
-  align-items: center;
-  align-self: center;
 }
 
 .providers {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   max-width: 100vw;
   text-align: center;
   font-size: 25px;
@@ -167,7 +183,7 @@
   max-width: 100vw;
   border-radius: 10px;
   border: solid whitesmoke 2px;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .providers > div > ul {
@@ -192,16 +208,22 @@
 
 .description .techparagraph {
   display: flex;
+  flex-direction: column;
   max-width: 85vw;
+  margin: auto;
+  font-size: 25px;
+}
+
+.techparagraph {
+  margin-top: 20px;
 }
 
 .description > p,
 .techparagraph > p {
-  display: flex;
-  max-width: 85vw;
+  max-width: 75vw;
   text-align: justify;
-  padding: 1;
-  font-size: 25px;
+  justify-content: center;
+  font-size: 24px;
 }
 
 .code {
@@ -307,13 +329,9 @@
 
 @media (max-width: 768px) {
   .profile {
-    display: inline-flex;
-    flex-direction: column;
-  }
-
-  .profileContent {
     display: flex;
     flex-direction: column;
+    min-width: 100vw;
     justify-content: center;
     align-items: center;
   }
@@ -322,16 +340,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 85vw;
+    padding: 2rem;
   }
 
   .description {
-    display: flex;
-    max-width: 90vw;
-    text-align: justify;
-    padding: 1;
     font-size: 25px;
-    min-width: 100vw;
-    width: 90vw;
   }
 
   .cloud {
@@ -352,15 +366,14 @@
     flex-direction: column;
     width: 100vw;
     text-align: center;
+    align-items: center;
+    justify-content: center;
     font-size: 25px;
   }
-
-  .provider {
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-    text-align: center;
-    font-size: 25px;
+  .providers > div {
+    max-width: 70vw;
+    align-self: center;
+    padding: 2rem;
   }
 
   .projects {
@@ -406,5 +419,18 @@
     display: flex;
     flex-direction: row;
     width: 100vw;
+  }
+
+  .migrationsContainer {
+    min-width: 100vw;
+  }
+
+  .migrations {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+    padding: 1rem;
   }
 }

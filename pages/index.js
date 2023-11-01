@@ -8,6 +8,7 @@ import { ProjectList } from "../Components/ProjectList";
 import { TechParagraph } from "../Components/TechData";
 import { Footer } from "../Components/Footer";
 import Head from "next/head";
+import { MigrationComponent } from "../Components/Migrations";
 
 export default function Home() {
   return (
@@ -24,10 +25,10 @@ export default function Home() {
         <ProfileContainer />
         <TechList lang={"es"} />
         <CloudProviderList lang={"es"} />
-        <TechParagraph />
         <ProjectList lang={"es"} />
+        <MigrationComponent lang={"es"} />
       </div>
-      <Footer />
+      <Footer lang="es" />
     </div>
   );
 }

@@ -81,6 +81,28 @@ export const CloudProviderList = ({ lang }) => {
           </ul>
         </div>
       </div>
+      <hr />
+      <div className={styles.techparagraph}>
+        {lang === "es" ? (
+          <p>
+            Mi preferencia por las herramientas avanzadas en la gestión de
+            servidores y el desarrollo de software refleja mi enfoque en la
+            eficiencia y la productividad. Me he especializado en la adopción de
+            tecnologías de vanguardia en la nube, como Docker, Vagrant, Ansible,
+            Terraform y Github actions para optimizar procesos y reducir tareas
+            repetitivas, lo que es crucial en situaciones desafiantes
+          </p>
+        ) : (
+          <p>
+            My preference for advanced tools in server management and software
+            development reflects my focus on efficiency and productivity. I have
+            specialized in adopting cutting-edge cloud technologies like Docker,
+            Vagrant, Ansible, Terraform and Github actions to streamline
+            processes and reduce repetitive tasks, which is crucial in
+            challenging situations.
+          </p>
+        )}
+      </div>
     </div>
   );
 };

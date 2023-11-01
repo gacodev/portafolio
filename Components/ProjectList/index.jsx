@@ -35,7 +35,7 @@ export const ProjectList = ({ lang }) => {
         </div>
 
         <div className={styles.experienceCard}>
-          <a href="https://www.auladigital.comfama.com">
+          <a href="https://auladigital.comfama.com">
             <h1 className={styles.title}>Aula digital comfama</h1>
             <Image
               src="/projects/comfama.png"
