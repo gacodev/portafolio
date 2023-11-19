@@ -4,17 +4,26 @@ import styles from "../../styles/Home.module.css";
 export const TechList = ({ lang }) => {
   return (
     <div className={styles.tecnologies}>
-      <div className={styles.cloudFirstSection}>
-        <h2 className={styles.titles}>
-          {lang === "en" ? "I have worked with" : "he trabajado con"}{" "}
-        </h2>
-      </div>
+      <h2 className={styles.titles}>
+        {lang === "en" ? "I have worked with" : "he trabajado con"}{" "}
+      </h2>
       <ul className={styles.lists}>
         <div>
           <li>ReactJS </li>
           <Image
             src="/tecnologies/react.png"
             alt="react"
+            width={100}
+            height={100}
+            className={styles.images}
+          />
+        </div>
+
+        <div>
+          <li>Angular </li>
+          <Image
+            src="/tecnologies/angular.png"
+            alt="angular"
             width={100}
             height={100}
             className={styles.images}
@@ -33,10 +42,10 @@ export const TechList = ({ lang }) => {
         </div>
 
         <div>
-          <li>NodeJS </li>
+          <li>Windows Server</li>
           <Image
-            src="/tecnologies/nodejs.png"
-            alt="nodejs"
+            src="/tecnologies/win.svg"
+            alt="windows"
             width={100}
             height={100}
             className={styles.images}
@@ -88,6 +97,16 @@ export const TechList = ({ lang }) => {
           <Image
             src="/tecnologies/vercel.jpg"
             alt="Vercel"
+            width={100}
+            height={100}
+            className={styles.images}
+          />
+        </div>
+        <div>
+          <li>Azure Devops</li>
+          <Image
+            src="/tecnologies/azure.webp"
+            alt="azure"
             width={100}
             height={100}
             className={styles.images}
@@ -242,11 +261,21 @@ export const TechList = ({ lang }) => {
             className={styles.images}
           />
         </div>
+        <div>
+          <li>Sls Framework</li>
+          <Image
+            src="/tecnologies/sls.png"
+            alt="azure"
+            width={100}
+            height={100}
+            className={styles.images}
+          />
+        </div>
 
         <div>
-          <li>Windows Server</li>
+          <li>Firebase</li>
           <Image
-            src="/tecnologies/win.svg"
+            src="/tecnologies/firebase.png"
             alt="windows"
             width={100}
             height={100}
@@ -254,10 +283,10 @@ export const TechList = ({ lang }) => {
           />
         </div>
         <div>
-          <li>Azure Devops</li>
+          <li>NodeJS </li>
           <Image
-            src="/tecnologies/azure.webp"
-            alt="azure"
+            src="/tecnologies/nodejs.png"
+            alt="nodejs"
             width={100}
             height={100}
             className={styles.images}

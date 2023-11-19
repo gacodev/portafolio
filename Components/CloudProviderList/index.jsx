@@ -53,7 +53,8 @@ export const CloudProviderList = ({ lang }) => {
             <li>CloudWatch</li>
             <li>CloudFormation</li>
             <li>AWS Lightsail</li>
-            <li>CloudFormation</li>
+            <li>SNS</li>
+            <li>SQS</li>
             <li>ECS</li>
           </ul>
         </div>

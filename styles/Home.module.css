@@ -23,7 +23,7 @@
 }
 
 .profileCard {
-  padding: 1rem;
+  padding: 2rem;
   max-width: 85vw;
   text-align: center;
   text-decoration: none;
@@ -62,7 +62,7 @@
 }
 
 .tecnologies {
-  width: 60vw;
+  width: 63vw;
   max-width: 70vw;
   display: flex;
   flex-wrap: wrap;
@@ -154,7 +154,7 @@
   color: yellowgreen;
   padding: 2;
   font-family: "Edu VIC WA NT Beginner", cursive;
-  margin: 3px;
+  margin: 6px;
 }
 
 .cloud {
@@ -328,6 +328,10 @@
 }
 
 @media (max-width: 768px) {
+  .main {
+    min-width: 100vw;
+    margin: 0;
+  }
   .profile {
     display: flex;
     flex-direction: column;
@@ -336,12 +340,34 @@
     align-items: center;
   }
 
+  .profile > div {
+    min-width: 100vw;
+  }
+  .profile > div > div {
+    min-width: 100vw;
+  }
+
+  .profile > div > div > ul {
+    text-align: left;
+    max-width: 90vw;
+    margin: 0;
+  }
+
+  .socialMedia {
+    min-width: 100vw;
+  }
+
+  .socialMedia > div {
+    min-width: 100vw;
+    background-color: red;
+  }
+
   .cvcard {
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-width: 85vw;
-    padding: 2rem;
+    padding: 1rem;
   }
 
   .description {
@@ -352,8 +378,18 @@
     display: flex;
     flex-direction: column;
     width: 100vw;
+    min-width: 100vw;
     text-align: center;
     font-size: 25px;
+    justify-content: center;
+    align-items: center;
+  }
+  .cloud > div {
+    max-width: 100vw;
+    width: 100vw;
+    align-self: center;
+    padding: 2rem;
+
   }
 
   .cloud > h2 {
@@ -365,15 +401,26 @@
     display: flex;
     flex-direction: column;
     width: 100vw;
+    min-width: 100vw;
     text-align: center;
     align-items: center;
     justify-content: center;
     font-size: 25px;
   }
   .providers > div {
-    max-width: 70vw;
+    max-width: 100vw;
     align-self: center;
     padding: 2rem;
+  }
+
+  .techparagraph{
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    margin: auto;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
   }
 
   .projects {
@@ -383,23 +430,26 @@
     min-width: 100vw;
     text-align: center;
     font-size: 25px;
+    justify-content: center;
+    align-items: center;
   }
 
   .projectsSecondSection {
     display: flex;
     flex-direction: column;
-    min-width: 90vw;
-    text-align: center;
-    font-size: 25px;
-    padding: 2rem;
+    width: 100vw;
+    min-width: 100vw;
+    justify-content: center;
+    align-items: center;
   }
 
   .experienceCard {
     display: flex;
     flex-direction: column;
-    width: 70vw;
+    width: 80vw;
     text-align: center;
     font-size: 25px;
+    justify-content: center;
   }
 
   .skillslist {
@@ -421,6 +471,13 @@
     width: 100vw;
   }
 
+  .lists {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    text-align: center;
+  }
+
   .migrationsContainer {
     min-width: 100vw;
   }
@@ -428,7 +485,8 @@
   .migrations {
     display: flex;
     flex-direction: column;
-    width: 70vw;
+    justify-content: center;
+    width: 80vw;
     border-radius: 10px;
     border: 1px solid whitesmoke;
     padding: 1rem;

@@ -55,52 +55,47 @@ export const ProfileContainer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="socialMedia">
             <h1>Redes Sociales</h1>
             <div className={styles.social}>
-              <div>
-                <a href="https://api.whatsapp.com/send?phone=3126004185">
-                  <Image
-                    src="/socialmedia/whatsapp.png"
-                    alt="whatsapp"
-                    width={60}
-                    height={60}
-                    className={styles.images}
-                  />
-                </a>
-              </div>
-              <div>
-                <a href="https://github.com/gabrielcontrerasv">
-                  <Image
-                    src="/socialmedia/github.png"
-                    alt="github"
-                    width={60}
-                    height={60}
-                    className={styles.images}
-                  />
-                </a>
-              </div>
-              <div>
-                <a href="https://www.linkedin.com/in/gabrielcontrerasv3">
-                  <Image
-                    src="/socialmedia/linkedin.webp"
-                    alt="Linkedin"
-                    width={60}
-                    height={60}
-                    className={styles.images}
-                  />
-                </a>
-              </div>
+              <a href="https://api.whatsapp.com/send?phone=3126004185">
+                <Image
+                  src="/socialmedia/whatsapp.png"
+                  alt="whatsapp"
+                  width={60}
+                  height={60}
+                  className={styles.images}
+                />
+              </a>
+
+              <a href="https://github.com/gabrielcontrerasv">
+                <Image
+                  src="/socialmedia/github.png"
+                  alt="github"
+                  width={60}
+                  height={60}
+                  className={styles.images}
+                />
+              </a>
+
+              <a href="https://www.linkedin.com/in/gabrielcontrerasv3">
+                <Image
+                  src="/socialmedia/linkedin.webp"
+                  alt="Linkedin"
+                  width={60}
+                  height={60}
+                  className={styles.images}
+                />
+              </a>
+
               <a href="mailto:gabriel.contrerasv3@gmail.com">
-                <div>
-                  <Image
-                    src="/socialmedia/gmail.png"
-                    alt="email"
-                    width={60}
-                    height={60}
-                    className={styles.images}
-                  />
-                </div>
+                <Image
+                  src="/socialmedia/gmail.png"
+                  alt="email"
+                  width={60}
+                  height={60}
+                  className={styles.images}
+                />
               </a>
             </div>
           </div>

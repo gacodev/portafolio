@@ -47,7 +47,9 @@ export const MigrationComponent = ({ lang }) => {
     <div className={styles.migrationsContainer}>
       <h2 className={styles.titles}>{texts.title}</h2>
       <div className={styles.migrations}>
-        <h3>{texts.projectName}</h3>
+        <h3>
+          <a href="https://auladigital.comfama.com">{texts.projectName} </a>
+        </h3>
         <p>
           {texts.projectName} desde {texts.sourceOS} &#x27A1; {texts.targetOS}
         </p>
@@ -64,6 +66,7 @@ export const MigrationComponent = ({ lang }) => {
           ))}
         </ul>
         <h3>{texts.activeUsers}</h3>
+        <h3>2023</h3>
       </div>
     </div>
   );
