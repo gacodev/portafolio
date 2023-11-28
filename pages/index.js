@@ -5,7 +5,6 @@ import { CloudProviderList } from "../Components/CloudProviderList";
 import { ProfileContainer } from "../Components/Profile";
 import { Header } from "../Components/Header";
 import { ProjectList } from "../Components/ProjectList";
-import { TechParagraph } from "../Components/TechData";
 import { Footer } from "../Components/Footer";
 import Head from "next/head";
 import { MigrationComponent } from "../Components/Migrations";
