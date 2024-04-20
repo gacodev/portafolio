@@ -131,7 +131,7 @@ export const ProfileContainer = () => {
           </div>
           <div className="call-to-action">
             <h3 className={`${styles.titles} ${styles.separator}`}>
-              ¡Estoy disponible para nuevos proyectos!
+              ¡Disponible para nuevos proyectos!
             </h3>
             <p>¡Contáctame ahora para comenzar!</p>
           </div>
