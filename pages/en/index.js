@@ -158,7 +158,7 @@ export default function Home() {
               </div>
               <div className="call-to-action">
                 <h3 className={`${styles.titles} ${styles.separator}`}>
-                  I'm available for new projects!
+                  I am available for new projects!
                 </h3>
                 <p>Contact me now to get started!</p>
               </div>
