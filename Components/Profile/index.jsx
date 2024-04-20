@@ -116,10 +116,7 @@ export const ProfileContainer = () => {
 
           <hr></hr>
           <div>
-            Teléfono:
-            <strong id="phone" name="phone">
-              +573126004185
-            </strong>
+            Teléfono:<strong name="phone">+573126004185</strong>
           </div>
 
           <div>
@@ -132,15 +129,27 @@ export const ProfileContainer = () => {
               gabrielcontrerasv3@gmail.com
             </a>
           </div>
+          <div className="call-to-action">
+            <h3 className={`${styles.titles} ${styles.separator}`}>
+              ¡Estoy disponible para nuevos proyectos!
+            </h3>
+            <p>¡Contáctame ahora para comenzar!</p>
+          </div>
         </div>
       </div>
       <div className={styles.description}>
         <p>
-          Desarrollador Backend, con un amplio conocimiento en construccion de
-          aplicaciones del lado del servidor utilizando Node JS/NestJS o
-          PHP/Laravel, tengo conocimiento y experiencia trabajando con ReactJS,
-          base de datos SQL y No SQL para generar API con el fin consumirse como
-          servicios REST y/o GRAPHQL entre otras habilidades...
+          Ingeniero Devops, Desarrollador, apasionado por la tecnologia y los
+          retos tecnologicos con un amplio conocimiento y experiencia en
+          construccion de aplicaciones del lado del servidor con diversas
+          arquitecturas y/o desencadenadores(microservicios, serverless,
+          monolitos etc...) he utilizando Node JS/NestJS o PHP/Laravel o Python
+          en proyectos complejos, mi solida formacion en programacion orientada
+          a objetos y entendimiento de las reglas de negocio me permiten
+          desplazarme a traves de multiples herramientas o lenguajes. Tengo
+          conocimiento y experiencia trabajando con ReactJS, base de datos SQL y
+          No SQL para generar API con el fin consumirse como servicios REST y/o
+          GRAPHQL entre otras habilidades...
         </p>
       </div>
     </div>

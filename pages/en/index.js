@@ -147,8 +147,7 @@ export default function Home() {
               <hr></hr>
 
               <div>
-                Teléfono:
-                <strong id="phone">+573126004185</strong>
+                Teléfono:<strong id="phone">+573126004185</strong>
               </div>
 
               <div>
@@ -157,15 +156,26 @@ export default function Home() {
                   gabrielcontrerasv3@gmail.com
                 </a>
               </div>
+              <div className="call-to-action">
+                <h3 className={`${styles.titles} ${styles.separator}`}>
+                  I'm available for new projects!
+                </h3>
+                <p>Contact me now to get started!</p>
+              </div>
             </div>
           </div>
           <div className={styles.description}>
             <p>
-              Backend Developer, with extensive knowledge in server-side
-              application development using Node.js/NestJS or PHP/Laravel. I
-              have knowledge and experience working with ReactJS, SQL and NoSQL
-              databases to generate APIs that can be consumed as REST and/or
-              GraphQL services, among other skills.
+              DevOps Engineer, Developer, passionate about technology and
+              technological challenges with extensive knowledge and experience
+              in building server-side applications with various architectures
+              and triggers (microservices, serverless, monoliths, etc.). I have
+              used Node.js/NestJS or PHP/Laravel or Python in complex projects.
+              My solid background in object-oriented programming and
+              understanding of business rules allow me to navigate through
+              multiple tools or languages. I have knowledge and experience
+              working with ReactJS, SQL and NoSQL databases to generate APIs for
+              consumption as REST and/or GraphQL services, among other skills.
             </p>
           </div>
         </div>
