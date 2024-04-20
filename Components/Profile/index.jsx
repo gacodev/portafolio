@@ -113,8 +113,6 @@ export const ProfileContainer = () => {
               Descargar
             </button>
           </p>
-
-          <hr></hr>
           <div>
             Teléfono:<strong name="phone">+573126004185</strong>
           </div>
