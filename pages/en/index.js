@@ -144,8 +144,6 @@ export default function Home() {
                   Download
                 </button>
               </p>
-              <hr></hr>
-
               <div>
                 Teléfono:<strong id="phone">+573126004185</strong>
               </div>
