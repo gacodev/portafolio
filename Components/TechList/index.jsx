@@ -233,7 +233,7 @@ export const TechList = ({ lang }) => {
         <div>
           <li>docker</li>
           <Image
-            src="/tecnologies/docker.png"
+            src="/tecnologies/docker.webp"
             alt="docker"
             width={100}
             height={100}
