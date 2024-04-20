@@ -126,7 +126,7 @@ export const ProfileContainer = () => {
               name="email"
               href="mailto:gabriel.contrerasv3@gmail.com"
             >
-              gabrielcontrerasv3@gmail.com
+              gabriel.contrerasv3@gmail.com
             </a>
           </div>
           <div className="call-to-action">
