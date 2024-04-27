@@ -159,6 +159,24 @@ export default function Home() {
                   I am available for new projects!
                 </h3>
                 <p>Contact me now to get started!</p>
+
+<!-- Google Calendar Appointment Scheduling begin -->
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+<script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1WCIyd_BgnoKIW5G7WJEIJM90OKugZ9t9HId6Uj-_Uk8QWq9Yqu75dScEoTzxL9vYE_cUzA8B-?gv=true',
+      color: '#039BE5',
+      label: 'Reservar una cita',
+      target,
+    });
+  });
+})();
+</script>
+<!-- end Google Calendar Appointment Scheduling -->
               </div>
             </div>
           </div>
