@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 export const CalendarLink = ({ message }) => {
   const handleMouseOver = (e) => {
     e.target.style.backgroundColor = "#0272a3";
-    e.target.style.transform = "scale(1.6)";
+    e.target.style.transform = "scale(1.2)";
     e.target.style.border = "2px";
   };
 
   const handleMouseOut = (e) => {
     e.target.style.backgroundColor = "darkblue";
-    e.target.style.transform = "scale(1.2)";
+    e.target.style.transform = "scale(1)";
   };
 
   return (
