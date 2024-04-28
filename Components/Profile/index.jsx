@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import { RoleChanger } from "../RoleChanger";
+import { CalendarLink } from "../CalendarButton";
 
 export const ProfileContainer = () => {
   const handleDownload = () => {
@@ -131,7 +132,7 @@ export const ProfileContainer = () => {
             <h3 className={`${styles.titles} ${styles.separator}`}>
               ¡Disponible para nuevos proyectos!
             </h3>
-            <p>¡Contáctame ahora para comenzar!</p>
+           <CalendarLink message="¿Estas listo para agendar una reunion?"/>
           </div>
         </div>
       </div>

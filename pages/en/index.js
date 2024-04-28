@@ -8,6 +8,7 @@ import { TechList } from "../../Components/TechList";
 import { RoleChanger } from "../../Components/RoleChanger";
 import { Footer } from "../../Components/Footer";
 import { MigrationComponent } from "../../Components/Migrations";
+import { CalendarLink } from "../../Components/CalendarButton";
 
 export default function Home() {
   const handleDownload = () => {
@@ -115,8 +116,8 @@ export default function Home() {
                       />
                     </a>
                   </div>
-                  <a href="mailto:gabriel.contrerasv3@gmail.com">
-                    <div>
+                  <div>
+                    <a href="mailto:gabriel.contrerasv3@gmail.com">
                       <Image
                         src="/socialmedia/gmail.png"
                         alt="email"
@@ -124,8 +125,8 @@ export default function Home() {
                         height={60}
                         className={styles.images}
                       />
-                    </div>
-                  </a>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -158,25 +159,7 @@ export default function Home() {
                 <h3 className={`${styles.titles} ${styles.separator}`}>
                   I am available for new projects!
                 </h3>
-                <p>Contact me now to get started!</p>
-
-<!-- Google Calendar Appointment Scheduling begin -->
-<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-<script>
-(function() {
-  var target = document.currentScript;
-  window.addEventListener('load', function() {
-    calendar.schedulingButton.load({
-      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1WCIyd_BgnoKIW5G7WJEIJM90OKugZ9t9HId6Uj-_Uk8QWq9Yqu75dScEoTzxL9vYE_cUzA8B-?gv=true',
-      color: '#039BE5',
-      label: 'Reservar una cita',
-      target,
-    });
-  });
-})();
-</script>
-<!-- end Google Calendar Appointment Scheduling -->
+               <CalendarLink message="Ready to schedule a meeting?"/>
               </div>
             </div>
           </div>
