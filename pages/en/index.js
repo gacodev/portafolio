@@ -95,7 +95,7 @@ export default function Home() {
                     </a>
                   </div>
                   <div>
-                    <a href="https://github.com/gabrielcontrerasv">
+                    <a href="https://github.com/gacodev">
                       <Image
                         src="/socialmedia/github.png"
                         alt="github"
