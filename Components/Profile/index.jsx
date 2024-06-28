@@ -69,7 +69,7 @@ export const ProfileContainer = () => {
                 />
               </a>
 
-              <a href="https://github.com/gabrielcontrerasv">
+              <a href="https://github.com/gacodev">
                 <Image
                   src="/socialmedia/github.png"
                   alt="github"
