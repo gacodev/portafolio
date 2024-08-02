@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Backend Developer</title>
+        <title>DevOps & Cloud Engineer </title>
         <meta name="description" content="Portfolio" />
       </Head>
       <div className={styles.header}>
