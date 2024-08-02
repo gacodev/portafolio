@@ -6,17 +6,29 @@ export const RoleChanger = ({ lang }) => {
 
   if (lang === "en") {
     roles = [
-      "Backend Engineer",
-      "DevOps Engineer",
-      "Software Engineer",
-      "Infrastructure Consultant",
+      "Backend",
+      "DevOps",
+      "Software Specialist",
+      "Consultant",
+      "Infraestructure",
+      "Software Architecture",
+      "Cloud Specialist",
+      "AZURE",
+      "AWS",
+      "GCP"
     ];
   } else {
     roles = [
-      "Ingeniero Backend",
-      "Ingeniero DevOps",
+      "Backend",
+      "DevOps",
       "Ingenieria de Software",
-      "Consultor de Infraestructura",
+      "Consultor",
+      "Infraestructura",
+      "Arquitectura de software",
+      "Especialista Nube",
+      "AZURE",
+      "AWS",
+      "GCP"
     ];
   }
 
