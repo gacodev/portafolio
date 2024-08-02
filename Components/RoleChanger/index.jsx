@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./RoleChanger.module.css"; // Importa un archivo CSS para las transiciones
+import styles from "./RoleChanger.module.css";  
 
 export const RoleChanger = ({ lang }) => {
   let roles;
@@ -8,12 +8,12 @@ export const RoleChanger = ({ lang }) => {
     roles = [
       "Backend",
       "DevOps",
+      "Azure Cloud Specialist",
       "Software Specialist",
+      "Sql & Nosql Databases",
       "Consultant",
       "Infraestructure",
       "Software Architecture",
-      "Cloud Specialist",
-      "AZURE",
       "AWS",
       "GCP"
     ];
@@ -21,12 +21,12 @@ export const RoleChanger = ({ lang }) => {
     roles = [
       "Backend",
       "DevOps",
+      "Especialista en Azure Cloud",
       "Ingenieria de Software",
+      "Bases de datos Sql & Nosql",
       "Consultor",
       "Infraestructura",
       "Arquitectura de software",
-      "Especialista Nube",
-      "AZURE",
       "AWS",
       "GCP"
     ];
