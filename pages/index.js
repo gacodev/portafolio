@@ -13,10 +13,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Backend Developer</title>
+        <title>Senior DevOps & Cloud Engineer</title>
         <meta
           name="description"
-          content="Explore my portfolio showcasing expertise in backend development, cloud development, and robotics. Discover my projects and skills in JavaScript, TypeScript, design patterns, software architecture, clean code, unit tests, and pipelines."
+          content="Explore my portfolio showcasing expertise in backend development, cloud development, and rpa. Discover my projects and skills in JavaScript, TypeScript, design patterns, software architecture, clean code, unit tests, and pipelines."
         />
       </Head>
       <Header />
