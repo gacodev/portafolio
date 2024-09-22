@@ -30,12 +30,12 @@ const flattenData = () => {
 
 const flattenedData = flattenData();
 
-const PerformanceMetrics = ({ language = 'es' }) => {
-  const title = language === 'en' ? 
+const PerformanceMetrics = ({ lang = 'es' }) => {
+  const title = lang === 'en' ? 
   "Quarterly Performance Metrics of Projects I've Contributed To" : 
   "Métricas Trimestrales de Rendimiento y Confiabilidad en Proyectos en los que He Contribuido";
 
-  const message = language === 'en'
+  const message = lang === 'en'
     ? "Consistency, oversight, and decision-making have optimized deployment capacity and solution reliability through persistent work and individual contributions."
     : "La consistencia y la toma de decisiones han mejorado la capacidad de despliegue y la confiabilidad de las soluciones mediante trabajo persistente y aportes individuales.";
 

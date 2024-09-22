@@ -8,7 +8,7 @@ const profileData = [
     title: "Ingeniero de Sistemas",
     description: `Ingeniero de Sistemas, SRE, Desarrollador, autodidacta apasionado por mejorar la vida de las personas mediante la tecnología, electrónica y los retos tecnológicos...`,
     hardSkills: [
-      "Scrum", "Docker", "Vagrant", "Typescript", "Azure DevOps", "ReactJS", "SQL", "NodeJS", "PHP Laravel"
+      "Scrum", "Docker", "Bash", "Typescript", "Azure DevOps", "ReactJS", "SQL", "NodeJS", "PHP Laravel"
     ],
     softSkills: [
       "Solución de Problemas", "Escucha Activa", "Persistencia", "Flexibilidad",
@@ -20,7 +20,7 @@ const profileData = [
       { href: "https://www.linkedin.com/in/gabrielcontrerasv3", src: "/socialmedia/linkedin.webp", alt: "LinkedIn" },
       { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.png", alt: "Email" }
     ],
-    cvTitle: "Curriculum vitae",
+    cvTitle: "Curriculum Vitae",
     cvButton: "Descargar",
     contactPhone: "Teléfono:",
     contactEmail: "Correo: ",
@@ -32,11 +32,11 @@ const profileData = [
     title: "Systems Engineer",
     description: `Systems Engineer,SRE Developer, self-taught passionate about improving people's lives through technology, electronics, and technological challenges...`,
     hardSkills: [
-      "Scrum", "Docker", "Vagrant", "TypeScript", "Azure DevOps", "ReactJS", "SQL", "NodeJS", "PHP Laravel"
+      "Scrum", "Docker", "Bash", "TypeScript", "Azure DevOps", "ReactJS", "SQL", "NodeJS", "PHP Laravel", "Python"
     ],
     softSkills: [
       "Problem Solving", "Active Listening", "Persistence", "Flexibility",
-      "Assertive Communication", "Time Management", "Conflict Management", "Emotional Intelligence", "Teamwork"
+      "Assertive Communication", "Time Management", "Conflict Management", "Emotional Intelligence", "Teamwork", "Leadership"
     ],
     socialMedia: [
       { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.png", alt: "WhatsApp" },
@@ -81,9 +81,9 @@ export const ProfileContainer = ({ lang }) => {
           <RoleChanger lang={lang} />
           <hr className="my-4 border-gray-600" />
 
-          <div className="flex justify-center w-full mt-4">
+          <div className="flex justify-center w-full mt-4 ml-4 ">
             <div className="text-center mx-2">
-              <h3 className="text-lg font-semibold">Hard Skills</h3>
+              <h3 className="text-lg font-semibold">{lang =='en' ? 'Hard Skills' : 'Habilidades Tecnicas'}</h3>
               <ul className="list-none text-left">
                 {profile.hardSkills.map((skill) => (
                   <li key={skill} className="flex items-center">
@@ -93,8 +93,8 @@ export const ProfileContainer = ({ lang }) => {
                 ))}
               </ul>
             </div>
-            <div className="text-center mx-2">
-              <h3 className="text-lg font-semibold">Soft Skills</h3>
+            <div className="text-center mx-3">
+            <h3 className="text-lg font-semibold">{lang =='en' ? 'Soft Skills' : 'Habilidades Blandas'}</h3>
               <ul className="list-none text-left">
                 {profile.softSkills.map((skill) => (
                   <li key={skill} className="flex items-center">

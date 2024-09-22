@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.menu}>
-        <Link href="/">
+        <Link href="/es">
           <div className={styles.langs}>Español</div>
         </Link>
         <Link href="/en">

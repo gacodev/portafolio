@@ -20,20 +20,23 @@ const achievements = [
   { category: { en: 'Backup & Disaster Recovery', es: 'Backups & Recuperación ante Desastres' }, result: { en: 'Designed backup strategies with RPO < 5 mins', es: 'Diseño de estrategias de backup con RPO < 5 minutos' } },
 ];
 
-const KeyAchievements = ({ language = 'es' }) => {
+const KeyAchievements = ({ lang = 'es' }) => {
   return (
     <div className="mb-20">
       <h2 className="text-3xl font-bold mb-8 text-center">
-        {language === 'en' ? 'Key Achievements' : 'Logros Clave'}
+        {lang === 'en' ? 'Key Achievements' : 'Logros Clave'}
       </h2>
       <table className="min-w-full table-auto border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-700">
-            <th className="border border-gray-300 px-4 py-2">
-              {language === 'en' ? 'Category' : 'Categoría'}
+          <th className="border border-gray-300 px-4 py-2">
+              #
             </th>
             <th className="border border-gray-300 px-4 py-2">
-              {language === 'en' ? 'Results' : 'Resultados'}
+              {lang === 'en' ? 'Category' : 'Categoría'}
+            </th>
+            <th className="border border-gray-300 px-4 py-2">
+              {lang === 'en' ? 'Results' : 'Resultados'}
             </th>
           </tr>
         </thead>
@@ -41,10 +44,13 @@ const KeyAchievements = ({ language = 'es' }) => {
           {achievements.map((achievement, index) => (
             <tr key={index} className="text-lg">
               <td className="border border-gray-300 px-4 py-2">
-                {achievement.category[language]}
+                {index + 1}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                {achievement.result[language]}
+                {achievement.category[lang]}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {achievement.result[lang]}
               </td>
             </tr>
           ))}
