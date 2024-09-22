@@ -1,0 +1,30 @@
+.roleChanger {
+  position: relative;
+  display: inline-block;
+}
+
+.role {
+  font-size: 2rem; /* Ajusta el tamaño según sea necesario */
+  color: #fff; /* Cambia el color según tu diseño */
+}
+
+.typedText {
+  display: inline-block;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.5rem; /* Ajusta la altura del cursor */
+  background-color: white;
+  animation: slide 2s infinite alternate; /* Cambia la animación */
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(5px); /* Mueve el cursor hacia la derecha */
+  }
+}

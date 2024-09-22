@@ -1,11 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  overflow-x: hidden;  
-  background-color: #005187 	;
+  background-color: #005187;
   color: whitesmoke;
 }
 
@@ -18,12 +21,88 @@ a {
   box-sizing: border-box;
 }
 
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main {
+  padding: 2rem 0;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+
+.journey2024Section {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.profileContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profileCard, .cvcard {
+  flex: 1;
+  min-width: 250px;
+}
+
+.skills, .social {
+  margin-top: 1.5rem;
+}
+
+.description {
+  margin: 2rem 0;
+}
+
+.tecnologies, .cloud, .projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .profileContent {
+    flex-direction: column;
+  }
+
+  .profileCard, .cvcard {
+    width: 100%;
+  }
+
+  .journey2024Section {
+    /* Ajustes específicos para móviles si son necesarios */
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
     color: white;
-    background: black;
+    background: #003366;
   }
 }
