@@ -11,17 +11,15 @@ import { MigrationComponent } from "../../sections/2023/Components/Migrations";
 import { Footer } from "../../sections/page/Components/Footer";
 
 export default function Home() {
-  return (
-<>
+  return (<>
     <div className={styles.container}>
       <Head>
         <title>Senior DevOps & Cloud Engineer</title>
         <meta
           name="description"
-          content="Explora mi portafolio que muestra experiencia en desarrollo backend, desarrollo en la nube y RPA. Descubre mis proyectos y habilidades en JavaScript, TypeScript, patrones de diseño, arquitectura de software, código limpio, pruebas unitarias y pipelines."
+          content="Explora el conjunto de habilidades que muestran mi experiencia en desarrollo backend, desarrollo en la nube y Automatización. Descubre mis proyectos y habilidades en JavaScript, TypeScript, patrones de diseño, arquitectura de software, código limpio, pruebas unitarias y pipelines."
         />
       </Head>
-
       <Header />
       <ProfileContainer lang="es" />
       <Journey2024 lang="es" />
@@ -31,6 +29,7 @@ export default function Home() {
       <MigrationComponent lang="es" />
       <Footer lang="es" />
     </div>
-</>
+
+  </>
   );
 }
