@@ -51,7 +51,7 @@ export const TechList = ({ lang }) => {
                   alt={tech.name}
                   layout="fill"
                   objectFit="contain"
-                  className="transition duration-300 ease-in-out group-hover:opacity-80"
+                  className="transition duration-300 ease-in-out group-hover:opacity-80 rounded-xl"
                 />
               </div>
               <span className="text-white text-center font-medium group-hover:text-yellow-300 transition duration-300 ease-in-out">

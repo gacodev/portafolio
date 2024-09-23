@@ -83,7 +83,7 @@ export const ProfileContainer = ({ lang }) => {
 
           <div className="flex justify-center w-full mt-4 ml-4 ">
             <div className="text-center mx-2">
-              <h3 className="text-lg font-semibold">{lang =='en' ? 'Hard Skills' : 'Habilidades Tecnicas'}</h3>
+              <h3 className="text-lg font-semibold">{lang == 'en' ? 'Hard Skills' : 'Habilidades Tecnicas'}</h3>
               <ul className="list-none text-left">
                 {profile.hardSkills.map((skill) => (
                   <li key={skill} className="flex items-center">
@@ -94,7 +94,7 @@ export const ProfileContainer = ({ lang }) => {
               </ul>
             </div>
             <div className="text-center mx-3">
-            <h3 className="text-lg font-semibold">{lang =='en' ? 'Soft Skills' : 'Habilidades Blandas'}</h3>
+              <h3 className="text-lg font-semibold">{lang == 'en' ? 'Soft Skills' : 'Habilidades Blandas'}</h3>
               <ul className="list-none text-left">
                 {profile.softSkills.map((skill) => (
                   <li key={skill} className="flex items-center">
@@ -153,7 +153,7 @@ export const ProfileContainer = ({ lang }) => {
 
           {/* Certifications Section */}
           <div className="mt-4 text-center">
-            <h3 className="text-lg font-semibold">Certificaciones</h3>
+            <h3 className="text-lg font-semibold">{lang == 'en' ? 'Crendentials' : 'Certificaciones'}</h3>
             <ul className="list-disc list-inside text-left">
               <li>Cisco CCNA Routing and Switching</li>
             </ul>

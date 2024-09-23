@@ -1,17 +1,36 @@
 import Link from "next/link";
-import styles from "../../../../styles/Home.module.css";
+import { useRouter } from "next/router";
 
 export const Header = () => {
+  const router = useRouter(); // Obtenemos la ruta actual
+
   return (
-    <div className={styles.header}>
-      <div className={styles.menu}>
-        <Link href="/es">
-          <div className={styles.langs}>Español</div>
-        </Link>
-        <Link href="/en">
-          <div className={styles.langs}>English</div>
-        </Link>
-      </div>
+    <div className="flex justify-center">
+      {/* Español */}
+      <Link href="/es" passHref legacyBehavior>
+        <a
+          className={`${
+            router.pathname === "/es"
+              ? "bg-[#004172] text-white font-semibold border-[#005187]"
+              : "bg-[#005187] text-gray-300 border-[#004172]"
+          } py-2 px-4 border transition-all duration-300 hover:bg-[#003358]`}
+        >
+          Español
+        </a>
+      </Link>
+
+      {/* English */}
+      <Link href="/en" passHref legacyBehavior>
+        <a
+          className={`${
+            router.pathname === "/en"
+              ? "bg-[#004172] text-white font-semibold border-[#005187]"
+              : "bg-[#005187] text-gray-300 border-[#004172]"
+          } py-2 px-4 border transition-all duration-300 hover:bg-[#003358]`}
+        >
+          English
+        </a>
+      </Link>
     </div>
   );
 };
