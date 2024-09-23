@@ -12,6 +12,7 @@ import { Footer } from "../../sections/page/Components/Footer";
 
 export default function Home() {
   return (
+<>
     <div className={styles.container}>
       <Head>
         <title>Senior DevOps & Cloud Engineer</title>
@@ -30,5 +31,6 @@ export default function Home() {
       <MigrationComponent lang="es" />
       <Footer lang="es" />
     </div>
+</>
   );
 }
