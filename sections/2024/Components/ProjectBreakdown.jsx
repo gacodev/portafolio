@@ -50,20 +50,20 @@ const ProjectBreakdown = ({ lang }) => {
     datasets: [
       {
         data: [project.ci, project.cd, project.owasp],
-        backgroundColor: ['#4CAF50', '#2196F3', '#FFC107'],
-        hoverBackgroundColor: ['#45a049', '#1e88e5', '#ffb300'],
+        backgroundColor: ['#66bb6a', '#42a5f5', '#ffca28'],
+        hoverBackgroundColor: ['#57a64a', '#1e88e5', '#ffb300'],
       },
     ],
   });
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-8 mt-4 text-center">{t.latestProjects}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <h2 className="text-3xl font-bold mb-8 mt-4 text-center text-gray-800">{t.latestProjects}</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {projects.map((project) => (
           <motion.div
             key={project.name}
-            className="bg-white p-6 rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-300"
+            className="bg-white p-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300 ease-in-out"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setSelectedProject(project)}
@@ -72,15 +72,15 @@ const ProjectBreakdown = ({ lang }) => {
             <p className="text-sm text-gray-600 mb-4">{project.category}</p>
             <div className="flex justify-between items-center text-gray-700">
               <div className="flex items-center">
-                <Code size={18} className="mr-2" />
+                <Code size={18} className="mr-2 text-gray-600" />
                 <span>{project.ci + project.cd}</span>
               </div>
               <div className="flex items-center">
-                <Shield size={18} className="mr-2" />
+                <Shield size={18} className="mr-2 text-gray-600" />
                 <span>{project.owasp}</span>
               </div>
               <div className="flex items-center">
-                <Calendar size={18} className="mr-2" />
+                <Calendar size={18} className="mr-2 text-gray-600" />
                 <span>{project.year}</span>
               </div>
               <div className={`flex items-center ${project.incidents > 0 ? 'text-red-600' : 'text-gray-700'}`}>
@@ -104,7 +104,7 @@ const ProjectBreakdown = ({ lang }) => {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
-              className="bg-white text-black p-8 rounded-lg max-w-3xl w-full"
+              className="bg-white text-black p-8 rounded-lg max-w-4xl w-full shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
               <h3 className="text-2xl font-bold mb-2 text-gray-800">{selectedProject.name}</h3>

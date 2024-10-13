@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
 
 const AgileComponent = ({ lang = "en" }) => {
@@ -108,6 +109,9 @@ const AgileComponent = ({ lang = "en" }) => {
       </AnimatePresence>
     </div>
   );
+};
+AgileComponent.propTypes = {
+  lang: PropTypes.string,
 };
 
 export default AgileComponent;

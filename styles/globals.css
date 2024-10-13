@@ -88,6 +88,10 @@ a {
   .profileCard, .cvcard {
     width: 100vw;
   }
+
+  .container {
+    padding: 0 10px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

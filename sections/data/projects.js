@@ -154,6 +154,7 @@ const projects = [
   }
 ];
 
+
 projects.forEach(company => {
   company.projects.sort((a, b) => b.year - a.year);
 });

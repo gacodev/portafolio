@@ -4,21 +4,16 @@
 }
 
 .role {
-  font-size: 2rem; /* Ajusta el tamaño según sea necesario */
-  color: #fff; /* Cambia el color según tu diseño */
+  font-size: 2rem;
+  color: #fff; 
+  align-items: center;
+  text-align: center;
 }
 
 .typedText {
   display: inline-block;
 }
 
-.cursor {
-  display: inline-block;
-  width: 10px;
-  height: 1.5rem; /* Ajusta la altura del cursor */
-  background-color: white;
-  animation: slide 2s infinite alternate; /* Cambia la animación */
-}
 
 @keyframes slide {
   0% {

@@ -4,28 +4,28 @@ import styles from "./RoleChanger.module.css";
 export const RoleChanger = ({ lang }) => {
   const roles = lang === "en"
     ? [
-        "Backend",
-        "DevOps",
-        "Azure Cloud Specialist",
+        "Backend Developer",
+        "DevOps Specialist",
+        "Cloud Specialist",
         "Software Specialist",
         "Sql & Nosql Databases",
-        "Consultant",
-        "Infrastructure",
+        "Infrastructure Consultant",
         "Software Architecture",
-        "AWS",
-        "GCP"
+        "Amazon Web Services",
+        "Google Cloud",
+        "Microsoft Azure"
       ]
     : [
-        "Backend",
-        "DevOps",
-        "Especialista en Azure Cloud",
+        "Ingeniero Backend",
+        "Especialista en DevOps ",
+        "Especialista en Nube",
         "Ingeniería de Software",
         "Bases de datos Sql & Nosql",
-        "Consultor",
-        "Infraestructura",
+        "Consultor de Infraestructura",
         "Arquitectura de software",
-        "AWS",
-        "GCP"
+        "Amazon Web Services",
+        "Google Cloud",
+        "Microsoft Azure"
       ];
 
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
