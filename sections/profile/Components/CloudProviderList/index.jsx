@@ -1,54 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
-import { motion } from 'framer-motion';
+import { XIcon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cloudProviders, iacTools } from '../../../data/cloud';
 
-const cloudProviders = [
-  {
-    name: "Amazon Web Services",
-    logo: "/images/aws.svg",
-    skills: [
-      "EC2", "S3", "IAM", "RDS Aurora", "Route 53", "CloudFront", "AWS Lambda",
-      "CloudWatch", "CloudFormation", "AWS Lightsail", "SNS", "SQS", "ECS"
-    ]
-  },
-  {
-    name: "Azure Cloud",
-    logo: "/images/azure.svg",
-    skills: [
-      "Azure SQL Databases", "Microsoft Entra ID (B2B,B2C)", "Azure IAM", "API Management",
-      "Azure Functions", "Cost Management", "Azure Virtual Machines", "Azure Blob Storage",
-      "Key Vault", "Azure DevOps", "App Service", "Azure Kubernetes Service (AKS)",
-      "Azure Monitor", "Azure Logic Apps", "Azure Event Grid", "Azure Service Bus",
-      "Azure Container Instances", "Azure Container Apps", "Virtual Machine Scale Sets", 
-      "Private DNS Zones", "Private Link", "Azure Application Gateway", "Traffic Manager",
-      "Azure Front Door"
-    ]
-  },
-  {
-    name: "Google Cloud",
-    logo: "/images/gcp.svg",
-    skills: [
-      "Compute Engine", "Cloud Storage", "Cloud Functions", "Cloud SQL",
-      "Cloud DNS", "Cloud CDN", "Cloud Build", "Cloud Source Repositories",
-      "Cloud IAM", "Cloud Deployment Manager", "Cloud Pub/Sub", "Cloud Run", "Maps API"
-    ]
-  }
-];
+const ExperienceTag = ({ years }) => (
+  <div className="absolute top-0 right-0 overflow-hidden w-40 h-40">
+    <div className="absolute top-0 right-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white 
+                    py-5 px-12 shadow-lg transform rotate-45 translate-x-[45%] -translate-y-[15%]
+                    flex items-center text-center justify-center">
+      <span className="text-sm font-extrabold tracking-wider transform -rotate-45 justify-center">
+        {years}+ '    
+      </span>
+    </div>
+  </div>
+);
 
-const iacTools = [
-  {
-    name: "Terraform",
-    logo: "/iac/terraform.svg",
-    url: "https://www.terraform.io/docs"
-  },
-  {
-    name: "Pulumi",
-    logo: "/iac/pulumi.svg",
-    url: "https://www.pulumi.com/docs/"
-  }
-];
+const Modal = ({ isOpen, onClose, title, skills }) => (
+  <AnimatePresence>
+    {isOpen && (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -50, opacity: 0 }}
+          className="bg-gray-800 rounded-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto relative"
+          onClick={e => e.stopPropagation()}
+        >
+          <button
+            onClick={onClose}
+            className="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors duration-200"
+            aria-label="Close modal"
+          >
+            <XIcon size={24} />
+          </button>
+          <h3 className="text-2xl font-bold mb-4 text-white pr-8">{title} Skills</h3>
+          <ul className="space-y-2">
+            {skills.map(skill => (
+              <li key={skill.name} className="flex justify-between text-white">
+                <span>{skill.name}</span>
+                <span className="font-bold">{skill.exp} {skill.exp === 1 ? 'year' : 'years'}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
 
 export const CloudProviderList = ({ lang }) => {
+  const [modalContent, setModalContent] = useState(null);
   const title = lang === "en" ? "Cloud Experience" : "Experiencia en nube";
   const iacTitle = lang === "en" ? "Infrastructure as Code" : "Infraestructura como Código";
   const paragraph = lang === "en"
@@ -58,17 +66,19 @@ export const CloudProviderList = ({ lang }) => {
   return (
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold text-center mb-8 text-white">{title}</h2>
-      <div className="flex flex-col md:flex-row justify-center items-stretch gap-6">
-        {cloudProviders.map((provider, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {cloudProviders.map((provider) => (
           <div 
             key={provider.name} 
-            className={`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden flex-1 border border-white border-opacity-30 ${
-              index === 1 ? 'md:-mt-4 md:-mb-4 md:shadow-xl' : ''
-            }`}
+            className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-xl 
+                       overflow-hidden border border-gray-700 transform transition duration-300 hover:scale-105"
           >
+            <ExperienceTag years={provider.name === "Google Cloud" ? 1 : provider.name === "Amazon Web Services" ? 1 : Math.floor(provider.experience)} />
             <div className="p-6">
-              <h3 className="text-xl font-semibold text-center mb-4 text-white">{provider.name}</h3>
-              <div className="flex justify-center mb-4">
+              <h4 className="text-xl font-semibold text-center mb-4 text-white">
+                {provider.name}
+              </h4>
+              <div className="flex justify-center mb-6">
                 <Image
                   src={provider.logo}
                   alt={provider.name}
@@ -77,11 +87,21 @@ export const CloudProviderList = ({ lang }) => {
                   className="object-contain"
                 />
               </div>
-              <ul className="list-disc list-inside space-y-2">
-                {provider.skills.map(skill => (
-                  <li key={skill} className="text-sm text-white font-semibold list-none">{skill}</li>
+              <ul className="text-white text-sm space-y-2 mb-4">
+                {provider.skills.slice(0, 10).map(skill => (
+                  <li key={skill.name} className="flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    {skill.name}
+                  </li>
                 ))}
               </ul>
+              <button
+                onClick={() => setModalContent({ title: provider.name, skills: provider.skills })}
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 
+                           text-white font-bold py-2 px-4 rounded transition duration-300"
+              >
+                Show All Skills
+              </button>
             </div>
           </div>
         ))}
@@ -91,30 +111,35 @@ export const CloudProviderList = ({ lang }) => {
         <h3 className="text-2xl font-semibold mb-8 text-white">{iacTitle}</h3>
         <div className="flex justify-center items-center space-x-12 mb-10">
           {iacTools.map((tool) => (
-            <motion.a
+            <div
               key={tool.name}
-              href={tool.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 flex flex-col items-center transition-all duration-300 hover:bg-opacity-30 hover:shadow-2xl"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 
+                         flex flex-col items-center transition-all duration-300 hover:shadow-2xl 
+                         transform hover:scale-105 border border-gray-700"
             >
+              <ExperienceTag years={Math.floor(tool.experience)} />
               <Image
                 src={tool.logo}
                 alt={tool.name}
-                width={250}
-                height={250}
+                width={200}
+                height={200}
                 className="object-contain mb-4"
               />
               <span className="text-white text-lg font-semibold">{tool.name}</span>
-            </motion.a>
+            </div>
           ))}
         </div>
         <p className="text-lg leading-relaxed text-white">
           {paragraph}
         </p>
       </div>
+
+      <Modal
+        isOpen={!!modalContent}
+        onClose={() => setModalContent(null)}
+        title={modalContent?.title}
+        skills={modalContent?.skills}
+      />
     </div>
   );
 };

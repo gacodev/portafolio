@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import projects from "./projects";
+import projects from "../../../data/projects";
 import PropTypes from 'prop-types';
 import GravatarImage from "./GravatarImage";
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';

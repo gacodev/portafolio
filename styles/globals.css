@@ -23,7 +23,7 @@ a {
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 100vw;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -80,20 +80,13 @@ a {
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 10px;
-  }
 
   .profileContent {
     flex-direction: column;
   }
 
   .profileCard, .cvcard {
-    width: 100%;
-  }
-
-  .journey2024Section {
-    /* Ajustes específicos para móviles si son necesarios */
+    width: 100vw;
   }
 }
 
