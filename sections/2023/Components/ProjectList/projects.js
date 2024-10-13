@@ -1,6 +1,6 @@
 const projects = [
   {
-    company: "Inteia",
+    company: "Interconexion Electrica S.A",
     url: "https://www.inteia.com.co",
     projects: [
       {
@@ -154,12 +154,10 @@ const projects = [
   }
 ];
 
-// Sort projects within each company by year in descending order
 projects.forEach(company => {
   company.projects.sort((a, b) => b.year - a.year);
 });
 
-// Sort companies based on the most recent project
 projects.sort((a, b) => {
   const aLatestYear = Math.max(...a.projects.map(p => p.year));
   const bLatestYear = Math.max(...b.projects.map(p => p.year));
