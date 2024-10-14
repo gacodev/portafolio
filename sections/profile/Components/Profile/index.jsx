@@ -59,7 +59,7 @@ export const ProfileContainer = ({ lang }) => {
   const handleDownload = (lang) => {
     const link = document.createElement("a");
     link.href = "/docs/hv.pdf";
-    link.download = lang === 'en' ? "cv.pdf": "hv.pdf";
+    link.download = lang === 'en' ? "cv.pdf" : "hv.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -134,9 +134,10 @@ export const ProfileContainer = ({ lang }) => {
             height={300}
             className="rounded-lg mt-2"
           />
-          <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" onClick={handleDownload(lang)}>
+          <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" onClick={() => handleDownload(lang)}>
             {profile.cvButton}
           </button>
+
           <div className="mt-4 text-center">
             {profile.contactPhone} <strong>+573126004185</strong>
           </div>
