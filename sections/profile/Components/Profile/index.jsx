@@ -57,13 +57,21 @@ export const ProfileContainer = ({ lang }) => {
   const profile = profileData.find((data) => data.lang === lang);
 
   const handleDownload = (lang) => {
+    const fileMap = {
+      en: { href: "/docs/cv.pdf", download: "cv.pdf" },
+      es: { href: "/docs/hv.pdf", download: "hv.pdf" },
+    };
+  
+    const { href, download } = fileMap[lang] ?? fileMap['es'];
     const link = document.createElement("a");
-    link.href = "/docs/hv.pdf";
-    link.download = lang === 'en' ? "cv.pdf" : "hv.pdf";
+    link.href = href;
+    link.download = download;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
+  
+  
 
   return (
     <>
