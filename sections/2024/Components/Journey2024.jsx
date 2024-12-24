@@ -24,9 +24,8 @@ const Journey2024 = ({ lang }) => {
   );
 };
 Journey2024.propTypes = {
-  lang: PropTypes.shape({
-    devSecOps: PropTypes.string.isRequired,
-  }).isRequired,
+  lang: PropTypes.object,
+  string: PropTypes.object,
 };
 
 export default Journey2024;

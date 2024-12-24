@@ -4,7 +4,7 @@ import styles from "./RoleChanger.module.css";
 export const RoleChanger = ({ lang }) => {
   const roles = lang === "en"
     ? [
-        "Backend Developer",
+        "Backend",
         "DevOps Specialist",
         "Cloud Specialist",
         "Software Specialist",
@@ -16,7 +16,7 @@ export const RoleChanger = ({ lang }) => {
         "Microsoft Azure"
       ]
     : [
-        "Ingeniero Backend",
+        "Backend",
         "Especialista en DevOps ",
         "Especialista en Nube",
         "Ingeniería de Software",
@@ -33,16 +33,16 @@ export const RoleChanger = ({ lang }) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
-    }, 4000); // Cambia cada 4 segundos
+    }, 4000); 
 
     return () => clearInterval(intervalId);
   }, [roles.length]);
 
   return (
     <div className={styles.roleChanger}>
-      <h1 className={styles.role}>
+      <h2 className={styles.role}>
         {roles[currentRoleIndex]}
-      </h1>
+      </h2>
     </div>
   );
 };

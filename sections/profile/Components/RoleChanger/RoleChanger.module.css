@@ -4,10 +4,13 @@
 }
 
 .role {
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: #fff; 
   align-items: center;
   text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #1a1a1a;
 }
 
 .typedText {
@@ -20,6 +23,6 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(5px); /* Mueve el cursor hacia la derecha */
+    transform: translateX(5px); 
   }
 }
