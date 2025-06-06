@@ -4,6 +4,7 @@ import styles from "../../styles/Home.module.css";
 import { Header } from "../../sections/page/Components/Header";
 import { ProfileContainer } from "../../sections/profile/Components/Profile";
 import Journey2024 from "../../sections/2024/Components/Journey2024";
+import KubernetesExperience from "../../sections/2024/Components/KubernetesExperience";
 import { TechList } from "../../sections/2023/Components/TechList";
 import { CloudProviderList } from "../../sections/profile/Components/CloudProviderList";
 import { ProjectList } from "../../sections/2023/Components/ProjectList";
@@ -23,6 +24,7 @@ export default function Home() {
       <Header />
       <ProfileContainer lang="en" />
       <Journey2024 lang="en" />
+      <KubernetesExperience lang="en" />
       <TechList lang="en" />
       <CloudProviderList lang="en" />
       <ProjectList lang="en" />
