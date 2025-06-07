@@ -165,11 +165,11 @@ export const ProfileContainer = ({ lang }) => {
               <ul className="space-y-6">
                 <ul className="space-y-4">
                   <li className="flex items-center space-x-4 p-2 bg-gray-800 rounded-lg shadow-md">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Certified" className="w-8 h-8" />
+                    <img src="/images/Microsoft_logo.svg" alt="Microsoft Certified" className="w-8 h-8" />
                     <a href="https://learn.microsoft.com/en-us/users/gacodev/credentials/293c1d62fb1d5d85?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" rel="noopener noreferrer" className="text-md font-semibold text-blue-400 hover:underline">Microsoft Certified Administrator Associate</a>
                   </li>
                   <li className="flex items-center space-x-4 p-2 bg-gray-800 rounded-lg shadow-md">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Apache_kafka-icon.svg" alt="Apache Kafka" className="w-8 h-8" />
+                    <img src="/images/kafka.png" alt="Apache Kafka" className="w-8 h-8" />
                     <a href="https://www.credly.com/users/gacodev" target="_blank" rel="noopener noreferrer" className="text-md font-semibold text-blue-400 hover:underline">Learning Apache Kafka...</a>
                   </li>
                 </ul>
