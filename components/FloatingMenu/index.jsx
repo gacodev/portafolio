@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 
 /**
  * Menú flotante con búsqueda integrada para navegación del portafolio
  * Diseñado según principios UX: accesible, responsivo, y no intrusivo
+ * @param {Object} props - Propiedades del componente
+ * @param {string} props.lang - Idioma del menú (es, en)
  */
-const FloatingMenu = () => {
+const FloatingMenu = ({ lang = 'es' }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeSection, setActiveSection] = useState('');
@@ -46,18 +49,13 @@ const FloatingMenu = () => {
     }
   };
   
-  // Detectar el idioma actual
-  const [currentLang, setCurrentLang] = useState('es');
+  // Usar el idioma proporcionado como prop o el detectado en la URL
+  const [currentLang, setCurrentLang] = useState(lang);
   
   useEffect(() => {
-    // Intentar detectar el idioma de la URL (asumiendo que usas /en/ o /es/ en las URLs)
-    const path = window.location.pathname;
-    if (path.includes('/en/')) {
-      setCurrentLang('en');
-    } else {
-      setCurrentLang('es');
-    }
-  }, []);
+    // Actualizar el idioma cuando cambia la prop
+    setCurrentLang(lang);
+  }, [lang]);
   
   // Usar el idioma actual para las etiquetas
   const labels = menuLabels[currentLang] || menuLabels.es;
@@ -218,15 +216,18 @@ const FloatingMenu = () => {
       <div className="flex rounded-r-xl overflow-hidden shadow-xl">
         {/* Panel de menú */}
         <div 
-          className={`bg-gray-900 bg-opacity-80 backdrop-blur-md text-white py-4 transition-all duration-300 overflow-hidden ${
-            isExpanded ? 'w-64' : 'w-0'
+          className={`bg-gray-900 bg-opacity-90 backdrop-blur-md text-white py-4 transition-all duration-300 ${
+            isExpanded ? 'w-64 border-r border-blue-500' : 'w-0'
           }`}
         >
           <div className="px-4 mb-4">
-            <SearchBar onSearch={handleSearch} isExpanded={isExpanded} />
+            <SearchBar onSearch={handleSearch} isExpanded={isExpanded} lang={currentLang} />
           </div>
           
-          <div className="max-h-[70vh] overflow-y-auto px-2 hide-scrollbar">
+          <div className="max-h-[70vh] overflow-y-auto px-2 hide-scrollbar no-scrollbar">
+            <div className="px-3 mb-2 text-blue-400 text-xs uppercase font-semibold">
+              {currentLang === 'en' ? 'Navigation' : 'Navegación'}
+            </div>
             {filteredItems.length > 0 ? (
               filteredItems.map((item) => (
                 <button
@@ -253,18 +254,26 @@ const FloatingMenu = () => {
         {/* Botón de alternar menú con ícono más descriptivo */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center justify-center px-3 py-2 bg-blue-600 bg-opacity-90 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full space-x-2 shadow-md"
+          className={`flex items-center justify-center px-3 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${isExpanded ? 'rounded-none' : 'rounded-r-xl'}`}
           aria-expanded={isExpanded}
           aria-label={currentLang === 'en' ? 'Open navigation menu' : 'Abrir menú de navegación'}
         >
           <span className="text-white font-semibold mr-2">{labels.menu}</span>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            {isExpanded ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
           </svg>
         </button>
       </div>
     </div>
   );
+};
+
+FloatingMenu.propTypes = {
+  lang: PropTypes.string
 };
 
 export default FloatingMenu;

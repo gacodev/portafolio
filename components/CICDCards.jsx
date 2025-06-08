@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import { FaGithub, FaGitlab } from 'react-icons/fa';
-import { SiAzuredevops, SiJenkins } from 'react-icons/si';
+import Image from 'next/image';
 
 const CICDCards = ({ lang = 'es' }) => {
   // Traducciones para las cards
@@ -63,33 +62,37 @@ const CICDCards = ({ lang = 'es' }) => {
       id: 'azure-devops',
       name: t.tools.azure.name,
       description: t.tools.azure.description,
-      icon: <SiAzuredevops size={40} className="text-blue-500" />,
+      imageSrc: '/tecnologies/azure.webp',
       url: 'https://azure.microsoft.com/services/devops/',
-      color: 'border-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900'
+      color: 'border-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900',
+      bgGradient: 'from-blue-400 to-blue-600'
     },
     {
       id: 'jenkins',
       name: t.tools.jenkins.name,
       description: t.tools.jenkins.description,
-      icon: <SiJenkins size={40} className="text-red-500" />,
+      imageSrc: '/images/jenkins.webp',
       url: 'https://www.jenkins.io/',
-      color: 'border-red-500 hover:bg-red-100 dark:hover:bg-red-900'
+      color: 'border-red-500 hover:bg-red-100 dark:hover:bg-red-900',
+      bgGradient: 'from-red-400 to-red-600'
     },
     {
       id: 'github-actions',
       name: t.tools.github.name,
       description: t.tools.github.description,
-      icon: <FaGithub size={40} className="text-purple-500" />,
+      imageSrc: '/tecnologies/gha.webp',
       url: 'https://github.com/features/actions',
-      color: 'border-purple-500 hover:bg-purple-100 dark:hover:bg-purple-900'
+      color: 'border-purple-500 hover:bg-purple-100 dark:hover:bg-purple-900',
+      bgGradient: 'from-purple-400 to-purple-600'
     },
     {
       id: 'gitlab-cicd',
       name: t.tools.gitlab.name,
       description: t.tools.gitlab.description,
-      icon: <FaGitlab size={40} className="text-orange-500" />,
+      imageSrc: '/images/gitlab.webp',
       url: 'https://docs.gitlab.com/ee/ci/',
-      color: 'border-orange-500 hover:bg-orange-100 dark:hover:bg-orange-900'
+      color: 'border-orange-500 hover:bg-orange-100 dark:hover:bg-orange-900',
+      bgGradient: 'from-orange-400 to-orange-600'
     }
   ];
 
@@ -110,8 +113,8 @@ const CICDCards = ({ lang = 'es' }) => {
 
   return (
     <div className="py-6 px-4">
-      <h3 className="text-2xl font-bold mb-4">{t.title}</h3>
-      <p className="text-gray-300 mb-6">{t.description}</p>
+      <h3 className="text-2xl font-bold mb-4 text-center">{t.title}</h3>
+      <p className="text-gray-300 mb-6 text-center">{t.description}</p>
       
       <motion.div 
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -121,27 +124,31 @@ const CICDCards = ({ lang = 'es' }) => {
         viewport={{ once: true }}
       >
         {tools.map((tool) => (
-          <motion.div
+          <motion.a
             key={tool.id}
+            href={tool.url}
+            target="_blank"
+            rel="noopener noreferrer"
             variants={cardVariants}
-            className={`bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border-t-4 ${tool.color} transition-all duration-300 h-full flex flex-col`}
+            className={`rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 transform hover:scale-105 cursor-pointer no-underline`}
+            whileHover={{ y: -10, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
           >
-            <div className="p-5 flex-grow">
-              <div className="mb-4 flex justify-center">{tool.icon}</div>
-              <h4 className="text-xl font-semibold mb-2 text-center">{tool.name}</h4>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">{tool.description}</p>
+            <div className={`bg-gradient-to-r ${tool.bgGradient} p-6`}>
+              <div className="w-full h-40 relative mb-4">
+                <Image 
+                  src={tool.imageSrc} 
+                  alt={tool.name}
+                  fill
+                  style={{ objectFit: 'contain' }}
+                  className="drop-shadow-lg rounded-full p-2"
+                />
+              </div>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 text-center">
-              <a 
-                href={tool.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                {t.visit} {tool.name}
-              </a>
+            <div className="p-5 flex-grow bg-white dark:bg-gray-800">
+              <h4 className="text-2xl font-bold mb-3 text-center">{tool.name}</h4>
+              <p className="text-gray-600 dark:text-gray-300">{tool.description}</p>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </motion.div>
     </div>
