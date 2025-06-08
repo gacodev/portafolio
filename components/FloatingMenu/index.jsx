@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 /**
  * Menú flotante con búsqueda integrada para navegación del portafolio
  * Diseñado según principios UX: accesible, responsivo, y no intrusivo
  * @param {Object} props - Propiedades del componente
  * @param {string} props.lang - Idioma del menú (es, en)
- * @param {string} props.devPosition - Posición del menú en modo desarrollo ('left' o 'right')
+ * @param {string} props.menuMode - Modo de visualización ('floating' o 'embedded')
  */
-const FloatingMenu = ({ lang = 'es', devPosition = null }) => {
+const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeSection, setActiveSection] = useState('');
@@ -52,20 +54,15 @@ const FloatingMenu = ({ lang = 'es', devPosition = null }) => {
     }
   };
   
-  // Usar el idioma proporcionado como prop directamente
-  // No usamos un estado local para evitar posibles desincronizaciones
+  // Usar el idioma proporcionado como prop
   const currentLang = lang;
-  
-  // Registrar cambios de idioma para ayudar en la depuración
-  useEffect(() => {
-    console.log('FloatingMenu: Language updated to', lang);
-  }, [lang]);
+  console.log('FloatingMenu: Language set to', currentLang);
   
   // Usar el idioma actual para las etiquetas
   const labels = menuLabels[currentLang] || menuLabels.es;
   
   // Definición de las secciones principales del portafolio
-  // Esta información podría venir de un archivo de configuración o API
+  // Generar secciones basadas en el idioma actual
   const sections = [
     { id: 'profile', name: labels.profile, icon: 'user', ref: 'profile' },
     { id: 'resumen', name: labels.summary, icon: 'file-text', ref: 'professional-summary' },
@@ -80,11 +77,11 @@ const FloatingMenu = ({ lang = 'es', devPosition = null }) => {
     { id: 'timeline', name: labels.timeline, icon: 'clock', ref: 'timeline' }
   ];
 
-  // Inicialización de los menú items
+  // Actualizar menú items cuando cambia el idioma
   useEffect(() => {
     setMenuItems(sections);
     setFilteredItems(sections);
-  }, []);
+  }, [currentLang, sections]);
 
   // Detectar sección activa según la posición de scroll
   useEffect(() => {
@@ -128,28 +125,9 @@ const FloatingMenu = ({ lang = 'es', devPosition = null }) => {
 
   // Scroll suave a la sección correspondiente
   const scrollToSection = (sectionRef) => {
-    console.log(`Intentando navegar a sección: ${sectionRef} con idioma: ${currentLang}`);
-    
-    // Intentar encontrar el elemento de varias maneras
-    let element = document.getElementById(sectionRef);
-    
-    if (!element) {
-      // Intentar con prefijos de idioma
-      const langPrefix = currentLang === 'en' ? 'en-' : 'es-';
-      element = document.getElementById(`${langPrefix}${sectionRef}`);
-      console.log(`Buscando elemento con prefijo de idioma: ${langPrefix}${sectionRef}`);
-    }
-    
+    const element = document.getElementById(sectionRef);
     if (element) {
-      console.log(`Sección encontrada, navegando a: ${sectionRef}`);
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Actualizar la sección activa
-      const activeItem = sections.find(item => item.ref === sectionRef);
-      if (activeItem) {
-        setActiveSection(activeItem.id);
-      }
-    } else {
-      console.warn(`No se encontró la sección: ${sectionRef} con idioma: ${currentLang}`);
     }
     
     // En móvil, contraer el menú después de la navegación
@@ -230,37 +208,41 @@ const FloatingMenu = ({ lang = 'es', devPosition = null }) => {
     }
   };
 
-  // Determinar clases de posición basadas en el modo desarrollo
+  // Determinar clases de posición basadas en el modo de visualización
   let positionClasses = '';
   
-  if (devPosition === 'right') {
-    positionClasses = `fixed right-0 top-1/2 transform -translate-y-1/2 z-50 transition-all duration-300 ease-in-out ${
-      isExpanded ? 'translate-x-0' : 'translate-x-[calc(100%-3rem)]'
-    }`;
+  if (menuMode === 'embedded') {
+    // Modo embebido dentro del grid layout - no necesita posicionamiento flotante
+    positionClasses = 'w-full transition-all duration-300 ease-in-out';
   } else {
+    // Modo flotante tradicional
     positionClasses = `fixed left-0 top-1/2 transform -translate-y-1/2 z-50 transition-all duration-300 ease-in-out ${
       isExpanded ? 'translate-x-0' : 'translate-x-[calc(-100%+3rem)]'
     }`;
   }
-  
+
   return (
     <div className={positionClasses}>
       {/* Contenedor principal con efecto glassmorphism */}
-      <div className="flex rounded-r-xl overflow-hidden shadow-xl">
+      <div className={`flex ${menuMode === 'embedded' ? 'rounded-xl' : 'rounded-r-xl'} overflow-hidden shadow-xl`}>
         {/* Panel de menú */}
         <div 
-          className={`bg-gray-900 bg-opacity-90 backdrop-blur-md text-white py-4 transition-all duration-300 ${
-            isExpanded ? 'w-64 border-r border-blue-500' : 'w-0'
-          }`}
+          className={`bg-gray-900 bg-opacity-80 backdrop-blur-md text-white py-4 transition-all duration-300 ${menuMode === 'embedded' ? 'w-full' : isExpanded ? 'w-64' : 'w-0'} ${!isExpanded && menuMode !== 'embedded' ? 'overflow-hidden' : ''}`}
         >
           <div className="px-4 mb-4">
             <SearchBar onSearch={handleSearch} isExpanded={isExpanded} lang={currentLang} />
           </div>
           
-          <div className="max-h-[70vh] overflow-y-auto px-2 hide-scrollbar no-scrollbar">
-            <div className="px-3 mb-2 text-blue-400 text-xs uppercase font-semibold">
-              {currentLang === 'en' ? 'Navigation' : 'Navegación'}
-            </div>
+          <div className="px-3 mb-4 text-blue-400 text-xs uppercase font-semibold">
+            {currentLang === 'en' ? 'Language / Idioma' : 'Idioma / Language'}
+          </div>
+          
+          {/* Botones de idioma */}
+          <div className="flex justify-center space-x-1 mb-4 px-4">
+            <LanguageButtons currentLang={currentLang} />
+          </div>
+          
+          <div className="max-h-[70vh] overflow-y-auto px-2 hide-scrollbar">
             {filteredItems.length > 0 ? (
               filteredItems.map((item) => (
                 <button
@@ -284,28 +266,28 @@ const FloatingMenu = ({ lang = 'es', devPosition = null }) => {
           </div>
         </div>
 
-        {/* Botón de alternar menú con ícono más descriptivo */}
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className={`flex items-center justify-center px-3 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${
-            isExpanded ? 'rounded-none' : devPosition === 'right' ? 'rounded-l-xl' : 'rounded-r-xl'
-          }`}
-          aria-expanded={isExpanded}
-          aria-label={currentLang === 'en' ? 'Open navigation menu' : 'Abrir menú de navegación'}
-        >
-          {devPosition === 'right' ? (
-            <span className="text-white font-semibold ml-2">{labels.menu} ({currentLang.toUpperCase()})</span>
-          ) : (
-            <span className="text-white font-semibold mr-2">{labels.menu} ({currentLang.toUpperCase()})</span>
-          )}
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {/* Botón de alternar menú - solo visible en modo flotante */}
+        {menuMode === 'floating' && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`flex items-center justify-center px-2 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${isExpanded ? 'rounded-none' : 'rounded-r-xl'}`}
+            aria-expanded={isExpanded}
+            aria-label={currentLang === 'en' ? 'Open navigation menu' : 'Abrir menú de navegación'}
+          >
             {isExpanded ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <>
+                <span className="text-white font-semibold mr-2 text-sm md:text-base">{labels.menu} ({currentLang.toUpperCase()})</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </>
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             )}
-          </svg>
-        </button>
+          </button>
+        )}
       </div>
     </div>
   );
@@ -313,7 +295,61 @@ const FloatingMenu = ({ lang = 'es', devPosition = null }) => {
 
 FloatingMenu.propTypes = {
   lang: PropTypes.string,
-  devPosition: PropTypes.string
+  menuMode: PropTypes.string
+};
+
+// Componente para los botones de idioma
+const LanguageButtons = ({ currentLang }) => {
+  const router = useRouter();
+  
+  // Navegación entre idiomas - vamos a usar la navegación directa para forzar recarga
+  const handleLanguageChange = (lang) => {
+    if (currentLang !== lang) {
+      // Forzamos la recarga completa usando window.location
+      window.location.href = `/${lang}`;
+    }
+  };
+  
+  return (
+    <>
+  {/* Español */}
+  <a 
+    href="#"
+    onClick={(e) => {
+      e.preventDefault();
+      handleLanguageChange('es');
+    }}
+    className={`${currentLang === "es" 
+      ? "bg-gradient-to-r from-blue-700 to-blue-600 text-white font-medium shadow-inner" 
+      : "bg-gradient-to-r from-gray-800 to-gray-700 text-gray-300 hover:from-blue-800 hover:to-blue-700 hover:text-white"}
+    px-4 py-2 rounded-l-lg transition-all duration-300 flex items-center justify-center cursor-pointer`}
+  >
+    <span className={currentLang === "es" ? "border-b-2 border-blue-300" : ""}>Español</span>
+    {currentLang === "es" && (
+      <span className="ml-2 text-xs bg-blue-500 text-white px-1 rounded-full">✓</span>
+    )}
+  </a>
+
+  {/* English */}
+  <a 
+    href="#"
+    onClick={(e) => {
+      e.preventDefault();
+      handleLanguageChange('en');
+    }}
+    className={`${currentLang === "en" 
+      ? "bg-gradient-to-r from-blue-700 to-blue-600 text-white font-medium shadow-inner" 
+      : "bg-gradient-to-r from-gray-800 to-gray-700 text-gray-300 hover:from-blue-800 hover:to-blue-700 hover:text-white"}
+    px-4 py-2 rounded-r-lg transition-all duration-300 flex items-center justify-center cursor-pointer`}
+  >
+    <span className={currentLang === "en" ? "border-b-2 border-blue-300" : ""}>English</span>
+    {currentLang === "en" && (
+      <span className="ml-2 text-xs bg-blue-500 text-white px-1 rounded-full">✓</span>
+    )}
+  </a>
+</>
+
+  );
 };
 
 export default FloatingMenu;
