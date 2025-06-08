@@ -9,7 +9,7 @@ import 'react-vertical-timeline-component/style.min.css';
 
 export const ProjectList = ({ lang }) => {
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4" id="timeline">
       <h2 className="text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg">
         {lang === "en" ? "Software Projects Timeline" : "Línea de Tiempo de Proyectos de Software"}
       </h2>

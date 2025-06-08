@@ -7,8 +7,9 @@ import SearchBar from './SearchBar';
  * Diseñado según principios UX: accesible, responsivo, y no intrusivo
  * @param {Object} props - Propiedades del componente
  * @param {string} props.lang - Idioma del menú (es, en)
+ * @param {string} props.devPosition - Posición del menú en modo desarrollo ('left' o 'right')
  */
-const FloatingMenu = ({ lang = 'es' }) => {
+const FloatingMenu = ({ lang = 'es', devPosition = null }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeSection, setActiveSection] = useState('');
@@ -28,6 +29,7 @@ const FloatingMenu = ({ lang = 'es' }) => {
       metrics: 'Métricas de Rendimiento',
       projects: 'Proyectos',
       agile: 'Agile & CI/CD',
+      timeline: 'Timeline',
       search: 'Buscar...',
       noResults: 'No se encontraron resultados para',
       menu: 'MENÚ'
@@ -43,18 +45,20 @@ const FloatingMenu = ({ lang = 'es' }) => {
       metrics: 'Performance Metrics',
       projects: 'Projects',
       agile: 'Agile & CI/CD',
+      timeline: 'Timeline',
       search: 'Search...',
       noResults: 'No results found for',
       menu: 'MENU'
     }
   };
   
-  // Usar el idioma proporcionado como prop o el detectado en la URL
-  const [currentLang, setCurrentLang] = useState(lang);
+  // Usar el idioma proporcionado como prop directamente
+  // No usamos un estado local para evitar posibles desincronizaciones
+  const currentLang = lang;
   
+  // Registrar cambios de idioma para ayudar en la depuración
   useEffect(() => {
-    // Actualizar el idioma cuando cambia la prop
-    setCurrentLang(lang);
+    console.log('FloatingMenu: Language updated to', lang);
   }, [lang]);
   
   // Usar el idioma actual para las etiquetas
@@ -72,7 +76,8 @@ const FloatingMenu = ({ lang = 'es' }) => {
     { id: 'elastic', name: labels.elastic, icon: 'search', ref: 'elastic-experience' },
     { id: 'metricas', name: labels.metrics, icon: 'chart', ref: 'performance-metrics' },
     { id: 'proyectos', name: labels.projects, icon: 'folder', ref: 'project-breakdown' },
-    { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' }
+    { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
+    { id: 'timeline', name: labels.timeline, icon: 'clock', ref: 'timeline' }
   ];
 
   // Inicialización de los menú items
@@ -123,9 +128,28 @@ const FloatingMenu = ({ lang = 'es' }) => {
 
   // Scroll suave a la sección correspondiente
   const scrollToSection = (sectionRef) => {
-    const element = document.getElementById(sectionRef);
+    console.log(`Intentando navegar a sección: ${sectionRef} con idioma: ${currentLang}`);
+    
+    // Intentar encontrar el elemento de varias maneras
+    let element = document.getElementById(sectionRef);
+    
+    if (!element) {
+      // Intentar con prefijos de idioma
+      const langPrefix = currentLang === 'en' ? 'en-' : 'es-';
+      element = document.getElementById(`${langPrefix}${sectionRef}`);
+      console.log(`Buscando elemento con prefijo de idioma: ${langPrefix}${sectionRef}`);
+    }
+    
     if (element) {
+      console.log(`Sección encontrada, navegando a: ${sectionRef}`);
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Actualizar la sección activa
+      const activeItem = sections.find(item => item.ref === sectionRef);
+      if (activeItem) {
+        setActiveSection(activeItem.id);
+      }
+    } else {
+      console.warn(`No se encontró la sección: ${sectionRef} con idioma: ${currentLang}`);
     }
     
     // En móvil, contraer el menú después de la navegación
@@ -206,12 +230,21 @@ const FloatingMenu = ({ lang = 'es' }) => {
     }
   };
 
+  // Determinar clases de posición basadas en el modo desarrollo
+  let positionClasses = '';
+  
+  if (devPosition === 'right') {
+    positionClasses = `fixed right-0 top-1/2 transform -translate-y-1/2 z-50 transition-all duration-300 ease-in-out ${
+      isExpanded ? 'translate-x-0' : 'translate-x-[calc(100%-3rem)]'
+    }`;
+  } else {
+    positionClasses = `fixed left-0 top-1/2 transform -translate-y-1/2 z-50 transition-all duration-300 ease-in-out ${
+      isExpanded ? 'translate-x-0' : 'translate-x-[calc(-100%+3rem)]'
+    }`;
+  }
+  
   return (
-    <div 
-      className={`fixed left-0 top-1/2 transform -translate-y-1/2 z-50 transition-all duration-300 ease-in-out ${
-        isExpanded ? 'translate-x-0' : 'translate-x-[calc(-100%+3rem)]'
-      }`}
-    >
+    <div className={positionClasses}>
       {/* Contenedor principal con efecto glassmorphism */}
       <div className="flex rounded-r-xl overflow-hidden shadow-xl">
         {/* Panel de menú */}
@@ -254,11 +287,17 @@ const FloatingMenu = ({ lang = 'es' }) => {
         {/* Botón de alternar menú con ícono más descriptivo */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className={`flex items-center justify-center px-3 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${isExpanded ? 'rounded-none' : 'rounded-r-xl'}`}
+          className={`flex items-center justify-center px-3 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${
+            isExpanded ? 'rounded-none' : devPosition === 'right' ? 'rounded-l-xl' : 'rounded-r-xl'
+          }`}
           aria-expanded={isExpanded}
           aria-label={currentLang === 'en' ? 'Open navigation menu' : 'Abrir menú de navegación'}
         >
-          <span className="text-white font-semibold mr-2">{labels.menu}</span>
+          {devPosition === 'right' ? (
+            <span className="text-white font-semibold ml-2">{labels.menu} ({currentLang.toUpperCase()})</span>
+          ) : (
+            <span className="text-white font-semibold mr-2">{labels.menu} ({currentLang.toUpperCase()})</span>
+          )}
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {isExpanded ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -273,7 +312,8 @@ const FloatingMenu = ({ lang = 'es' }) => {
 };
 
 FloatingMenu.propTypes = {
-  lang: PropTypes.string
+  lang: PropTypes.string,
+  devPosition: PropTypes.string
 };
 
 export default FloatingMenu;

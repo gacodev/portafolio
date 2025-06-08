@@ -73,7 +73,7 @@ export const ProfileContainer = ({ lang }) => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-between p-1">
+      <div className="flex flex-col md:flex-row justify-between p-1" id="profile">
         {/* Left Block */}
         <div className="md:w-1/2 p-4 bg-gray-800 bg-opacity-80 text-white rounded-lg shadow-md border-2 border-white flex flex-col items-center">
           <h2 className="text-lg font-semibold text-center">{profile.title}</h2>
