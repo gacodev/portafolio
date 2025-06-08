@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Estilos personalizados para el menú flotante */
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
 html,
 body {
   padding: 0;

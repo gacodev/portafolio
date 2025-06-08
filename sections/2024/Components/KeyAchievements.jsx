@@ -3,7 +3,7 @@ import achievements from '../../data/achievement';
 
 const KeyAchievements = ({ lang = 'es' }) => {
   return (
-    <div className="mb-4 overflow-x-auto">
+    <div id="key-achievements" className="mb-4 overflow-x-auto pt-10">
       <h2 className="text-2xl font-bold mb-8 text-center">
         {lang === 'en' ? 'Key Achievements' : 'Logros Clave'}
       </h2>

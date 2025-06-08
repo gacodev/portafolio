@@ -17,7 +17,8 @@ const KafkaExperience = ({ lang }) => {
 
   return (
     <motion.div 
-      className="bg-gradient-to-br from-gray-900 to-red-900 rounded-xl p-6 shadow-xl border-2 border-red-600"
+      id="kafka-experience"
+      className="bg-gradient-to-br from-gray-900 to-red-900 rounded-xl p-6 shadow-xl border-2 border-red-600 pt-10"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}

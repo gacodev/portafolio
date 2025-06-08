@@ -17,7 +17,8 @@ const ElasticExperience = ({ lang }) => {
 
   return (
     <motion.div 
-      className="bg-gradient-to-br from-gray-900 to-blue-900 rounded-xl p-6 shadow-xl border-2 border-blue-500"
+      id="elastic-experience"
+      className="bg-gradient-to-br from-gray-900 to-blue-900 rounded-xl p-6 shadow-xl border-2 border-blue-500 pt-10"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
