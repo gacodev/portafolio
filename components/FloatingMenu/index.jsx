@@ -80,7 +80,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
   useEffect(() => {
     setMenuItems(sections);
     setFilteredItems(sections);
-  }, [lang, sections]);
+  }, [lang]);
 
   // Detectar sección activa según la posición de scroll
   useEffect(() => {
