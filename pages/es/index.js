@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from "next/head";
 import styles from "../../styles/Home.module.css";
-import { Header } from "../../sections/page/Components/Header";
+// Header eliminado para evitar duplicación de botones de idioma
 import { ProfileContainer } from "../../sections/profile/Components/Profile";
 import Journey2024 from "../../sections/2024/Components/Journey2024";
 import KubernetesExperience from "../../sections/2024/Components/KubernetesExperience";
@@ -21,7 +21,6 @@ export default function Home() {
           content="Explora el conjunto de habilidades que muestran mi experiencia en desarrollo backend, desarrollo en la nube y Automatización. Descubre mis proyectos y habilidades en JavaScript, TypeScript, patrones de diseño, arquitectura de software, código limpio, pruebas unitarias y pipelines."
         />
       </Head>
-      <Header />
       <ProfileContainer lang="es" />
       <Journey2024 lang="es" />
       <KubernetesExperience lang="es" />

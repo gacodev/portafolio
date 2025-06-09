@@ -18,7 +18,7 @@ const ToolsTechnologies = ({ lang = 'en' }) => {
   const title = lang === 'en' ? 'Tools & Technologies' : 'Herramientas y Tecnologías';
 
   return (
-    <div className="mb-20 px-4">
+    <div id="tools-technologies" className="mb-20 px-4 pt-10">
       <h2 className="text-3xl font-bold mb-12 mt-8 text-center">{title}</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10">
         {tools.map((tool) => (

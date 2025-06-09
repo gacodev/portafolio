@@ -25,7 +25,7 @@ const KubernetesExperience = ({ lang }) => {
                     (currentDate.getMonth() - startDate.getMonth());
                     
   return (
-    <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 min-h-screen text-white p-8 md:p-16 flex flex-col">
+    <div id="kubernetes-experience" className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 min-h-screen text-white p-8 md:p-16 flex flex-col pt-10">
       {/* Kubernetes Header with Logo */}
       <motion.div 
         className="mb-16 flex flex-col items-center"

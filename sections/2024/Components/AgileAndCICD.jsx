@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
+import CICDCards from "../../../components/CICDCards";      
 
 const AgileComponent = ({ lang = "en" }) => {
   const [activeSection, setActiveSection] = useState("values");
@@ -8,7 +9,7 @@ const AgileComponent = ({ lang = "en" }) => {
   const agileContent = {
     values: [
       { en: "Individuals and interactions", es: "Individuos e interacciones" },
-      { en: "Working software", es: "Software funcionando" },
+      { en: "Working software", es: "Software funcionando" },     
       { en: "Customer collaboration", es: "Colaboración con el cliente" },
       { en: "Responding to change", es: "Respuesta ante el cambio" },
     ],
@@ -34,14 +35,15 @@ const AgileComponent = ({ lang = "en" }) => {
   };
 
   return (
-    <div className="w-full p-6 bg-gradient-to-r from-teal-400 to-blue-500 rounded-lg shadow-lg text-white">
-      <h2 className="text-3xl font-bold text-center mb-6 text-white relative">
-        <span className="relative z-10">
-          {lang === "en"
-            ? "Mastering Agile: Principles in Practice"
-            : "Dominio Ágil: Principios en Acción"}
-        </span>
-      </h2>
+    <div id="agile-cicd" className="w-full rounded-lg shadow-lg overflow-hidden scroll-mt-20">
+      <div className="p-6 bg-gradient-to-r from-teal-400 to-blue-500 text-white">
+        <h2 className="text-3xl font-bold text-center mb-6 text-white relative">
+          <span className="relative z-10">
+            {lang === "en"
+              ? "Mastering Agile: Principles in Practice"
+              : "Dominio Ágil: Principios en Acción"}
+          </span>
+        </h2>
 
       <div className="flex justify-center mb-6">
         <button
@@ -107,6 +109,12 @@ const AgileComponent = ({ lang = "en" }) => {
           )}
         </motion.div>
       </AnimatePresence>
+      </div>
+      
+      {/* Sección de CI/CD Tools con el componente mejorado */}
+      <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+        <CICDCards lang={lang} />
+      </div>
     </div>
   );
 };
