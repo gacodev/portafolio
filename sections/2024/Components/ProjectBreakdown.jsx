@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Code, Git, Shield, Globe, Calendar } from 'lucide-react';
+import { Code, GitHub, GitBranch, Shield, Globe, Calendar } from 'lucide-react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -112,7 +112,7 @@ const ProjectBreakdown = ({ lang }) => {
               <div className="flex flex-col md:flex-row justify-between mb-6">
                 <div className="md:w-1/2">
                   <p className="mb-2 flex items-center"><Code size={20} className="mr-2" /> {t.ciPipelines}: {selectedProject.ci}</p>
-                  <p className="mb-2 flex items-center"><Git size={20} className="mr-2" /> {t.cdPipelines}: {selectedProject.cd}</p>
+                  <p className="mb-2 flex items-center"><GitBranch size={20} className="mr-2" /> {t.cdPipelines}: {selectedProject.cd}</p>
                   <p className="mb-2 flex items-center"><Shield size={20} className="mr-2" /> {t.owaspPipelines}: {selectedProject.owasp}</p>
                   <p className={`mb-4 font-semibold ${selectedProject.incidents > 0 ? 'text-red-600' : 'text-gray-800'}`}>
                     {t.incidents}: {selectedProject.incidents}

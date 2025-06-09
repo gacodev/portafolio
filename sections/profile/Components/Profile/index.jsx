@@ -39,10 +39,10 @@ const profileData = [
       "Assertive Communication", "Time Management", "Conflict Management", "Emotional Intelligence", "Teamwork", "Leadership"
     ],
     socialMedia: [
-      { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.png", alt: "WhatsApp" },
-      { href: "https://github.com/gacodev", src: "/socialmedia/github.png", alt: "GitHub" },
-      { href: "https://www.linkedin.com/in/gabrielcontrerasv3", src: "/socialmedia/linkedin.webp", alt: "LinkedIn" },
-      { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.png", alt: "Email" }
+      { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.png", alt: "WhatsApp", width: 40, height: 40 },
+      { href: "https://github.com/gacodev", src: "/socialmedia/github.png", alt: "GitHub", width: 40, height: 40 },
+      { href: "https://www.linkedin.com/in/gabrielcontrerasv3", src: "/socialmedia/linkedin.webp", alt: "LinkedIn", width: 40, height: 40 },
+      { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.webp", alt: "Email", width: 40, height: 40 }
     ],
     cvTitle: "Curriculum Vitae",
     cvButton: "Download",
@@ -79,6 +79,7 @@ export const ProfileContainer = ({ lang }) => {
           <h2 className="text-lg font-semibold text-center">{profile.title}</h2>
           <Image
             src="/gabriel.webp"
+            priority
             alt={lang === "es" ? "foto de perfil de Gabriel Contreras" : "profile picture of Gabriel Contreras"}
             className="rounded-full mt-4"
             width={100}
@@ -115,13 +116,13 @@ export const ProfileContainer = ({ lang }) => {
           <div className="mt-4">
             <h3 className="flex justify-center text-md font-semibold">{lang === "es" ? "Redes Sociales" : "Social Media"}</h3>
             <div className="flex space-x-2 justify-center text-md">
-              {profile.socialMedia.map(({ href, src, alt }) => (
+              {profile.socialMedia.map(({ href, src, alt, width, height }) => (
                 <a key={alt} href={href}>
                   <Image
                     src={src}
                     alt={alt}
-                    width={40}
-                    height={40}
+                    width={width || 40}
+                    height={height || 40}
                     className="rounded-lg"
                   />
                 </a>

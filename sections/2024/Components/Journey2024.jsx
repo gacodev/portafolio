@@ -5,7 +5,6 @@ import ProjectBreakdown from './ProjectBreakdown';
 import ToolsTechnologies from './ToolsTechnologies';
 import KeyAchievements from './KeyAchievements';
 import ProfessionalSummary from './ProfessionalSummary';
-import PropTypes from 'prop-types';
 
 const Journey2024 = ({ lang }) => {
   return (
@@ -23,9 +22,6 @@ const Journey2024 = ({ lang }) => {
     </div>
   );
 };
-Journey2024.propTypes = {
-  lang: PropTypes.object,
-  string: PropTypes.object,
-};
+
 
 export default Journey2024;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
-import CICDCards from "../../../components/CICDCards";
+import CICDCards from "../../../components/CICDCards";      
 
 const AgileComponent = ({ lang = "en" }) => {
   const [activeSection, setActiveSection] = useState("values");
@@ -9,7 +9,7 @@ const AgileComponent = ({ lang = "en" }) => {
   const agileContent = {
     values: [
       { en: "Individuals and interactions", es: "Individuos e interacciones" },
-      { en: "Working software", es: "Software funcionando" },
+      { en: "Working software", es: "Software funcionando" },     
       { en: "Customer collaboration", es: "Colaboración con el cliente" },
       { en: "Responding to change", es: "Respuesta ante el cambio" },
     ],

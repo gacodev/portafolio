@@ -49,9 +49,9 @@ export const TechList = ({ lang }) => {
                 <Image
                   src={tech.image}
                   alt={tech.name}
-                  layout="fill"
-                  objectFit="contain"
-                  className="transition duration-300 ease-in-out group-hover:opacity-80 rounded-xl"
+                  fill={true}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-contain transition duration-300 ease-in-out group-hover:opacity-80 rounded-xl"
                 />
               </div>
               <span className="text-white text-center font-medium group-hover:text-yellow-300 transition duration-300 ease-in-out">

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 /**
  * Menú flotante con búsqueda integrada para navegación del portafolio
@@ -12,7 +11,9 @@ import Link from "next/link";
  * @param {string} props.menuMode - Modo de visualización ('floating' o 'embedded')
  */
 const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
+  // Estados principales del componente
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeSection, setActiveSection] = useState('');
   const [menuItems, setMenuItems] = useState([]);
@@ -55,11 +56,9 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
   };
   
   // Usar el idioma proporcionado como prop
-  const currentLang = lang;
-  console.log('FloatingMenu: Language set to', currentLang);
   
   // Usar el idioma actual para las etiquetas
-  const labels = menuLabels[currentLang] || menuLabels.es;
+  const labels = menuLabels[lang] || menuLabels.es;
   
   // Definición de las secciones principales del portafolio
   // Generar secciones basadas en el idioma actual
@@ -81,7 +80,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
   useEffect(() => {
     setMenuItems(sections);
     setFilteredItems(sections);
-  }, [currentLang, sections]);
+  }, [lang]);
 
   // Detectar sección activa según la posición de scroll
   useEffect(() => {
@@ -222,24 +221,27 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
   }
 
   return (
-    <div className={positionClasses}>
-      {/* Contenedor principal con efecto glassmorphism */}
-      <div className={`flex ${menuMode === 'embedded' ? 'rounded-xl' : 'rounded-r-xl'} overflow-hidden shadow-xl`}>
-        {/* Panel de menú */}
-        <div 
-          className={`bg-gray-900 bg-opacity-80 backdrop-blur-md text-white py-4 transition-all duration-300 ${menuMode === 'embedded' ? 'w-full' : isExpanded ? 'w-64' : 'w-0'} ${!isExpanded && menuMode !== 'embedded' ? 'overflow-hidden' : ''}`}
+    <div className={`${menuMode === 'floating' ? 'fixed top-4 left-0 z-50 ' : 'relative block w-full'} font-sans`}>
+      <div className="flex">
+        {/* Menú principal */}
+        <div
+          className={`${menuMode === 'floating'
+            ? `bg-gray-900 bg-opacity-90 text-white shadow-xl transform transition-all duration-300 ease-in-out ${isMobile ? (isExpanded ? 'translate-x-0' : '-translate-x-full') : 'translate-x-0'}`
+            : 'w-full bg-gray-900 text-white'}`}
+          role="navigation"
+          aria-expanded={isExpanded || !isMobile}
         >
           <div className="px-4 mb-4">
-            <SearchBar onSearch={handleSearch} isExpanded={isExpanded} lang={currentLang} />
+            <SearchBar onSearch={handleSearch} isExpanded={isExpanded} />
           </div>
           
           <div className="px-3 mb-4 text-blue-400 text-xs uppercase font-semibold">
-            {currentLang === 'en' ? 'Language / Idioma' : 'Idioma / Language'}
+            {lang === 'en' ? 'Language / Idioma' : 'Idioma / Language'}
           </div>
           
           {/* Botones de idioma */}
           <div className="flex justify-center space-x-1 mb-4 px-4">
-            <LanguageButtons currentLang={currentLang} />
+            <LanguageButtons currentLang={lang} />
           </div>
           
           <div className="max-h-[70vh] overflow-y-auto px-2 hide-scrollbar">
@@ -270,13 +272,16 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
         {menuMode === 'floating' && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className={`flex items-center justify-center px-2 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${isExpanded ? 'rounded-none' : 'rounded-r-xl'}`}
+            className={`flex items-center justify-center px-2 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${(isExpanded || !isMobile) ? 'rounded-none' : 'rounded-r-xl'}`}
             aria-expanded={isExpanded}
             aria-label={currentLang === 'en' ? 'Open navigation menu' : 'Abrir menú de navegación'}
           >
-            {isExpanded ? (
+            {(isExpanded || !isMobile) ? (
               <>
-                <span className="text-white font-semibold mr-2 text-sm md:text-base">{labels.menu} ({currentLang.toUpperCase()})</span>
+                {/* Solo mostrar el texto cuando no es móvil o está expandido */}
+                {(!isMobile || isExpanded) && (
+                  <span className="text-white font-semibold mr-2 text-sm md:text-base">{labels.menu} ({currentLang.toUpperCase()})</span>
+                )}
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>

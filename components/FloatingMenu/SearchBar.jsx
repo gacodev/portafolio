@@ -8,7 +8,7 @@ import React, { useState } from 'react';
  * @param {string} props.lang - Idioma de la barra de búsqueda (es, en, etc.)
  * @param {string} props.placeholder - Texto del placeholder de la barra de búsqueda
  */
-const SearchBar = ({ onSearch, lang = 'es', placeholder, isExpanded }) => {
+const SearchBar = ({ onSearch, placeholder, isExpanded, lang = 'es'}) => {
   const [query, setQuery] = useState('');
 
   // Traducciones para los textos

@@ -11,19 +11,15 @@ function MyApp({ Component, pageProps }) {
     // Detectar el idioma basado en la ruta
     if (typeof window !== 'undefined') {
       const path = window.location.pathname;
-      console.log('Current path:', path);
       
       if (path === '/en' || path.startsWith('/en/')) {
-        console.log('Setting language to English');
         setLanguage('en');
       } else {
-        console.log('Setting language to Spanish');
         setLanguage('es');
       }
       
       // También verificamos el router para mayor precisión
       if (router.pathname === '/en' || router.pathname.startsWith('/en/')) {
-        console.log('Router path indicates English');
         setLanguage('en');
       }
     }

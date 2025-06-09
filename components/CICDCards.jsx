@@ -139,8 +139,7 @@ const CICDCards = ({ lang = 'es' }) => {
                   src={tool.imageSrc} 
                   alt={tool.name}
                   fill
-                  style={{ objectFit: 'contain' }}
-                  className="drop-shadow-lg rounded-full p-2"
+                  className="drop-shadow-lg rounded"
                 />
               </div>
             </div>
