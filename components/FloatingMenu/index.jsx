@@ -62,7 +62,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
   
   // Definición de las secciones principales del portafolio
   // Generar secciones basadas en el idioma actual
-  const sections = [
+  const sections = React.useMemo(() => [
     { id: 'profile', name: labels.profile, icon: 'user', ref: 'profile' },
     { id: 'resumen', name: labels.summary, icon: 'file-text', ref: 'professional-summary' },
     { id: 'tecnologias', name: labels.technologies, icon: 'code', ref: 'tools-technologies' },
@@ -74,13 +74,13 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
     { id: 'proyectos', name: labels.projects, icon: 'folder', ref: 'project-breakdown' },
     { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
     { id: 'timeline', name: labels.timeline, icon: 'clock', ref: 'timeline' }
-  ];
+  ], [labels]);
 
-  // Actualizar menú items cuando cambia el idioma
+  // Actualizar menú items cuando cambia el idioma o las secciones
   useEffect(() => {
     setMenuItems(sections);
     setFilteredItems(sections);
-  }, [lang]);
+  }, [lang, sections]);
 
   // Detectar sección activa según la posición de scroll
   useEffect(() => {
@@ -105,7 +105,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections]);
+  }, []);
 
   // Filtra los items del menú según la búsqueda
   const handleSearch = (term) => {
@@ -262,7 +262,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
               ))
             ) : (
               <div className="text-center text-gray-400 py-4">
-                {labels.noResults} "{searchTerm}"
+                {labels.noResults} &quot;{searchTerm}&quot;
               </div>
             )}
           </div>
@@ -273,7 +273,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className={`flex items-center justify-center px-2 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${(isExpanded || !isMobile) ? 'rounded-none' : 'rounded-r-xl'}`}
-            aria-expanded={isExpanded}
+            aria-expanded={isExpanded ? 'true' : 'false'}
             aria-label={currentLang === 'en' ? 'Open navigation menu' : 'Abrir menú de navegación'}
           >
             {(isExpanded || !isMobile) ? (
