@@ -9,7 +9,6 @@ import ProfessionalSummary from './ProfessionalSummary';
 const Journey2024 = ({ lang }) => {
   return (
     <div className="bg-gradient-to-br from-blue-900 to-purple-900 min-h-screen text-white p-8 md:p-16 flex flex-col">
-      <h1 className="text-5xl font-bold text-center mb-16">{lang.devSecOps}</h1>
       <div className="flex-grow">
         <ProfessionalSummary lang={lang} />
         <CICDAnimation lang={lang} />

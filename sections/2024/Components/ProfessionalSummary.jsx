@@ -5,8 +5,8 @@ const ProfessionalSummary = ({ lang= 'es' }) => {
     : "Experimentado en arquitectura de soluciones en múltiples proveedores de nube, con un enfoque en prácticas de DevOps y SRE. Soy competente en desarrollo backend, bases de datos SQL y NoSQL, y optimización de pipelines de CI/CD. Tengo conocimientos en la implementación de arquitecturas WAF y CAF, enfatizando la seguridad de redes y de código estático. Me comprometo a la automatización y gestión de métricas, asegurando migraciones y backups confiables para mejorar la eficiencia en la entrega de software y el rendimiento del equipo.";
 
   return (
-    <div id="professional-summary" className="mb-20 pt-10">
-      <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
+    <div id="professional-summary" className="mb-3 pt-2">
+      <h2 className="text-3xl font-bold mb-2 text-center">{title}</h2>
       <p className="text-xl leading-relaxed">{summary}</p>
     </div>
   );
