@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from "next/head";
 import styles from "../../styles/Home.module.css";
-import { Header } from "../../sections/page/Components/Header";
+// Header eliminado para evitar duplicación de botones de idioma
 import { ProfileContainer } from "../../sections/profile/Components/Profile";
 import Journey2024 from "../../sections/2024/Components/Journey2024";
 import KubernetesExperience from "../../sections/2024/Components/KubernetesExperience";
@@ -21,7 +21,6 @@ export default function Home() {
           content="Explore my portfolio showcasing expertise in backend development, cloud development, and RPA. Discover my projects and skills in JavaScript, TypeScript, design patterns, software architecture, clean code, unit tests, and pipelines."
         />
       </Head>
-      <Header />
       <ProfileContainer lang="en" />
       <Journey2024 lang="en" />
       <KubernetesExperience lang="en" />

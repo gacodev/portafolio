@@ -2,6 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Estilos personalizados para el menú flotante y grid layout */
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Grid Layout System */
+.grid-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 250px) 1fr;
+  grid-template-areas: "sidebar content";
+  min-height: 100vh;
+  width: 100%;
+}
+
+.menu-container {
+  grid-area: sidebar;
+  background-color: #1a1a2e;
+  padding: 1rem;
+  z-index: 10;
+  border-right: 1px solid rgba(59, 130, 246, 0.5);
+  overflow-y: auto;
+  max-height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.content-container {
+  grid-area: content;
+  padding: 1rem;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "content";
+  }
+  
+  .menu-container {
+    padding: 0.5rem;
+    padding-top: 3.5rem; /* Espacio adicional en la parte superior */
+    max-height: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100vh;
+    z-index: 100;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border-right: 1px solid rgba(59, 130, 246, 0.5);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* Clase específica para el menú móvil */
+  .mobile-menu {
+    transform: translateX(0); /* Cuando es visible */
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #1a1a2e;
+  }
+  
+  /* Overlay oscuro detrás del menú lateral en móvil */
+  .mobile-menu::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+
+  .content-container {
+    padding-top: 1.5rem; /* Ya no necesitamos tanto espacio arriba */
+    padding-bottom: 5rem; /* Espacio en la parte inferior para el botón flotante */
+  }
+}
+
 html,
 body {
   padding: 0;

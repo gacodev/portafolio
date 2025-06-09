@@ -28,7 +28,7 @@ const PerformanceMetrics = ({ lang = 'es' }) => {
     : "La consistencia y la toma de decisiones han mejorado la capacidad de despliegue y la confiabilidad de las soluciones mediante trabajo persistente y aportes individuales.";
 
   return (
-    <div className="mb-30">
+    <div id="performance-metrics" className="mb-30 pt-10">
       <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
       <div className="bg-white bg-opacity-10 p-6 rounded-lg shadow-lg">
         <ResponsiveContainer width="100%" height={400}>
