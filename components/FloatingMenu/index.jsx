@@ -10,10 +10,10 @@ import { useRouter } from "next/router";
  * @param {string} props.lang - Idioma del menú (es, en)
  * @param {string} props.menuMode - Modo de visualización ('floating' o 'embedded')
  */
-const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
+const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, closeMenu = () => {} }) => {
   // Estados principales del componente
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isInternalMobile, setIsInternalMobile] = useState(false); // Cambiado para evitar conflicto con la prop
   const [searchTerm, setSearchTerm] = useState('');
   const [activeSection, setActiveSection] = useState('');
   const [menuItems, setMenuItems] = useState([]);
@@ -105,6 +105,20 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, [sections]); // Necesitamos las secciones como dependencia para detectar cambios
+
+  // Detectar pantalla móvil (solo si no recibimos isMobile como prop externa)
+  useEffect(() => {
+    const handleResize = () => {
+      setIsInternalMobile(window.innerWidth < 768);
+    };
+    
+    // Verificar al cargar
+    handleResize();
+    
+    // Añadir detector de cambio de tamaño
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Filtra los items del menú según la búsqueda
@@ -130,8 +144,9 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
     }
     
     // En móvil, contraer el menú después de la navegación
-    if (window.innerWidth < 768) {
+    if (isMobile || window.innerWidth < 768) {
       setIsExpanded(false);
+      closeMenu(); // Llamamos a la función closeMenu que viene de _app.js
     }
   };
 
@@ -226,10 +241,10 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
         {/* Menú principal */}
         <div
           className={`${menuMode === 'floating'
-            ? `bg-gray-900 bg-opacity-90 text-white shadow-xl transform transition-all duration-300 ease-in-out ${isMobile ? (isExpanded ? 'translate-x-0' : '-translate-x-full') : 'translate-x-0'}`
+            ? `bg-gray-900 bg-opacity-90 text-white shadow-xl transform transition-all duration-300 ease-in-out ${isMobile || isInternalMobile ? (isExpanded ? 'translate-x-0' : '-translate-x-full') : 'translate-x-0'}`
             : 'w-full bg-gray-900 text-white'}`}
           role="navigation"
-          aria-expanded={isExpanded || !isMobile}
+          aria-expanded={isExpanded || !(isMobile || isInternalMobile)}
         >
           <div className="px-4 mb-4">
             <SearchBar onSearch={handleSearch} isExpanded={isExpanded} />
@@ -272,14 +287,14 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
         {menuMode === 'floating' && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className={`flex items-center justify-center px-2 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${(isExpanded || !isMobile) ? 'rounded-none' : 'rounded-r-xl'}`}
+            className={`flex items-center justify-center px-2 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md ${(isExpanded || !isInternalMobile) ? 'rounded-none' : 'rounded-r-xl'}`}
             aria-expanded={isExpanded ? 'true' : 'false'}
             aria-label={currentLang === 'en' ? 'Open navigation menu' : 'Abrir menú de navegación'}
           >
-            {(isExpanded || !isMobile) ? (
+            {(isExpanded || !isInternalMobile) ? (
               <>
                 {/* Solo mostrar el texto cuando no es móvil o está expandido */}
-                {(!isMobile || isExpanded) && (
+                {(!(isMobile || isInternalMobile) || isExpanded) && (
                   <span className="text-white font-semibold mr-2 text-sm md:text-base">{labels.menu} ({currentLang.toUpperCase()})</span>
                 )}
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -300,7 +315,9 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating' }) => {
 
 FloatingMenu.propTypes = {
   lang: PropTypes.string,
-  menuMode: PropTypes.string
+  menuMode: PropTypes.string,
+  isMobile: PropTypes.bool,
+  closeMenu: PropTypes.func
 };
 
 // Componente para los botones de idioma
