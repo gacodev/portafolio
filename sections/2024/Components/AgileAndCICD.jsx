@@ -37,7 +37,7 @@ const AgileComponent = ({ lang = "en" }) => {
   return (
     <div id="agile-cicd" className="w-full rounded-lg shadow-lg overflow-hidden scroll-mt-20">
       <div className="p-6 bg-gradient-to-r from-teal-400 to-blue-500 text-white">
-        <h2 className="text-3xl font-bold text-center mb-6 text-white relative">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-white relative">
           <span className="relative z-10">
             {lang === "en"
               ? "Mastering Agile: Principles in Practice"
@@ -86,7 +86,7 @@ const AgileComponent = ({ lang = "en" }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="text-3xl mr-3">
+                  <span className="text-2xl md:text-3xl mr-3">
                     {["👥", "💻", "🤝", "🔄"][index]}
                   </span>
                   <span>{value[lang]}</span>

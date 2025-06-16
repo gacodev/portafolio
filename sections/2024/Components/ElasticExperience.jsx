@@ -36,18 +36,18 @@ const ElasticExperience = ({ lang }) => {
         </div>
         
         <div className="text-right">
-          <h3 className="text-2xl font-bold text-blue-400">
+          <h3 className="text-xl md:text-2xl font-bold text-blue-400">
             {lang === "es" ? `${monthsDiff} Meses desplegando y monitoreando` : `${monthsDiff} Months Deploying & monitoring`}
           </h3>
       
         </div>
       </div>
 
-      <h3 className="text-2xl font-bold mb-4 text-blue-300">
+      <h3 className="text-xl md:text-2xl font-bold mb-4 text-blue-300">
         {lang === "es" ? "Experiencia" : "Experience"}
       </h3>
       
-      <h3 className="text-xl font-semibold mb-4 text-blue-300">
+      <h3 className="text-lg md:text-xl font-semibold mb-4 text-blue-300">
         {lang === "es" ? "Componentes de la Plataforma Elastic Stack" : "Elastic Stack Platform Components"}
       </h3>
       
@@ -59,9 +59,9 @@ const ElasticExperience = ({ lang }) => {
         >
           <div className="flex items-center gap-2 mb-2">
             <SiElastic className="w-5 h-5 text-blue-400" />
-            <h4 className="font-medium text-blue-200">Elasticsearch</h4>
+            <h4 className="font-medium text-base text-blue-200">Elasticsearch</h4>
           </div>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs md:text-sm text-gray-300">
             {lang === "es" ? 
               "Motor de búsqueda y análisis distribuido" : 
               "Distributed search and analytics engine"}
@@ -81,9 +81,9 @@ const ElasticExperience = ({ lang }) => {
         >
           <div className="flex items-center gap-2 mb-2">
             <SiKibana className="w-5 h-5 text-blue-400" />
-            <h4 className="font-medium text-blue-200">Kibana</h4>
+            <h4 className="font-medium text-base text-blue-200">Kibana</h4>
           </div>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs md:text-sm text-gray-300">
             {lang === "es" ? 
               "Visualización de datos y dashboards interactivos" : 
               "Data visualization and interactive dashboards"}
@@ -103,9 +103,9 @@ const ElasticExperience = ({ lang }) => {
         >
           <div className="flex items-center gap-2 mb-2">
             <SiLogstash className="w-5 h-5 text-blue-400" />
-            <h4 className="font-medium text-blue-200">Logstash</h4>
+            <h4 className="font-medium text-base text-blue-200">Logstash</h4>
           </div>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs md:text-sm text-gray-300">
             {lang === "es" ? 
               "Procesamiento y transformación de datos en tiempo real" : 
               "Real-time data processing and transformation"}
@@ -127,9 +127,9 @@ const ElasticExperience = ({ lang }) => {
             <svg className="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19,3H14V5H19V8H17V10H19V13H14V15H19V18H17V20H19A2,2 0 0,0 21,18V5C21,3.89 20.1,3 19,3M16,5V7H14V5H16M16,10V12H14V10H16M16,17V15H14V17H16M8,5H10V7H8V5M8,10H10V12H8V10M8,15H10V17H8V15M5,5H7V7H5V5M5,10H7V12H5V10M5,15H7V17H5V15M3,5H4V19H20V20H3V5Z" />
             </svg>
-            <h4 className="font-medium text-blue-200">Beats</h4>
+            <h4 className="font-medium text-base text-blue-200">Beats</h4>
           </div>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs md:text-sm text-gray-300">
             {lang === "es" ? 
               "Agentes ligeros para recolección de datos (Filebeat, Metricbeat)" : 
               "Lightweight data collectors (Filebeat, Metricbeat)"}
@@ -143,11 +143,11 @@ const ElasticExperience = ({ lang }) => {
         </motion.div>
       </div>
       
-      <h3 className="text-xl font-semibold mb-4 text-blue-300">
+      <h3 className="text-lg md:text-xl font-semibold mb-4 text-blue-300">
         {lang === "es" ? "Habilidades Técnicas" : "Technical Skills"}
       </h3>
       
-      <ul className="space-y-3 mb-6">
+      <ul className="space-y-3 mb-6 text-sm md:text-base">
         <li className="flex items-start">
           <svg className="w-5 h-5 text-blue-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />

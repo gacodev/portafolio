@@ -36,17 +36,17 @@ const KafkaExperience = ({ lang }) => {
         </div>
         
         <div className="text-right">
-          <h3 className="text-2xl font-bold text-red-400">
+          <h3 className="text-xl md:text-2xl font-bold text-red-400">
             {lang === "es" ? `${monthsDiff} Meses desplegando y monitoreando` : `${monthsDiff} Months Deploying & monitoring`}
           </h3>
         </div>
       </div>
 
-      <h3 className="text-2xl font-bold mb-4 text-red-300">
+      <h3 className="text-xl md:text-2xl font-bold mb-4 text-red-300">
         {lang === "es" ? "Experiencia" : "Experience"}
       </h3>
       
-      <h3 className="text-xl font-semibold mb-4 text-red-300">
+      <h3 className="text-lg md:text-xl font-semibold mb-4 text-red-300">
         {lang === "es" ? "Componentes de la Plataforma de Confluent" : "Confluent Platform Components"}
       </h3>
       
@@ -58,9 +58,9 @@ const KafkaExperience = ({ lang }) => {
         >
           <div className="flex items-center gap-2 mb-2">
             <SiApache className="w-5 h-5 text-red-400" />
-            <h4 className="font-medium text-red-200">ZooKeeper</h4>
+            <h4 className="font-medium text-base text-red-200">ZooKeeper</h4>
           </div>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs md:text-sm text-gray-300">
             {lang === "es" ? 
               "Gestión de configuración distribuida y coordinación de brokers" : 
               "Distributed configuration management and broker coordination"}
@@ -80,9 +80,9 @@ const KafkaExperience = ({ lang }) => {
         >
           <div className="flex items-center gap-2 mb-2">
             <SiApachekafka className="w-5 h-5 text-red-400" />
-            <h4 className="font-medium text-red-200">Schema Registry</h4>
+            <h4 className="font-medium text-base text-red-200">Schema Registry</h4>
           </div>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs md:text-sm text-gray-300">
             {lang === "es" ? 
               "Validación y evolución de esquemas para garantizar compatibilidad" : 
               "Schema validation and evolution to ensure compatibility"}
@@ -102,9 +102,9 @@ const KafkaExperience = ({ lang }) => {
         >
           <div className="flex items-center gap-2 mb-2">
             <SiApachekafka className="w-5 h-5 text-red-400" />
-            <h4 className="font-medium text-red-200">Kafka Connect</h4>
+            <h4 className="font-medium text-base text-red-200">Kafka Connect</h4>
           </div>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs md:text-sm text-gray-300">
             {lang === "es" ? 
               "Conectores para integración con sistemas externos y bases de datos" : 
               "Connectors for integration with external systems and databases"}
@@ -124,9 +124,9 @@ const KafkaExperience = ({ lang }) => {
         >
           <div className="flex items-center gap-2 mb-2">
             <SiApachekafka className="w-5 h-5 text-red-400" />
-            <h4 className="font-medium text-red-200">REST Proxy</h4>
+            <h4 className="font-medium text-base text-red-200">REST Proxy</h4>
           </div>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs md:text-sm text-gray-300">
             {lang === "es" ? 
               "API RESTful para interactuar con Kafka desde cualquier lenguaje" : 
               "RESTful API for interacting with Kafka from any language"}
@@ -140,11 +140,11 @@ const KafkaExperience = ({ lang }) => {
         </motion.div>
       </div>
       
-      <h3 className="text-xl font-semibold mb-4 text-red-300">
+      <h3 className="text-lg md:text-xl font-semibold mb-4 text-red-300">
         {lang === "es" ? "Habilidades Técnicas" : "Technical Skills"}
       </h3>
       
-      <ul className="space-y-3 mb-6">
+      <ul className="space-y-3 mb-6 text-sm md:text-base">
         <li className="flex items-start">
           <svg className="w-5 h-5 text-red-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />

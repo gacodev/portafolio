@@ -64,7 +64,7 @@ export const CloudProviderList = ({ lang }) => {
     : "Mi preferencia por herramientas de Infraestructura como Código (IaC) como Terraform y Pulumi mejora mi productividad y permite entregas más consistentes y tolerantes a fallos. Este enfoque me permite representar la infraestructura en código, facilitando un crecimiento progresivo y una mejor gestión. Al adoptar tecnologías de vanguardia en la nube como Docker, Vagrant y Ansible, optimizo procesos y reduzco tareas repetitivas, lo cual es crucial en situaciones desafiantes y conduce a soluciones en la nube más eficientes y confiables.";
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="w-full px-4 py-8 md:px-8">
       <h2 className="text-3xl font-bold text-center mb-8 text-white">{title}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {cloudProviders.map((provider) => (
