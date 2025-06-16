@@ -35,7 +35,7 @@ const technologies = [
 export const TechList = ({ lang }) => {
   return (
     <div className="py-12 bg-gradient-to-r from-blue-900 to-purple-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 md:px-8">
         <h2 className="text-4xl font-extrabold text-center text-white mb-12">
           {lang === "en" ? "Technologies I've Worked With" : "Tecnologías con las que he trabajado"}
         </h2>
@@ -45,12 +45,12 @@ export const TechList = ({ lang }) => {
               key={index} 
               className="group flex flex-col items-center p-4 bg-white bg-opacity-10 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-opacity-20"
             >
-              <div className="relative w-24 h-24 mb-4">
+              <div className="w-24 h-24 mb-4 flex items-center justify-center">
                 <Image
                   src={tech.image}
                   alt={tech.name}
-                  fill={true}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  width={80}
+                  height={80}
                   className="object-contain transition duration-300 ease-in-out group-hover:opacity-80 rounded-xl"
                 />
               </div>

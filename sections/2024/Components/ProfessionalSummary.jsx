@@ -6,8 +6,8 @@ const ProfessionalSummary = ({ lang= 'es' }) => {
 
   return (
     <div id="professional-summary" className="mb-3 pt-2">
-      <h2 className="text-3xl font-bold mb-2 text-center">{title}</h2>
-      <p className="text-xl leading-relaxed">{summary}</p>
+      <h2 className="text-2xl md:text-3xl font-bold mb-2 text-center">{title}</h2>
+      <p className="text-lg md:text-xl leading-relaxed">{summary}</p>
     </div>
   );
 };

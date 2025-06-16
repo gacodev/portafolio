@@ -180,7 +180,7 @@ a {
   }
 
   .profileCard, .cvcard {
-    width: 100vw;
+    width: 100%;
   }
 
   .container {
