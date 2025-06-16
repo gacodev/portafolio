@@ -46,7 +46,7 @@ export const MigrationComponent = ({ lang }) => {
   const t = (es, en) => lang === 'es' ? es : en;
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="w-full px-4 py-16 md:px-8">
       <h2 className="text-4xl font-bold text-center text-white mb-12">
         {t('Migraciones', 'Migrations')}
       </h2>

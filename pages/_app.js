@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import FloatingMenu from "../components/FloatingMenu";
+import ScrollArrows from "../components/ScrollArrows";
 import { useRouter } from "next/router";
 import { useEffect, useState, useCallback } from "react";
 
@@ -85,7 +86,8 @@ function MyApp({ Component, pageProps }) {
   }, [router.asPath, router.pathname]);
 
   return (
-    <div className="grid-layout">
+    <>
+      <div className="grid-layout">
       {/* Botón para mostrar/ocultar menú en móviles */}
       {isMobile && (
         <button 
@@ -121,7 +123,13 @@ function MyApp({ Component, pageProps }) {
       <main className="content-container">
         <Component {...pageProps} />
       </main>
+
+
     </div>
+
+      {/* Arrows for quick section navigation (outside grid to avoid layout shifts) */}
+      <ScrollArrows />
+    </>
   );
 }
 

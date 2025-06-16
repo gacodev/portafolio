@@ -113,8 +113,8 @@ const CICDCards = ({ lang = 'es' }) => {
 
   return (
     <div className="py-6 px-4">
-      <h3 className="text-2xl font-bold mb-4 text-center">{t.title}</h3>
-      <p className="text-gray-300 mb-6 text-center">{t.description}</p>
+      <h3 className="text-xl md:text-2xl font-bold mb-4 text-center">{t.title}</h3>
+      <p className="text-sm md:text-base text-gray-300 mb-6 text-center">{t.description}</p>
       
       <motion.div 
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -133,19 +133,20 @@ const CICDCards = ({ lang = 'es' }) => {
             className={`rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 transform hover:scale-105 cursor-pointer no-underline`}
             whileHover={{ y: -10, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
           >
-            <div className={`bg-gradient-to-r ${tool.bgGradient} p-6`}>
-              <div className="w-full h-40 relative mb-4">
+            <div className={`bg-gradient-to-r ${tool.bgGradient} p-4`}>
+              <div className="w-full h-28 flex justify-center items-center">
                 <Image 
                   src={tool.imageSrc} 
                   alt={tool.name}
-                  fill
-                  className="drop-shadow-lg rounded"
+                  width={80}
+                  height={80}
+                  className="drop-shadow-lg rounded object-contain"
                 />
               </div>
             </div>
             <div className="p-5 flex-grow bg-white dark:bg-gray-800">
-              <h4 className="text-2xl font-bold mb-3 text-center">{tool.name}</h4>
-              <p className="text-gray-600 dark:text-gray-300">{tool.description}</p>
+              <h4 className="text-xl md:text-2xl font-bold mb-3 text-center">{tool.name}</h4>
+              <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">{tool.description}</p>
             </div>
           </motion.a>
         ))}

@@ -45,6 +45,21 @@ const ProjectBreakdown = ({ lang }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const t = translations[lang];
 
+  // Chart.js options for better visibility on dark theme
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          color: '#ffffff',
+          font: { size: 14 }
+        }
+      }
+    }
+  };
+
   const getChartData = (project) => ({
     labels: [t.ciPipelines, t.cdPipelines, t.owaspPipelines],
     datasets: [
@@ -57,20 +72,20 @@ const ProjectBreakdown = ({ lang }) => {
   });
 
   return (
-    <div id="project-breakdown" className="container mx-auto px-4 py-8 pt-10">
+    <div id="project-breakdown" className="w-full px-4 md:px-8 py-8 pt-10">
       <h2 className="text-3xl font-bold mb-8 mt-4 text-center">{t.latestProjects}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {projects.map((project) => (
           <motion.div
             key={project.name}
-            className="bg-white p-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300 ease-in-out"
+            className="bg-slate-800/60 hover:bg-slate-700/60 backdrop-blur-md border border-white/10 p-6 rounded-lg shadow-md cursor-pointer transition-transform transform hover:scale-105"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setSelectedProject(project)}
           >
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">{project.name}</h3>
-            <p className="text-sm text-gray-600 mb-4">{project.category}</p>
-            <div className="flex justify-between items-center text-gray-700">
+            <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">{project.name}</h3>
+            <p className="text-sm text-blue-300 mb-4">{project.category}</p>
+            <div className="flex flex-wrap justify-between items-center gap-2 text-gray-300">
               <div className="flex items-center">
                 <Code size={18} className="mr-2 text-gray-600" />
                 <span>{project.ci + project.cd}</span>
@@ -104,11 +119,12 @@ const ProjectBreakdown = ({ lang }) => {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
-              className="bg-white text-black p-8 rounded-lg max-w-4xl w-full shadow-lg"
+              className="bg-slate-800/80 backdrop-blur-lg border border-white/10 w-full md:max-w-3xl p-8 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-8"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-2xl font-bold mb-2 text-gray-800">{selectedProject.name}</h3>
-              <p className="text-md text-gray-600 mb-4">{selectedProject.category}</p>
+              <button className="absolute top-3 right-3 text-white text-2xl leading-none focus:outline-none" onClick={() => setSelectedProject(null)}>×</button>
+              <h3 className="text-2xl font-bold mb-2 text-white">{selectedProject.name}</h3>
+              <p className="text-md text-blue-300 mb-4">{selectedProject.category}</p>
               <div className="flex flex-col md:flex-row justify-between mb-6">
                 <div className="md:w-1/2">
                   <p className="mb-2 flex items-center"><Code size={20} className="mr-2" /> {t.ciPipelines}: {selectedProject.ci}</p>
@@ -122,8 +138,10 @@ const ProjectBreakdown = ({ lang }) => {
                     <Globe size={20} className="mr-2" /> {t.visitProject}
                   </a>
                 </div>
-                <div className="md:w-1/2 mt-4 md:mt-0">
-                  <Pie data={getChartData(selectedProject)} />
+                <div className="md:w-1/2 mt-4 md:mt-0 flex justify-center items-center">
+                  <div className="w-64 h-64">
+                  <Pie data={getChartData(selectedProject)} options={chartOptions} />
+                  </div>
                 </div>
               </div>
               <p className="text-sm text-gray-600">{t.year}: {selectedProject.year}</p>

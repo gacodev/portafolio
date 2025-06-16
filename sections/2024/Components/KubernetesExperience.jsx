@@ -25,7 +25,7 @@ const KubernetesExperience = ({ lang }) => {
                     (currentDate.getMonth() - startDate.getMonth());
                     
   return (
-    <div id="kubernetes-experience" className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 min-h-screen text-white p-8 md:p-16 flex flex-col pt-10">
+    <div id="kubernetes-experience" className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 min-h-screen text-white flex flex-col pt-10 p-8 md:p-16">
       {/* Kubernetes Header with Logo */}
       <motion.div 
         className="mb-16 flex flex-col items-center"
@@ -53,10 +53,10 @@ const KubernetesExperience = ({ lang }) => {
         viewport={{ once: true }}
         variants={fadeIn}
       >
-        <h2 className="text-3xl font-bold mb-4 text-cyan-300">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-cyan-300">
           {lang === "es" ? "Orquestando Microservicios" : "Orchestrating Microservices"}
         </h2>
-        <p className="text-lg mb-6">
+        <p className="text-base md:text-lg mb-6">
           {lang === "es" 
             ? "He trabajado extensivamente con Kubernetes como plataforma de orquestación, implementando y gestionando aplicaciones distribuidas y microservicios. Mi experiencia incluye despliegues automatizados, gestión de recursos, configuración de networking, y optimización de workloads en entornos de producción de alta disponibilidad."
             : "I have worked extensively with Kubernetes as an orchestration platform, implementing and managing distributed applications and microservices. My experience includes automated deployments, resource management, networking configuration, and workload optimization in high-availability production environments."
@@ -157,11 +157,11 @@ const KubernetesExperience = ({ lang }) => {
             >
               <div className="flex items-center gap-2 mb-2">
                 {service.icon}
-                <h3 className="font-medium text-gray-100">
+                <h3 className="font-medium text-base md:text-lg text-gray-100">
                   {service.name}
                 </h3>
               </div>
-              <p className="text-sm text-gray-300">
+              <p className="text-xs md:text-sm text-gray-300">
                 {service.description}
               </p>
               <div className="mt-2 text-xs text-gray-400 flex items-center">
@@ -188,7 +188,7 @@ const KubernetesExperience = ({ lang }) => {
         viewport={{ once: true }}
         variants={fadeIn}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-blue-300">
+        <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-blue-300">
           {lang === "es" ? "Habilidades Técnicas con Kubernetes" : "Technical Skills with Kubernetes"}
         </h2>
         
@@ -203,7 +203,7 @@ const KubernetesExperience = ({ lang }) => {
           ].map((skill) => (
             <div key={skill.name} className="bg-gradient-to-r from-gray-900 to-blue-900/40 p-4 rounded-lg">
               <div className="flex justify-between mb-2">
-                <div className="font-medium">{skill.name}</div>
+                <div className="font-medium text-sm md:text-base">{skill.name}</div>
                 <div className="text-blue-400">{skill.value}%</div>
               </div>
               <div className="w-full bg-gray-700 rounded-full h-2.5">
@@ -220,7 +220,7 @@ const KubernetesExperience = ({ lang }) => {
           ))}
         </div>
       </motion.div>
-    </div>
+          </div>
   );
 };
 

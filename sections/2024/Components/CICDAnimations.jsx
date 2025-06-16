@@ -35,18 +35,17 @@ const CICDAnimation = ({ lang = 'en' }) => {
   return (
     <div ref={containerRef} className="w-full p-4 md:p-8 rounded-lg shadow-lg overflow-hidden relative">
       <AgileComponent lang={lang} />
-      <h2 className="text-2xl font-bold text-center mb-6">
+      <h2 className="text-xl md:text-2xl font-bold text-center mb-6">
         {lang === 'en' ? 'CI/CD Pipeline' : 'Pipeline de CI/CD'}
       </h2>
-      <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center justify-between`}>
+      <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center justify-between gap-2`}>
         {stages.map((stage, index) => (
           <AnimatePresence key={stage.name[lang]}>
             {(!isMobile || index === currentStep) && (
               <motion.div
-                className={`flex flex-col items-center justify-center p-4 m-2 ${isMobile ? 'w-full' : 'w-1/9'}`}
+                className={`flex flex-col items-center justify-center p-4 rounded-xl ${isMobile ? 'w-full' : 'flex-1'}`}
                 style={{
                   backgroundColor: stage.color,
-                  borderRadius: '12px',
                 }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ 
@@ -76,20 +75,10 @@ const CICDAnimation = ({ lang = 'en' }) => {
                     </span>
                   </a>
                   <motion.div 
-                    className={`absolute ${getTooltipPosition(index)} bg-gray-800 text-white text-xs rounded py-2 px-3 opacity-0 group-hover:opacity-100 z-20 pointer-events-none`}
+                    className={`absolute ${getTooltipPosition(index)} bg-gray-800 text-white text-xs rounded py-2 px-3 opacity-0 group-hover:opacity-100 z-20 pointer-events-none max-w-[200px] min-h-[40px] flex items-center justify-center text-center max-h-[200px] overflow-y-auto`}
                     initial={{ y: 10, opacity: 0 }}
                     whileHover={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.2 }}
-                    style={{
-                      maxWidth: '200px',
-                      minHeight: '40px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      textAlign: 'center',
-                      maxHeight: '200px',
-                      overflowY: 'auto'
-                    }}
                   >
                     {stage.tooltip[lang]}
                   </motion.div>
