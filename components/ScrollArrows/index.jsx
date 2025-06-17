@@ -2,6 +2,21 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { useRouter } from 'next/router';
 
+// Ordered list of section IDs (must match the `ref` used in FloatingMenu)
+const sectionIds = [
+  'profile',
+  'professional-summary',
+  'tools-technologies',
+  'key-achievements',
+  'kubernetes-experience',
+  'kafka-experience',
+  'elastic-experience',
+  'performance-metrics',
+  'project-breakdown',
+  'agile-cicd',
+  'timeline'
+];
+
 /**
  * Floating scroll arrows that let the user jump to the previous or next main section.
  * 
@@ -14,21 +29,6 @@ const ScrollArrows = () => {
   const router = useRouter();
   const currentPath = router.asPath;
   const isOnBlogPage = currentPath.includes('/blog');
-
-  // Ordered list of section IDs (must match the `ref` used in FloatingMenu)
-  const sectionIds = [
-    'profile',
-    'professional-summary',
-    'tools-technologies',
-    'key-achievements',
-    'kubernetes-experience',
-    'kafka-experience',
-    'elastic-experience',
-    'performance-metrics',
-    'project-breakdown',
-    'agile-cicd',
-    'timeline'
-  ];
 
   // Cache of DOM elements that actually exist on the current page (may vary between routes)
   const [sections, setSections] = useState([]);
@@ -55,7 +55,7 @@ const ScrollArrows = () => {
       // Sort by vertical position to guarantee correct order
       .sort((a, b) => a.el.offsetTop - b.el.offsetTop);
     setSections(existing);
-  }, [sectionIds]);
+  }, []);
 
   // Update active section on scroll
   useEffect(() => {
