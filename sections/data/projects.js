@@ -7,7 +7,7 @@ const projects = [
         name: 'AppiMotion+',
         image: "/projects/appimotion+.jpeg",
         url: 'https://www.appimotion.com/',
-        role: 'DevOps Engineer / Cloud Engineer / Solutions Architect',
+        role: 'Solutions Architect',
         year: 2024,
         technologies: [
           'REST API', '.NET Framework', 'CosmosDB', 'Virtual Machines', 'Docker',
@@ -19,7 +19,7 @@ const projects = [
       {
         name: 'Carbonlytics',
         url: 'https://www.carbonlytics.com.co',
-        role: 'DevOps Engineer / Cloud Engineer / Solutions Architect',
+        role: 'DevOps Engineer',
         year: 2024,
         technologies: [
           'Golang', 'Docker', 'React', 'Bash', 'CosmosDB', 'Azure Front Door',
@@ -30,7 +30,7 @@ const projects = [
       {
         name: 'Trackmile',
         url: 'https://www.trackmile.co/',
-        role: 'DevOps Engineer / Cloud Engineer / Solutions Architect',
+        role: 'Solutions Architect',
         year: 2024,
         technologies: [
           'Reverse Proxies', 'Docker', 'React', 'Python', 'FastAPI', 'Bash',
@@ -42,7 +42,7 @@ const projects = [
       {
         name: 'Inspira',
         url: 'https://inspira.isa.com.co',
-        role: 'DevOps Engineer / Cloud Engineer / Solutions Architect',
+        role: 'DevOps Engineer',
         year: 2024,
         technologies: [
           'Reverse Proxies', 'Docker', 'React', 'Python', 'FastAPI', 'Bash',
@@ -54,7 +54,7 @@ const projects = [
       {
         name: 'Traffig',
         url: 'https://www.inteia.com.co',
-        role: 'DevOps Engineer / Cloud Engineer / Solutions Architect',
+        role: 'Solutions Architect',
         year: 2024,
         technologies: [
           'REST API', '.NET Framework', 'Node.js', 'Express', 'WebRTC', 'RTSP',
@@ -67,7 +67,7 @@ const projects = [
       {
         name: 'Deep',
         url: 'N/A',
-        role: 'DevOps Engineer / Cloud Engineer / Solutions Architect',
+        role: 'DevOps Engineer',
         year: 2024,
         technologies: [
           'Reverse Proxies', 'Docker', 'React', 'Python', 'FastAPI', 'Bash',
@@ -79,7 +79,7 @@ const projects = [
       {
         name: 'Arpex',
         url: 'N/A',
-        role: 'DevOps Engineer / Cloud Engineer / Solutions Architect',
+        role: 'Solutions Architect',
         year: 2024,
         technologies: [
           'REST API', '.NET Framework', 'CosmosDB', 'Virtual Machines', 'SQL Server',
@@ -90,7 +90,7 @@ const projects = [
       {
         name: 'DCT',
         url: 'N/A',
-        role: 'DevOps Engineer / Cloud Engineer / Solutions Architect',
+        role: 'DevOps Engineer',
         year: 2024,
         technologies: [
           'Virtual Network', 'VMSS', 'Azure DevOps Pipelines', 'Azure Boards',
@@ -100,7 +100,7 @@ const projects = [
       {
         name: 'Gobierno Nube',
         url: 'N/A',
-        role: 'DevOps Engineer / Cloud Engineer / Solutions Architect',
+        role: 'Platform Engineer',
         year: 2024,
         technologies: [
           'Bash', 'Azure DevOps', 'Azure OpenAI GPT-4', 'Python', 'Azure Portal',

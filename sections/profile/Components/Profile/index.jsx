@@ -1,57 +1,9 @@
 import Image from "next/image";
 import { RoleChanger } from "../RoleChanger";
 import { CalendarLink } from "../CalendarButton";
+import profileData from "../../../data/profile";
+import SkillCard from "./SkillCard";
 
-const profileData = [
-  {
-    lang: "es",
-    title: "Ingeniero de Sistemas",
-    description: `Ingeniero de Sistemas, SRE, Desarrollador, autodidacta apasionado por mejorar la vida de las personas mediante la tecnología, electrónica y los retos tecnológicos...`,
-    hardSkills: [
-      "Scrum", "Docker", "Bash", "Typescript", "Azure DevOps", "ReactJS", "SQL", "NodeJS", "PHP Laravel"
-    ],
-    softSkills: [
-      "Solución de Problemas", "Escucha Activa", "Persistencia", "Flexibilidad",
-      "Comunicación Asertiva", "Gestión del tiempo", "Gestión de conflictos", "Inteligencia emocional", "Trabajo en equipo"
-    ],
-    socialMedia: [
-      { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.png", alt: "WhatsApp" },
-      { href: "https://github.com/gacodev", src: "/socialmedia/github.png", alt: "GitHub" },
-      { href: "https://www.linkedin.com/in/gabrielcontrerasv3", src: "/socialmedia/linkedin.webp", alt: "LinkedIn" },
-      { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.png", alt: "Email" }
-    ],
-    cvTitle: "Curriculum Vitae",
-    cvButton: "Descargar",
-    contactPhone: "Teléfono:",
-    contactEmail: "Correo: ",
-    availableMessage: "¡Disponible para nuevos proyectos!",
-    calendarMessage: "¿Estás listo para agendar una reunión?",
-  },
-  {
-    lang: "en",
-    title: "Systems Engineer",
-    description: `Systems Engineer,SRE Developer, self-taught passionate about improving people's lives through technology, electronics, and technological challenges...`,
-    hardSkills: [
-      "Scrum", "Docker", "Bash", "TypeScript", "Azure DevOps", "ReactJS", "SQL", "NodeJS", "PHP Laravel", "Python"
-    ],
-    softSkills: [
-      "Problem Solving", "Active Listening", "Persistence", "Flexibility",
-      "Assertive Communication", "Time Management", "Conflict Management", "Emotional Intelligence", "Teamwork", "Leadership"
-    ],
-    socialMedia: [
-      { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.png", alt: "WhatsApp", width: 40, height: 40 },
-      { href: "https://github.com/gacodev", src: "/socialmedia/github.png", alt: "GitHub", width: 40, height: 40 },
-      { href: "https://www.linkedin.com/in/gabrielcontrerasv3", src: "/socialmedia/linkedin.webp", alt: "LinkedIn", width: 40, height: 40 },
-      { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.webp", alt: "Email", width: 40, height: 40 }
-    ],
-    cvTitle: "Curriculum Vitae",
-    cvButton: "Download",
-    contactPhone: "Phone:",
-    contactEmail: "Email: ",
-    availableMessage: "Available for new projects!",
-    calendarMessage: "Are you ready to schedule a meeting?",
-  },
-];
 
 export const ProfileContainer = ({ lang }) => {
   const profile = profileData.find((data) => data.lang === lang);
@@ -72,11 +24,11 @@ export const ProfileContainer = ({ lang }) => {
   };
 
   return (
-    <div className="w-full px-4 py-8 md:px-8">
-      <div className="flex flex-col md:flex-row justify-between p-1" id="profile">
+    <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="flex flex-col md:flex-row gap-6 p-1" id="profile">
         {/* Left Block */}
-        <div className="md:w-1/2 p-4 bg-gray-800 bg-opacity-80 text-white rounded-lg shadow-md border-2 border-white flex flex-col items-center">
-          <h2 className="text-lg font-semibold text-center">{profile.title}</h2>
+        <div className="basis-full md:basis-2/3 grow-0 shrink-0 p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow border border-white/30 flex flex-col items-center">
+          <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold text-center">{profile.title}</h1>
           <Image
             src="/gabriel.webp"
             priority
@@ -88,34 +40,26 @@ export const ProfileContainer = ({ lang }) => {
           <RoleChanger lang={lang} />
           <hr className="my-4 border-gray-600" />
 
-          <div className="flex justify-around mt-4 w-full">
-            <div className="text-center">
-              <h3 className="text-lg md:text-xl font-semibold">{lang === "es" ? "Habilidades Técnicas" : "Hard Skills"}</h3>
-              <ul className="list-none text-left mt-2">
-                {profile.hardSkills.map((skill) => (
-                  <li key={skill} className="flex items-center">
-                    <span className="mx-1 text-green-500">✓</span>
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="text-center">
-              <h3 className="text-lg md:text-xl font-semibold">{lang === "es" ? "Habilidades Blandas" : "Soft Skills"}</h3>
-              <ul className="list-none text-left mt-2">
-                {profile.softSkills.map((skill) => (
-                  <li key={skill} className="flex items-center">
-                    <span className="mx-1 text-green-500">✓</span>
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 w-full items-stretch">
+            <SkillCard
+              title={lang === "es" ? "Habilidades Técnicas" : "Hard Skills"}
+              skills={profile.hardSkills}
+              lang={lang}
+              coreCount={6}
+              icon="hard"
+            />
+            <SkillCard
+              title={lang === "es" ? "Habilidades Blandas" : "Soft Skills"}
+              skills={profile.softSkills}
+              lang={lang}
+              coreCount={6}
+              icon="soft"
+            />
           </div>
 
           <div className="mt-4">
             <h3 className="flex justify-center text-lg md:text-xl font-semibold">{lang === "es" ? "Redes Sociales" : "Social Media"}</h3>
-            <div className="flex space-x-2 justify-center text-md">
+            <div className="flex space-x-3 justify-center">
               {profile.socialMedia.map(({ href, src, alt, width, height }) => (
                 <a key={alt} href={href}>
                   <Image
@@ -132,8 +76,8 @@ export const ProfileContainer = ({ lang }) => {
         </div>
 
         {/* Right Block */}
-        <div className="md:w-1/2 p-4 bg-gray-800 bg-opacity-80 text-white rounded-lg shadow-md mt-4 md:mt-0 flex flex-col items-center border-2 border-white">
-          <h3 className="text-lg font-semibold text-center">{profile.cvTitle}</h3>
+        <div className="basis-full md:basis-1/3 grow-0 shrink-0 p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow mt-4 md:mt-0 flex flex-col items-center border border-white/30">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-center">{profile.cvTitle}</h3>
           <Image
             src="/images/cv.jpg"
             alt={lang === "es" ? "curriculum vitae de Gabriel Contreras" : "Curriculum Vitae of Gabriel Contreras"}
@@ -141,7 +85,7 @@ export const ProfileContainer = ({ lang }) => {
             height={200}
             className="rounded-lg mt-2"
           />
-          <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" onClick={() => handleDownload(lang)}>
+          <button className="mt-4 w-full sm:w-auto bg-blue-500 text-white py-2 px-4 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400" onClick={() => handleDownload(lang)}>
             {profile.cvButton}
           </button>
 
@@ -162,7 +106,7 @@ export const ProfileContainer = ({ lang }) => {
           {/* Certifications Section */}
           <div className="mt-4 text-center">
             <h3 className="text-lg md:text-xl font-semibold">{lang == 'en' ? 'Credentials' : 'Certificaciones'}</h3>
-            <ul className="mt-2 space-y-4 w-full">
+            <ul className="mt-2 space-y-3 sm:space-y-4 w-full">
               <li className="flex items-center space-x-4 p-2 bg-gray-900 bg-opacity-50 rounded-lg shadow-md">
                 <img src="/images/Microsoft_logo.svg" alt="Microsoft Certified" className="w-8 h-8" />
                 <a href="https://learn.microsoft.com/en-us/users/gacodev/credentials/293c1d62fb1d5d85?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" rel="noopener noreferrer" className="text-sm md:text-base font-semibold text-blue-400 hover:underline">Microsoft Certified Administrator Associate</a>
@@ -177,8 +121,11 @@ export const ProfileContainer = ({ lang }) => {
       </div>
 
       {/* Profile Description */}
-      <div className="mt-6 p-4 bg-gray-800 bg-opacity-80 text-white rounded-lg shadow-md flex justify-center">
-        <p className="text-center">{profile.description}</p>
+      <div className="mt-6 p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow flex justify-center">
+        <p className="text-justify leading-relaxed tracking-wide text-base sm:text-lg">
+          {profile.description}
+        </p>
+
       </div>
     </div>
   );
