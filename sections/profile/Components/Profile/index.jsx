@@ -46,12 +46,14 @@ export const ProfileContainer = ({ lang }) => {
               skills={profile.hardSkills}
               lang={lang}
               coreCount={6}
+              icon="hard"
             />
             <SkillCard
               title={lang === "es" ? "Habilidades Blandas" : "Soft Skills"}
               skills={profile.softSkills}
               lang={lang}
               coreCount={6}
+              icon="soft"
             />
           </div>
 

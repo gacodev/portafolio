@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Wrench, Heart, XIcon } from "lucide-react";
+import { Wrench, Users, XIcon, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
@@ -13,9 +13,9 @@ import { motion, AnimatePresence } from "framer-motion";
  */
 const SkillCard = ({ title, skills = [], lang = "en", icon = "hard" }) => {
   const [open, setOpen] = useState(false);
-  const tShowAll = lang === "es" ? "Ver todas" : "Show all";
+  const tShowAllLabel = lang === "es" ? "Ver más" : "Show all";
   const tClose = lang === "es" ? "Cerrar" : "Close";
-  const IconComp = icon === "hard" ? Wrench : Heart;
+  const IconComp = icon === "hard" ? Wrench : Users;
   // Agrupar habilidades por categoría ("Categoria: skill1, skill2")
   const grouped = skills.reduce((acc, str) => {
     if (typeof str !== "string") return acc;
@@ -43,7 +43,7 @@ const SkillCard = ({ title, skills = [], lang = "en", icon = "hard" }) => {
         </div>
 
         {/* Categorías */}
-        <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
+        <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 text-center">
           {categories.map(([cat]) => (
             <span
               key={cat}
@@ -56,9 +56,10 @@ const SkillCard = ({ title, skills = [], lang = "en", icon = "hard" }) => {
 
         <button
           onClick={() => setOpen(true)}
-          className="self-start bg-white/20 hover:bg-white/30 text-white text-sm font-semibold px-3 py-1 rounded"
+          className="self-center bg-white/20 hover:bg-white/30 text-white p-2 rounded flex items-center justify-center"
+          aria-label={tShowAllLabel}
         >
-          {tShowAll}
+          <Eye size={18} />
         </button>
       </div>
 
