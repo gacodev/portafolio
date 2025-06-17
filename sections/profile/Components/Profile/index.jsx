@@ -4,7 +4,6 @@ import { CalendarLink } from "../CalendarButton";
 import profileData from "../../../data/profile";
 import SkillCard from "./SkillCard";
 
-
 export const ProfileContainer = ({ lang }) => {
   const profile = profileData.find((data) => data.lang === lang);
 
@@ -24,23 +23,23 @@ export const ProfileContainer = ({ lang }) => {
   };
 
   return (
-    <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex flex-col md:flex-row gap-6 p-1" id="profile">
+    <div className="w-full mx-auto px-2 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8">
+      <div className="flex flex-col md:flex-row gap-4 sm:gap-6 p-1" id="profile">
         {/* Left Block */}
-        <div className="basis-full md:basis-2/3 grow-0 shrink-0 p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow border border-white/30 flex flex-col items-center">
+        <div className="basis-full md:basis-2/3 grow-0 shrink-0 p-4 sm:p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow border border-white/30 flex flex-col items-center">
           <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold text-center">{profile.title}</h1>
           <Image
             src="/gabriel.webp"
             priority
             alt={lang === "es" ? "foto de perfil de Gabriel Contreras" : "profile picture of Gabriel Contreras"}
-            className="rounded-full mt-4"
+            className="rounded-full mt-3 sm:mt-4"
             width={100}
             height={100}
           />
           <RoleChanger lang={lang} />
-          <hr className="my-4 border-gray-600" />
+          <hr className="my-3 sm:my-4 border-gray-600 w-full" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 w-full items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-6 w-full items-stretch">
             <SkillCard
               title={lang === "es" ? "Habilidades Técnicas" : "Hard Skills"}
               skills={profile.hardSkills}
@@ -57,9 +56,9 @@ export const ProfileContainer = ({ lang }) => {
             />
           </div>
 
-          <div className="mt-4">
+          <div className="mt-3 sm:mt-4 w-full">
             <h3 className="flex justify-center text-lg md:text-xl font-semibold">{lang === "es" ? "Redes Sociales" : "Social Media"}</h3>
-            <div className="flex space-x-3 justify-center">
+            <div className="flex space-x-3 justify-center mt-2">
               {profile.socialMedia.map(({ href, src, alt, width, height }) => (
                 <a key={alt} href={href}>
                   <Image
@@ -76,7 +75,7 @@ export const ProfileContainer = ({ lang }) => {
         </div>
 
         {/* Right Block */}
-        <div className="basis-full md:basis-1/3 grow-0 shrink-0 p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow mt-4 md:mt-0 flex flex-col items-center border border-white/30">
+        <div className="basis-full md:basis-1/3 grow-0 shrink-0 p-4 sm:p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow mt-4 md:mt-0 flex flex-col items-center border border-white/30">
           <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-center">{profile.cvTitle}</h3>
           <Image
             src="/images/cv.jpg"
@@ -89,31 +88,34 @@ export const ProfileContainer = ({ lang }) => {
             {profile.cvButton}
           </button>
 
-          <div className="mt-4 text-center">
-            {profile.contactPhone} <strong>+573126004185</strong>
+          <div className="mt-4 text-center w-full">
+            <div className="text-sm sm:text-base">
+              {profile.contactPhone} <strong>+573126004185</strong>
+            </div>
+            <div className="text-sm sm:text-base">
+              {profile.contactEmail}
+              <a href="mailto:gabriel.contrerasv3@gmail.com" className="text-blue-500 underline">
+                gabriel.contrerasv3@gmail.com
+              </a>
+            </div>
           </div>
-          <div className="text-center">
-            {profile.contactEmail}
-            <a href="mailto:gabriel.contrerasv3@gmail.com" className="text-blue-500 underline">
-              gabriel.contrerasv3@gmail.com
-            </a>
-          </div>
-          <div className="mt-4 text-center">
+          
+          <div className="mt-4 text-center w-full">
             <h3 className="text-lg md:text-xl font-semibold">{profile.availableMessage}</h3>
             <CalendarLink message={profile.calendarMessage} />
           </div>
 
           {/* Certifications Section */}
-          <div className="mt-4 text-center">
+          <div className="mt-4 text-center w-full">
             <h3 className="text-lg md:text-xl font-semibold">{lang == 'en' ? 'Credentials' : 'Certificaciones'}</h3>
-            <ul className="mt-2 space-y-3 sm:space-y-4 w-full">
-              <li className="flex items-center space-x-4 p-2 bg-gray-900 bg-opacity-50 rounded-lg shadow-md">
-                <img src="/images/Microsoft_logo.svg" alt="Microsoft Certified" className="w-8 h-8" />
-                <a href="https://learn.microsoft.com/en-us/users/gacodev/credentials/293c1d62fb1d5d85?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" rel="noopener noreferrer" className="text-sm md:text-base font-semibold text-blue-400 hover:underline">Microsoft Certified Administrator Associate</a>
+            <ul className="mt-2 space-y-2 sm:space-y-3 w-full">
+              <li className="flex items-center space-x-3 sm:space-x-4 p-2 bg-gray-900 bg-opacity-50 rounded-lg shadow-md">
+                <img src="/images/Microsoft_logo.svg" alt="Microsoft Certified" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
+                <a href="https://learn.microsoft.com/en-us/users/gacodev/credentials/293c1d62fb1d5d85?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm md:text-base font-semibold text-blue-400 hover:underline">Microsoft Certified Administrator Associate</a>
               </li>
-              <li className="flex items-center space-x-4 p-2 bg-gray-900 bg-opacity-50 rounded-lg shadow-md">
-                <img src="/images/kafka.png" alt="Apache Kafka" className="w-8 h-8" />
-                <a href="https://www.credly.com/users/gacodev" target="_blank" rel="noopener noreferrer" className="text-sm md:text-base font-semibold text-blue-400 hover:underline">Learning Apache Kafka...</a>
+              <li className="flex items-center space-x-3 sm:space-x-4 p-2 bg-gray-900 bg-opacity-50 rounded-lg shadow-md">
+                <img src="/images/kafka.png" alt="Apache Kafka" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
+                <a href="https://www.credly.com/users/gacodev" target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm md:text-base font-semibold text-blue-400 hover:underline">Learning Apache Kafka...</a>
               </li>
             </ul>
           </div>
@@ -121,11 +123,10 @@ export const ProfileContainer = ({ lang }) => {
       </div>
 
       {/* Profile Description */}
-      <div className="mt-6 p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow flex justify-center">
-        <p className="text-justify leading-relaxed tracking-wide text-base sm:text-lg">
+      <div className="mt-4 sm:mt-6 p-4 sm:p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow flex justify-center">
+        <h1 className="text-center font-semibold leading-relaxed tracking-wide text-sm sm:text-base lg:text-lg w-full">
           {profile.description}
-        </p>
-
+        </h1>
       </div>
     </div>
   );
