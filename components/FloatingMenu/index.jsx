@@ -35,7 +35,8 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       timeline: 'Timeline',
       search: 'Buscar...',
       noResults: 'No se encontraron resultados para',
-      menu: 'MENÚ'
+      menu: 'MENÚ',
+      blog: 'ADR - Registros de Decisiones'
     },
     en: {
       profile: 'Profile & Contact',
@@ -51,7 +52,8 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       timeline: 'Timeline',
       search: 'Search...',
       noResults: 'No results found for',
-      menu: 'MENU'
+      menu: 'MENU',
+      blog: 'Architecture Decision Records'
     }
   };
   
@@ -80,7 +82,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
   useEffect(() => {
     setMenuItems(sections);
     setFilteredItems(sections);
-  }, [lang]);
+  }, [lang, sections]);
 
   // Detectar sección activa según la posición de scroll
   useEffect(() => {
@@ -136,8 +138,27 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     setFilteredItems(filtered);
   };
 
+  // Obtener información de la ruta actual
+  const router = useRouter();
+  const currentPath = router.asPath;
+  const isOnBlogPage = currentPath.includes('/blog');
+
   // Scroll suave a la sección correspondiente
   const scrollToSection = (sectionRef) => {
+    // Si estamos en el blog, navegar de vuelta a la página principal con hash
+    if (isOnBlogPage) {
+      const targetUrl = `/${lang}#${sectionRef}`;
+      router.push(targetUrl);
+      
+      // En móvil, contraer el menú después de la navegación
+      if (isMobile || window.innerWidth < 768) {
+        setIsExpanded(false);
+        closeMenu();
+      }
+      return;
+    }
+
+    // Navegación normal por scroll en la página principal
     const element = document.getElementById(sectionRef);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -244,13 +265,12 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
             ? `bg-gray-900 bg-opacity-90 text-white shadow-xl transform transition-all duration-300 ease-in-out ${isMobile || isInternalMobile ? (isExpanded ? 'translate-x-0' : '-translate-x-full') : 'translate-x-0'}`
             : 'w-full bg-gray-900 text-white'}`}
           role="navigation"
-          aria-expanded={isExpanded || !(isMobile || isInternalMobile)}
         >
           <div className="px-4 mb-4">
             <SearchBar onSearch={handleSearch} isExpanded={isExpanded} />
           </div>
           
-          <div className="px-3 mb-4 text-blue-400 text-xs uppercase font-semibold">
+          <div className="px-3 mb-3 text-blue-400 text-xs uppercase font-semibold">
             {lang === 'en' ? 'Language / Idioma' : 'Idioma / Language'}
           </div>
           
@@ -280,6 +300,28 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
                 {labels.noResults} &quot;{searchTerm}&quot;
               </div>
             )}
+          </div>
+          
+          {/* Sección de Enlaces Externos */}
+          <div className="border-t border-gray-700 mt-4 pt-4">
+            <div className="px-3 mb-3 text-blue-400 text-xs uppercase font-semibold">
+              {lang === 'en' ? 'External Links' : 'Enlaces Externos'}
+            </div>
+            
+            <div className="px-2">
+              <a
+                href={`/${lang}/blog`}
+                className="w-full flex items-center p-3 mb-1 rounded-lg transition-all duration-200 text-gray-300 hover:bg-gray-700 hover:text-white"
+                onClick={isMobile ? () => closeMenu() : undefined}
+              >
+                <span className="mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3v6m0 0l-3-3m3 3l3-3" />
+                  </svg>
+                </span>
+                <span className="font-medium">{labels.blog}</span>
+              </a>
+            </div>
           </div>
         </div>
 

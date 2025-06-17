@@ -6,7 +6,7 @@ const projects = [
       {
         name: 'AppiMotion+',
         image: "/projects/appimotion+.jpeg",
-        url: 'https://www.appimotion.com/',
+        url: 'https://www.inteia.com.co',
         role: 'Solutions Architect',
         year: 2024,
         technologies: [
@@ -66,7 +66,7 @@ const projects = [
       },
       {
         name: 'Deep',
-        url: 'N/A',
+        url: 'https://www.inteia.com.co',
         role: 'DevOps Engineer',
         year: 2024,
         technologies: [
@@ -78,7 +78,7 @@ const projects = [
       },
       {
         name: 'Arpex',
-        url: 'N/A',
+        url: 'https://isa.co/es/',
         role: 'Solutions Architect',
         year: 2024,
         technologies: [
@@ -89,7 +89,7 @@ const projects = [
       },
       {
         name: 'DCT',
-        url: 'N/A',
+        url: 'https://isa.co/es/',
         role: 'DevOps Engineer',
         year: 2024,
         technologies: [
@@ -99,7 +99,7 @@ const projects = [
       },
       {
         name: 'Gobierno Nube',
-        url: 'N/A',
+        url: 'https://inteia.com.co',
         role: 'Platform Engineer',
         year: 2024,
         technologies: [
