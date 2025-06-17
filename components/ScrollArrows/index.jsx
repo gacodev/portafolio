@@ -72,13 +72,13 @@ const ScrollArrows = () => {
   const isFirst = activeIndex === 0;
   const isLast = activeIndex === sections.length - 1;
 
-  // Common button styles
+  // Common button styles - smaller on mobile, positioned in bottom-left corner
   const btnClass =
-    'flex items-center justify-center w-10 h-10 mb-2 rounded-full backdrop-blur-md bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500';
+    'flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 mb-1 sm:mb-2 rounded-full backdrop-blur-md bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500';
 
   return (
     <div
-      className="fixed z-50 flex flex-col items-center top-1/2 -translate-y-1/2 left-3 md:left-auto md:right-4"
+      className="fixed z-50 flex flex-col items-center bottom-4 left-2 sm:top-1/2 sm:-translate-y-1/2 sm:left-3 md:left-auto md:right-4 md:bottom-auto"
       aria-label="Scroll navigation arrows"
     >
       {/* Up arrow */}
@@ -88,7 +88,7 @@ const ScrollArrows = () => {
           className={btnClass}
           aria-label="Scroll to previous section"
         >
-          <ChevronUp size={20} />
+          <ChevronUp size={16} className="sm:w-5 sm:h-5" />
         </button>
       )}
 
@@ -99,7 +99,7 @@ const ScrollArrows = () => {
           className={btnClass}
           aria-label="Scroll to next section"
         >
-          <ChevronDown size={20} />
+          <ChevronDown size={16} className="sm:w-5 sm:h-5" />
         </button>
       )}
     </div>

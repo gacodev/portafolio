@@ -34,27 +34,27 @@ const technologies = [
 
 export const TechList = ({ lang }) => {
   return (
-    <div className="py-12 bg-gradient-to-r from-blue-900 to-purple-900">
-      <div className="w-full px-4 md:px-8">
-        <h2 className="text-4xl font-extrabold text-center text-white mb-12">
+    <div className="py-6 sm:py-8 lg:py-12 bg-gradient-to-r from-blue-900 to-purple-900 w-full">
+      <div className="w-full px-2 sm:px-4 lg:px-8">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-center text-white mb-6 sm:mb-8 lg:mb-12">
           {lang === "en" ? "Technologies I've Worked With" : "Tecnologías con las que he trabajado"}
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-6 xl:gap-8 w-full">
           {technologies.map((tech, index) => (
             <div 
               key={index} 
-              className="group flex flex-col items-center p-4 bg-white bg-opacity-10 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-opacity-20"
+              className="group flex flex-col items-center p-2 sm:p-3 lg:p-4 bg-white bg-opacity-10 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-opacity-20 w-full"
             >
-              <div className="w-24 h-24 mb-4 flex items-center justify-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mb-2 sm:mb-3 lg:mb-4 flex items-center justify-center">
                 <Image
                   src={tech.image}
                   alt={tech.name}
-                  width={80}
-                  height={80}
-                  className="object-contain transition duration-300 ease-in-out group-hover:opacity-80 rounded-xl"
+                  width={60}
+                  height={60}
+                  className="object-contain transition duration-300 ease-in-out group-hover:opacity-80 rounded-xl w-full h-full"
                 />
               </div>
-              <span className="text-white text-center font-medium group-hover:text-yellow-300 transition duration-300 ease-in-out">
+              <span className="text-white text-center font-medium group-hover:text-yellow-300 transition duration-300 ease-in-out text-xs sm:text-sm lg:text-base">
                 {tech.name}
               </span>
             </div>
