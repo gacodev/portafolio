@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Tag, User, ArrowLeft, Share2, Link as LinkIcon, X, Linkedin, Facebook } from 'lucide-react';
+import { Calendar, Clock, Tag, User, ArrowLeft, Share2, Link as LinkIcon, Linkedin } from 'lucide-react';
+import { SiX } from 'react-icons/si';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
@@ -32,7 +33,7 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
       tags: "Tags",
       tableOfContents: "Tabla de contenidos",
       copyLink: "Copiar enlace",
-      shareOnTwitter: "Compartir en Twitter",
+      shareOnx: "Compartir en x",
       shareOnLinkedin: "Compartir en LinkedIn",
       shareOnFacebook: "Compartir en Facebook"
     },
@@ -45,7 +46,7 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
       tags: "Tags",
       tableOfContents: "Table of contents",
       copyLink: "Copy link",
-      shareOnTwitter: "Share on Twitter",
+      shareOnx: "Share on x",
       shareOnLinkedin: "Share on LinkedIn",
       shareOnFacebook: "Share on Facebook"
     }
@@ -134,8 +135,8 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleShareOnTwitter = () => {
-    const tweetUrl = `https://twitter.com/intent/tweet?url=${shareUrl}&text=${article.title[lang] || article.title.es}`;
+  const handleShareOnx = () => {
+    const tweetUrl = `https://x.com/intent/tweet?url=${shareUrl}&text=${article.title[lang] || article.title.es}`;
     window.open(tweetUrl, '_blank');
   };
 
@@ -201,13 +202,13 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
                     <span className="text-sm hidden sm:inline">{copied ? (lang === 'es' ? '¡Copiado!' : 'Copied!') : t.copyLink}</span>
                   </button>
                   
-                  {/* Twitter Button */}
+                  {/* x Button */}
                   <button
-                    onClick={handleShareOnTwitter}
+                    onClick={handleShareOnx}
                     className="flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 hover:text-blue-800 transition-all duration-200 active:scale-95 touch-manipulation"
                   >
-                    <Twitter className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm hidden sm:inline">Twitter</span>
+                    <SiX className="h-4 w-4 flex-shrink-0" />
+                    <span className="text-sm hidden sm:inline">X.com</span>
                   </button>
                   
                   {/* LinkedIn Button */}
@@ -224,7 +225,7 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
                     onClick={handleShareOnFacebook}
                     className="flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 hover:text-blue-800 transition-all duration-200 active:scale-95 touch-manipulation"
                   >
-                    <Facebook className="h-4 w-4 flex-shrink-0" />
+                    <Share2 className="h-4 w-4 flex-shrink-0" />
                     <span className="text-sm hidden sm:inline">Facebook</span>
                   </button>
                   
