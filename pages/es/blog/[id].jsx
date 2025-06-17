@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Footer from '../../../components/Footer';
+import { Footer } from '../../../sections/page/Components/Footer';
 import BlogPost from '../../../sections/blog/Components/BlogPost';
 import { getArticleById } from '../../../sections/data/blog';
 

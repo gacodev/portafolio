@@ -82,7 +82,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
   useEffect(() => {
     setMenuItems(sections);
     setFilteredItems(sections);
-  }, [lang]);
+  }, [lang, sections]);
 
   // Detectar sección activa según la posición de scroll
   useEffect(() => {
@@ -265,7 +265,6 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
             ? `bg-gray-900 bg-opacity-90 text-white shadow-xl transform transition-all duration-300 ease-in-out ${isMobile || isInternalMobile ? (isExpanded ? 'translate-x-0' : '-translate-x-full') : 'translate-x-0'}`
             : 'w-full bg-gray-900 text-white'}`}
           role="navigation"
-          aria-expanded={isExpanded || !(isMobile || isInternalMobile)}
         >
           <div className="px-4 mb-4">
             <SearchBar onSearch={handleSearch} isExpanded={isExpanded} />

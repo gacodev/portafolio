@@ -15,11 +15,6 @@ const ScrollArrows = () => {
   const currentPath = router.asPath;
   const isOnBlogPage = currentPath.includes('/blog');
 
-  // Don't render arrows on blog pages to avoid navigation conflicts
-  if (isOnBlogPage) {
-    return null;
-  }
-
   // Ordered list of section IDs (must match the `ref` used in FloatingMenu)
   const sectionIds = [
     'profile',
@@ -37,7 +32,6 @@ const ScrollArrows = () => {
 
   // Cache of DOM elements that actually exist on the current page (may vary between routes)
   const [sections, setSections] = useState([]);
-
   const [activeIndex, setActiveIndex] = useState(0);
 
   const updateActiveSection = useCallback(() => {
@@ -61,7 +55,7 @@ const ScrollArrows = () => {
       // Sort by vertical position to guarantee correct order
       .sort((a, b) => a.el.offsetTop - b.el.offsetTop);
     setSections(existing);
-  }, []);
+  }, [sectionIds]);
 
   // Update active section on scroll
   useEffect(() => {
@@ -78,6 +72,11 @@ const ScrollArrows = () => {
       window.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
     }
   };
+
+  // Don't render arrows on blog pages to avoid navigation conflicts
+  if (isOnBlogPage) {
+    return null;
+  }
 
   const isFirst = activeIndex === 0;
   const isLast = activeIndex === sections.length - 1;
