@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 /**
  * Floating scroll arrows that let the user jump to the previous or next main section.
@@ -10,6 +11,15 @@ import { ChevronUp, ChevronDown } from 'lucide-react';
  * Styling follows the glass / translucent buttons used in the FloatingMenu component.
  */
 const ScrollArrows = () => {
+  const router = useRouter();
+  const currentPath = router.asPath;
+  const isOnBlogPage = currentPath.includes('/blog');
+
+  // Don't render arrows on blog pages to avoid navigation conflicts
+  if (isOnBlogPage) {
+    return null;
+  }
+
   // Ordered list of section IDs (must match the `ref` used in FloatingMenu)
   const sectionIds = [
     'profile',
