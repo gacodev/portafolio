@@ -2,7 +2,7 @@ const profileData = [
   {
     lang: "es",
     title: "Ingeniero de Sistemas",
-    description: `Ingeniero de Plataformas Cloud Native, Especialista en DevOps y Desarrollador, apasionado y autodidacta, con un enfoque claro en mejorar la vida de las personas a través de la tecnología. Con un alto grado de experiencia en el diseño y despliegue de aplicaciones mediante la combinación de DevOps y SRE, así como en el diseño y despliegue de plataformas con arquitectura resiliente y sostenible en entornos de nube (Azure, AWS, GCP). Trabajo aplicando metodologías modernas como GitOps, brindando el control de la observabilidad, seguridad y estado de la infraestructura desde una sola fuente de verdad, implementando estrategias de zero downtime, garantizando alta disponibilidad, eficiencia operativa y continuidad del negocio.`,
+    description: `Ingeniero de Plataformas Cloud Native, Especialista en DevOps y Desarrollo de Software. Apasionado, autodidacta y con un enfoque claro en mejorar la vida de las personas a través de la tecnología.`,
     hardSkills: [
       "Infraestructura: Microsoft Azure, AWS, GCP",
       "Iac: Terraform, Pulumi, Bicep, ARM",
@@ -54,7 +54,7 @@ const profileData = [
   {
     lang: "en",
     title: "Systems Engineer",
-    description: `Cloud Native Platform Engineer, DevOps Specialist, and Developer, passionate and self-taught, with a clear focus on improving people's lives through technology. Highly experienced in designing and deploying applications by combining DevOps and SRE practices, as well as building resilient and sustainable platform architectures across cloud environments (Azure, AWS, GCP). I work with modern methodologies such as GitOps, providing centralized control over observability, security, and infrastructure state from a single source of truth. I implement zero downtime strategies to ensure high availability, operational efficiency, and business continuity.`,
+    description: `Cloud Native Platform Engineer, DevOps Specialist, and Software Developer. Passionate, self-taught and with a clear focus on improving people's lives through technology.`,
     hardSkills: [
       "Infrastructure:  Microsoft Azure, AWS, GCP",
       "IaC: Terraform, Pulumi, Bicep, ARM",

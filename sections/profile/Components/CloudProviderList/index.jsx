@@ -64,41 +64,41 @@ export const CloudProviderList = ({ lang }) => {
     : "Mi preferencia por herramientas de Infraestructura como Código (IaC) como Terraform y Pulumi mejora mi productividad y permite entregas más consistentes y tolerantes a fallos. Este enfoque me permite representar la infraestructura en código, facilitando un crecimiento progresivo y una mejor gestión. Al adoptar tecnologías de vanguardia en la nube como Docker, Vagrant y Ansible, optimizo procesos y reduzco tareas repetitivas, lo cual es crucial en situaciones desafiantes y conduce a soluciones en la nube más eficientes y confiables.";
 
   return (
-    <div className="w-full px-4 py-8 md:px-8">
-      <h2 className="text-3xl font-bold text-center mb-8 text-white">{title}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="w-full px-2 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 text-white">{title}</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 w-full">
         {cloudProviders.map((provider) => (
           <div 
             key={provider.name} 
             className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-xl 
-                       overflow-hidden border border-gray-700 transform transition duration-300 hover:scale-105"
+                       overflow-hidden border border-gray-700 transform transition duration-300 hover:scale-105 w-full"
           >
             <ExperienceTag years={provider.name === "Google Cloud" ? 1 : provider.name === "Amazon Web Services" ? 1 : Math.floor(provider.experience)} />
-            <div className="p-6">
-              <h4 className="text-xl font-semibold text-center mb-4 text-white">
+            <div className="p-4 sm:p-6">
+              <h4 className="text-lg sm:text-xl font-semibold text-center mb-3 sm:mb-4 text-white">
                 {provider.name}
               </h4>
-              <div className="flex justify-center mb-6">
+              <div className="flex justify-center mb-4 sm:mb-6">
                 <Image
                   src={provider.logo}
                   alt={provider.name}
-                  width={100}
-                  height={100}
-                  className="object-contain"
+                  width={80}
+                  height={80}
+                  className="object-contain sm:w-[100px] sm:h-[100px]"
                 />
               </div>
-              <ul className="text-white text-sm space-y-2 mb-4">
+              <ul className="text-white text-xs sm:text-sm space-y-1 sm:space-y-2 mb-3 sm:mb-4">
                 {provider.skills.slice(0, 10).map(skill => (
                   <li key={skill.name} className="flex items-center">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                    {skill.name}
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full mr-2 flex-shrink-0"></span>
+                    <span className="text-xs sm:text-sm">{skill.name}</span>
                   </li>
                 ))}
               </ul>
               <button
                 onClick={() => setModalContent({ title: provider.name, skills: provider.skills })}
                 className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 
-                           text-white font-bold py-2 px-4 rounded transition duration-300"
+                           text-white font-bold py-2 px-3 sm:px-4 rounded transition duration-300 text-sm sm:text-base"
               >
                 Show All Skills
               </button>
@@ -107,29 +107,29 @@ export const CloudProviderList = ({ lang }) => {
         ))}
       </div>
       
-      <div className="max-w-4xl mx-auto text-center mt-16 mb-12">
-        <h3 className="text-2xl font-semibold mb-8 text-white">{iacTitle}</h3>
-        <div className="flex justify-center items-center space-x-12 mb-10">
+      <div className="max-w-4xl mx-auto text-center mt-8 sm:mt-12 lg:mt-16 mb-8 sm:mb-12">
+        <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8 text-white">{iacTitle}</h3>
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-8 lg:space-x-12 mb-6 sm:mb-10">
           {iacTools.map((tool) => (
             <div
               key={tool.name}
-              className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 
+              className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-4 sm:p-6 
                          flex flex-col items-center transition-all duration-300 hover:shadow-2xl 
-                         transform hover:scale-105 border border-gray-700"
+                         transform hover:scale-105 border border-gray-700 w-full sm:w-auto"
             >
               <ExperienceTag years={Math.floor(tool.experience)} />
               <Image
                 src={tool.logo}
                 alt={tool.name}
-                width={200}
-                height={200}
-                className="object-contain mb-4"
+                width={120}
+                height={120}
+                className="object-contain mb-3 sm:mb-4 sm:w-[200px] sm:h-[200px]"
               />
-              <span className="text-white text-lg font-semibold">{tool.name}</span>
+              <span className="text-white text-base sm:text-lg font-semibold">{tool.name}</span>
             </div>
           ))}
         </div>
-        <p className="text-lg leading-relaxed text-white">
+        <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white px-2 sm:px-4">
           {paragraph}
         </p>
       </div>
