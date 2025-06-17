@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 /**
  * Floating scroll arrows that let the user jump to the previous or next main section.
@@ -10,6 +11,10 @@ import { ChevronUp, ChevronDown } from 'lucide-react';
  * Styling follows the glass / translucent buttons used in the FloatingMenu component.
  */
 const ScrollArrows = () => {
+  const router = useRouter();
+  const currentPath = router.asPath;
+  const isOnBlogPage = currentPath.includes('/blog');
+
   // Ordered list of section IDs (must match the `ref` used in FloatingMenu)
   const sectionIds = [
     'profile',
@@ -27,7 +32,6 @@ const ScrollArrows = () => {
 
   // Cache of DOM elements that actually exist on the current page (may vary between routes)
   const [sections, setSections] = useState([]);
-
   const [activeIndex, setActiveIndex] = useState(0);
 
   const updateActiveSection = useCallback(() => {
@@ -51,7 +55,7 @@ const ScrollArrows = () => {
       // Sort by vertical position to guarantee correct order
       .sort((a, b) => a.el.offsetTop - b.el.offsetTop);
     setSections(existing);
-  }, []);
+  }, [sectionIds]);
 
   // Update active section on scroll
   useEffect(() => {
@@ -68,6 +72,11 @@ const ScrollArrows = () => {
       window.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
     }
   };
+
+  // Don't render arrows on blog pages to avoid navigation conflicts
+  if (isOnBlogPage) {
+    return null;
+  }
 
   const isFirst = activeIndex === 0;
   const isLast = activeIndex === sections.length - 1;
