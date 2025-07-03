@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Estilos para Mermaid */
+.mermaid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Estilos personalizados para el menú flotante y grid layout */
 @layer utilities {
   .hide-scrollbar::-webkit-scrollbar {
@@ -95,6 +108,125 @@
     padding-bottom: 5rem; /* Espacio en la parte inferior para el botón flotante */
     width: 100%;
   }
+}
+
+/* Estilos para diagramas Mermaid */
+.mermaid-diagram {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow-x: auto;
+  min-height: 200px;
+}
+
+.mermaid-content {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.mermaid-content svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Estilos para el estado de carga */
+.mermaid-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Estilos para errores de Mermaid */
+.mermaid-error {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+.mermaid-error pre {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #7f1d1d;
+  font-size: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Ajustes responsive para diagramas */
+@media (max-width: 768px) {
+  .mermaid-diagram {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .mermaid-content svg {
+    font-size: 12px;
+  }
+}
+
+/* Tema oscuro para diagramas Mermaid */
+@media (prefers-color-scheme: dark) {
+  .mermaid-diagram {
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+  
+  .mermaid-loading {
+    background: linear-gradient(90deg, #2d3748 25%, #4a5568 50%, #2d3748 75%);
+    background-size: 200% 100%;
+  }
+}
+
+/* Mejoras para accesibilidad */
+.mermaid-diagram:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Estilos para diagramas específicos de Mermaid */
+.mermaid-content .node rect,
+.mermaid-content .node circle,
+.mermaid-content .node polygon {
+  stroke-width: 2px;
+}
+
+.mermaid-content .edgePath .path {
+  stroke-width: 2px;
+}
+
+.mermaid-content .cluster rect {
+  fill: #f8fafc;
+  stroke: #e2e8f0;
+  stroke-width: 1px;
+}
+
+/* Personalización de tooltips */
+.mermaid-content .tooltip {
+  background-color: #1f2937;
+  color: #f9fafb;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 html,

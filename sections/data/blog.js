@@ -616,6 +616,937 @@ class EventStore {
     category: "Architecture",
     featured: false,
     published: true
+  },
+  {
+    id: 3,
+    title: {
+      es: "Monitores Sintéticos con Elastic Stack y Terraform: Guía de Producción",
+      en: "Synthetic Monitors with Elastic Stack and Terraform: Production Guide"
+    },
+    slug: "elastic-synthetic-monitors-terraform",
+    excerpt: {
+      es: "Implementación completa de monitores sintéticos para aplicaciones web usando Elastic Stack, automatizada con Terraform para entornos de producción.",
+      en: "Complete implementation of synthetic monitors for web applications using Elastic Stack, automated with Terraform for production environments."
+    },
+    content: {
+      es: `# Monitores Sintéticos con Elastic Stack y Terraform: Guía de Producción
+
+## Introducción
+
+En el mundo actual de DevOps y SRE, el monitoreo proactivo es esencial para mantener la disponibilidad y rendimiento de nuestras aplicaciones. Los monitores sintéticos nos permiten simular el comportamiento de usuarios reales y detectar problemas antes de que afecten a nuestros usuarios.
+
+En este artículo, te mostraré cómo implementar una solución completa de monitoreo sintético usando Elastic Stack y automatizada con Terraform, lista para producción.
+
+## Arquitectura de la Solución
+
+### Componentes Principales
+- **Elastic Stack**: Elasticsearch + Kibana para almacenamiento y visualización
+- **Synthetics Monitors**: Verificaciones HTTP, API y TLS
+- **Alerting System**: Notificaciones automáticas en caso de fallos
+- **Terraform**: Infraestructura como código para gestión automatizada
+
+### Diagrama de Arquitectura
+\`\`\`mermaid
+graph TD
+    A[Monitor] --> B[Website]
+    A --> C[API]
+    A --> D[Database]
+    B --> E[Elasticsearch]
+    C --> E
+    D --> E
+    E --> F[Kibana]
+    E --> G[Alerts]
+    G --> H[Notifications]
+\`\`\`
+
+### Flujo de Monitoreo
+\`\`\`mermaid
+sequenceDiagram
+    participant M as Monitor
+    participant W as Website
+    participant E as Elasticsearch
+    participant A as Alerts
+    
+    M->>W: HTTP Request
+    W-->>M: Response (200 OK)
+    M->>E: Send Metrics
+    M->>A: Trigger Alert (if failed)
+\`\`\`
+
+## Implementación con Terraform
+
+### 1. Configuración del Provider
+
+\`\`\`hcl
+terraform {
+  required_version = ">= 1.0.0"
+  required_providers {
+    elasticstack = {
+      source  = "elastic/elasticstack"
+      version = "~>0.9"
+    }
+  }
+}
+
+provider "elasticstack" {
+  elasticsearch {
+    endpoints = [var.elasticsearch_url]
+    username  = var.elasticsearch_username
+    password  = var.elasticsearch_password
+  }
+  
+  kibana {
+    endpoints = [var.kibana_url]
+    username  = var.elasticsearch_username
+    password  = var.elasticsearch_password
+  }
+  
+  fleet {}
+}
+\`\`\`
+
+### 2. Monitor de Salud de Website
+
+\`\`\`hcl
+resource "elasticstack_kibana_synthetics_monitor" "website_health_monitor" {
+  name      = "Website Health Monitor"
+  space_id  = var.kibana_space_id
+  schedule  = var.monitor_schedule_minutes
+  enabled   = var.monitors_enabled
+  tags      = ["terraform", "production", "health-check"]
+  
+  alert = {
+    status = {
+      enabled = var.status_alerts_enabled
+    }
+    tls = {
+      enabled = var.tls_alerts_enabled
+    }
+  }
+  
+  service_name = "production-website-monitor"
+  timeout     = var.monitor_timeout_seconds
+  locations   = var.monitor_locations
+  
+  http = {
+    url  = var.target_website_url
+    ipv4 = true
+    ipv6 = false
+    
+    check = jsonencode({
+      request = {
+        method = "GET"
+        headers = {
+          "User-Agent" = "Elastic-Synthetics-Monitor/1.0"
+        }
+      }
+      response = {
+        status = [200, 201, 202]
+        include_body = var.include_response_body
+      }
+    })
+  }
+  
+  retest_on_failure = var.retest_on_failure
+}
+\`\`\`
+
+### 3. Monitor de API con Validación JSON
+
+\`\`\`hcl
+resource "elasticstack_kibana_synthetics_monitor" "api_health_monitor" {
+  count = var.api_endpoint_url != "" ? 1 : 0
+  
+  name      = "API Health Monitor"
+  space_id  = var.kibana_space_id
+  schedule  = var.monitor_schedule_minutes
+  enabled   = var.monitors_enabled
+  tags      = ["terraform", "production", "api", "health-check"]
+  
+  http = {
+    url  = var.api_endpoint_url
+    ipv4 = true
+    ipv6 = false
+    
+    check = jsonencode({
+      request = {
+        method = "GET"
+        headers = {
+          "Content-Type" = "application/json"
+          "User-Agent"   = "Elastic-Synthetics-Monitor/1.0"
+        }
+      }
+      response = {
+        status = [200]
+        include_body = true
+        json = [
+          {
+            description = "API Status Check"
+            expression  = "status == 'ok' || status == 'healthy'"
+          }
+        ]
+      }
+    })
+  }
+  
+  retest_on_failure = var.retest_on_failure
+}
+\`\`\`
+
+### 4. Reglas de Alertas
+
+\`\`\`hcl
+resource "elasticstack_kibana_alerting_rule" "synthetics_status_alert" {
+  name         = "Production Synthetics Monitor Status Alert"
+  consumer     = "alerts"
+  enabled      = var.alerting_enabled
+  rule_type_id = "xpack.synthetics.alerts.monitorStatus"
+  space_id     = var.kibana_space_id
+  tags         = ["SYNTHETICS_ALERT", "production", "terraform"]
+  interval     = var.alert_check_interval
+  
+  params = jsonencode({
+    search = {
+      query = {
+        bool = {
+          filter = [
+            {
+              terms = {
+                "tags" = ["production"]
+              }
+            }
+          ]
+        }
+      }
+    }
+  })
+  
+  actions = var.alert_actions
+}
+\`\`\`
+
+## Configuración de Variables
+
+### Variables Principales
+
+\`\`\`hcl
+variable "elasticsearch_url" {
+  description = "URL for Elasticsearch (including the port)"
+  type        = string
+  default     = "http://localhost:9200"
+
+  validation {
+    condition     = can(regex("^https?://", var.elasticsearch_url))
+    error_message = "Elasticsearch URL must start with http:// or https://"
+  }
+}
+
+variable "target_website_url" {
+  description = "Primary website URL to monitor"
+  type        = string
+  default     = "https://example.com"
+
+  validation {
+    condition     = can(regex("^https?://", var.target_website_url))
+    error_message = "Target website URL must start with http:// or https://"
+  }
+}
+
+variable "monitor_schedule_minutes" {
+  description = "Schedule interval for monitors in minutes"
+  type        = number
+  default     = 5
+
+  validation {
+    condition     = var.monitor_schedule_minutes >= 1 && var.monitor_schedule_minutes <= 60
+    error_message = "Monitor schedule must be between 1 and 60 minutes"
+  }
+}
+\`\`\`
+
+## Configuración de Alertas
+
+### Integración con Slack
+
+\`\`\`hcl
+alert_actions = [
+  {
+    id    = "slack-webhook"
+    group = "default"
+    params = {
+      method = "POST"
+      url    = "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+      body   = jsonencode({
+        text = "🚨 Monitor Alert: {{alert.name}} - {{context.reason}}"
+        channel = "#alerts"
+        username = "Elastic Synthetics"
+      })
+      headers = {
+        "Content-Type" = "application/json"
+      }
+    }
+  }
+]
+\`\`\`
+
+### Integración con Email
+
+\`\`\`hcl
+alert_actions = [
+  {
+    id    = "email-connector"
+    group = "default"
+    params = {
+      to      = ["devops@company.com", "sre@company.com"]
+      subject = "🚨 Synthetics Alert: {{alert.name}}"
+      message = "Monitor {{monitor.name}} failed.\\n\\nDetails:\\n- Location: {{context.location}}\\n- Error: {{context.reason}}\\n\\nCheck Kibana for more details."
+    }
+  }
+]
+\`\`\`
+
+## Testing con Docker ELK
+
+### 1. Configuración del Entorno de Pruebas
+
+\`\`\`bash
+# Clonar docker-elk
+git clone https://github.com/deviantony/docker-elk.git
+cd docker-elk
+
+# Iniciar stack
+docker-compose up -d
+
+# Esperar que los servicios estén listos
+echo "Esperando que Elastic Stack esté listo..."
+sleep 60
+
+# Verificar estado
+curl -u elastic:changeme http://localhost:9200/_cluster/health
+\`\`\`
+
+### 2. Aplicar Configuración Terraform
+
+\`\`\`bash
+# Configurar variables para testing
+cat > terraform.tfvars.local << EOF
+elasticsearch_url      = "http://localhost:9200"
+kibana_url            = "http://localhost:5601"
+elasticsearch_username = "elastic"
+elasticsearch_password = "changeme"
+
+project_name          = "test-webapp"
+environment          = "testing"
+target_website_url   = "https://httpbin.org/status/200"
+api_endpoint_url     = "https://httpbin.org/json"
+
+monitor_schedule_minutes = 1
+monitor_timeout_seconds  = 10
+EOF
+
+# Aplicar configuración
+terraform init
+terraform plan -var-file="terraform.tfvars.local"
+terraform apply -var-file="terraform.tfvars.local" -auto-approve
+\`\`\`
+
+### 3. Verificación de Monitores
+
+\`\`\`bash
+# Ver outputs de Terraform
+terraform output
+
+# Acceder a Kibana Synthetics
+open http://localhost:5601/app/synthetics
+
+# Verificar monitors via API
+curl -u elastic:changeme \\
+  "http://localhost:5601/api/synthetics/monitors" \\
+  -H "kbn-xsrf: true"
+\`\`\`
+
+## Mejores Prácticas para Producción
+
+### 1. Seguridad
+
+**Usar API Keys en lugar de credenciales:**
+\`\`\`bash
+# Generar API key en Kibana
+# Stack Management > Security > API Keys
+
+export TF_VAR_elasticsearch_api_key="your-api-key-here"
+\`\`\`
+
+**Variables de entorno para datos sensibles:**
+\`\`\`bash
+export TF_VAR_database_health_auth_header="Bearer your-token"
+export TF_VAR_slack_webhook_url="https://hooks.slack.com/services/..."
+\`\`\`
+
+### 2. Estado Remoto de Terraform
+
+\`\`\`hcl
+terraform {
+  backend "s3" {
+    bucket = "your-terraform-state-bucket"
+    key    = "synthetic-monitors/terraform.tfstate"
+    region = "us-west-2"
+  }
+}
+\`\`\`
+
+### 3. Configuración de Múltiples Entornos
+
+\`\`\`bash
+# Estructura de archivos
+├── environments/
+│   ├── production.tfvars
+│   ├── staging.tfvars
+│   └── development.tfvars
+├── main.tf
+├── variables.tf
+└── outputs.tf
+
+# Deployment por ambiente
+terraform apply -var-file="environments/production.tfvars"
+\`\`\`
+
+## Monitoreo y Observabilidad
+
+### Dashboard en Kibana
+
+Una vez implementados los monitores, Kibana proporciona dashboards automáticos que muestran:
+
+- **Estado de monitores**: UP/DOWN status
+- **Tiempos de respuesta**: Latencia por ubicación
+- **Disponibilidad**: Uptime percentage
+- **Alertas**: Estado de alertas activas
+
+### Métricas Clave
+
+- **Availability**: % de tiempo que los servicios están disponibles
+- **Response Time**: Tiempo promedio de respuesta
+- **Error Rate**: Porcentaje de requests fallidos
+- **Certificate Expiry**: Días hasta expiración de certificados TLS
+
+## Troubleshooting Común
+
+### 1. Problemas de Conectividad
+
+\`\`\`bash
+# Verificar conectividad a Elasticsearch
+curl -u elastic:changeme http://localhost:9200/_cluster/health
+
+# Verificar autenticación
+curl -u elastic:changeme http://localhost:9200/_security/_authenticate
+\`\`\`
+
+### 2. Monitors No Aparecen
+
+\`\`\`bash
+# Verificar licencia de Elastic
+curl -u elastic:changeme http://localhost:9200/_license
+
+# Verificar Fleet setup
+curl -u elastic:changeme http://localhost:5601/api/fleet/setup
+\`\`\`
+
+### 3. Debug de Terraform
+
+\`\`\`bash
+# Habilitar logging detallado
+export TF_LOG=DEBUG
+terraform apply
+
+# Validar configuración
+terraform validate
+terraform fmt
+\`\`\`
+
+## Conclusiones
+
+La implementación de monitores sintéticos con Elastic Stack y Terraform proporciona:
+
+- **Monitoreo Proactivo**: Detección temprana de problemas
+- **Automatización**: Infraestructura como código
+- **Escalabilidad**: Fácil adición de nuevos monitores
+- **Observabilidad**: Dashboards integrados en Kibana
+- **Alertas Inteligentes**: Notificaciones contextuales
+
+Esta solución es especialmente valiosa para:
+- Equipos de SRE que necesitan monitoreo 24/7
+- Aplicaciones críticas que requieren alta disponibilidad
+- Organizaciones que implementan DevOps y automatización
+
+### Próximos Pasos
+
+1. **Implementar Browser Monitors**: Para flujos de usuario complejos
+2. **Integrar con APM**: Correlacionar con métricas de aplicación
+3. **Automatizar Remediation**: Acciones automáticas ante fallos
+4. **Implementar SLO/SLI**: Definir Service Level Objectives`,
+      en: `# Synthetic Monitors with Elastic Stack and Terraform: Production Guide
+
+## Introduction
+
+In today's DevOps and SRE world, proactive monitoring is essential to maintain the availability and performance of our applications. Synthetic monitors allow us to simulate real user behavior and detect problems before they affect our users.
+
+In this article, I'll show you how to implement a complete synthetic monitoring solution using Elastic Stack and automated with Terraform, ready for production.
+
+## Solution Architecture
+
+### Main Components
+- **Elastic Stack**: Elasticsearch + Kibana for storage and visualization
+- **Synthetics Monitors**: HTTP, API, and TLS checks
+- **Alerting System**: Automatic notifications in case of failures
+- **Terraform**: Infrastructure as code for automated management
+
+### Architecture Diagram
+\`\`\`mermaid
+graph TD
+    A[Monitor] --> B[Website]
+    A --> C[API]
+    A --> D[Database]
+    B --> E[Elasticsearch]
+    C --> E
+    D --> E
+    E --> F[Kibana]
+    E --> G[Alerts]
+    G --> H[Notifications]
+\`\`\`
+
+### Monitoring Flow
+\`\`\`mermaid
+sequenceDiagram
+    participant M as Monitor
+    participant W as Website
+    participant E as Elasticsearch
+    participant A as Alerts
+    
+    M->>W: HTTP Request
+    W-->>M: Response (200 OK)
+    M->>E: Send Metrics
+    M->>A: Trigger Alert (if failed)
+\`\`\`
+
+## Implementation with Terraform
+
+### 1. Provider Configuration
+
+\`\`\`hcl
+terraform {
+  required_version = ">= 1.0.0"
+  required_providers {
+    elasticstack = {
+      source  = "elastic/elasticstack"
+      version = "~>0.9"
+    }
+  }
+}
+
+provider "elasticstack" {
+  elasticsearch {
+    endpoints = [var.elasticsearch_url]
+    username  = var.elasticsearch_username
+    password  = var.elasticsearch_password
+  }
+  
+  kibana {
+    endpoints = [var.kibana_url]
+    username  = var.elasticsearch_username
+    password  = var.elasticsearch_password
+  }
+  
+  fleet {}
+}
+\`\`\`
+
+### 2. Website Health Monitor
+
+\`\`\`hcl
+resource "elasticstack_kibana_synthetics_monitor" "website_health_monitor" {
+  name      = "Website Health Monitor"
+  space_id  = var.kibana_space_id
+  schedule  = var.monitor_schedule_minutes
+  enabled   = var.monitors_enabled
+  tags      = ["terraform", "production", "health-check"]
+  
+  alert = {
+    status = {
+      enabled = var.status_alerts_enabled
+    }
+    tls = {
+      enabled = var.tls_alerts_enabled
+    }
+  }
+  
+  service_name = "production-website-monitor"
+  timeout     = var.monitor_timeout_seconds
+  locations   = var.monitor_locations
+  
+  http = {
+    url  = var.target_website_url
+    ipv4 = true
+    ipv6 = false
+    
+    check = jsonencode({
+      request = {
+        method = "GET"
+        headers = {
+          "User-Agent" = "Elastic-Synthetics-Monitor/1.0"
+        }
+      }
+      response = {
+        status = [200, 201, 202]
+        include_body = var.include_response_body
+      }
+    })
+  }
+  
+  retest_on_failure = var.retest_on_failure
+}
+\`\`\`
+
+### 3. API Monitor with JSON Validation
+
+\`\`\`hcl
+resource "elasticstack_kibana_synthetics_monitor" "api_health_monitor" {
+  count = var.api_endpoint_url != "" ? 1 : 0
+  
+  name      = "API Health Monitor"
+  space_id  = var.kibana_space_id
+  schedule  = var.monitor_schedule_minutes
+  enabled   = var.monitors_enabled
+  tags      = ["terraform", "production", "api", "health-check"]
+  
+  http = {
+    url  = var.api_endpoint_url
+    ipv4 = true
+    ipv6 = false
+    
+    check = jsonencode({
+      request = {
+        method = "GET"
+        headers = {
+          "Content-Type" = "application/json"
+          "User-Agent"   = "Elastic-Synthetics-Monitor/1.0"
+        }
+      }
+      response = {
+        status = [200]
+        include_body = true
+        json = [
+          {
+            description = "API Status Check"
+            expression  = "status == 'ok' || status == 'healthy'"
+          }
+        ]
+      }
+    })
+  }
+  
+  retest_on_failure = var.retest_on_failure
+}
+\`\`\`
+
+### 4. Alert Rules
+
+\`\`\`hcl
+resource "elasticstack_kibana_alerting_rule" "synthetics_status_alert" {
+  name         = "Production Synthetics Monitor Status Alert"
+  consumer     = "alerts"
+  enabled      = var.alerting_enabled
+  rule_type_id = "xpack.synthetics.alerts.monitorStatus"
+  space_id     = var.kibana_space_id
+  tags         = ["SYNTHETICS_ALERT", "production", "terraform"]
+  interval     = var.alert_check_interval
+  
+  params = jsonencode({
+    search = {
+      query = {
+        bool = {
+          filter = [
+            {
+              terms = {
+                "tags" = ["production"]
+              }
+            }
+          ]
+        }
+      }
+    }
+  })
+  
+  actions = var.alert_actions
+}
+\`\`\`
+
+## Variable Configuration
+
+### Main Variables
+
+\`\`\`hcl
+variable "elasticsearch_url" {
+  description = "URL for Elasticsearch (including the port)"
+  type        = string
+  default     = "http://localhost:9200"
+
+  validation {
+    condition     = can(regex("^https?://", var.elasticsearch_url))
+    error_message = "Elasticsearch URL must start with http:// or https://"
+  }
+}
+
+variable "target_website_url" {
+  description = "Primary website URL to monitor"
+  type        = string
+  default     = "https://example.com"
+
+  validation {
+    condition     = can(regex("^https?://", var.target_website_url))
+    error_message = "Target website URL must start with http:// or https://"
+  }
+}
+
+variable "monitor_schedule_minutes" {
+  description = "Schedule interval for monitors in minutes"
+  type        = number
+  default     = 5
+
+  validation {
+    condition     = var.monitor_schedule_minutes >= 1 && var.monitor_schedule_minutes <= 60
+    error_message = "Monitor schedule must be between 1 and 60 minutes"
+  }
+}
+\`\`\`
+
+## Alert Configuration
+
+### Slack Integration
+
+\`\`\`hcl
+alert_actions = [
+  {
+    id    = "slack-webhook"
+    group = "default"
+    params = {
+      method = "POST"
+      url    = "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+      body   = jsonencode({
+        text = "🚨 Monitor Alert: {{alert.name}} - {{context.reason}}"
+        channel = "#alerts"
+        username = "Elastic Synthetics"
+      })
+      headers = {
+        "Content-Type" = "application/json"
+      }
+    }
+  }
+]
+\`\`\`
+
+### Email Integration
+
+\`\`\`hcl
+alert_actions = [
+  {
+    id    = "email-connector"
+    group = "default"
+    params = {
+      to      = ["devops@company.com", "sre@company.com"]
+      subject = "🚨 Synthetics Alert: {{alert.name}}"
+      message = "Monitor {{monitor.name}} failed.\\n\\nDetails:\\n- Location: {{context.location}}\\n- Error: {{context.reason}}\\n\\nCheck Kibana for more details."
+    }
+  }
+]
+\`\`\`
+
+## Testing with Docker ELK
+
+### 1. Test Environment Setup
+
+\`\`\`bash
+# Clone docker-elk
+git clone https://github.com/deviantony/docker-elk.git
+cd docker-elk
+
+# Start stack
+docker-compose up -d
+
+# Wait for services to be ready
+echo "Waiting for Elastic Stack to be ready..."
+sleep 60
+
+# Verify status
+curl -u elastic:changeme http://localhost:9200/_cluster/health
+\`\`\`
+
+### 2. Apply Terraform Configuration
+
+\`\`\`bash
+# Configure variables for testing
+cat > terraform.tfvars.local << EOF
+elasticsearch_url      = "http://localhost:9200"
+kibana_url            = "http://localhost:5601"
+elasticsearch_username = "elastic"
+elasticsearch_password = "changeme"
+
+project_name          = "test-webapp"
+environment          = "testing"
+target_website_url   = "https://httpbin.org/status/200"
+api_endpoint_url     = "https://httpbin.org/json"
+
+monitor_schedule_minutes = 1
+monitor_timeout_seconds  = 10
+EOF
+
+# Apply configuration
+terraform init
+terraform plan -var-file="terraform.tfvars.local"
+terraform apply -var-file="terraform.tfvars.local" -auto-approve
+\`\`\`
+
+### 3. Monitor Verification
+
+\`\`\`bash
+# View Terraform outputs
+terraform output
+
+# Access Kibana Synthetics
+open http://localhost:5601/app/synthetics
+
+# Verify monitors via API
+curl -u elastic:changeme \\
+  "http://localhost:5601/api/synthetics/monitors" \\
+  -H "kbn-xsrf: true"
+\`\`\`
+
+## Production Best Practices
+
+### 1. Security
+
+**Use API Keys instead of credentials:**
+\`\`\`bash
+# Generate API key in Kibana
+# Stack Management > Security > API Keys
+
+export TF_VAR_elasticsearch_api_key="your-api-key-here"
+\`\`\`
+
+**Environment variables for sensitive data:**
+\`\`\`bash
+export TF_VAR_database_health_auth_header="Bearer your-token"
+export TF_VAR_slack_webhook_url="https://hooks.slack.com/services/..."
+\`\`\`
+
+### 2. Terraform Remote State
+
+\`\`\`hcl
+terraform {
+  backend "s3" {
+    bucket = "your-terraform-state-bucket"
+    key    = "synthetic-monitors/terraform.tfstate"
+    region = "us-west-2"
+  }
+}
+\`\`\`
+
+### 3. Multi-Environment Configuration
+
+\`\`\`bash
+# File structure
+├── environments/
+│   ├── production.tfvars
+│   ├── staging.tfvars
+│   └── development.tfvars
+├── main.tf
+├── variables.tf
+└── outputs.tf
+
+# Environment deployment
+terraform apply -var-file="environments/production.tfvars"
+\`\`\`
+
+## Monitoring and Observability
+
+### Kibana Dashboard
+
+Once monitors are implemented, Kibana provides automatic dashboards showing:
+
+- **Monitor status**: UP/DOWN status
+- **Response times**: Latency per location
+- **Availability**: Uptime percentage
+- **Alerts**: Active alert status
+
+### Key Metrics
+
+- **Availability**: % of time services are available
+- **Response Time**: Average response time
+- **Error Rate**: Percentage of failed requests
+- **Certificate Expiry**: Days until TLS certificate expiration
+
+## Common Troubleshooting
+
+### 1. Connectivity Issues
+
+\`\`\`bash
+# Verify Elasticsearch connectivity
+curl -u elastic:changeme http://localhost:9200/_cluster/health
+
+# Verify authentication
+curl -u elastic:changeme http://localhost:9200/_security/_authenticate
+\`\`\`
+
+### 2. Monitors Don't Appear
+
+\`\`\`bash
+# Check Elastic license
+curl -u elastic:changeme http://localhost:9200/_license
+
+# Verify Fleet setup
+curl -u elastic:changeme http://localhost:5601/api/fleet/setup
+\`\`\`
+
+### 3. Terraform Debug
+
+\`\`\`bash
+# Enable detailed logging
+export TF_LOG=DEBUG
+terraform apply
+
+# Validate configuration
+terraform validate
+terraform fmt
+\`\`\`
+
+## Conclusions
+
+Implementing synthetic monitors with Elastic Stack and Terraform provides:
+
+- **Proactive Monitoring**: Early problem detection
+- **Automation**: Infrastructure as code
+- **Scalability**: Easy addition of new monitors
+- **Observability**: Integrated dashboards in Kibana
+- **Smart Alerts**: Contextual notifications
+
+This solution is especially valuable for:
+- SRE teams that need 24/7 monitoring
+- Critical applications requiring high availability
+- Organizations implementing DevOps and automation
+
+### Next Steps
+
+1. **Implement Browser Monitors**: For complex user flows
+2. **Integrate with APM**: Correlate with application metrics
+3. **Automate Remediation**: Automatic actions on failures
+4. **Implement SLO/SLI**: Define Service Level Objectives`
+    },
+    author: "Gabriel Contreras",
+    date: "2025-01-01",
+    readTime: 18,
+    tags: ["elastic", "synthetics", "terraform", "monitoring", "devops", "sre", "infrastructure"],
+    category: "Monitoring",
+    featured: true,
+    published: true
   }
 ];
 
