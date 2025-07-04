@@ -89,8 +89,8 @@ const CICDAnimation = ({ lang = 'en' }) => {
         </div>
       </div>
 
-      {/* Layout para tablets medianas e iPad Pro - 2 filas de 5 elementos */}
-      <div className="hidden sm:block xl:hidden">
+      {/* Layout para tablets, desktop y pantallas grandes - 2 filas de 5 elementos */}
+      <div className="hidden sm:block">
         {/* Primera fila - 5 elementos */}
         <div className="flex items-center justify-between gap-2 mb-4">
           {stages.slice(0, 5).map((stage, index) => (
@@ -191,53 +191,6 @@ const CICDAnimation = ({ lang = 'en' }) => {
         </div>
       </div>
 
-      {/* Layout para desktop grande - Una fila horizontal */}
-      <div className="hidden xl:flex items-center justify-between gap-4">
-        {stages.map((stage, index) => (
-          <motion.div
-            key={stage.name[lang]}
-            className="flex flex-col items-center justify-center p-4 rounded-xl flex-1"
-            style={{
-              backgroundColor: stage.color,
-            }}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ 
-              opacity: 1, 
-              scale: index === currentStep ? 1.05 : 1,
-              boxShadow: index === currentStep ? '0 0 15px rgba(255,255,255,0.5)' : 'none'
-            }}
-            transition={{ duration: 0.5 }}
-          >
-                <div className="relative group">
-                  <a 
-                    href={stage.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex flex-col items-center justify-center w-full h-full text-white no-underline"
-                  >
-                    <motion.div 
-                      className="text-4xl mb-2"
-                      animate={index === currentStep ? { scale: [1, 1.1, 1] } : {}}
-                      transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-                    >
-                      {stage.icon}
-                    </motion.div>
-                    <span className="text-sm font-bold text-white text-center px-1">
-                      {stage.name[lang]}
-                    </span>
-                  </a>
-                  <motion.div 
-                    className={`absolute ${getTooltipPosition(index)} bg-gray-800 text-white text-xs rounded py-2 px-3 opacity-0 group-hover:opacity-100 z-20 pointer-events-none max-w-[200px] min-h-[40px] flex items-center justify-center text-center max-h-[200px] overflow-y-auto`}
-                    initial={{ y: 10, opacity: 0 }}
-                    whileHover={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {stage.tooltip[lang]}
-                  </motion.div>
-                </div>
-              </motion.div>
-        ))}
-      </div>
     </div>
   );
 };
