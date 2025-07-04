@@ -4,6 +4,7 @@ import styles from "../../styles/Home.module.css";
 // Header eliminado para evitar duplicación de botones de idioma
 import { ProfileContainer } from "../../sections/profile/Components/Profile";
 import Journey2024 from "../../sections/2024/Components/Journey2024";
+import AIMLExperience from "../../sections/2024/Components/AIMLExperience";
 import KubernetesExperience from "../../sections/2024/Components/KubernetesExperience";
 import { TechList } from "../../sections/2023/Components/TechList";
 import { CloudProviderList } from "../../sections/profile/Components/CloudProviderList";
@@ -23,6 +24,7 @@ export default function Home() {
       </Head>
       <ProfileContainer lang="es" />
       <Journey2024 lang="es" />
+      <AIMLExperience lang="es" />
       <KubernetesExperience lang="es" />
       <TechList lang="es" />
       <CloudProviderList lang="es" />

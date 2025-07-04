@@ -32,6 +32,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       metrics: 'Métricas de Rendimiento',
       projects: 'Proyectos',
       agile: 'Agile & CI/CD',
+      aiml: 'AI/ML',
       timeline: 'Timeline',
       search: 'Buscar...',
       noResults: 'No se encontraron resultados para',
@@ -49,6 +50,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       metrics: 'Performance Metrics',
       projects: 'Projects',
       agile: 'Agile & CI/CD',
+      aiml: 'AI/ML',
       timeline: 'Timeline',
       search: 'Search...',
       noResults: 'No results found for',
@@ -66,14 +68,15 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
   const sections = [
     { id: 'profile', name: labels.profile, icon: 'user', ref: 'profile' },
     { id: 'resumen', name: labels.summary, icon: 'file-text', ref: 'professional-summary' },
+    { id: 'aiml', name: labels.aiml, icon: 'cpu', ref: 'aiml' },
     { id: 'tecnologias', name: labels.technologies, icon: 'code', ref: 'tools-technologies' },
     { id: 'logros', name: labels.achievements, icon: 'award', ref: 'key-achievements' },
     { id: 'kubernetes', name: labels.kubernetes, icon: 'cloud', ref: 'kubernetes-experience' },
     { id: 'kafka', name: labels.kafka, icon: 'database', ref: 'kafka-experience' },
     { id: 'elastic', name: labels.elastic, icon: 'search', ref: 'elastic-experience' },
-    { id: 'metricas', name: labels.metrics, icon: 'chart', ref: 'performance-metrics' },
+    { id: 'metricas', name: labels.metrics, icon: 'bar-chart', ref: 'performance-metrics' },
     { id: 'proyectos', name: labels.projects, icon: 'folder', ref: 'project-breakdown' },
-    { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
+    { id: 'agile', name: labels.agile, icon: 'git-branch', ref: 'agile-cicd' },
     { id: 'timeline', name: labels.timeline, icon: 'clock', ref: 'timeline' }
   ];
 
@@ -108,10 +111,10 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Detectar pantalla móvil (solo si no recibimos isMobile como prop externa)
+  // Detectar pantalla móvil y tablet (solo si no recibimos isMobile como prop externa)
   useEffect(() => {
     const handleResize = () => {
-      setIsInternalMobile(window.innerWidth < 768);
+      setIsInternalMobile(window.innerWidth < 1280); // Incluye tablets e iPad Pro
     };
     
     // Verificar al cargar
@@ -291,7 +294,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
                   }`}
                 >
                   <span className="mr-3">{renderIcon(item.icon)}</span>
-                  <span className="font-medium">{item.name}</span>
+                  <span className="font-medium flex-1 text-center">{item.name}</span>
                 </button>
               ))
             ) : (

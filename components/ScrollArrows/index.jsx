@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 const sectionIds = [
   'profile',
   'professional-summary',
+  'aiml',
   'tools-technologies',
   'key-achievements',
   'kubernetes-experience',
@@ -20,8 +21,8 @@ const sectionIds = [
 /**
  * Floating scroll arrows that let the user jump to the previous or next main section.
  * 
- * Mobile (< md):   arrows fixed on the left side of the viewport.
- * Desktop (>= md): arrows fixed on the right side of the viewport.
+ * Mobile/Tablet (< xl):   arrows fixed on the left side of the viewport.
+ * Desktop (>= xl): arrows fixed on the right side of the viewport.
  * 
  * Styling follows the glass / translucent buttons used in the FloatingMenu component.
  */
@@ -81,13 +82,13 @@ const ScrollArrows = () => {
   const isFirst = activeIndex === 0;
   const isLast = activeIndex === sections.length - 1;
 
-  // Common button styles - smaller on mobile, positioned in bottom-left corner
+  // Common button styles - smaller on mobile/tablet, positioned in bottom-left corner
   const btnClass =
     'flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 mb-1 sm:mb-2 rounded-full backdrop-blur-md bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500';
 
   return (
     <div
-      className="fixed z-50 flex flex-col items-center bottom-4 left-2 sm:top-1/2 sm:-translate-y-1/2 sm:left-3 md:left-auto md:right-4 md:bottom-auto"
+      className="fixed z-50 flex flex-col items-center bottom-4 left-2 sm:top-1/2 sm:-translate-y-1/2 sm:left-3 xl:left-auto xl:right-4 xl:bottom-auto"
       aria-label="Scroll navigation arrows"
     >
       {/* Up arrow */}

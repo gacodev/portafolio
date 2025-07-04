@@ -116,41 +116,123 @@ const CICDCards = ({ lang = 'es' }) => {
       <h3 className="text-xl md:text-2xl font-bold mb-4 text-center">{t.title}</h3>
       <p className="text-sm md:text-base text-gray-300 mb-6 text-center">{t.description}</p>
       
-      <motion.div 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        viewport={{ once: true }}
-      >
-        {tools.map((tool) => (
-          <motion.a
-            key={tool.id}
-            href={tool.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            variants={cardVariants}
-            className={`rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 transform hover:scale-105 cursor-pointer no-underline`}
-            whileHover={{ y: -10, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
-          >
-            <div className={`bg-gradient-to-r ${tool.bgGradient} p-4`}>
-              <div className="w-full h-28 flex justify-center items-center">
-                <Image 
-                  src={tool.imageSrc} 
-                  alt={tool.name}
-                  width={80}
-                  height={80}
-                  className="drop-shadow-lg rounded object-contain"
-                />
+      {/* Layout responsivo mejorado */}
+      {/* Móvil: 1 columna */}
+      <div className="block sm:hidden">
+        <motion.div 
+          className="grid grid-cols-1 gap-4 max-w-sm mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          viewport={{ once: true }}
+        >
+          {tools.map((tool) => (
+            <motion.a
+              key={tool.id}
+              href={tool.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              variants={cardVariants}
+              className={`rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 transform hover:scale-105 cursor-pointer no-underline`}
+              whileHover={{ y: -10, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
+            >
+              <div className={`bg-gradient-to-r ${tool.bgGradient} p-4`}>
+                <div className="w-full h-24 flex justify-center items-center">
+                  <Image 
+                    src={tool.imageSrc} 
+                    alt={tool.name}
+                    width={70}
+                    height={70}
+                    className="drop-shadow-lg rounded object-contain"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="p-5 flex-grow bg-white dark:bg-gray-800">
-              <h4 className="text-xl md:text-2xl font-bold mb-3 text-center">{tool.name}</h4>
-              <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">{tool.description}</p>
-            </div>
-          </motion.a>
-        ))}
-      </motion.div>
+              <div className="p-4 flex-grow bg-white dark:bg-gray-800">
+                <h4 className="text-lg font-bold mb-2 text-center">{tool.name}</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{tool.description}</p>
+              </div>
+            </motion.a>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Tablet y pantallas medianas (14"): 2 filas de 2 elementos */}
+      <div className="hidden sm:block lg:hidden">
+        <motion.div 
+          className="grid grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          viewport={{ once: true }}
+        >
+          {tools.map((tool) => (
+            <motion.a
+              key={tool.id}
+              href={tool.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              variants={cardVariants}
+              className={`rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 transform hover:scale-105 cursor-pointer no-underline`}
+              whileHover={{ y: -10, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
+            >
+              <div className={`bg-gradient-to-r ${tool.bgGradient} p-4`}>
+                <div className="w-full h-28 flex justify-center items-center">
+                  <Image 
+                    src={tool.imageSrc} 
+                    alt={tool.name}
+                    width={80}
+                    height={80}
+                    className="drop-shadow-lg rounded object-contain"
+                  />
+                </div>
+              </div>
+              <div className="p-4 flex-grow bg-white dark:bg-gray-800">
+                <h4 className="text-lg font-bold mb-2 text-center">{tool.name}</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{tool.description}</p>
+              </div>
+            </motion.a>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Desktop: 1 fila de 4 elementos */}
+      <div className="hidden lg:block">
+        <motion.div 
+          className="grid grid-cols-4 gap-6 max-w-6xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          viewport={{ once: true }}
+        >
+          {tools.map((tool) => (
+            <motion.a
+              key={tool.id}
+              href={tool.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              variants={cardVariants}
+              className={`rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all duration-300 transform hover:scale-105 cursor-pointer no-underline`}
+              whileHover={{ y: -10, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
+            >
+              <div className={`bg-gradient-to-r ${tool.bgGradient} p-5`}>
+                <div className="w-full h-32 flex justify-center items-center">
+                  <Image 
+                    src={tool.imageSrc} 
+                    alt={tool.name}
+                    width={90}
+                    height={90}
+                    className="drop-shadow-lg rounded object-contain"
+                  />
+                </div>
+              </div>
+              <div className="p-5 flex-grow bg-white dark:bg-gray-800">
+                <h4 className="text-xl font-bold mb-3 text-center">{tool.name}</h4>
+                <p className="text-base text-gray-600 dark:text-gray-300">{tool.description}</p>
+              </div>
+            </motion.a>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };

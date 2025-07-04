@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { stages } from '../../data/stages';
-import AgileComponent from './AgileAndCICD';
 
 const CICDAnimation = ({ lang = 'en' }) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -10,7 +9,7 @@ const CICDAnimation = ({ lang = 'en' }) => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 640);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -34,28 +33,181 @@ const CICDAnimation = ({ lang = 'en' }) => {
 
   return (
     <div ref={containerRef} className="w-full p-4 md:p-8 rounded-lg shadow-lg overflow-hidden relative">
-      <AgileComponent lang={lang} />
       <h2 className="text-xl md:text-2xl font-bold text-center mb-6">
         {lang === 'en' ? 'CI/CD Pipeline' : 'Pipeline de CI/CD'}
       </h2>
-      <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center justify-between gap-2`}>
-        {stages.map((stage, index) => (
-          <AnimatePresence key={stage.name[lang]}>
-            {(!isMobile || index === currentStep) && (
+      {/* Layout para móviles - Una card animada */}
+      <div className="block sm:hidden">
+        <AnimatePresence>
+          <motion.div
+            key={currentStep}
+            className="flex flex-col items-center justify-center p-6 rounded-xl w-full max-w-sm mx-auto"
+            style={{
+              backgroundColor: stages[currentStep].color,
+            }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1.05,
+              boxShadow: '0 0 20px rgba(255,255,255,0.6)'
+            }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="relative group">
+              <a 
+                href={stages[currentStep].link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex flex-col items-center justify-center w-full h-full text-white no-underline"
+              >
+                <motion.div 
+                  className="text-5xl mb-4"
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                >
+                  {stages[currentStep].icon}
+                </motion.div>
+                <span className="text-lg font-bold text-white text-center">
+                  {stages[currentStep].name[lang]}
+                </span>
+              </a>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+        
+        {/* Indicadores de progreso */}
+        <div className="flex justify-center gap-2 mt-4">
+          {stages.map((_, index) => (
+            <div
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentStep ? 'bg-blue-400 scale-125' : 'bg-gray-600'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Layout para tablets medianas e iPad Pro - 2 filas de 5 elementos */}
+      <div className="hidden sm:block xl:hidden">
+        {/* Primera fila - 5 elementos */}
+        <div className="flex items-center justify-between gap-2 mb-4">
+          {stages.slice(0, 5).map((stage, index) => (
+            <motion.div
+              key={stage.name[lang]}
+              className="flex flex-col items-center justify-center p-3 rounded-xl flex-1"
+              style={{
+                backgroundColor: stage.color,
+              }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ 
+                opacity: 1, 
+                scale: index === currentStep ? 1.05 : 1,
+                boxShadow: index === currentStep ? '0 0 15px rgba(255,255,255,0.5)' : 'none'
+              }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="relative group">
+                <a 
+                  href={stage.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex flex-col items-center justify-center w-full h-full text-white no-underline"
+                >
+                  <motion.div 
+                    className="text-2xl sm:text-3xl mb-2"
+                    animate={index === currentStep ? { scale: [1, 1.1, 1] } : {}}
+                    transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                  >
+                    {stage.icon}
+                  </motion.div>
+                  <span className="text-xs font-bold text-white text-center px-1 leading-tight">
+                    {stage.name[lang]}
+                  </span>
+                </a>
+                <motion.div 
+                  className={`absolute ${getTooltipPosition(index)} bg-gray-800 text-white text-xs rounded py-2 px-3 opacity-0 group-hover:opacity-100 z-20 pointer-events-none max-w-[200px] min-h-[40px] flex items-center justify-center text-center`}
+                  initial={{ y: 10, opacity: 0 }}
+                  whileHover={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {stage.tooltip[lang]}
+                </motion.div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        
+        {/* Segunda fila - 5 elementos */}
+        <div className="flex items-center justify-between gap-2">
+          {stages.slice(5).map((stage, index) => {
+            const actualIndex = index + 5;
+            return (
               <motion.div
-                className={`flex flex-col items-center justify-center p-4 rounded-xl ${isMobile ? 'w-full' : 'flex-1'}`}
+                key={stage.name[lang]}
+                className="flex flex-col items-center justify-center p-3 rounded-xl flex-1"
                 style={{
                   backgroundColor: stage.color,
                 }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ 
                   opacity: 1, 
-                  scale: index === currentStep ? 1.05 : 1,
-                  boxShadow: index === currentStep ? '0 0 15px rgba(255,255,255,0.5)' : 'none'
+                  scale: actualIndex === currentStep ? 1.05 : 1,
+                  boxShadow: actualIndex === currentStep ? '0 0 15px rgba(255,255,255,0.5)' : 'none'
                 }}
-                exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5 }}
               >
+                <div className="relative group">
+                  <a 
+                    href={stage.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex flex-col items-center justify-center w-full h-full text-white no-underline"
+                  >
+                    <motion.div 
+                      className="text-2xl sm:text-3xl mb-2"
+                      animate={actualIndex === currentStep ? { scale: [1, 1.1, 1] } : {}}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                    >
+                      {stage.icon}
+                    </motion.div>
+                    <span className="text-xs font-bold text-white text-center px-1 leading-tight">
+                      {stage.name[lang]}
+                    </span>
+                  </a>
+                  <motion.div 
+                    className={`absolute ${getTooltipPosition(actualIndex)} bg-gray-800 text-white text-xs rounded py-2 px-3 opacity-0 group-hover:opacity-100 z-20 pointer-events-none max-w-[200px] min-h-[40px] flex items-center justify-center text-center`}
+                    initial={{ y: 10, opacity: 0 }}
+                    whileHover={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {stage.tooltip[lang]}
+                  </motion.div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Layout para desktop grande - Una fila horizontal */}
+      <div className="hidden xl:flex items-center justify-between gap-4">
+        {stages.map((stage, index) => (
+          <motion.div
+            key={stage.name[lang]}
+            className="flex flex-col items-center justify-center p-4 rounded-xl flex-1"
+            style={{
+              backgroundColor: stage.color,
+            }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ 
+              opacity: 1, 
+              scale: index === currentStep ? 1.05 : 1,
+              boxShadow: index === currentStep ? '0 0 15px rgba(255,255,255,0.5)' : 'none'
+            }}
+            transition={{ duration: 0.5 }}
+          >
                 <div className="relative group">
                   <a 
                     href={stage.link} 
@@ -84,8 +236,6 @@ const CICDAnimation = ({ lang = 'en' }) => {
                   </motion.div>
                 </div>
               </motion.div>
-            )}
-          </AnimatePresence>
         ))}
       </div>
     </div>
