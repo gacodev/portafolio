@@ -7,23 +7,23 @@ import { useEffect, useState, useCallback } from "react";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [language, setLanguage] = useState('es'); // Idioma por defecto es español
-  const [isMobile, setIsMobile] = useState(false); // Estado para detectar dispositivo móvil
+  const [isMobile, setIsMobile] = useState(false); // Estado para detectar dispositivo móvil/tablet
   const [menuVisible, setMenuVisible] = useState(false); // Estado para controlar visibilidad del menú
 
   // Función para manejar cambios en el tamaño de la pantalla
   const handleResize = useCallback(() => {
     if (typeof window !== 'undefined') {
-      setIsMobile(window.innerWidth < 768); // 768px es el breakpoint común para dispositivos móviles
-      // Si cambia a desktop, mostrar menú
-      if (window.innerWidth >= 768) {
+      setIsMobile(window.innerWidth < 1280); // Incluye tablets e iPad Pro para floating menu
+      // Si cambia a desktop grande, mostrar menú lateral
+      if (window.innerWidth >= 1280) {
         setMenuVisible(true);
       } else {
-        setMenuVisible(false); // En móvil, ocultar por defecto
+        setMenuVisible(false); // En móvil/tablet, usar floating menu
       }
     }
   }, []);
 
-  // Detectar dispositivo móvil al cargar y cuando cambie el tamaño
+  // Detectar dispositivo móvil/tablet al cargar y cuando cambie el tamaño
   useEffect(() => {
     if (typeof window !== 'undefined') {
       handleResize(); // Ejecutar una vez al inicio
@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
     }
   }, [handleResize]);
   
-  // Función para alternar la visibilidad del menú en móviles
+  // Función para alternar la visibilidad del menú en móviles/tablets
   const toggleMenu = () => {
     if (isMobile) {
       setMenuVisible(prevState => !prevState);
@@ -88,7 +88,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <div className="grid-layout">
-      {/* Botón para mostrar/ocultar menú en móviles */}
+      {/* Botón para mostrar/ocultar menú en móviles/tablets */}
       {isMobile && (
         <button 
           onClick={toggleMenu}
@@ -107,7 +107,7 @@ function MyApp({ Component, pageProps }) {
         </button>
       )}
       
-      {/* Menú lateral - visible en desktop, condicional en móvil */}
+      {/* Menú lateral - visible en desktop grande, floating en móviles/tablets */}
       {(!isMobile || (isMobile && menuVisible)) && (
         <aside className={`menu-container ${isMobile ? 'mobile-menu' : ''}`}>
           <FloatingMenu 

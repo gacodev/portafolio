@@ -175,7 +175,7 @@ const KubernetesExperience = ({ lang }) => {
         </div>
       </motion.div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 mb-12">
         <KafkaExperience lang={lang} />
         <ElasticExperience lang={lang} />
       </div>
