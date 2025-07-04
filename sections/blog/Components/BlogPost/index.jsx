@@ -5,6 +5,7 @@ import { SiX } from 'react-icons/si';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import MermaidRenderer from '../../../../components/MermaidRenderer';
 
 const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
   if (!article) {
@@ -59,6 +60,20 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
   const renderers = {
     code({ node, inline, className, children, ...props }) {
       const match = /language-(\w+)/.exec(className || '');
+      const language = match ? match[1] : '';
+      
+      // Handle Mermaid diagrams
+      if (language === 'mermaid' && !inline) {
+        const chartContent = String(children).replace(/\n$/, '');
+        
+        return (
+          <MermaidRenderer 
+            chart={chartContent}
+            className="my-6"
+          />
+        );
+      }
+      
       return !inline && match ? (
         <SyntaxHighlighter
           style={tomorrow}

@@ -63,8 +63,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
   const labels = menuLabels[lang] || menuLabels.es;
   
   // Definición de las secciones principales del portafolio
-  // Generar secciones basadas en el idioma actual
-  const sections = React.useMemo(() => [
+  const sections = [
     { id: 'profile', name: labels.profile, icon: 'user', ref: 'profile' },
     { id: 'resumen', name: labels.summary, icon: 'file-text', ref: 'professional-summary' },
     { id: 'tecnologias', name: labels.technologies, icon: 'code', ref: 'tools-technologies' },
@@ -76,13 +75,13 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     { id: 'proyectos', name: labels.projects, icon: 'folder', ref: 'project-breakdown' },
     { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
     { id: 'timeline', name: labels.timeline, icon: 'clock', ref: 'timeline' }
-  ], [labels]);
+  ];
 
-  // Actualizar menú items cuando cambia el idioma o las secciones
+  // Actualizar menú items cuando cambia el idioma
   useEffect(() => {
     setMenuItems(sections);
     setFilteredItems(sections);
-  }, [lang, sections]);
+  }, [lang]);
 
   // Detectar sección activa según la posición de scroll
   useEffect(() => {
@@ -107,7 +106,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections]); // Necesitamos las secciones como dependencia para detectar cambios
+  }, []);
 
   // Detectar pantalla móvil (solo si no recibimos isMobile como prop externa)
   useEffect(() => {
