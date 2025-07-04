@@ -75,7 +75,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 80%;
+    width: min(350px, 70%); /* Máximo 350px o 70% en pantallas muy pequeñas */
     height: 100vh;
     z-index: 100;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);

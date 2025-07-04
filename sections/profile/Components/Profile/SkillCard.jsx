@@ -35,22 +35,29 @@ const SkillCard = ({ title, skills = [], lang = "en", icon = "hard" }) => {
   return (
     <>
       <div
-        className="relative bg-gradient-to-br from-slate-800 via-indigo-600 to-purple-700 p-5 rounded-xl shadow-lg flex flex-col items-start justify-between min-h-[240px] md:min-h-[300px] hover:shadow-2xl transition"
+        className="relative bg-gradient-to-br from-slate-800 via-indigo-600 to-purple-700 p-4 sm:p-5 rounded-xl shadow-lg flex flex-col justify-between min-h-[350px] sm:min-h-[380px] lg:min-h-[400px] hover:shadow-2xl transition"
       >
         <div className="flex items-center mb-4 space-x-4">
           <IconComp size={28} className="text-white" />
           <h3 className="text-white text-xl font-bold">{title}</h3>
         </div>
 
-        {/* Categorías */}
-        <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 text-center">
-          {categories.map(([cat]) => (
-            <span
+        {/* Categorías con checkmarks en 2 columnas */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+          {categories.slice(0, 10).map(([cat]) => (
+            <div
               key={cat}
-              className="text-white text-xs sm:text-sm font-semibold truncate"
+              className="flex items-center space-x-2 bg-white/10 rounded-lg px-2 py-1.5 backdrop-blur-sm"
             >
-              {cat}
-            </span>
+              <div className="flex-shrink-0 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <span className="text-white text-xs font-medium flex-1 leading-tight">
+                {cat}
+              </span>
+            </div>
           ))}
         </div>
 

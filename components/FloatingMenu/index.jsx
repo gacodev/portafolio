@@ -67,17 +67,17 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
   // Definición de las secciones principales del portafolio
   const sections = [
     { id: 'profile', name: labels.profile, icon: 'user', ref: 'profile' },
-    { id: 'resumen', name: labels.summary, icon: 'file-text', ref: 'professional-summary' },
-    { id: 'aiml', name: labels.aiml, icon: 'cpu', ref: 'aiml' },
-    { id: 'tecnologias', name: labels.technologies, icon: 'code', ref: 'tools-technologies' },
+    { id: 'resumen', name: labels.summary, icon: 'mail', ref: 'professional-summary' },
+    { id: 'aiml', name: labels.aiml, icon: 'code', ref: 'aiml' },
+    { id: 'tecnologias', name: labels.technologies, icon: 'refresh', ref: 'tools-technologies' },
     { id: 'logros', name: labels.achievements, icon: 'award', ref: 'key-achievements' },
     { id: 'kubernetes', name: labels.kubernetes, icon: 'cloud', ref: 'kubernetes-experience' },
     { id: 'kafka', name: labels.kafka, icon: 'database', ref: 'kafka-experience' },
     { id: 'elastic', name: labels.elastic, icon: 'search', ref: 'elastic-experience' },
-    { id: 'metricas', name: labels.metrics, icon: 'bar-chart', ref: 'performance-metrics' },
+    { id: 'metricas', name: labels.metrics, icon: 'chart', ref: 'performance-metrics' },
     { id: 'proyectos', name: labels.projects, icon: 'folder', ref: 'project-breakdown' },
-    { id: 'agile', name: labels.agile, icon: 'git-branch', ref: 'agile-cicd' },
-    { id: 'timeline', name: labels.timeline, icon: 'clock', ref: 'timeline' }
+    { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
+    { id: 'timeline', name: labels.timeline, icon: 'mail', ref: 'timeline' }
   ];
 
   // Actualizar menú items cuando cambia el idioma
