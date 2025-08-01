@@ -10,10 +10,9 @@ const projects = [
         role: 'Solutions Architect',
         year: 2024,
         technologies: [
-          'REST API', '.NET Framework', 'CosmosDB', 'Virtual Machines', 'Docker',
-          'Container Registry', 'React', 'SonarCloud', 'OWASP', 'Azure Front Door',
-          'Azure App Services', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'Terraform', 'Docker', 'Container Registry', 'SonarCloud', 'OWASP', 
+          'Azure Front Door', 'Azure App Services', 'Virtual Network', 'VMSS', 
+          'Azure DevOps', 'IaC', 'CI/CD Pipelines', 'Azure Landing Zone'
         ]
       },
       {
@@ -22,9 +21,8 @@ const projects = [
         role: 'DevOps Engineer',
         year: 2024,
         technologies: [
-          'Golang', 'Docker', 'React', 'Bash', 'CosmosDB', 'Azure Front Door',
-          'Azure App Services', 'Azure Cognitive Services', 'Virtual Network',
-          'VMSS', 'Azure DevOps Pipelines', 'Azure Boards', 'Azure Repos'
+          'Golang', 'Docker', 'Bash', 'IaC', 'Azure Front Door',
+          'Azure App Services', 'Virtual Network', 'VMSS', 'Azure DevOps', 'CI/CD Pipelines', 'Monitoring'
         ]
       },
       {
@@ -33,10 +31,9 @@ const projects = [
         role: 'Solutions Architect',
         year: 2024,
         technologies: [
-          'Reverse Proxies', 'Docker', 'React', 'Python', 'FastAPI', 'Bash',
-          'MongoDB', 'Azure Front Door', 'WebSockets', 'Azure App Services',
-          'Virtual Network', 'VMSS', 'Azure DevOps Pipelines', 'Azure Boards',
-          'Azure Repos'
+          'Reverse Proxies', 'Docker', 'Bash', 'Ansible', 'IaC',
+          'Azure Front Door', 'Containers Orchestration', 'Azure App Services',
+          'Virtual Network', 'VMSS', 'Azure DevOps', 'CI/CD Pipelines', 'Prometheus'
         ]
       },
       {
@@ -45,10 +42,9 @@ const projects = [
         role: 'DevOps Engineer',
         year: 2024,
         technologies: [
-          'Reverse Proxies', 'Docker', 'React', 'Python', 'FastAPI', 'Bash',
-          'Azure Functions', 'PostgreSQL', 'Azure Front Door', 'WebSockets',
-          'Azure App Services', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'Reverse Proxies', 'Docker', 'Terraform', 'Bash', 'IaC',
+          'Azure Functions', 'Azure Front Door',
+          'Azure App Services', 'Virtual Network', 'VMSS', 'Azure DevOps', 'CI/CD Pipelines', 'Monitoring', 'Azure Landing Zone'
         ]
       },
       {
@@ -57,11 +53,9 @@ const projects = [
         role: 'Solutions Architect',
         year: 2024,
         technologies: [
-          'REST API', '.NET Framework', 'Node.js', 'Express', 'WebRTC', 'RTSP',
-          'CosmosDB', 'Virtual Machines', 'Docker', 'Container Registry', 'React',
-          'SonarCloud', 'OWASP', 'Azure Front Door', 'Azure App Services', 'AKS',
-          'Azure API Management', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'Kubernetes', 'AKS', 'Docker', 'Container Registry', 'Helm',
+          'SonarCloud', 'OWASP', 'Azure Front Door', 'Kubernetes', 'Virtual Network', 'VMSS', 'Azure DevOps', 'Microservices',
+          'GitOps', 'IaC', 'CI/CD Pipelines', 'Azure Landing Zone'
         ]
       },
       {
@@ -70,21 +64,19 @@ const projects = [
         role: 'DevOps Engineer',
         year: 2024,
         technologies: [
-          'Reverse Proxies', 'Docker', 'React', 'Python', 'FastAPI', 'Bash',
-          'MongoDB', 'Azure Front Door', 'Azure App Services', 'NVIDIA CUDA',
-          'YOLOv5', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'Kubernetes', 'Docker', 'Terraform', 'Bash', 'IaC',
+          'Azure Front Door', 'Azure App Services', 'Virtual Network', 'VMSS', 'Azure DevOps', 'CI/CD Pipelines', 'Microservices', 'Azure Landing Zone'
         ]
       },
       {
         name: 'Arpex',
-        url: 'https://isa.co/es/',
+        url: 'https://isa.co/es/',  
         role: 'Solutions Architect',
         year: 2024,
         technologies: [
-          'REST API', '.NET Framework', 'CosmosDB', 'Virtual Machines', 'SQL Server',
-          'React', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'IaC', 'Virtual Machines', 'Terraform',
+          'Ansible', 'Virtual Network', 'VMSS', 'Azure DevOps', 'Microservices',
+          'CI/CD Pipelines', 'Monitoring', 'Configuration Management', 'Azure Landing Zone'
         ]
       },
       {
@@ -93,8 +85,8 @@ const projects = [
         role: 'DevOps Engineer',
         year: 2024,
         technologies: [
-          'Virtual Network', 'VMSS', 'Azure DevOps Pipelines', 'Azure Boards',
-          'Azure Repos'
+          'Virtual Network', 'VMSS', 'Azure DevOps', 'Microservices', 'Azure',
+          'IaC', 'Terraform', 'CI/CD Pipelines', 'Monitoring', 'Azure Landing Zone'  
         ]
       },
       {
@@ -103,9 +95,9 @@ const projects = [
         role: 'Platform Engineer',
         year: 2024,
         technologies: [
-          'Bash', 'Azure DevOps', 'Azure OpenAI GPT-4', 'Python', 'Azure Portal',
-          'Virtual Network', 'VMSS', 'Azure DevOps Pipelines', 'Azure Boards',
-          'Azure Repos'
+          'Bash', 'Azure DevOps', 'Terraform', 'Python', 'Azure', 'Microservices',
+          'Vnets', 'VMSS', 'GitOps', 'IaC', 'CI/CD Pipelines', 'Azure Landing Zone',
+          'Cloud Governance', 'Kubernetes', 'policy as code'
         ]
       }
     ]
@@ -120,7 +112,7 @@ const projects = [
         url: "https://auladigital.comfama.com",
         role: "Backend & Cloud Engineer",
         year: 2023,
-        technologies: ["MySQL", "PHP", "Moodle", "Docker", "AzureDevops", "JavaScript", "Azure portal", "Linux Servers"]
+        technologies: ["Linux Servers", "Microservices", "AzureDevops", "Ansible", "IaC", "Azure Portal", "CI/CD Pipelines", "Monitoring", "Shell Scripting", "Cloud Governance"]
       }
     ]
   },
@@ -134,7 +126,7 @@ const projects = [
         url: "https://www.instagram.com/mideberesmiderecho/?hl=es-la",
         role: "FullStack Developer",
         year: 2022,
-        technologies: ["MySQL", "PHP", "ReactJS", "Styled Components", "Axios", "MongoDB", "Vercel", "Gitlab"]
+        technologies: ["Microservices", "PHP", "NodeJS", "Axios", "MongoDB", "Vercel", "Gitlab", "AWS Lambda", "AWS API Gateway"]
       }
     ]
   },
@@ -148,7 +140,7 @@ const projects = [
         url: "https://www.emavi.edu.co/interescuelas2022",
         role: "FullStack Developer",
         year: 2022,
-        technologies: ["MySQL", "Laravel", "Psysh", "Styled Components", "ReactJS - INERTIA", "MongoDB", "Gitlab On premise", "Azure Portal"]
+        technologies: ["Gitlab CI/CD", "Azure", "Linux", "Virtual Machines", "IaC", "Shell Scripting", "Monitoring"]
       }
     ]
   }
