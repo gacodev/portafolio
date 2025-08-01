@@ -187,7 +187,7 @@ const ProjectBreakdown = ({ lang }) => {
             <div className="text-center">
               <div className="bg-slate-700 p-4 rounded-lg mb-2 hover:bg-slate-600 transition-colors">
                 <Image 
-                  src="/tecnologies/pagerduty.webp" 
+                  src="/tecnologies/Pagerduty.webp" 
                   alt="PagerDuty" 
                   width={32} 
                   height={32} 
