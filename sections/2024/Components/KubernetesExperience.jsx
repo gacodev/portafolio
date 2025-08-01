@@ -199,9 +199,6 @@ const KubernetesExperience = ({ lang }) => {
         </div>
       </motion.div>
       
-<<<<<<< HEAD
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 mb-12">
-=======
       {/* Kubernetes Operators & Advanced Components */}
       <motion.div 
         className="bg-black/40 rounded-lg p-6 mb-12 border-2 border-indigo-500 shadow-lg shadow-indigo-600/20"
@@ -312,7 +309,6 @@ const KubernetesExperience = ({ lang }) => {
       </motion.div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
->>>>>>> feature/blog
         <KafkaExperience lang={lang} />
         <ElasticExperience lang={lang} />
       </div>

@@ -70,21 +70,6 @@ export const ProjectList = ({ lang }) => {
                   )}
                 </div>
                 <div className="flex-grow w-full">
-<<<<<<< HEAD
-                  <h3 className="text-lg sm:text-xl lg:text-lg xl:text-2xl font-bold text-white mb-2 drop-shadow-md text-center sm:text-left lg:text-center xl:text-left">{project.name}</h3>
-                  <p className="text-blue-300 text-sm sm:text-base lg:text-sm xl:text-lg mb-2 font-semibold text-center sm:text-left lg:text-center xl:text-left">{project.role}</p>
-                  <div className="flex flex-wrap gap-1 sm:gap-2 mt-2 mb-3 sm:mb-4 lg:mb-3 xl:mb-4 justify-center sm:justify-start lg:justify-center xl:justify-start">
-                    {project.technologies.slice(0, 5).map((tech, index) => (
-                      <span key={`${project.name}-${tech}-${index}`} className="bg-blue-500 text-white text-xs sm:text-sm lg:text-xs xl:text-sm px-2 sm:px-3 py-1 rounded-full font-medium">
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 5 && (
-                      <span className="bg-blue-500 text-white text-xs sm:text-sm lg:text-xs xl:text-sm px-2 sm:px-3 py-1 rounded-full font-medium">
-                        +{project.technologies.length - 5} more
-                      </span>
-                    )}
-=======
                   <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-2 drop-shadow-md text-center sm:text-left">{project.name}</h3>
                   <p className="text-blue-300 text-sm sm:text-base lg:text-lg xl:text-xl mb-2 font-semibold text-center sm:text-left">{project.role}</p>
                   <div className="flex flex-wrap gap-1 sm:gap-2 mt-2 mb-3 sm:mb-4 justify-center sm:justify-start">
@@ -93,7 +78,6 @@ export const ProjectList = ({ lang }) => {
                         {tech}
                       </span>
                     ))}
->>>>>>> feature/blog
                   </div>
                   {project.url && project.url !== 'N/A' && (
                     <div className="text-center sm:text-left">
