@@ -1,8 +1,9 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import performanceData from '../../data/perfomance';
+import ProjectBreakdown from './ProjectBreakdown';
 
 
+// Función para aplanar los datos de performance (no se usa actualmente pero se mantiene por compatibilidad)
 const flattenData = () => {
   return performanceData.reduce((acc, monthData) => {
     monthData.sprints.forEach(sprint => {
@@ -16,12 +17,10 @@ const flattenData = () => {
   }, []);
 };
 
-const flattenedData = flattenData();
-
 const PerformanceMetrics = ({ lang = 'es' }) => {
   const title = lang === 'en' ? 
-  "Quarterly Performance Metrics of Projects I've Contributed To" : 
-  "Métricas Trimestrales de Rendimiento y Confiabilidad en Proyectos en los que He Contribuido";
+  "Performance Metrics of Projects I've Contributed To" : 
+  "Métricas de Rendimiento y Confiabilidad en Proyectos en los que He Contribuido";
 
   const message = lang === 'en'
     ? "Consistency, oversight, and decision-making have optimized deployment capacity and solution reliability through persistent work and individual contributions."
@@ -30,20 +29,11 @@ const PerformanceMetrics = ({ lang = 'es' }) => {
   return (
     <div id="performance-metrics" className="mb-30 pt-10">
       <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
-      <div className="bg-white bg-opacity-10 p-6 rounded-lg shadow-lg">
-        <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={flattenedData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#ffffff30" />
-            <XAxis dataKey="month" stroke="#fff" />
-            <YAxis yAxisId="left" stroke="#fff" />
-            <YAxis yAxisId="right" orientation="right" stroke="#fff" />
-            <Tooltip contentStyle={{ backgroundColor: '#1a365d', border: 'none' }} />
-            <Legend />
-            <Line yAxisId="left" type="monotone" dataKey="deployments" stroke="#4caf50" name="Deployments" strokeWidth={2} />
-            <Line yAxisId="right" type="monotone" dataKey="incidents" stroke="#ff4d4f" name="Incidents" strokeWidth={2} />
-          </LineChart>
-        </ResponsiveContainer>
-        <p className="text-center mt-4 text-lg">{message}</p>
+      <p className="text-center mt-4 text-lg text-slate-300 max-w-4xl mx-auto">{message}</p>
+      
+      {/* Componente de métricas operativas de proyectos */}
+      <div className="mt-8">
+        <ProjectBreakdown lang={lang} />
       </div>
     </div>
   );

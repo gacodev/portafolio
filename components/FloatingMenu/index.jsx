@@ -29,8 +29,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       kubernetes: 'Experiencia Kubernetes',
       kafka: 'Experiencia Kafka',
       elastic: 'Experiencia Elastic',
-      metrics: 'Métricas de Rendimiento',
-      projects: 'Proyectos',
+      metrics: 'Métricas de Rendimiento en proyectos',
       agile: 'Agile & CI/CD',
       timeline: 'Timeline',
       search: 'Buscar...',
@@ -46,8 +45,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       kubernetes: 'Kubernetes Experience',
       kafka: 'Kafka Experience',
       elastic: 'Elastic Experience',
-      metrics: 'Performance Metrics',
-      projects: 'Projects',
+      metrics: 'Performance Metrics in projects',
       agile: 'Agile & CI/CD',
       timeline: 'Timeline',
       search: 'Search...',
@@ -73,7 +71,6 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     { id: 'kafka', name: labels.kafka, icon: 'database', ref: 'kafka-experience' },
     { id: 'elastic', name: labels.elastic, icon: 'search', ref: 'elastic-experience' },
     { id: 'metricas', name: labels.metrics, icon: 'chart', ref: 'performance-metrics' },
-    { id: 'proyectos', name: labels.projects, icon: 'folder', ref: 'project-breakdown' },
     { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
     { id: 'timeline', name: labels.timeline, icon: 'clock', ref: 'timeline' }
   ], [labels]);

@@ -1,7 +1,6 @@
 import CICDAnimation from './CICDAnimations';
 import ProjectStats from './ProjectStats';
 import PerformanceMetrics from './PerfomanceMetrics';
-import ProjectBreakdown from './ProjectBreakdown';
 import ToolsTechnologies from './ToolsTechnologies';
 import KeyAchievements from './KeyAchievements';
 import ProfessionalSummary from './ProfessionalSummary';
@@ -13,10 +12,9 @@ const Journey2024 = ({ lang }) => {
         <ProfessionalSummary lang={lang} />
         <CICDAnimation lang={lang} />
         <ProjectStats lang={lang} />
-        <PerformanceMetrics lang={lang} />
-        <ProjectBreakdown lang={lang} />
-        <ToolsTechnologies lang={lang} />
         <KeyAchievements lang={lang} />
+        <ToolsTechnologies lang={lang} />
+        <PerformanceMetrics lang={lang} />
       </div>
     </div>
   );

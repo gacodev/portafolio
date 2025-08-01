@@ -5,7 +5,7 @@ import KafkaExperience from './KafkaExperience';
 import ElasticExperience from './ElasticExperience';
 import { SiApacheairflow, SiVault, SiRabbitmq, SiApachekafka, SiElastic, SiRedis, SiJenkins, SiNginx, SiTensorflow, SiGrafana } from 'react-icons/si';
 import { AiOutlineAreaChart } from 'react-icons/ai';
-import { FaBrain, FaRobot, FaCloud, FaNetworkWired, FaShieldAlt, FaCertificate, FaExternalLinkAlt, FaLock, FaGlobe, FaMicrochip, FaDatabase, FaServer, FaChartLine } from 'react-icons/fa';
+import { FaBrain, FaRobot, FaCloud, FaNetworkWired, FaShieldAlt, FaCertificate, FaExternalLinkAlt, FaLock, FaGlobe, FaMicrochip, FaDatabase, FaServer, FaChartLine, FaExchangeAlt, FaBalanceScale, FaFlag, FaCheck } from 'react-icons/fa';
 
 const KubernetesExperience = ({ lang }) => {
   // Animations
@@ -313,86 +313,94 @@ const KubernetesExperience = ({ lang }) => {
         <ElasticExperience lang={lang} />
       </div>
       
-      {/* Kubernetes Architecture Expertise */}
+      {/* Deployment Strategies Section */}
       <motion.div 
-        className="bg-black/40 rounded-lg p-6 mb-12 border-2 border-cyan-500 shadow-lg shadow-cyan-600/20"
+        className="bg-black/40 rounded-lg p-6 mb-12 border-2 border-green-500 shadow-lg shadow-green-600/20"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeIn}
       >
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-cyan-300">
-          {lang === "es" ? "Arquitectura Interna de Kubernetes" : "Kubernetes Internal Architecture"}
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-green-300">
+          {lang === "es" ? "Estrategias de Despliegue" : "Deployment Strategies"}
         </h2>
         <p className="text-base md:text-lg mb-6">
           {lang === "es" 
-            ? "Con un profundo conocimiento de la arquitectura interna de Kubernetes, he optimizado componentes clave del plano de control y plano de datos para mejorar la fiabilidad, escalabilidad y rendimiento de grandes clústeres en entornos críticos."
-            : "With deep knowledge of Kubernetes internal architecture, I've optimized key control plane and data plane components to enhance reliability, scalability, and performance of large clusters in mission-critical environments."
-          }
+            ? "He implementado y optimizado diversas estrategias de despliegue en entornos de Kubernetes para garantizar liberaciones sin tiempo de inactividad, minimizar riesgos y permitir el lanzamiento gradual de nuevas funcionalidades."
+            : "I've implemented and optimized various deployment strategies in Kubernetes environments to ensure zero-downtime releases, minimize risk, and enable gradual feature rollouts."}
         </p>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Control Plane */}
-          <div className="bg-gradient-to-r from-gray-900 to-cyan-900/30 p-5 rounded-lg border border-cyan-800/50">
-            <h3 className="text-lg md:text-xl font-semibold mb-3 text-cyan-300 flex items-center">
-              <FaMicrochip className="mr-2" />
-              {lang === "es" ? "Plano de Control" : "Control Plane"}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Blue-Green Deployments */}
+          <div className="bg-gradient-to-r from-gray-900 to-blue-900/30 p-5 rounded-lg border border-blue-800/50">
+            <h3 className="text-lg md:text-xl font-semibold mb-3 text-blue-300 flex items-center">
+              <FaExchangeAlt className="mr-2" />
+              {lang === "es" ? "Blue-Green" : "Blue-Green"}
             </h3>
-            <ul className="space-y-3">
+            <p className="text-sm text-gray-300 mb-4">
+              {lang === "es" 
+                ? "Implementación simultánea de dos entornos idénticos para transiciones instantáneas y reversiones rápidas."
+                : "Simultaneous deployment of two identical environments for instant transitions and quick rollbacks."}
+            </p>
+            <ul className="space-y-2">
               {[
-                {
-                  name: "API Server",
-                  desc: lang === "es" ? "Optimización de rendimiento y configuración de políticas de admisión" : "Performance optimization and admission policy configuration"
-                },
-                {
-                  name: "etcd",
-                  desc: lang === "es" ? "Gestión de cluster distribuido de alta disponibilidad y backups" : "High-availability distributed cluster management and backups"
-                },
-                {
-                  name: "Scheduler",
-                  desc: lang === "es" ? "Personalización de algoritmos de scheduling y afinidades" : "Custom scheduling algorithms and affinity configuration"
-                },
-                {
-                  name: "Controller Manager",
-                  desc: lang === "es" ? "Implementación de controladores personalizados para CRDs" : "Custom controller implementation for CRDs"
-                }
+                lang === "es" ? "Transiciones sin tiempo de inactividad" : "Zero-downtime transitions",
+                lang === "es" ? "Reversión inmediata" : "Immediate rollback capability",
+                lang === "es" ? "Pruebas en entorno de pre-producción real" : "Testing in real pre-production environment"
               ].map((item, idx) => (
-                <li key={idx} className="bg-black/20 p-3 rounded-md">
-                  <div className="font-medium text-white text-sm md:text-base">{item.name}</div>
-                  <div className="text-cyan-200/70 text-xs md:text-sm mt-1">{item.desc}</div>
+                <li key={idx} className="flex items-start">
+                  <div className="text-green-400 mr-2 mt-1"><FaCheck size={12} /></div>
+                  <div className="text-gray-300 text-sm">{item}</div>
                 </li>
               ))}
             </ul>
           </div>
           
-          {/* Data Plane */}
-          <div className="bg-gradient-to-r from-gray-900 to-blue-900/30 p-5 rounded-lg border border-blue-800/50">
-            <h3 className="text-lg md:text-xl font-semibold mb-3 text-blue-300 flex items-center">
-              <FaNetworkWired className="mr-2" />
-              {lang === "es" ? "Plano de Datos" : "Data Plane"}
+          {/* Canary Deployments */}
+          <div className="bg-gradient-to-r from-gray-900 to-yellow-900/30 p-5 rounded-lg border border-yellow-800/50">
+            <h3 className="text-lg md:text-xl font-semibold mb-3 text-yellow-300 flex items-center">
+              <FaBalanceScale className="mr-2" />
+              {lang === "es" ? "Canary Deployments" : "Canary Deployments"}
             </h3>
-            <ul className="space-y-3">
+            <p className="text-sm text-gray-300 mb-4">
+              {lang === "es" 
+                ? "Despliegue gradual con enrutamiento controlado de tráfico para mitigar riesgos con monitorización en tiempo real."
+                : "Gradual deployment with controlled traffic routing to mitigate risks with real-time monitoring."}
+            </p>
+            <ul className="space-y-2">
               {[
-                {
-                  name: "Kubelet",
-                  desc: lang === "es" ? "Optimización de configuración para alta densidad de pods" : "Configuration optimization for high pod density"
-                },
-                {
-                  name: "Container Runtime",
-                  desc: lang === "es" ? "Implementación de containerd y configuración de seguridad" : "Containerd implementation and security configuration"
-                },
-                {
-                  name: "CNI Plugins",
-                  desc: lang === "es" ? "Calico, Cilium para políticas de red avanzadas" : "Calico, Cilium for advanced network policies"
-                },
-                {
-                  name: "CSI Drivers",
-                  desc: lang === "es" ? "Integración con sistemas de almacenamiento empresariales" : "Integration with enterprise storage systems"
-                }
+                lang === "es" ? "Detección temprana de problemas" : "Early problem detection",
+                lang === "es" ? "Exposición limitada a riesgos" : "Limited risk exposure",
+                lang === "es" ? "Despliegue progresivo automatizado" : "Automated progressive rollout"
               ].map((item, idx) => (
-                <li key={idx} className="bg-black/20 p-3 rounded-md">
-                  <div className="font-medium text-white text-sm md:text-base">{item.name}</div>
-                  <div className="text-blue-200/70 text-xs md:text-sm mt-1">{item.desc}</div>
+                <li key={idx} className="flex items-start">
+                  <div className="text-green-400 mr-2 mt-1"><FaCheck size={12} /></div>
+                  <div className="text-gray-300 text-sm">{item}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Feature Flags */}
+          <div className="bg-gradient-to-r from-gray-900 to-purple-900/30 p-5 rounded-lg border border-purple-800/50">
+            <h3 className="text-lg md:text-xl font-semibold mb-3 text-purple-300 flex items-center">
+              <FaFlag className="mr-2" />
+              {lang === "es" ? "Feature Flags" : "Feature Flags"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-4">
+              {lang === "es" 
+                ? "Separación de despliegue y activación de funcionalidades para mayor control y experimentación con usuarios."
+                : "Decoupling deployment from feature activation for greater control and user experimentation."}
+            </p>
+            <ul className="space-y-2">
+              {[
+                lang === "es" ? "A/B testing con usuarios reales" : "A/B testing with real users",
+                lang === "es" ? "Lanzamientos personalizados por audiencia" : "Audience-targeted rollouts",
+                lang === "es" ? "Desactivación instantánea de funciones" : "Instant feature kill-switch"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-start">
+                  <div className="text-green-400 mr-2 mt-1"><FaCheck size={12} /></div>
+                  <div className="text-gray-300 text-sm">{item}</div>
                 </li>
               ))}
             </ul>
