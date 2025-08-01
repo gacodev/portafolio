@@ -19,7 +19,7 @@ export default function Home() {
         <title>Senior DevOps & Cloud Engineer</title>
         <meta
           name="description"
-          content="Explora el conjunto de habilidades que muestran mi experiencia en desarrollo backend, desarrollo en la nube y Automatización. Descubre mis proyectos y habilidades en JavaScript, TypeScript, patrones de diseño, arquitectura de software, código limpio, pruebas unitarias y pipelines."
+          content="especialista en la migración y despliegue de aplicaciones en nube"
         />
       </Head>
       <ProfileContainer lang="es" />

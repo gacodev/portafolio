@@ -13,7 +13,6 @@ const sectionIds = [
   'kafka-experience',
   'elastic-experience',
   'performance-metrics',
-  'project-breakdown',
   'agile-cicd',
   'timeline'
 ];

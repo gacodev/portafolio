@@ -19,7 +19,7 @@ export default function Home() {
         <title>Senior DevOps & Cloud Engineer</title>
         <meta
           name="description"
-          content="Explore my portfolio showcasing expertise in backend development, cloud development, and RPA. Discover my projects and skills in JavaScript, TypeScript, design patterns, software architecture, clean code, unit tests, and pipelines."
+          content="specialized in the migration and deployment of applications to the cloud"
         />
       </Head>
       <ProfileContainer lang="en" />

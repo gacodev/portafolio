@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import KafkaExperience from './KafkaExperience';
 import ElasticExperience from './ElasticExperience';
-import { SiApacheairflow, SiVault, SiRabbitmq, SiApachekafka, SiElastic, SiRedis, SiJenkins, SiNginx, SiTensorflow } from 'react-icons/si';
-import { FaBrain, FaRobot, FaCloud } from 'react-icons/fa';
+import { SiApacheairflow, SiVault, SiRabbitmq, SiApachekafka, SiElastic, SiRedis, SiJenkins, SiNginx, SiTensorflow, SiGrafana } from 'react-icons/si';
+import { AiOutlineAreaChart } from 'react-icons/ai';
+import { FaBrain, FaRobot, FaCloud, FaNetworkWired, FaShieldAlt, FaCertificate, FaExternalLinkAlt, FaLock, FaGlobe, FaMicrochip, FaDatabase, FaServer, FaChartLine, FaExchangeAlt, FaBalanceScale, FaFlag, FaCheck } from 'react-icons/fa';
 
 const KubernetesExperience = ({ lang }) => {
   // Animations
@@ -18,17 +19,18 @@ const KubernetesExperience = ({ lang }) => {
     visible: { scale: 1, opacity: 1, transition: { duration: 0.5 } }
   };
 
-  // Calculate months of experience
-  const startDate = new Date('2020-01-01');
+  // Calculate years of experience
+  const startDate = new Date('2021-01-01');
   const currentDate = new Date();
   const monthsDiff = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + 
                     (currentDate.getMonth() - startDate.getMonth());
+  const yearsExperience = Math.floor(monthsDiff / 12);
                     
   return (
     <div id="kubernetes-experience" className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 min-h-screen text-white flex flex-col pt-10 p-8 md:p-16">
       {/* Kubernetes Header with Logo */}
       <motion.div 
-        className="mb-16 flex flex-col items-center"
+        className="mb-12 flex flex-col items-center"
         initial="hidden"
         animate="visible"
         variants={headingAnimation}
@@ -44,6 +46,14 @@ const KubernetesExperience = ({ lang }) => {
           </h1>
         </div>
         
+        <div className="bg-gradient-to-r from-blue-600/30 to-indigo-600/30 rounded-full px-6 py-2 mt-2 flex items-center">
+          <span className="font-semibold mr-2 text-lg">
+            {lang === "es" ? `${yearsExperience}+ años` : `${yearsExperience}+ years`}
+          </span>
+          <span className="text-blue-300">
+            {lang === "es" ? "de experiencia en entornos de producción" : "of experience in production environments"}
+          </span>
+        </div>
       </motion.div>
       
       <motion.div 
@@ -54,12 +64,18 @@ const KubernetesExperience = ({ lang }) => {
         variants={fadeIn}
       >
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-cyan-300">
-          {lang === "es" ? "Orquestando Microservicios" : "Orchestrating Microservices"}
+          {lang === "es" ? "Arquitectura de Microservicios Avanzada" : "Advanced Microservices Architecture"}
         </h2>
+        <p className="text-base md:text-lg mb-4">
+          {lang === "es" 
+            ? "Como arquitecto de soluciones cloud-native, he diseñado e implementado arquitecturas de microservicios complejas sobre Kubernetes en múltiples entornos de producción a gran escala. Mi experiencia abarca desde la definición de la estrategia de contenedorización hasta la implementación de patrones avanzados de comunicación entre servicios."
+            : "As a cloud-native solutions architect, I've designed and implemented complex microservices architectures on Kubernetes across multiple large-scale production environments. My experience spans from containerization strategy definition to implementing advanced service communication patterns."
+          }
+        </p>
         <p className="text-base md:text-lg mb-6">
           {lang === "es" 
-            ? "He trabajado extensivamente con Kubernetes como plataforma de orquestación, implementando y gestionando aplicaciones distribuidas y microservicios. Mi experiencia incluye despliegues automatizados, gestión de recursos, configuración de networking, y optimización de workloads en entornos de producción de alta disponibilidad."
-            : "I have worked extensively with Kubernetes as an orchestration platform, implementing and managing distributed applications and microservices. My experience includes automated deployments, resource management, networking configuration, and workload optimization in high-availability production environments."
+            ? "He liderado la transformación de aplicaciones monolíticas a arquitecturas de microservicios, implementando prácticas DevOps y SRE para garantizar alta disponibilidad, escalabilidad y resiliencia. Mi enfoque incluye diseño de APIs RESTful y gRPC, gestión de contratos con API Gateway, y estrategias de circuit breaking y service mesh."
+            : "I've led the transformation of monolithic applications to microservices architectures, implementing DevOps and SRE practices to ensure high availability, scalability, and resilience. My approach includes RESTful and gRPC API design, contract management with API Gateway, and circuit breaking and service mesh strategies."
           }
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
@@ -73,11 +89,19 @@ const KubernetesExperience = ({ lang }) => {
               url: "https://kafka.apache.org/"
             },
             {
+              name: "Prometheus & Grafana",
+              description: lang === "es" ? "Monitoreo avanzado y alertas para sistemas distribuidos" : "Advanced monitoring and alerting for distributed systems",
+              color: "from-yellow-900 to-yellow-950",
+              border: "border-yellow-500",
+              icon: <SiGrafana className="w-5 h-5 text-yellow-400" />,
+              url: "https://prometheus.io/"
+            },
+            {
               name: "Elastic Stack",
               description: lang === "es" ? "Agregación de logs y analíticas" : "Log aggregation and analytics",
               color: "from-blue-900 to-indigo-950",
               border: "border-blue-600",
-              icon: <SiElastic className="w-5 h-5 text-blue-400" />,
+              icon: <FaNetworkWired className="w-5 h-5 text-blue-400" />,
               url: "https://www.elastic.co/"
             },
             {
@@ -175,10 +199,218 @@ const KubernetesExperience = ({ lang }) => {
         </div>
       </motion.div>
       
+<<<<<<< HEAD
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 mb-12">
+=======
+      {/* Kubernetes Operators & Advanced Components */}
+      <motion.div 
+        className="bg-black/40 rounded-lg p-6 mb-12 border-2 border-indigo-500 shadow-lg shadow-indigo-600/20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+      >
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-indigo-300">
+          {lang === "es" ? "Operadores & Componentes Avanzados" : "Advanced Operators & Components"}
+        </h2>
+        <p className="text-base md:text-lg mb-6">
+          {lang === "es" 
+            ? "He implementado y administrado componentes avanzados del ecosistema Kubernetes, configurando y optimizando operadores para automatizar tareas complejas de gestión de infraestructura y aplicaciones en entornos empresariales."
+            : "I've implemented and managed advanced components within the Kubernetes ecosystem, configuring and optimizing operators to automate complex infrastructure and application management tasks in enterprise environments."
+          }
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+          {[
+            {
+              name: "Istio Service Mesh",
+              description: lang === "es" ? "Control avanzado de tráfico, seguridad y observabilidad en comunicaciones de servicios" : "Advanced traffic control, security and observability for service communications",
+              color: "from-blue-900 to-indigo-950",
+              border: "border-blue-500",
+              icon: <FaNetworkWired className="w-5 h-5 text-blue-400" />,
+              url: "https://istio.io/"
+            },
+            {
+              name: "Confluent for Kubernetes (CFK)",
+              description: lang === "es" ? "Automatización y orquestación de plataformas Kafka a gran escala" : "Automating and orchestrating large-scale Kafka platforms",
+              color: "from-red-900 to-red-950",
+              border: "border-red-500",
+              icon: <FaServer className="w-5 h-5 text-red-400" />,
+              url: "https://docs.confluent.io/operator/current/overview.html"
+            },
+            {
+              name: "ExternalDNS",
+              description: lang === "es" ? "Integración de DNS automática con servicios y rutas de Kubernetes" : "Automatic DNS integration with Kubernetes services and ingresses",
+              color: "from-green-900 to-green-950",
+              border: "border-green-500",
+              icon: <FaGlobe className="w-5 h-5 text-green-400" />,
+              url: "https://github.com/kubernetes-sigs/external-dns"
+            },
+            {
+              name: "Cert-Manager",
+              description: lang === "es" ? "Gestión automatizada de certificados TLS en clústeres de Kubernetes" : "Automated TLS certificate management in Kubernetes clusters",
+              color: "from-orange-900 to-amber-950",
+              border: "border-orange-500",
+              icon: <FaCertificate className="w-5 h-5 text-orange-400" />,
+              url: "https://cert-manager.io/"
+            },
+            {
+              name: "ArgoCD GitOps",
+              description: lang === "es" ? "Despliegue continuo e infraestructura como código declarativa" : "Continuous deployment and declarative infrastructure as code",
+              color: "from-purple-900 to-purple-950",
+              border: "border-purple-500",
+              icon: <FaCloud className="w-5 h-5 text-purple-400" />,
+              url: "https://argo-cd.readthedocs.io/"
+            },
+            {
+              name: "ElasticSearch Operator (ECK)",
+              description: lang === "es" ? "Gestión nativa de clústeres Elasticsearch en Kubernetes" : "Native Elasticsearch cluster management in Kubernetes",
+              color: "from-blue-900 to-blue-950",
+              border: "border-blue-500",
+              icon: <SiElastic className="w-5 h-5 text-blue-400" />,
+              url: "https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html"
+            },
+            {
+              name: "OpenTelemetry Operator",
+              description: lang === "es" ? "Gestión de telemetría y observabilidad distribuida" : "Distributed telemetry and observability management",
+              color: "from-indigo-900 to-indigo-950",
+              border: "border-indigo-500",
+              icon: <FaChartLine className="w-5 h-5 text-indigo-400" />,
+              url: "https://opentelemetry.io/docs/kubernetes/operator/"
+            },
+            {
+              name: "Prometheus Operator",
+              description: lang === "es" ? "Automatización del monitoreo y alertas en Kubernetes" : "Automated monitoring and alerting in Kubernetes",
+              color: "from-orange-900 to-orange-950",
+              border: "border-orange-500",
+              icon: <SiGrafana className="w-5 h-5 text-orange-400" />,
+              url: "https://prometheus-operator.dev/"
+            }
+          ].map((operator) => (
+            <motion.div 
+              key={operator.name}
+              className={`bg-gradient-to-br ${operator.color} p-4 rounded-lg ${operator.border} shadow cursor-pointer`}
+              whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(99, 102, 241, 0.6)' }}
+              onClick={() => window.open(operator.url, '_blank', 'noopener,noreferrer')}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                {operator.icon}
+                <h3 className="font-medium text-base md:text-lg text-gray-100">
+                  {operator.name}
+                </h3>
+              </div>
+              <p className="text-xs md:text-sm text-gray-300">
+                {operator.description}
+              </p>
+              <div className="mt-2 text-xs text-gray-400 flex items-center">
+                <FaExternalLinkAlt className="w-3 h-3 mr-1" />
+                {lang === "es" ? "Documentación" : "Documentation"}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+>>>>>>> feature/blog
         <KafkaExperience lang={lang} />
         <ElasticExperience lang={lang} />
       </div>
+      
+      {/* Deployment Strategies Section */}
+      <motion.div 
+        className="bg-black/40 rounded-lg p-6 mb-12 border-2 border-green-500 shadow-lg shadow-green-600/20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+      >
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-green-300">
+          {lang === "es" ? "Estrategias de Despliegue" : "Deployment Strategies"}
+        </h2>
+        <p className="text-base md:text-lg mb-6">
+          {lang === "es" 
+            ? "He implementado y optimizado diversas estrategias de despliegue en entornos de Kubernetes para garantizar liberaciones sin tiempo de inactividad, minimizar riesgos y permitir el lanzamiento gradual de nuevas funcionalidades."
+            : "I've implemented and optimized various deployment strategies in Kubernetes environments to ensure zero-downtime releases, minimize risk, and enable gradual feature rollouts."}
+        </p>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Blue-Green Deployments */}
+          <div className="bg-gradient-to-r from-gray-900 to-blue-900/30 p-5 rounded-lg border border-blue-800/50">
+            <h3 className="text-lg md:text-xl font-semibold mb-3 text-blue-300 flex items-center">
+              <FaExchangeAlt className="mr-2" />
+              {lang === "es" ? "Blue-Green" : "Blue-Green"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-4">
+              {lang === "es" 
+                ? "Implementación simultánea de dos entornos idénticos para transiciones instantáneas y reversiones rápidas."
+                : "Simultaneous deployment of two identical environments for instant transitions and quick rollbacks."}
+            </p>
+            <ul className="space-y-2">
+              {[
+                lang === "es" ? "Transiciones sin tiempo de inactividad" : "Zero-downtime transitions",
+                lang === "es" ? "Reversión inmediata" : "Immediate rollback capability",
+                lang === "es" ? "Pruebas en entorno de pre-producción real" : "Testing in real pre-production environment"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-start">
+                  <div className="text-green-400 mr-2 mt-1"><FaCheck size={12} /></div>
+                  <div className="text-gray-300 text-sm">{item}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Canary Deployments */}
+          <div className="bg-gradient-to-r from-gray-900 to-yellow-900/30 p-5 rounded-lg border border-yellow-800/50">
+            <h3 className="text-lg md:text-xl font-semibold mb-3 text-yellow-300 flex items-center">
+              <FaBalanceScale className="mr-2" />
+              {lang === "es" ? "Canary Deployments" : "Canary Deployments"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-4">
+              {lang === "es" 
+                ? "Despliegue gradual con enrutamiento controlado de tráfico para mitigar riesgos con monitorización en tiempo real."
+                : "Gradual deployment with controlled traffic routing to mitigate risks with real-time monitoring."}
+            </p>
+            <ul className="space-y-2">
+              {[
+                lang === "es" ? "Detección temprana de problemas" : "Early problem detection",
+                lang === "es" ? "Exposición limitada a riesgos" : "Limited risk exposure",
+                lang === "es" ? "Despliegue progresivo automatizado" : "Automated progressive rollout"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-start">
+                  <div className="text-green-400 mr-2 mt-1"><FaCheck size={12} /></div>
+                  <div className="text-gray-300 text-sm">{item}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Feature Flags */}
+          <div className="bg-gradient-to-r from-gray-900 to-purple-900/30 p-5 rounded-lg border border-purple-800/50">
+            <h3 className="text-lg md:text-xl font-semibold mb-3 text-purple-300 flex items-center">
+              <FaFlag className="mr-2" />
+              {lang === "es" ? "Feature Flags" : "Feature Flags"}
+            </h3>
+            <p className="text-sm text-gray-300 mb-4">
+              {lang === "es" 
+                ? "Separación de despliegue y activación de funcionalidades para mayor control y experimentación con usuarios."
+                : "Decoupling deployment from feature activation for greater control and user experimentation."}
+            </p>
+            <ul className="space-y-2">
+              {[
+                lang === "es" ? "A/B testing con usuarios reales" : "A/B testing with real users",
+                lang === "es" ? "Lanzamientos personalizados por audiencia" : "Audience-targeted rollouts",
+                lang === "es" ? "Desactivación instantánea de funciones" : "Instant feature kill-switch"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-start">
+                  <div className="text-green-400 mr-2 mt-1"><FaCheck size={12} /></div>
+                  <div className="text-gray-300 text-sm">{item}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </motion.div>
       
       {/* Technical Skills with K8s */}
       <motion.div
@@ -189,17 +421,20 @@ const KubernetesExperience = ({ lang }) => {
         variants={fadeIn}
       >
         <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-blue-300">
-          {lang === "es" ? "Habilidades Técnicas con Kubernetes" : "Technical Skills with Kubernetes"}
+          {lang === "es" ? "Experiencia Técnica Avanzada" : "Advanced Technical Expertise"}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { name: lang === "es" ? "Gestión de Clústeres" : "Cluster Management", value: 90 },
-            { name: lang === "es" ? "Helm Charts" : "Helm Charts", value: 85 },
-            { name: lang === "es" ? "CI/CD con Jenkins" : "CI/CD with Jenkins", value: 88 },
-            { name: lang === "es" ? "Monitoreo & Logging" : "Monitoring & Logging", value: 92 },
-            { name: lang === "es" ? "Networking" : "Networking", value: 80 },
-            { name: lang === "es" ? "Seguridad" : "Security", value: 85 }
+            { name: lang === "es" ? "Arquitectura de Microservicios" : "Microservices Architecture", value: 95 },
+            { name: lang === "es" ? "Operadores Kubernetes" : "Kubernetes Operators", value: 92 },
+            { name: lang === "es" ? "Service Mesh (Istio)" : "Service Mesh (Istio)", value: 90 },
+            { name: lang === "es" ? "GitOps (ArgoCD/Flux)" : "GitOps (ArgoCD/Flux)", value: 88 },
+            { name: lang === "es" ? "Seguridad Avanzada" : "Advanced Security", value: 85 },
+            { name: lang === "es" ? "Automatización SRE" : "SRE Automation", value: 90 },
+            { name: lang === "es" ? "Helm Charts Avanzados" : "Advanced Helm Charts", value: 93 },
+            { name: lang === "es" ? "Observabilidad Distribuida" : "Distributed Observability", value: 88 },
+            { name: lang === "es" ? "Multi-Cloud & Federación" : "Multi-Cloud & Federation", value: 85 }
           ].map((skill) => (
             <div key={skill.name} className="bg-gradient-to-r from-gray-900 to-blue-900/40 p-4 rounded-lg">
               <div className="flex justify-between mb-2">
@@ -208,7 +443,7 @@ const KubernetesExperience = ({ lang }) => {
               </div>
               <div className="w-full bg-gray-700 rounded-full h-2.5">
                 <motion.div 
-                  className="bg-blue-500 h-2.5 rounded-full" 
+                  className="bg-gradient-to-r from-blue-600 to-indigo-500 h-2.5 rounded-full" 
                   style={{ width: `${skill.value}%` }}
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.value}%` }}
