@@ -12,8 +12,7 @@ const projects = [
         technologies: [
           'REST API', '.NET Framework', 'CosmosDB', 'Virtual Machines', 'Docker',
           'Container Registry', 'React', 'SonarCloud', 'OWASP', 'Azure Front Door',
-          'Azure App Services', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'Azure App Services', 'Virtual Network', 'VMSS', 'Azure DevOps'
         ]
       },
       {
@@ -24,7 +23,7 @@ const projects = [
         technologies: [
           'Golang', 'Docker', 'React', 'Bash', 'CosmosDB', 'Azure Front Door',
           'Azure App Services', 'Azure Cognitive Services', 'Virtual Network',
-          'VMSS', 'Azure DevOps Pipelines', 'Azure Boards', 'Azure Repos'
+          'VMSS', 'Azure DevOps'
         ]
       },
       {
@@ -35,8 +34,7 @@ const projects = [
         technologies: [
           'Reverse Proxies', 'Docker', 'React', 'Python', 'FastAPI', 'Bash',
           'MongoDB', 'Azure Front Door', 'WebSockets', 'Azure App Services',
-          'Virtual Network', 'VMSS', 'Azure DevOps Pipelines', 'Azure Boards',
-          'Azure Repos'
+          'Virtual Network', 'VMSS', 'Azure DevOps'
         ]
       },
       {
@@ -47,8 +45,7 @@ const projects = [
         technologies: [
           'Reverse Proxies', 'Docker', 'React', 'Python', 'FastAPI', 'Bash',
           'Azure Functions', 'PostgreSQL', 'Azure Front Door', 'WebSockets',
-          'Azure App Services', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'Azure App Services', 'Virtual Network', 'VMSS', 'Azure DevOps'
         ]
       },
       {
@@ -60,8 +57,7 @@ const projects = [
           'REST API', '.NET Framework', 'Node.js', 'Express', 'WebRTC', 'RTSP',
           'CosmosDB', 'Virtual Machines', 'Docker', 'Container Registry', 'React',
           'SonarCloud', 'OWASP', 'Azure Front Door', 'Azure App Services', 'AKS',
-          'Azure API Management', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'Azure API Management', 'Virtual Network', 'VMSS', 'Azure DevOps', 'Microservices'
         ]
       },
       {
@@ -72,19 +68,17 @@ const projects = [
         technologies: [
           'Reverse Proxies', 'Docker', 'React', 'Python', 'FastAPI', 'Bash',
           'MongoDB', 'Azure Front Door', 'Azure App Services', 'NVIDIA CUDA',
-          'YOLOv5', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'YOLOv5', 'Virtual Network', 'VMSS', 'Azure DevOps', 'Microservices'
         ]
       },
       {
         name: 'Arpex',
-        url: 'https://isa.co/es/',
+        url: 'https://isa.co/es/',  
         role: 'Solutions Architect',
         year: 2024,
         technologies: [
           'REST API', '.NET Framework', 'CosmosDB', 'Virtual Machines', 'SQL Server',
-          'React', 'Virtual Network', 'VMSS', 'Azure DevOps Pipelines',
-          'Azure Boards', 'Azure Repos'
+          'React', 'Virtual Network', 'VMSS', 'Azure DevOps', 'Microservices'
         ]
       },
       {
@@ -93,8 +87,7 @@ const projects = [
         role: 'DevOps Engineer',
         year: 2024,
         technologies: [
-          'Virtual Network', 'VMSS', 'Azure DevOps Pipelines', 'Azure Boards',
-          'Azure Repos'
+          'Virtual Network', 'VMSS', 'Azure DevOps', 'Microservices', 'Azure'
         ]
       },
       {
@@ -103,9 +96,8 @@ const projects = [
         role: 'Platform Engineer',
         year: 2024,
         technologies: [
-          'Bash', 'Azure DevOps', 'Azure OpenAI GPT-4', 'Python', 'Azure Portal',
-          'Virtual Network', 'VMSS', 'Azure DevOps Pipelines', 'Azure Boards',
-          'Azure Repos'
+          'Bash', 'Azure DevOps', 'Azure OpenAI', 'Python', 'Azure', 'Microservices',
+          'Vnets', 'VMSS'
         ]
       }
     ]
@@ -120,7 +112,7 @@ const projects = [
         url: "https://auladigital.comfama.com",
         role: "Backend & Cloud Engineer",
         year: 2023,
-        technologies: ["MySQL", "PHP", "Moodle", "Docker", "AzureDevops", "JavaScript", "Azure portal", "Linux Servers"]
+        technologies: ["MySQL", "PHP", "Moodle", "Microservices", "AzureDevops", "JavaScript", "Azure portal", "Linux Servers"]
       }
     ]
   },
@@ -148,7 +140,7 @@ const projects = [
         url: "https://www.emavi.edu.co/interescuelas2022",
         role: "FullStack Developer",
         year: 2022,
-        technologies: ["MySQL", "Laravel", "Psysh", "Styled Components", "ReactJS - INERTIA", "MongoDB", "Gitlab On premise", "Azure Portal"]
+        technologies: ["MySQL", "Laravel", "MongoDB", "Gitlab", "Azure", "Linux", "microservices"]
       }
     ]
   }
