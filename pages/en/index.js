@@ -23,11 +23,11 @@ export default function Home() {
         />
       </Head>
       <ProfileContainer lang="en" />
+      <CloudProviderList lang="en" />
       <Journey2024 lang="en" />
       <AIMLExperience lang="en" />
       <KubernetesExperience lang="en" />
       <TechList lang="en" />
-      <CloudProviderList lang="en" />
       <ProjectList lang="en" />
       <MigrationComponent lang="en" />
       <Footer lang="en" />
