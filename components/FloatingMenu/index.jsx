@@ -30,6 +30,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       kafka: 'Experiencia Kafka',
       elastic: 'Experiencia Elastic',
       metrics: 'Métricas de Rendimiento en proyectos',
+      metricsDetail: 'Métricas Detalladas por Proyecto',
       agile: 'Agile & CI/CD',
       aiml: 'AI/ML',
       timeline: 'Timeline',
@@ -47,6 +48,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       kafka: 'Kafka Experience',
       elastic: 'Elastic Experience',
       metrics: 'Performance Metrics in projects',
+      metricsDetail: 'Detailed Metrics by Project',
       agile: 'Agile & CI/CD',
       aiml: 'AI/ML',
       timeline: 'Timeline',
@@ -74,7 +76,8 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     { id: 'elastic', name: labels.elastic, icon: 'search', ref: 'elastic-experience' },
     { id: 'metricas', name: labels.metrics, icon: 'chart', ref: 'performance-metrics' },
     { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
-    { id: 'timeline', name: labels.timeline, icon: 'mail', ref: 'timeline' }
+    { id: 'timeline', name: labels.timeline, icon: 'mail', ref: 'timeline' },
+    { id: 'metrics-detail', name: labels.metricsDetail, icon: 'chart', ref: 'metrics', isExternal: true }
   ];
 
   // Actualizar menú items cuando cambia el idioma
@@ -143,7 +146,19 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
   const isOnBlogPage = currentPath.includes('/blog');
 
   // Scroll suave a la sección correspondiente
-  const scrollToSection = (sectionRef) => {
+  const scrollToSection = (sectionRef, isExternal = false) => {
+    // Si es una página externa (como /metrics), navegar directamente
+    if (isExternal) {
+      router.push(`/${lang}/${sectionRef}`);
+      
+      // En móvil, contraer el menú después de la navegación
+      if (isMobile || window.innerWidth < 768) {
+        setIsExpanded(false);
+        closeMenu();
+      }
+      return;
+    }
+
     // Si estamos en el blog, navegar de vuelta a la página principal con hash
     if (isOnBlogPage) {
       const targetUrl = `/${lang}#${sectionRef}`;
@@ -283,7 +298,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
               filteredItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.ref)}
+                  onClick={() => scrollToSection(item.ref, item.isExternal)}
                   className={`w-full flex items-center p-3 mb-1 rounded-lg transition-all duration-200 ${
                     activeSection === item.id
                       ? 'bg-blue-600 text-white'
@@ -292,6 +307,11 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
                 >
                   <span className="mr-3">{renderIcon(item.icon)}</span>
                   <span className="font-medium flex-1 text-center">{item.name}</span>
+                  {item.isExternal && (
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  )}
                 </button>
               ))
             ) : (
