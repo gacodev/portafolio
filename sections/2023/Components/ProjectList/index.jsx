@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import projects from "../../../data/projects";
@@ -6,99 +6,132 @@ import PropTypes from 'prop-types';
 import GravatarImage from "./GravatarImage";
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+import ProjectModal from "./ProjectModal";
 
 export const ProjectList = ({ lang }) => {
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  // Re-group projects by year
+  const projectsByYear = {};
+  projects.forEach((company) => {
+    company.projects.forEach((project) => {
+      if (!projectsByYear[project.year]) {
+        projectsByYear[project.year] = [];
+      }
+      projectsByYear[project.year].push({
+        ...project,
+        companyName: company.company,
+        companyUrl: company.url,
+      });
+    });
+  });
+
+  const sortedYears = Object.keys(projectsByYear).sort((a, b) => b - a);
+
   return (
-    <div className="w-full px-2 sm:px-4 lg:px-8" id="timeline">
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-center text-white mb-6 sm:mb-8 lg:mb-12 drop-shadow-lg">
-        {lang === "en" ? "Software Projects Timeline" : "Línea de Tiempo de Proyectos de Software"}
-      </h2>
-      <VerticalTimeline layout="1-column"> {/* Agregar layout para una columna */}
-        {projects.map((company) => (
-          <VerticalTimelineElement
-            key={company.company}
-            date={company.projects[0]?.year}
-            iconStyle={{
-              background: '#4A90E2',
-              color: '#fff',
-              width: 'clamp(32px, 6vw, 45px)', // Optimizado para iPad Pro
-              height: 'clamp(32px, 6vw, 45px)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            icon={<span className="text-white font-bold text-xs sm:text-sm lg:text-xl">{company.projects[0]?.year}</span>}
-            contentStyle={{
-              marginLeft: 'clamp(0px, 4vw, 70px)', // Mejor para iPad Pro
-              background: 'rgba(255, 255, 255, 0.1)',
-              boxShadow: 'none',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              width: '100%',
-              margin: '0 auto',
-              padding: 'clamp(1rem, 2.5vw, 1.5rem)', // Mejor spacing para iPad Pro
-            }}
-            contentArrowStyle={{ borderRight: '7px solid rgba(255, 255, 255, 0.2)' }}
-          >
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-yellow-500 text-center mb-4 sm:mb-6 lg:mb-8 drop-shadow-lg transform hover:scale-105 transition-transform duration-300">
-              {company.url ? (
-                <Link
-                  href={company.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-orange-300"
-                >
-                  {company.company}
-                </Link>
-              ) : (
-                company.company
-              )}
-            </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-1 gap-4 lg:gap-6 xl:gap-4">
-              {company.projects.map((project) => (
-                <div key={`${company.company}-${project.name}-${project.year}`} className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start rounded-lg p-3 sm:p-4 lg:p-4 xl:p-6 shadow-md transition-transform transform hover:scale-105 bg-gradient-to-r from-gray-800/50 to-gray-900/50 backdrop-blur-sm w-full">
-                <div className="flex-shrink-0 mb-3 sm:mb-4 lg:mb-3 xl:mb-4 sm:mr-4 lg:mr-0 xl:mr-6 w-full sm:w-auto lg:w-full xl:w-auto flex justify-center sm:block lg:justify-center xl:block">
-                  {project.image ? (
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      width={80}
-                      height={80}
-                      className="rounded-lg object-cover sm:w-[100px] sm:h-[100px] lg:w-[120px] lg:h-[120px] xl:w-[100px] xl:h-[100px]"
-                    />
-                  ) : (
-                    <GravatarImage name={project.name} size={80} className="sm:w-[100px] sm:h-[100px] lg:w-[120px] lg:h-[120px] xl:w-[100px] xl:h-[100px]" />
-                  )}
-                </div>
-                <div className="flex-grow w-full">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-2 drop-shadow-md text-center sm:text-left">{project.name}</h3>
-                  <p className="text-blue-300 text-sm sm:text-base lg:text-lg xl:text-xl mb-2 font-semibold text-center sm:text-left">{project.role}</p>
-                  <div className="flex flex-wrap gap-1 sm:gap-2 mt-2 mb-3 sm:mb-4 justify-center sm:justify-start">
-                    {project.technologies.map((tech, index) => (
-                      <span key={`${project.name}-${tech}-${index}`} className="bg-blue-500 text-white text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full font-medium">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  {project.url && project.url !== 'N/A' && (
-                    <div className="text-center sm:text-left">
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-300 hover:text-blue-100 transition-colors duration-300 text-sm sm:text-base lg:text-xl font-semibold"
-                      >
-                        {lang === "en" ? "Visit Project" : "Visitar Proyecto"} →
-                      </a>
+    <>
+      <div className="w-full px-2 sm:px-4 lg:px-8" id="timeline">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-center text-white mb-6 sm:mb-8 lg:mb-12 drop-shadow-lg">
+          {lang === "en" ? "Software Projects Timeline" : "Línea de Tiempo de Proyectos de Software"}
+        </h2>
+        <VerticalTimeline layout="1-column">
+          {sortedYears.map((year) => (
+            <VerticalTimelineElement
+              key={year}
+              date={year}
+              iconStyle={{
+                background: '#ff6b6b', // Distinct color for the year
+                color: '#fff',
+                width: '64px',
+                height: '64px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                boxShadow: '0 0 0 4px #1a1a2e, inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05)',
+                zIndex: 20
+              }}
+              icon={<span className="text-white font-black text-sm sm:text-base">{year}</span>}
+              contentStyle={{
+                background: 'rgba(255, 255, 255, 0.05)',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '16px',
+                width: 'calc(100% - 80px)', // explicitly leave 80px of space on the right for the timeline line/icon
+                margin: '0',
+                padding: 'clamp(1.5rem, 3vw, 2rem)',
+              }}
+              contentArrowStyle={{ borderRight: '10px solid rgba(255, 255, 255, 0.1)', top: '24px' }}
+            >
+              <div className="flex flex-col gap-6 lg:gap-8">
+                {projectsByYear[year].map((project, idx) => (
+                  <div
+                    key={`${project.companyName}-${project.name}-${idx}`}
+                    className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start rounded-xl p-4 sm:p-5 lg:p-6 xl:p-8 shadow-xl transition-all transform hover:scale-[1.02] hover:bg-gray-800/80 bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-md w-full cursor-pointer border border-gray-700/50 hover:border-blue-500/50"
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    <div className="flex-shrink-0 mb-4 sm:mb-0 lg:mb-4 xl:mb-0 sm:mr-6 lg:mr-0 xl:mr-8 w-full sm:w-auto lg:w-full xl:w-auto flex justify-center sm:block lg:justify-center xl:block">
+                      {project.image ? (
+                        <Image
+                          src={project.image}
+                          alt={project.name}
+                          width={100}
+                          height={100}
+                          className="rounded-lg object-cover sm:w-[120px] sm:h-[120px] lg:w-[150px] lg:h-[150px] xl:w-[120px] xl:h-[120px]"
+                        />
+                      ) : (
+                        <GravatarImage name={project.name} size={100} className="sm:w-[120px] sm:h-[120px] lg:w-[150px] lg:h-[150px] xl:w-[120px] xl:h-[120px]" />
+                      )}
                     </div>
-                  )}
-                </div>
+                    <div className="flex-grow w-full flex flex-col md:flex-row justify-between gap-5">
+                      <div className="w-full md:w-auto flex-grow">
+                        <div className="mb-1 text-orange-400 font-semibold text-sm sm:text-base uppercase tracking-wider">
+                          {project.companyUrl && project.companyUrl !== "N/A" ? (
+                            <Link href={project.companyUrl} target="_blank" rel="noopener noreferrer" className="hover:text-orange-300 transition-colors" onClick={e => e.stopPropagation()}>
+                              {project.companyName}
+                            </Link>
+                          ) : project.companyName}
+                        </div>
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-white mb-2 drop-shadow-md text-center sm:text-left group-hover:text-blue-400 transition-colors">
+                          {project.name}
+                        </h3>
+                        <p className="text-blue-300 text-base sm:text-lg lg:text-xl md:text-2xl mb-3 font-semibold text-center sm:text-left">{project.role}</p>
+                        <div className="flex flex-wrap gap-1 sm:gap-2 mt-2 justify-center sm:justify-start">
+                          {project.technologies.slice(0, 5).map((tech, index) => (
+                            <span key={`${project.name}-${tech}-${index}`} className="bg-blue-500/20 border border-blue-500/40 text-blue-100 text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full font-medium">
+                              {tech}
+                            </span>
+                          ))}
+                          {project.technologies.length > 5 && (
+                            <span className="bg-gray-700 text-gray-300 text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full font-medium">
+                              +{project.technologies.length - 5}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="w-full md:w-auto flex-shrink-0 text-center md:text-right mt-4 md:mt-0 flex justify-center md:justify-end items-center">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
+                          className="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-sm sm:text-base font-bold rounded-lg shadow-lg shadow-blue-900/40 transition-all duration-300 hover:shadow-blue-900/60 transform hover:-translate-y-0.5"
+                        >
+                          {lang === "en" ? "View Details" : lang === "pt" ? "Ver Detalhes" : "Ver Detalles"}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-            </div>
-          </VerticalTimelineElement>
-        ))}
-      </VerticalTimeline>
-    </div>
+            </VerticalTimelineElement>
+          ))}
+        </VerticalTimeline>
+      </div>
+
+      <ProjectModal
+        isOpen={selectedProject !== null}
+        onClose={() => setSelectedProject(null)}
+        project={selectedProject}
+        lang={lang}
+      />
+    </>
   );
 };
 

@@ -28,6 +28,21 @@ const footerContent = {
       home: "Home",
       blog: "ADR - Decision Records",
       skills_list: ["Kubernetes", "Azure", "AWS", "GCP", "Node js", "Docker", "Terraform", "Azure DevOps", "Kafka", "Elasticsearch", "CI/CD", "Monitoring"] 
+    },
+    pt: {
+      contact: "Contato",
+      email: "gacodevops@gmail.com", 
+      location: "Disponível para trabalho remoto",
+      skills: "Especialidades",
+      copyright: "Todos os direitos reservados",
+      builtWith: "Construído com",
+      connect: "Conecte-se comigo",
+      cloudExpert: "Cloud & DevOps Specialist",
+      description: "Especialista em Arquitetura de Soluções e DevOps, com experiência na implantação de aplicações em Kubernetes, plataformas IaaS e PaaS.",
+      quickLinks: "Links Rápidos",
+      home: "Início",
+      blog: "ADR - Registro de Decisões",
+      skills_list: ["Kubernetes", "Azure", "AWS", "GCP", "Node js", "Docker", "Terraform", "Azure DevOps", "Kafka", "Elasticsearch", "CI/CD", "Monitoring"] 
     }
   };
 

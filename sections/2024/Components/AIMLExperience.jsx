@@ -29,6 +29,8 @@ const AIMLExperience = ({ lang = 'es' }) => {
     }
   };
 
+
+
   const PlatformCard = ({ platform }) => (
     <motion.div
       variants={cardVariants}

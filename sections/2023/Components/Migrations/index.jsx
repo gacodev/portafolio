@@ -10,7 +10,8 @@ const migrationProjects = [
         url: "https://auladigital.comfama.com",
         description: {
           es: "Migración integral y automatizada de una plataforma educativa monolítica a una arquitectura de alta disponibilidad, incluyendo la actualización de contenidos(blobs, cursos, notas etc), optimización de plugins y modernización de integraciones",
-          en: "Comprehensive and automated migration of a monolithic educational platform to a high-availability architecture, including content updates (videos, course, califications etc), plugin optimization, and modernization of integrations"
+          en: "Comprehensive and automated migration of a monolithic educational platform to a high-availability architecture, including content updates (videos, course, califications etc), plugin optimization, and modernization of integrations",
+          pt: "Migração abrangente e automatizada de uma plataforma educacional monolítica para uma arquitetura de alta disponibilidade, incluindo atualizações de conteúdo (vídeos, cursos, notas etc), otimização de plugins e modernização de integrações"
         },
         details: {
           sourceOS: "Ubuntu 18.04 LTS",
@@ -35,6 +36,12 @@ const migrationProjects = [
             "Application of security best practices",
             "Full automation of the migration process",
             "Improvement in system scalability and performance"
+          ],
+          pt: [
+            "Implementação de infraestrutura em redes privadas",
+            "Aplicação de melhores práticas de segurança",
+            "Automação completa do processo de migração",
+            "Melhoria na escalabilidade e desempenho do sistema"
           ]
         }
       }
@@ -43,12 +50,12 @@ const migrationProjects = [
 ];
 
 export const MigrationComponent = ({ lang }) => {
-  const t = (es, en) => lang === 'es' ? es : en;
+  const t = (es, en, pt) => lang === 'es' ? es : (lang === 'pt' && pt) ? pt : en;
 
   return (
     <div className="w-full px-4 py-16 md:px-8">
       <h2 className="text-4xl font-bold text-center text-white mb-12">
-        {t('Migraciones', 'Migrations')}
+        {t('Migraciones', 'Migrations', 'Migrações')}
       </h2>
       {migrationProjects.map((yearData) => (
         <div key={yearData.year} className="mb-16">
@@ -68,11 +75,11 @@ export const MigrationComponent = ({ lang }) => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="text-xl font-semibold text-white mb-2">{t('Detalles de Migración', 'Migration Details')}</h4>
+                  <h4 className="text-xl font-semibold text-white mb-2">{t('Detalles de Migración', 'Migration Details', 'Detalhes da Migração')}</h4>
                   <p className="text-gray-300">
-                    {t('Desde', 'From')} <span className="font-semibold">{project.details.sourceOS}</span> &#x27A1; <span className="font-semibold">{project.details.targetOS}</span>
+                    {t('Desde', 'From', 'De')} <span className="font-semibold">{project.details.sourceOS}</span> &#x27A1; <span className="font-semibold">{project.details.targetOS}</span>
                   </p>
-                  <h5 className="text-lg font-semibold text-white mt-4 mb-2">{t('Ambientes', 'Environments')}:</h5>
+                  <h5 className="text-lg font-semibold text-white mt-4 mb-2">{t('Ambientes', 'Environments', 'Ambientes')}:</h5>
                   <ul className="list-disc list-inside text-gray-300">
                     {project.details.environments.map((env, i) => (
                       <li key={i}>{env}</li>
@@ -81,7 +88,7 @@ export const MigrationComponent = ({ lang }) => {
                 </div>
                 
                 <div>
-                  <h4 className="text-xl font-semibold text-white mb-2">{t('Tecnologías utilizadas', 'Technologies used')}</h4>
+                  <h4 className="text-xl font-semibold text-white mb-2">{t('Tecnologías utilizadas', 'Technologies used', 'Tecnologias utilizadas')}</h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, i) => (
                       <span key={i} className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">{tech}</span>
@@ -90,7 +97,7 @@ export const MigrationComponent = ({ lang }) => {
                 </div>
               </div>
 
-              <h4 className="text-xl font-semibold text-white mt-6 mb-2">{t('Logros', 'Achievements')}</h4>
+              <h4 className="text-xl font-semibold text-white mt-6 mb-2">{t('Logros', 'Achievements', 'Conquistas')}</h4>
               <ul className="list-disc list-inside text-gray-300">
                 {project.achievements[lang].map((achievement, i) => (
                   <li key={i}>{achievement}</li>
@@ -99,7 +106,7 @@ export const MigrationComponent = ({ lang }) => {
 
               <div className="mt-6 p-4 bg-blue-500 bg-opacity-20 rounded-lg">
                 <h3 className="text-xl font-semibold text-white">
-                  {t(`Usuarios Activos: ${project.details.activeUsers}`, `Active Users: ${project.details.activeUsers}`)}
+                  {t(`Usuarios Activos: ${project.details.activeUsers}`, `Active Users: ${project.details.activeUsers}`, `Usuários Ativos: ${project.details.activeUsers}`)}
                 </h3>
               </div>
             </motion.div>

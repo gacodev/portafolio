@@ -56,6 +56,18 @@ const BlogList = ({ lang = 'es', onArticleSelect }) => {
       readTime: "min read",
       noResults: "No articles found matching the filters.",
       clearFilters: "Clear filters"
+    },
+    pt: {
+      title: "Blog Técnico",
+      subtitle: "Soluções, pesquisas e experiências em arquitetura de software",
+      search: "Pesquisar artigos...",
+      allCategories: "Todas as categorias",
+      allTags: "Todas as tags",
+      readMore: "Leia mais",
+      author: "Autor",
+      readTime: "min de leitura",
+      noResults: "Nenhum artigo encontrado com esses filtros.",
+      clearFilters: "Limpar filtros"
     }
   };
 

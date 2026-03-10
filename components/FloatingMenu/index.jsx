@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import SearchBar from './SearchBar';
+import CommandPalette from './CommandPalette';
 import { useRouter } from "next/router";
+import useLanguageStore from '../../store/useLanguageStore';
 
 /**
  * Menú flotante con búsqueda integrada para navegación del portafolio
@@ -24,6 +25,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     es: {
       profile: 'Perfil & Contacto',
       summary: 'Resumen Profesional',
+      aiAgents: 'Operaciones AI (Agentes & Workflows)',
       technologies: 'Herramientas y Tecnologías',
       achievements: 'Logros Clave',
       kubernetes: 'Experiencia Kubernetes',
@@ -42,6 +44,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     en: {
       profile: 'Profile & Contact',
       summary: 'Professional Summary',
+      aiAgents: 'AI Operations (Agents & Workflows)',
       technologies: 'Tools & Technologies',
       achievements: 'Key Achievements',
       kubernetes: 'Kubernetes Experience',
@@ -56,6 +59,25 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       noResults: 'No results found for',
       menu: 'MENU',
       blog: 'Architecture Decision Records'
+    },
+    pt: {
+      profile: 'Perfil & Contato',
+      summary: 'Resumo Profissional',
+      aiAgents: 'Operações AI (Agentes & Workflows)',
+      technologies: 'Ferramentas e Tecnologias',
+      achievements: 'Principais Conquistas',
+      kubernetes: 'Experiência Kubernetes',
+      kafka: 'Experiência Kafka',
+      elastic: 'Experiência Elastic',
+      metrics: 'Métricas de Desempenho em projetos',
+      metricsDetail: 'Métricas Detalhadas por Projeto',
+      agile: 'Agile & CI/CD',
+      aiml: 'IA/ML',
+      timeline: 'Linha do Tempo',
+      search: 'Pesquisar...',
+      noResults: 'Nenhum resultado encontrado para',
+      menu: 'MENU',
+      blog: 'ADR - Registros de Decisões de Arquitetura'
     }
   };
   
@@ -68,6 +90,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
   const sections = [
     { id: 'profile', name: labels.profile, icon: 'user', ref: 'profile' },
     { id: 'resumen', name: labels.summary, icon: 'mail', ref: 'professional-summary' },
+    { id: 'ai-agents', name: labels.aiAgents, icon: 'bot', ref: 'ai-agents' },
     { id: 'aiml', name: labels.aiml, icon: 'code', ref: 'aiml' },
     { id: 'tecnologias', name: labels.technologies, icon: 'refresh', ref: 'tools-technologies' },
     { id: 'logros', name: labels.achievements, icon: 'award', ref: 'key-achievements' },
@@ -76,8 +99,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     { id: 'elastic', name: labels.elastic, icon: 'search', ref: 'elastic-experience' },
     { id: 'metricas', name: labels.metrics, icon: 'chart', ref: 'performance-metrics' },
     { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
-    { id: 'timeline', name: labels.timeline, icon: 'mail', ref: 'timeline' },
-    { id: 'metrics-detail', name: labels.metricsDetail, icon: 'chart', ref: 'metrics', isExternal: true }
+    { id: 'timeline', name: labels.timeline, icon: 'mail', ref: 'timeline' }
   ];
 
   // Actualizar menú items cuando cambia el idioma
@@ -125,20 +147,11 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Filtra los items del menú según la búsqueda
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-    if (!term.trim()) {
-      setFilteredItems(menuItems);
-      return;
-    }
-
-    const filtered = menuItems.filter(item => 
-      item.name.toLowerCase().includes(term.toLowerCase()) ||
-      item.id.toLowerCase().includes(term.toLowerCase())
-    );
-    setFilteredItems(filtered);
-  };
+  // Como el filtrado local se movió al CommandPalette, 
+  // la navegación lateral usará todos los items de secciones
+  useEffect(() => {
+    setFilteredItems(menuItems);
+  }, [menuItems]);
 
   // Obtener información de la ruta actual
   const router = useRouter();
@@ -280,9 +293,8 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
             : 'w-full bg-gray-900 text-white'}`}
           role="navigation"
         >
-          <div className="px-4 mb-4">
-            <SearchBar onSearch={handleSearch} isExpanded={isExpanded} />
-          </div>
+          {/* Integra el Command Palette (invisible modal, visible shortcut) */}
+          <CommandPalette lang={lang} sections={sections} />
           
           <div className="px-3 mb-3 text-blue-400 text-xs uppercase font-semibold">
             {lang === 'en' ? 'Language / Idioma' : 'Idioma / Language'}
@@ -384,12 +396,13 @@ FloatingMenu.propTypes = {
 // Componente para los botones de idioma
 const LanguageButtons = ({ currentLang }) => {
   const router = useRouter();
+  const setLang = useLanguageStore((s) => s.setLang);
   
-  // Navegación entre idiomas - vamos a usar la navegación directa para forzar recarga
+  // Language switch: Zustand + shallow routing (no full page reload)
   const handleLanguageChange = (lang) => {
     if (currentLang !== lang) {
-      // Forzamos la recarga completa usando window.location
-      window.location.href = `/${lang}`;
+      setLang(lang);
+      router.push(`/${lang}`, undefined, { shallow: true });
     }
   };
   
@@ -405,11 +418,11 @@ const LanguageButtons = ({ currentLang }) => {
     className={`${currentLang === "es" 
       ? "bg-gradient-to-r from-blue-700 to-blue-600 text-white font-medium shadow-inner" 
       : "bg-gradient-to-r from-gray-800 to-gray-700 text-gray-300 hover:from-blue-800 hover:to-blue-700 hover:text-white"}
-    px-4 py-2 rounded-l-lg transition-all duration-300 flex items-center justify-center cursor-pointer`}
+    px-3 py-2 rounded-l-lg transition-all duration-300 flex items-center justify-center cursor-pointer text-sm`}
   >
-    <span className={currentLang === "es" ? "border-b-2 border-blue-300" : ""}>Español</span>
+    <span className={currentLang === "es" ? "border-b-2 border-blue-300" : ""}>ES</span>
     {currentLang === "es" && (
-      <span className="ml-2 text-xs bg-blue-500 text-white px-1 rounded-full">✓</span>
+      <span className="ml-1 text-xs bg-blue-500 text-white px-1 rounded-full">✓</span>
     )}
   </a>
 
@@ -423,11 +436,29 @@ const LanguageButtons = ({ currentLang }) => {
     className={`${currentLang === "en" 
       ? "bg-gradient-to-r from-blue-700 to-blue-600 text-white font-medium shadow-inner" 
       : "bg-gradient-to-r from-gray-800 to-gray-700 text-gray-300 hover:from-blue-800 hover:to-blue-700 hover:text-white"}
-    px-4 py-2 rounded-r-lg transition-all duration-300 flex items-center justify-center cursor-pointer`}
+    px-3 py-2 border-l border-r border-gray-600 transition-all duration-300 flex items-center justify-center cursor-pointer text-sm`}
   >
-    <span className={currentLang === "en" ? "border-b-2 border-blue-300" : ""}>English</span>
+    <span className={currentLang === "en" ? "border-b-2 border-blue-300" : ""}>EN</span>
     {currentLang === "en" && (
-      <span className="ml-2 text-xs bg-blue-500 text-white px-1 rounded-full">✓</span>
+      <span className="ml-1 text-xs bg-blue-500 text-white px-1 rounded-full">✓</span>
+    )}
+  </a>
+
+  {/* Português */}
+  <a 
+    href="#"
+    onClick={(e) => {
+      e.preventDefault();
+      handleLanguageChange('pt');
+    }}
+    className={`${currentLang === "pt" 
+      ? "bg-gradient-to-r from-blue-700 to-blue-600 text-white font-medium shadow-inner" 
+      : "bg-gradient-to-r from-gray-800 to-gray-700 text-gray-300 hover:from-blue-800 hover:to-blue-700 hover:text-white"}
+    px-3 py-2 rounded-r-lg transition-all duration-300 flex items-center justify-center cursor-pointer text-sm`}
+  >
+    <span className={currentLang === "pt" ? "border-b-2 border-blue-300" : ""}>PT</span>
+    {currentLang === "pt" && (
+      <span className="ml-1 text-xs bg-blue-500 text-white px-1 rounded-full">✓</span>
     )}
   </a>
 </>

@@ -27,37 +27,41 @@ export const ProfileContainer = ({ lang }) => {
       <div className="flex flex-col md:flex-row gap-4 sm:gap-6 p-1" id="profile">
         {/* Left Block */}
         <div className="basis-full md:basis-2/3 grow-0 shrink-0 p-4 sm:p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow border border-white/30 flex flex-col items-center">
-          <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold text-center">{profile.title}</h1>
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center text-blue-400 mb-2">{profile.title}</h1>
           <Image
             src="/gabriel.webp"
             priority
-            alt={lang === "es" ? "foto de perfil de Gabriel Contreras" : "profile picture of Gabriel Contreras"}
-            className="rounded-full mt-3 sm:mt-4"
-            width={100}
-            height={100}
+            alt={lang === "es" ? "foto de perfil de Gabriel" : "Gabriel's profile picture"}
+            className="rounded-full mt-3 sm:mt-4 border-2 border-blue-500/50 shadow-lg shadow-blue-500/20"
+            width={120}
+            height={120}
           />
           <RoleChanger lang={lang} />
-          <hr className="my-3 sm:my-4 border-gray-600 w-full" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-6 w-full items-stretch">
-            <SkillCard
-              title={lang === "es" ? "Habilidades Técnicas" : "Hard Skills"}
-              skills={profile.hardSkills}
-              lang={lang}
-              coreCount={6}
-              icon="hard"
-            />
-            <SkillCard
-              title={lang === "es" ? "Habilidades Blandas" : "Soft Skills"}
-              skills={profile.softSkills}
-              lang={lang}
-              coreCount={6}
-              icon="soft"
-            />
+          
+          {/* Profile Narrative */}
+          <div className="mt-6 w-full px-2 sm:px-6">
+            <div className="relative bg-gradient-to-br from-slate-900/80 to-slate-800/60 rounded-2xl p-5 sm:p-8 border border-blue-500/20 shadow-lg">
+              <div className="absolute top-0 left-6 w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+              <p className="leading-relaxed tracking-wide text-sm sm:text-base lg:text-lg text-slate-300 text-justify">
+                {profile.description}
+              </p>
+            </div>
           </div>
 
-          <div className="mt-3 sm:mt-4 w-full">
-            <h3 className="flex justify-center text-lg md:text-xl font-semibold">{lang === "es" ? "Redes Sociales" : "Social Media"}</h3>
+          {/* Key Strategic Metrics / Highlights instead of massive skills lists */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-8 w-full max-w-4xl mx-auto">
+            {profile.metrics && profile.metrics.map((m, i) => (
+              <div key={i} className="flex flex-col items-center justify-center p-4 bg-slate-900/60 rounded-xl border border-blue-500/20 shadow-inner">
+                <span className="text-blue-400 text-xs uppercase font-bold tracking-wider mb-1">{m.label}</span>
+                <span className="text-slate-100 text-sm font-semibold text-center">{m.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <hr className="my-6 border-slate-700 w-full" />
+
+          <div className="mt-2 w-full">
+            <h3 className="flex justify-center text-lg md:text-xl font-semibold">{lang === 'en' ? 'Social Media' : lang === 'pt' ? 'Redes Sociais' : 'Redes Sociales'}</h3>
             <div className="flex space-x-3 justify-center mt-2">
               {profile.socialMedia.map(({ href, src, alt, width, height }) => (
                 <a key={alt} href={href}>
@@ -78,7 +82,7 @@ export const ProfileContainer = ({ lang }) => {
         <div className="basis-full md:basis-1/3 grow-0 shrink-0 p-4 sm:p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow mt-4 md:mt-0 flex flex-col items-center border border-white/30">
           <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-center">{profile.cvTitle}</h3>
           <Image
-            src="/images/cv.jpg"
+            src="/images/cv.webp"
             alt={lang === "es" ? "curriculum vitae de Gabriel Contreras" : "Curriculum Vitae of Gabriel Contreras"}
             width={200}
             height={200}
@@ -107,26 +111,19 @@ export const ProfileContainer = ({ lang }) => {
 
           {/* Certifications Section */}
           <div className="mt-4 text-center w-full">
-            <h3 className="text-lg md:text-xl font-semibold">{lang == 'en' ? 'Credentials' : 'Certificaciones'}</h3>
+            <h3 className="text-lg md:text-xl font-semibold">{lang === 'en' ? 'Credentials' : lang === 'pt' ? 'Certificações' : 'Certificaciones'}</h3>
             <ul className="mt-2 space-y-2 sm:space-y-3 w-full">
               <li className="flex items-center space-x-3 sm:space-x-4 p-2 bg-gray-900 bg-opacity-50 rounded-lg shadow-md">
                 <img src="/images/Microsoft_logo.svg" alt="Microsoft Certified" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
                 <a href="https://learn.microsoft.com/en-us/users/gacodev/credentials/293c1d62fb1d5d85?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm md:text-base font-semibold text-blue-400 hover:underline">Microsoft Certified Administrator Associate</a>
               </li>
               <li className="flex items-center space-x-3 sm:space-x-4 p-2 bg-gray-900 bg-opacity-50 rounded-lg shadow-md">
-                <img src="/images/kafka.png" alt="Apache Kafka" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
+                <img src="/images/kafka.webp" alt="Apache Kafka" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
                 <a href="https://www.credly.com/users/gacodev" target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm md:text-base font-semibold text-blue-400 hover:underline">Learning Apache Kafka...</a>
               </li>
             </ul>
           </div>
         </div>
-      </div>
-
-      {/* Profile Description */}
-      <div className="mt-4 sm:mt-6 p-4 sm:p-6 lg:p-8 bg-gray-800/80 text-gray-100 rounded-xl shadow flex justify-center">
-        <h1 className="text-center font-semibold leading-relaxed tracking-wide text-sm sm:text-base lg:text-lg w-full">
-          {profile.description}
-        </h1>
       </div>
     </div>
   );

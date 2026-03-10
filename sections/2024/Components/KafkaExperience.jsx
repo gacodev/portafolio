@@ -27,7 +27,7 @@ const KafkaExperience = ({ lang }) => {
       <div className="flex flex-col md:flex-row items-center justify-between mb-8">
         <div className="flex-shrink-0 mb-4 md:mb-0 bg-white p-2 rounded-md">
           <img
-            src="/images/kafka.png"
+            src="/images/kafka.webp"
             alt="Apache Kafka Logo"
             width={150}
             height={80}

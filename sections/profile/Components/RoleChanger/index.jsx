@@ -15,6 +15,19 @@ export const RoleChanger = ({ lang }) => {
         "Google Cloud",
         "Microsoft Azure"
       ]
+    : lang === "pt"
+    ? [
+        "Backend",
+        "Especialista DevOps",
+        "Especialista em Nuvem",
+        "Engenharia de Software",
+        "Bancos de Dados Sql & Nosql",
+        "Consultor de Infraestrutura",
+        "Arquitetura de Software",
+        "Amazon Web Services",
+        "Google Cloud",
+        "Microsoft Azure"
+      ]
     : [
         "Backend",
         "Especialista en DevOps ",

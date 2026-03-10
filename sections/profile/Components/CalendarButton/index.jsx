@@ -29,7 +29,7 @@ export const CalendarLink = ({ message }) => {
       onMouseOut={handleMouseOut}
     >
       <img
-        src="/tecnologies/calendar.png"
+        src="/tecnologies/calendar.webp"
         alt="Google Calendar"
         style={{ width: "24px", marginRight: "12px" }}
       />

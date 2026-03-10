@@ -50,6 +50,19 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
       shareOnx: "Share on x",
       shareOnLinkedin: "Share on LinkedIn",
       shareOnFacebook: "Share on Facebook"
+    },
+    pt: {
+      backToBlog: "Voltar ao blog",
+      author: "Autor",
+      readTime: "min de leitura",
+      publishedOn: "Publicado em",
+      shareArticle: "Compartilhar artigo",
+      tags: "Tags",
+      tableOfContents: "Índice",
+      copyLink: "Copiar link",
+      shareOnx: "Compartilhar no X",
+      shareOnLinkedin: "Compartilhar no LinkedIn",
+      shareOnFacebook: "Compartilhar no Facebook"
     }
   };
 

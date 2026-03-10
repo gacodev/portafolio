@@ -1,109 +1,73 @@
 const profileData = [
   {
     lang: "es",
-    title: "Ingeniero de Sistemas",
-    description: `Ingeniero de Plataformas Cloud Native, Especialista en DevOps y Desarrollo de Software. Apasionado, autodidacta y con un enfoque claro en mejorar la vida de las personas a través de la tecnología.`,
-    hardSkills: [
-      "Infraestructura: Microsoft Azure, AWS, GCP",
-      "Iac: Terraform, Pulumi, Bicep, ARM",
-      "Contenedores: Docker, Podman",
-      "Kubernetes: Helm, ArgoCD, Kustomize",
-      "IA: OpenAI, Azure AI, Gemini, Claude",
-      "CI/CD: Azure DevOps, Jenkins, Gitlab",
-      "Observabilidad: Elastic Stack, Grafana, Prometheus",
-      "Incidentes: Respuesta a Incidentes, Post-mortems",
-      "Real-time: Kafka, Redis, RabbitMQ",
-      "Batch: Airflow, Azure Functions, serverless",
-      "APIs: REST, GraphQL, gRPC",
-      "Backend: Node.js, TypeScript, Python, Java",
-      "Frontend: React (Next.js), Angular",
-      "Bases de Datos: SQL, NoSQL",
-      "Seguridad: OWASP Top 10, Security Pipelines",
-      "Resiliencia: alta disponibilidad, costos optimizados, zero downtime",
-      "Redes: Balanceadores de carga, Seguridad de red, comunicación privada"
-    ],
-    softSkills: [
-      "Liderazgo: Gestión de equipos, Mentoría, Resolución de conflictos",
-      "Comunicación efectiva: Comunicación clara, Presentación de ideas",
-      "Adaptabilidad: Flexibilidad, Ajuste al cambio",
-      "Gestión del tiempo: Priorización, Cumplimiento de plazos",
-      "Pensamiento crítico: Análisis, Resolución estratégica de problemas, RCA",
-      "Creatividad: Innovación, Generación de ideas",
-      "Toma de decisiones: Decisiones estratégicas, ADRs, Enfoque en resultados",
-      "Visión estratégica: Pensamiento a largo plazo, Planeación",
-      "Gestión eficiente: Optimización de costos y recursos",
-      "Responsabilidad: Propiedad de tareas, Rendición de cuentas",
-      "Mentalidad ágil: Scrum, Kanban, Mejora continua",
-      "Enfoque al cliente: Experiencia del usuario, Escucha activa",
-      "Manejo de idiomas: Español, Inglés",
-      "Gestión de incidentes: SLA, SLO, Resolución bajo presión"
+    title: "Platform Lead & Solutions Architect",
+    description: `Experto en diseño de sistemas escalables y traducción de requerimientos de negocio a software funcional de alto valor. Lidero la creación de arquitecturas resilientes y seguras, integrando soluciones agénticas (IA) y observabilidad avanzada para una toma de decisiones informada. Especialista en ciclo de vida de desarrollo seguro (CI/CD), autogestión estratégica y habilitación de equipos mediante portales de self-service.`,
+    metrics: [
+      { label: "Core Focus", value: "System Design & Arch" },
+      { label: "Execution", value: "Platform Engineering" },
+      { label: "Value Creation", value: "AI Agents & FinOps" },
+      { label: "Delivery", value: "Secure SDLC (CI/CD)" }
     ],
     socialMedia: [
-      { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.png", alt: "WhatsApp" },
-      { href: "https://github.com/gacodev", src: "/socialmedia/github.png", alt: "GitHub" },
+      { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.webp", alt: "WhatsApp" },
+      { href: "https://github.com/gacodev", src: "/socialmedia/github.webp", alt: "GitHub" },
       { href: "https://www.linkedin.com/in/gabrielcontrerasv3", src: "/socialmedia/linkedin.webp", alt: "LinkedIn" },
-      { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.png", alt: "Email" }
+      { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.webp", alt: "Email" }
     ],
     cvTitle: "Curriculum Vitae",
-    cvButton: "Descargar",
+    cvButton: "Descargar CV",
     contactPhone: "Teléfono:",
     contactEmail: "Correo: ",
-    availableMessage: "¡Disponible para nuevos proyectos!",
-    calendarMessage: "¿Estás listo para agendar una reunión?",
+    availableMessage: "¡Disponible para Liderar tu Plataforma!",
+    calendarMessage: "¿Listo para hablar de Arquitectura y Negocio?",
   },
   {
     lang: "en",
-    title: "Systems Engineer",
-    description: `Cloud Native Platform Engineer, DevOps Specialist, and Software Developer. Passionate, self-taught and with a clear focus on improving people's lives through technology.`,
-    hardSkills: [
-      "Infrastructure:  Microsoft Azure, AWS, GCP",
-      "IaC: Terraform, Pulumi, Bicep, ARM",
-      "Containers: Docker, Podman",
-      "Kubernetes: Helm, ArgoCD, Kustomize",   
-      "AI: OpenAI, Azure AI, Gemini, Claude",
-      "CI/CD: Azure DevOps, Jenkins, Gitlab",  
-      "Observability: Elastic Stack, Grafana, Prometheus",
-      "Incidents: Incident Response, Post-mortems, Alerting, PagerDuty",
-      "Real-time: Kafka, Redis, RabbitMQ",
-      "Batch: Airflow, Azure Functions, serverless",
-      "APIs: REST, GraphQL, gRPC",
-      "Backend: Node.js, TypeScript, Python, Java",
-      "Frontend: React (Next.js), Angular",
-      "Databases: SQL, NoSQL",
-      "Security: OWASP Top 10, Security Pipelines",
-      "Resilience: Zero Downtime, High Availability, Cost Optimization",
-      "Network: Load Balancers, Network Security, Private Communication"
-    ],
-    softSkills: [
-      "Leadership: Team management, Mentorship, Conflict resolution",
-      "Communication: Effective communication, Presentation skills",
-      "Adaptability: Adaptability, Flexibility",
-      "Time Management: Time-management, Prioritization",
-      "Critical Thinking: Analytical thinking, Strategic problem-solving, Root-cause analysis",
-      "Innovation: Innovation, Creativity",
-      "Decision Making: Achievement orientation, Strategic decision-making, architecture decisions records",
-      "Vision: Long-term vision",
-      "Optimization: Cost optimization, Resource optimization",
-      "Ownership: Ownership, Accountability",
-      "Agility mindset: Agile Methodologies, Scrum, Kanban",
-      "Customer Focus: Customer-centric mindset",
-      "Languages: Spanish, English",
-      "Resiliencia: incident management, SLA, SLO, issue resolution"
-
+    title: "Platform Lead & Solutions Architect",
+    description: `Expert in scalable system design and translating business requirements into functional, high-value software. I lead the creation of resilient, secure architectures by integrating agentic solutions (AI) and advanced observability for data-driven decision making. Specialist in secure SDLC (CI/CD), strategic self-management, and empowering teams through developer self-service.`,
+    metrics: [
+      { label: "Core Focus", value: "System Design & Arch" },
+      { label: "Execution", value: "Platform Engineering" },
+      { label: "Value Creation", value: "AI Agents & FinOps" },
+      { label: "Delivery", value: "Secure SDLC (CI/CD)" }
     ],
     socialMedia: [
-      { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.png", alt: "WhatsApp", width: 40, height: 40 },
-      { href: "https://github.com/gacodev", src: "/socialmedia/github.png", alt: "GitHub", width: 40, height: 40 },
-      { href: "https://www.linkedin.com/in/gabrielcontrerasv3", src: "/socialmedia/linkedin.webp", alt: "LinkedIn", width: 40, height: 40 },
-      { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.webp", alt: "Email", width: 40, height: 40 }
+      { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.webp", alt: "WhatsApp" },
+      { href: "https://github.com/gacodev", src: "/socialmedia/github.webp", alt: "GitHub" },
+      { href: "https://www.linkedin.com/in/gabrielcontrerasv3", src: "/socialmedia/linkedin.webp", alt: "LinkedIn" },
+      { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.webp", alt: "Email" }
     ],
-    cvTitle: "Curriculum Vitae",
-    cvButton: "Download",
+    cvTitle: "Resume",
+    cvButton: "Download Resume",
     contactPhone: "Phone:",
     contactEmail: "Email: ",
-    availableMessage: "Available for new projects!",
-    calendarMessage: "Are you ready to schedule a meeting?",
+    availableMessage: "Available to Lead your Platform!",
+    calendarMessage: "Ready to talk Architecture and Business?",
   },
+  {
+    lang: "pt",
+    title: "Platform Lead & Solutions Architect",
+    description: `Especialista em design de sistemas escaláveis e na tradução de requisitos de negócios em software funcional de alto valor. Lidero a criação de arquiteturas resilientes e seguras, integrando soluções agênticas (IA) e observabilidade avançada para tomada de decisões baseada em dados. Especialista em ciclo de vida de desenvolvimento seguro (CI/CD), autogestão estratégica e capacitação de equipes por meio de portais de self-service.`,
+    metrics: [
+      { label: "Foco Principal", value: "Design de Sistemas & Arquitetura" },
+      { label: "Execução", value: "Engenharia de Plataforma" },
+      { label: "Criação de Valor", value: "Agentes IA & FinOps" },
+      { label: "Entrega", value: "SDLC Seguro (CI/CD)" }
+    ],
+    socialMedia: [
+      { href: "https://api.whatsapp.com/send?phone=3126004185", src: "/socialmedia/whatsapp.webp", alt: "WhatsApp" },
+      { href: "https://github.com/gacodev", src: "/socialmedia/github.webp", alt: "GitHub" },
+      { href: "https://www.linkedin.com/in/gabrielcontrerasv3", src: "/socialmedia/linkedin.webp", alt: "LinkedIn" },
+      { href: "mailto:gabriel.contrerasv3@gmail.com", src: "/socialmedia/gmail.webp", alt: "Email" }
+    ],
+    cvTitle: "Curriculum Vitae",
+    cvButton: "Baixar Currículo",
+    contactPhone: "Telefone:",
+    contactEmail: "E-mail: ",
+    availableMessage: "Disponível para Liderar sua Plataforma!",
+    calendarMessage: "Pronto para falar sobre Arquitetura e Negócios?",
+  }
 ];
 
 export default profileData;

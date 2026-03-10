@@ -13,15 +13,15 @@ export const Footer = ({ lang = 'es' }) => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
       
       {/* Main Footer Content */}
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+      <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 justify-between">
           
-          {/* About Section - Takes more space */}
-          <div className="col-span-1 lg:col-span-2 pr-0 lg:pr-8">
+          {/* About Section */}
+          <div className="w-full lg:w-5/12">
             {/* Header with Icon */}
-            <div className="flex items-center mb-6">
-              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
-                <Code className="w-7 h-7 text-white" />
+            <div className="flex flex-col sm:flex-row items-start sm:items-center mb-6">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 sm:mb-0 sm:mr-4 shadow-lg">
+                <Code className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-1">{t.cloudExpert}</h3>
@@ -30,13 +30,13 @@ export const Footer = ({ lang = 'es' }) => {
             </div>
             
             {/* Description */}
-            <p className="text-gray-300 mb-8 leading-relaxed text-sm lg:text-base max-w-lg">
+            <p className="text-gray-300 mb-8 leading-relaxed text-sm lg:text-base max-w-lg text-justify sm:text-left">
               {t.description}
             </p>
             
             {/* Skills Tags */}
             <div className="mb-6">
-              <h4 className="text-xs font-semibold text-blue-400 mb-4 uppercase tracking-wider">{t.skills}</h4>
+              <h4 className="text-xs font-semibold text-blue-400 mb-3 uppercase tracking-wider">{t.skills}</h4>
               <div className="flex flex-wrap gap-2">
                 {t.skills_list.map((skill, index) => (
                   <span 
@@ -50,92 +50,93 @@ export const Footer = ({ lang = 'es' }) => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-6">
-            <div>
-              <h4 className="text-lg font-semibold mb-6 text-white relative">
-                {t.quickLinks}
-                <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-500 rounded-full"></div>
-              </h4>
-              <ul className="space-y-4">
-                <li>
-                  <a 
-                    href={`/${lang}`}
-                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group text-sm"
-                  >
-                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></span>
-                    {t.home}
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href={`/${lang}/blog`}
-                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group text-sm"
-                  >
-                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></span>
-                    {t.blog}
-                  </a>
-                </li>
-                
-              </ul>
-            </div>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-6">
-            <div>
-              <h4 className="text-lg font-semibold mb-6 text-white relative">
-                {t.contact}
-                <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-blue-500 rounded-full"></div>
-              </h4>
-              <ul className="space-y-5">
-                <li className="flex items-start text-gray-300 group">
-                  <Mail className="w-4 h-4 mr-3 text-blue-400 mt-0.5 flex-shrink-0" />
-                  <a 
-                    href={`mailto:${t.email}`} 
-                    className="hover:text-blue-400 transition-colors text-sm break-all"
-                  >
-                    {t.email}
-                  </a>
-                </li>
-                <li className="flex items-start text-gray-300">
-                  <MapPin className="w-4 h-4 mr-3 text-blue-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{t.location}</span>
-                </li>
-              </ul>
+          <div className="w-full lg:w-7/12 grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-8">
+            {/* Quick Links */}
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-lg font-semibold mb-5 text-white relative inline-block">
+                  {t.quickLinks}
+                  <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-blue-500 rounded-full"></div>
+                </h4>
+                <ul className="space-y-4">
+                  <li>
+                    <a 
+                      href={`/${lang}`}
+                      className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group text-sm sm:text-base"
+                    >
+                      <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></span>
+                      {t.home}
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href={`/${lang}/blog`}
+                      className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group text-sm sm:text-base"
+                    >
+                      <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></span>
+                      {t.blog}
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            {/* Social Links */}
-            <div className="pt-2">
-              <h5 className="text-xs font-semibold text-blue-400 mb-4 uppercase tracking-wider">{t.connect}</h5>
-              <div className="flex space-x-3">
-                <a 
-                  href="https://www.linkedin.com/in/gabrielcontrerasv3/" 
-                  className="w-11 h-11 bg-gray-800/80 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:scale-105 transition-all duration-200 group shadow-md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-5 h-5 group-hover:text-white transition-colors" />
-                </a>
-                <a 
-                  href="https://github.com/gacodev" 
-                  className="w-11 h-11 bg-gray-800/80 rounded-xl flex items-center justify-center hover:bg-gray-600 hover:scale-105 transition-all duration-200 group shadow-md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                >
-                  <Github className="w-5 h-5 group-hover:text-white transition-colors" />
-                </a>
-                <a 
-                  href="https://x.com/gacodev" 
-                  className="w-11 h-11 bg-gray-800/80 rounded-xl flex items-center justify-center hover:bg-blue-400 hover:scale-105 transition-all duration-200 group shadow-md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="x"
-                >
-                  <X className="w-5 h-5 group-hover:text-white transition-colors" />
-                </a>
+            {/* Contact Info */}
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-lg font-semibold mb-5 text-white relative inline-block">
+                  {t.contact}
+                  <div className="absolute -bottom-1 left-0 w-8 h-0.5 bg-blue-500 rounded-full"></div>
+                </h4>
+                <ul className="space-y-5">
+                  <li className="flex items-start text-gray-300 group">
+                    <Mail className="w-5 h-5 sm:w-4 sm:h-4 mr-3 text-blue-400 mt-0.5 flex-shrink-0" />
+                    <a 
+                      href={`mailto:${t.email}`} 
+                      className="hover:text-blue-400 transition-colors text-sm sm:text-base break-all"
+                    >
+                      {t.email}
+                    </a>
+                  </li>
+                  <li className="flex items-start text-gray-300">
+                    <MapPin className="w-5 h-5 sm:w-4 sm:h-4 mr-3 text-blue-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm sm:text-base">{t.location}</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Social Links */}
+              <div className="pt-2">
+                <h5 className="text-xs font-semibold text-blue-400 mb-3 uppercase tracking-wider">{t.connect}</h5>
+                <div className="flex space-x-3">
+                  <a 
+                    href="https://www.linkedin.com/in/gabrielcontrerasv3/" 
+                    className="w-10 h-10 sm:w-11 sm:h-11 bg-gray-800/80 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:scale-105 transition-all duration-200 group shadow-md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5 group-hover:text-white transition-colors" />
+                  </a>
+                  <a 
+                    href="https://github.com/gacodev" 
+                    className="w-10 h-10 sm:w-11 sm:h-11 bg-gray-800/80 rounded-xl flex items-center justify-center hover:bg-gray-600 hover:scale-105 transition-all duration-200 group shadow-md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                  >
+                    <Github className="w-5 h-5 group-hover:text-white transition-colors" />
+                  </a>
+                  <a 
+                    href="https://x.com/gacodev" 
+                    className="w-10 h-10 sm:w-11 sm:h-11 bg-gray-800/80 rounded-xl flex items-center justify-center hover:bg-blue-400 hover:scale-105 transition-all duration-200 group shadow-md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="x"
+                  >
+                    <X className="w-5 h-5 group-hover:text-white transition-colors" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -153,7 +154,7 @@ export const Footer = ({ lang = 'es' }) => {
             <div className="flex items-center space-x-4">
               <div className="flex items-center">
                 <Image
-                  src="/bandera.png"
+                  src="/bandera.webp"
                   alt={lang === "en" ? "nationality" : "nacionalidad"}
                   width={20}
                   height={20}

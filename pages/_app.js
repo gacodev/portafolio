@@ -3,92 +3,74 @@ import FloatingMenu from "../components/FloatingMenu";
 import ScrollArrows from "../components/ScrollArrows";
 import { useRouter } from "next/router";
 import { useEffect, useState, useCallback } from "react";
+import useLanguageStore from "../store/useLanguageStore";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-  const [language, setLanguage] = useState('es'); // Idioma por defecto es español
-  const [isMobile, setIsMobile] = useState(false); // Estado para detectar dispositivo móvil/tablet
-  const [menuVisible, setMenuVisible] = useState(false); // Estado para controlar visibilidad del menú
+  const { lang, setLang } = useLanguageStore();
+  const [isMobile, setIsMobile] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
 
-  // Función para manejar cambios en el tamaño de la pantalla
+  // Sync lang from URL → Zustand store (on route change or initial load)
+  useEffect(() => {
+    const path = router.asPath || '';
+    if (path.startsWith('/en')) {
+      setLang('en');
+    } else if (path.startsWith('/pt')) {
+      setLang('pt');
+    } else {
+      setLang('es');
+    }
+  }, [router.asPath, setLang]);
+
+  // Handle screen resize
   const handleResize = useCallback(() => {
     if (typeof window !== 'undefined') {
-      setIsMobile(window.innerWidth < 1280); // Incluye tablets e iPad Pro para floating menu
-      // Si cambia a desktop grande, mostrar menú lateral
-      if (window.innerWidth >= 1280) {
-        setMenuVisible(true);
-      } else {
-        setMenuVisible(false); // En móvil/tablet, usar floating menu
-      }
+      const mobile = window.innerWidth < 1280;
+      setIsMobile(mobile);
+      setMenuVisible(!mobile);
     }
   }, []);
 
-  // Detectar dispositivo móvil/tablet al cargar y cuando cambie el tamaño
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      handleResize(); // Ejecutar una vez al inicio
+      handleResize();
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
     }
   }, [handleResize]);
-  
-  // Función para alternar la visibilidad del menú en móviles/tablets
+
   const toggleMenu = () => {
-    if (isMobile) {
-      setMenuVisible(prevState => !prevState);
-    }
+    if (isMobile) setMenuVisible((prev) => !prev);
   };
 
-  // Cerrar menu al hacer clic fuera de él
+  // Close menu on outside click (mobile)
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Solo aplica en móviles y cuando el menú está visible
       if (isMobile && menuVisible) {
         const menu = document.querySelector('.menu-container');
         const menuButton = document.querySelector('.menu-toggle-button');
-        
-        // Si hay un clic fuera del menú y del botón de menú
-        if (menu && !menu.contains(event.target) && 
+        if (menu && !menu.contains(event.target) &&
             menuButton && !menuButton.contains(event.target)) {
           setMenuVisible(false);
         }
       }
     };
 
-    // Agregar listener solo cuando el menú está visible en móvil
     if (isMobile && menuVisible) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('touchstart', handleClickOutside);
     }
-    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
     };
   }, [isMobile, menuVisible]);
 
-  useEffect(() => {
-    // Detectar el idioma basado en la ruta
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname;
-      
-      if (path === '/en' || path.startsWith('/en/')) {
-        setLanguage('en');
-      } else {
-        setLanguage('es');
-      }
-      
-      // También verificamos el router para mayor precisión
-      if (router.pathname === '/en' || router.pathname.startsWith('/en/')) {
-        setLanguage('en');
-      }
-    }
-  }, [router.asPath, router.pathname]);
-
   return (
     <>
       <div className="grid-layout">
-      {/* Botón para mostrar/ocultar menú en móviles/tablets */}
+      {/* Mobile menu toggle */}
       {isMobile && (
         <button 
           onClick={toggleMenu}
@@ -107,11 +89,11 @@ function MyApp({ Component, pageProps }) {
         </button>
       )}
       
-      {/* Menú lateral - visible en desktop grande, floating en móviles/tablets */}
+      {/* Sidebar */}
       {(!isMobile || (isMobile && menuVisible)) && (
         <aside className={`menu-container ${isMobile ? 'mobile-menu' : ''}`}>
           <FloatingMenu 
-            lang={language} 
+            lang={lang} 
             menuMode="embedded" 
             isMobile={isMobile} 
             closeMenu={() => isMobile && setMenuVisible(false)}
@@ -119,15 +101,13 @@ function MyApp({ Component, pageProps }) {
         </aside>
       )}
       
-      {/* Contenido principal */}
+      {/* Main content — lang passed from Zustand */}
       <main className="content-container">
-        <Component {...pageProps} />
+        <Component {...pageProps} lang={lang} />
       </main>
-
 
     </div>
 
-      {/* Arrows for quick section navigation (outside grid to avoid layout shifts) */}
       <ScrollArrows />
     </>
   );
