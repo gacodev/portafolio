@@ -5,9 +5,6 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-  experimental: {
-    optimizePackageImports: ['react-icons', 'lucide-react'],
-  },
 };
 
 module.exports = nextConfig;
