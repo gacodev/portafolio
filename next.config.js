@@ -5,13 +5,8 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-  modularizeImports: {
-    'react-icons': {
-      transform: 'react-icons/{{member}}',
-    },
-    'lucide-react': {
-      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
-    },
+  experimental: {
+    optimizePackageImports: ['react-icons', 'lucide-react'],
   },
 };
 
