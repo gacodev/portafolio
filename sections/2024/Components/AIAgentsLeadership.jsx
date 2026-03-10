@@ -124,7 +124,8 @@ const AIAgentsLeadership = ({ lang = 'es' }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {aiPlatformAgents.map((agent) => {
               const Icon = IconMap[agent.icon] || Bot;
-              const isActive = agent.status === 'Activo';
+              const agentStatus = agent.status[lang] || agent.status.es;
+              const isActive = agentStatus === texts.statusActive;
 
               return (
                 <div key={agent.id} className="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-2xl p-5 sm:p-6 hover:border-blue-500/50 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] relative overflow-hidden">
@@ -145,12 +146,12 @@ const AIAgentsLeadership = ({ lang = 'es' }) => {
                           {isActive ? texts.statusActive : texts.statusStandby}
                         </span>
                       </div>
-                      <p className="text-indigo-400 font-medium text-sm">{agent.role}</p>
+                      <p className="text-indigo-400 font-medium text-sm">{agent.role[lang] || agent.role.es}</p>
                     </div>
                   </div>
 
                   <div className="space-y-4 mb-6 text-sm text-slate-300">
-                    <p className="leading-relaxed">{agent.description}</p>
+                    <p className="leading-relaxed">{agent.description[lang] || agent.description.es}</p>
 
                     {/* Protocol & Provider tags */}
                     <div className="flex flex-wrap gap-2">
@@ -200,9 +201,9 @@ const AIAgentsLeadership = ({ lang = 'es' }) => {
                 <div className="mb-6">
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-100 flex items-center gap-3 mb-2">
                     <Workflow className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400 shrink-0" />
-                    {workflow.name}
+                    {workflow.name[lang] || workflow.name.es}
                   </h3>
-                  <p className="text-slate-400 text-sm sm:text-base">{workflow.description}</p>
+                  <p className="text-slate-400 text-sm sm:text-base">{workflow.description[lang] || workflow.description.es}</p>
 
                   {/* Workflow protocol tags */}
                   {workflow.protocols && (
@@ -243,7 +244,7 @@ const AIAgentsLeadership = ({ lang = 'es' }) => {
                               <StepIcon className="w-6 h-6 sm:w-7 sm:h-7" />
                             </div>
                             <div className="mt-3 text-xs sm:text-sm font-medium text-slate-300 text-center max-w-[120px]">
-                              {step.name}
+                              {step.name[lang] || step.name.es}
                             </div>
                           </div>
 

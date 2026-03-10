@@ -51,6 +51,29 @@ const CICDCards = ({ lang = 'es' }) => {
           description: 'Experience with automated pipelines, runner configuration and continuous deployments.'
         }
       }
+    },
+    pt: {
+      title: 'Ferramentas de CI/CD',
+      description: 'Ferramentas com as quais tenho experiência em integração e entrega contínua',
+      visit: 'Visitar',
+      tools: {
+        azure: {
+          name: 'Azure DevOps',
+          description: 'Experiência na configuração de pipelines completos e automação de projetos empresariais.'
+        },
+        jenkins: {
+          name: 'Jenkins',
+          description: 'Configuração avançada de pipelines, integração com Docker e Kubernetes.'
+        },
+        github: {
+          name: 'GitHub Actions',
+          description: 'Automação de fluxos de trabalho com CI/CD e implantação em múltiplos ambientes.'
+        },
+        gitlab: {
+          name: 'GitLab CI/CD',
+          description: 'Experiência com pipelines automatizados, configuração de runners e implantações contínuas.'
+        }
+      }
     }
   };
 

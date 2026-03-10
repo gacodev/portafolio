@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import BlogList from '../BlogList';
-import BlogPost from '../BlogPost';
 import { getArticleById } from '../../../data/blog';
+
+const BlogPost = dynamic(() => import('../BlogPost'), {
+  ssr: false,
+  loading: () => <div className="min-h-[400px] flex items-center justify-center"><div className="text-white text-lg animate-pulse">Loading...</div></div>
+});
 
 const Blog = ({ lang = 'es' }) => {
   const router = useRouter();
@@ -62,13 +67,10 @@ const Blog = ({ lang = 'es' }) => {
             {/* Blog Header */}
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                {lang === 'en' ? 'Architecture Decision Records' : 'ADR - Registros de Decisiones'}
+                {{ es: 'ADR - Registros de Decisiones', en: 'Architecture Decision Records', pt: 'ADR - Registros de Decisões' }[lang] || 'Architecture Decision Records'}
               </h1>
               <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                {lang === 'en' 
-                  ? 'Documenting architectural and technical decisions'
-                  : 'Documentando decisiones arquitectónicas y técnicas'
-                }
+                {{ es: 'Documentando decisiones arquitectónicas y técnicas', en: 'Documenting architectural and technical decisions', pt: 'Documentando decisões arquitetônicas e técnicas' }[lang] || 'Documenting architectural and technical decisions'}
               </p>
             </div>
 

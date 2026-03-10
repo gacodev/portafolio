@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Mail, Linkedin, X, MapPin, Code, Github } from "lucide-react";
 import footerContent from "../../../data/footer";
 
@@ -60,22 +61,22 @@ export const Footer = ({ lang = 'es' }) => {
                 </h4>
                 <ul className="space-y-4">
                   <li>
-                    <a 
+                    <Link
                       href={`/${lang}`}
                       className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group text-sm sm:text-base"
                     >
                       <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></span>
                       {t.home}
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a 
+                    <Link
                       href={`/${lang}/blog`}
                       className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group text-sm sm:text-base"
                     >
                       <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 opacity-60 group-hover:opacity-100 transition-opacity"></span>
                       {t.blog}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

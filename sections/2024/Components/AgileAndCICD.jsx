@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
-import CICDCards from "../../../components/CICDCards";      
+import CICDCards from "../../../components/CICDCards";
 
 const AgileComponent = ({ lang = "en" }) => {
   const [activeSection, setActiveSection] = useState("values");
+  const t = (es, en, pt) => ({ es, en, pt })[lang] || en;
 
   const agileContent = {
     values: [
-      { en: "Individuals and interactions", es: "Individuos e interacciones" },
-      { en: "Working software", es: "Software funcionando" },     
-      { en: "Customer collaboration", es: "Colaboración con el cliente" },
-      { en: "Responding to change", es: "Respuesta ante el cambio" },
+      { en: "Individuals and interactions", es: "Individuos e interacciones", pt: "Indivíduos e interações" },
+      { en: "Working software", es: "Software funcionando", pt: "Software funcionando" },
+      { en: "Customer collaboration", es: "Colaboración con el cliente", pt: "Colaboração com o cliente" },
+      { en: "Responding to change", es: "Respuesta ante el cambio", pt: "Resposta à mudança" },
     ],
     principles: [
-      { en: "Early delivery", es: "Entrega temprana" },
-      { en: "Welcome changes", es: "Aceptar cambios" },
-      { en: "Frequent delivery", es: "Entrega frecuente" },
-      { en: "Work together", es: "Trabajar juntos" },
-      { en: "Motivated individuals", es: "Individuos motivados" },
-      { en: "Face-to-face conversation", es: "Conversación cara a cara" },
-      { en: "Working software", es: "Software funcionando" },
-      { en: "Sustainable development", es: "Desarrollo sostenible" },
-      { en: "Technical excellence", es: "Excelencia técnica" },
-      { en: "Simplicity", es: "Simplicidad" },
-      { en: "Self-organizing teams", es: "Equipos auto-organizados" },
-      { en: "Regular adaptation", es: "Adaptación regular" },
+      { en: "Early delivery", es: "Entrega temprana", pt: "Entrega antecipada" },
+      { en: "Welcome changes", es: "Aceptar cambios", pt: "Aceitar mudanças" },
+      { en: "Frequent delivery", es: "Entrega frecuente", pt: "Entrega frequente" },
+      { en: "Work together", es: "Trabajar juntos", pt: "Trabalhar juntos" },
+      { en: "Motivated individuals", es: "Individuos motivados", pt: "Indivíduos motivados" },
+      { en: "Face-to-face conversation", es: "Conversación cara a cara", pt: "Conversa cara a cara" },
+      { en: "Working software", es: "Software funcionando", pt: "Software funcionando" },
+      { en: "Sustainable development", es: "Desarrollo sostenible", pt: "Desenvolvimento sustentável" },
+      { en: "Technical excellence", es: "Excelencia técnica", pt: "Excelência técnica" },
+      { en: "Simplicity", es: "Simplicidad", pt: "Simplicidade" },
+      { en: "Self-organizing teams", es: "Equipos auto-organizados", pt: "Equipes auto-organizadas" },
+      { en: "Regular adaptation", es: "Adaptación regular", pt: "Adaptação regular" },
     ],
   };
 
@@ -39,9 +40,7 @@ const AgileComponent = ({ lang = "en" }) => {
       <div className="p-6 bg-gradient-to-r from-teal-400 to-blue-500 text-white">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-white relative">
           <span className="relative z-10">
-            {lang === "en"
-              ? "Mastering Agile: Principles in Practice"
-              : "Dominio Ágil: Principios en Acción"}
+            {t("Dominio Ágil: Principios en Acción", "Mastering Agile: Principles in Practice", "Domínio Ágil: Princípios em Ação")}
           </span>
         </h2>
 
@@ -54,7 +53,7 @@ const AgileComponent = ({ lang = "en" }) => {
           }`}
           onClick={() => setActiveSection("values")}
         >
-          {lang === "en" ? "Values" : "Valores"}
+          {t("Valores", "Values", "Valores")}
         </button>
         <button
           className={`px-4 py-2 rounded-r-lg ${
@@ -64,7 +63,7 @@ const AgileComponent = ({ lang = "en" }) => {
           }`}
           onClick={() => setActiveSection("principles")}
         >
-          {lang === "en" ? "Principles" : "Principios"}
+          {t("Principios", "Principles", "Princípios")}
         </button>
       </div>
 
@@ -89,7 +88,7 @@ const AgileComponent = ({ lang = "en" }) => {
                   <span className="text-2xl md:text-3xl mr-3">
                     {["👥", "💻", "🤝", "🔄"][index]}
                   </span>
-                  <span>{value[lang]}</span>
+                  <span>{value[lang] || value.en}</span>
                 </motion.div>
               ))}
             </div>
@@ -102,7 +101,7 @@ const AgileComponent = ({ lang = "en" }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {principle[lang]}
+                  {principle[lang] || principle.en}
                 </motion.div>
               ))}
             </div>
@@ -110,7 +109,7 @@ const AgileComponent = ({ lang = "en" }) => {
         </motion.div>
       </AnimatePresence>
       </div>
-      
+
       {/* Sección de CI/CD Tools con el componente mejorado */}
       <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
         <CICDCards lang={lang} />

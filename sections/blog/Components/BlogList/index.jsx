@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useMemo } from 'react';
 import { Calendar, Clock, Tag, User, Search, Filter } from 'lucide-react';
-import { 
-  getPublishedArticles, 
-  getFilteredArticles,
-  getArticlesByCategory,
+import {
+  getPublishedArticles,
   getCategories,
   getTags
 } from '../../../data/blog';
@@ -14,9 +11,9 @@ const BlogList = ({ lang = 'es', onArticleSelect }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
 
-  const articles = getPublishedArticles();
-  const categories = getCategories();
-  const tags = getTags();
+  const articles = useMemo(() => getPublishedArticles(), []);
+  const categories = useMemo(() => getCategories(), []);
+  const tags = useMemo(() => getTags(), []);
 
   // Filtrar artículos basado en búsqueda y filtros
   const filteredArticles = articles.filter(article => {
@@ -83,27 +80,17 @@ const BlogList = ({ lang = 'es', onArticleSelect }) => {
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
             {t.title}
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             {t.subtitle}
           </p>
-        </motion.div>
+        </div>
 
         {/* Filters */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-8 bg-white rounded-lg shadow-md p-6"
-        >
+        <div className="mb-8 bg-white rounded-lg shadow-md p-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Search */}
             <div className="relative">
@@ -155,17 +142,14 @@ const BlogList = ({ lang = 'es', onArticleSelect }) => {
               {t.clearFilters}
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredArticles.length > 0 ? (
-            filteredArticles.map((article, index) => (
-              <motion.article
+            filteredArticles.map((article) => (
+              <article
                 key={article.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
               >
                 {/* Article Header */}
@@ -176,7 +160,7 @@ const BlogList = ({ lang = 'es', onArticleSelect }) => {
                     </span>
                     {article.featured && (
                       <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">
-                        Featured
+                        {{ es: 'Destacado', en: 'Featured', pt: 'Destaque' }[lang] || 'Featured'}
                       </span>
                     )}
                   </div>
@@ -232,14 +216,10 @@ const BlogList = ({ lang = 'es', onArticleSelect }) => {
                     {t.readMore}
                   </button>
                 </div>
-              </motion.article>
+              </article>
             ))
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="col-span-full text-center py-12"
-            >
+            <div className="col-span-full text-center py-12">
               <p className="text-gray-600 text-lg mb-4">{t.noResults}</p>
               <button
                 onClick={clearFilters}
@@ -247,7 +227,7 @@ const BlogList = ({ lang = 'es', onArticleSelect }) => {
               >
                 {t.clearFilters}
               </button>
-            </motion.div>
+            </div>
           )}
         </div>
       </div>

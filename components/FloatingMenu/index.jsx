@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import { useRouter } from "next/router";
 import useLanguageStore from '../../store/useLanguageStore';
 
@@ -35,6 +36,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       agile: 'Agile & CI/CD',
       aiml: 'AI/ML',
       timeline: 'Timeline',
+      migrations: 'Migraciones',
       search: 'Buscar...',
       noResults: 'No se encontraron resultados para',
       menu: 'MENÚ',
@@ -54,6 +56,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       agile: 'Agile & CI/CD',
       aiml: 'AI/ML',
       timeline: 'Timeline',
+      migrations: 'Migrations',
       search: 'Search...',
       noResults: 'No results found for',
       menu: 'MENU',
@@ -73,6 +76,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
       agile: 'Agile & CI/CD',
       aiml: 'IA/ML',
       timeline: 'Linha do Tempo',
+      migrations: 'Migrações',
       search: 'Pesquisar...',
       noResults: 'Nenhum resultado encontrado para',
       menu: 'MENU',
@@ -98,7 +102,8 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
     { id: 'elastic', name: labels.elastic, icon: 'search', ref: 'elastic-experience' },
     { id: 'metricas', name: labels.metrics, icon: 'chart', ref: 'performance-metrics' },
     { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
-    { id: 'timeline', name: labels.timeline, icon: 'mail', ref: 'timeline' }
+    { id: 'timeline', name: labels.timeline, icon: 'mail', ref: 'timeline' },
+    { id: 'migrations', name: labels.migrations, icon: 'refresh', ref: 'migrations' }
   ];
 
   // Actualizar menú items cuando cambia el idioma
@@ -332,11 +337,11 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
           {/* Sección de Enlaces Externos */}
           <div className="border-t border-gray-700 mt-4 pt-4">
             <div className="px-3 mb-3 text-blue-400 text-xs uppercase font-semibold">
-              {lang === 'en' ? 'External Links' : 'Enlaces Externos'}
+              {{ en: 'More', es: 'Más', pt: 'Mais' }[lang] || 'More'}
             </div>
             
             <div className="px-2">
-              <a
+              <Link
                 href={`/${lang}/blog`}
                 className="w-full flex items-center p-3 mb-1 rounded-lg transition-all duration-200 text-gray-300 hover:bg-gray-700 hover:text-white"
                 onClick={isMobile ? () => closeMenu() : undefined}
@@ -347,7 +352,7 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
                   </svg>
                 </span>
                 <span className="font-medium">{labels.blog}</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -394,11 +399,18 @@ const LanguageButtons = ({ currentLang }) => {
   const router = useRouter();
   const setLang = useLanguageStore((s) => s.setLang);
   
-  // Language switch: Zustand + shallow routing (no full page reload)
-  const handleLanguageChange = (lang) => {
-    if (currentLang !== lang) {
-      setLang(lang);
-      router.push(`/${lang}`, undefined, { shallow: true });
+  // Language switch: update Zustand store + URL without navigation
+  // Uses replaceState to avoid unmounting/remounting components (preserves scroll position)
+  const handleLanguageChange = (newLang) => {
+    if (currentLang !== newLang) {
+      const currentPath = router.asPath;
+      const newPath = currentPath.replace(/^\/(es|en|pt)/, `/${newLang}`);
+      window.history.replaceState(
+        { ...window.history.state, as: newPath, url: newPath },
+        '',
+        newPath
+      );
+      setLang(newLang);
     }
   };
   

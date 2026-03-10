@@ -1,10 +1,16 @@
+import React, { useState } from "react";
 import Image from "next/image";
 import SearchTrigger from "../../../../components/SearchTrigger";
 import { CalendarLink } from "../CalendarButton";
 import profileData from "../../../data/profile";
 import SkillCard from "./SkillCard";
+import { Briefcase } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const ProjectsShowcase = dynamic(() => import("./ProjectsShowcase"), { ssr: false });
 
 export const ProfileContainer = ({ lang }) => {
+  const [showProjects, setShowProjects] = useState(false);
   const profile = profileData.find((data) => data.lang === lang);
 
   const handleDownload = (lang) => {
@@ -91,6 +97,13 @@ export const ProfileContainer = ({ lang }) => {
           <button className="mt-4 w-full sm:w-auto bg-blue-500 text-white py-2 px-4 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400" onClick={() => handleDownload(lang)}>
             {profile.cvButton}
           </button>
+          <button
+            className="mt-3 w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white py-2 px-4 rounded flex items-center justify-center gap-2 transition-all shadow-lg shadow-indigo-900/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+            onClick={() => setShowProjects(true)}
+          >
+            <Briefcase size={16} />
+            {lang === 'en' ? 'Projects' : lang === 'pt' ? 'Projetos' : 'Proyectos'}
+          </button>
 
           <div className="mt-4 text-center w-full">
             <div className="text-sm sm:text-base">
@@ -125,6 +138,7 @@ export const ProfileContainer = ({ lang }) => {
           </div>
         </div>
       </div>
+      <ProjectsShowcase isOpen={showProjects} onClose={() => setShowProjects(false)} lang={lang} />
     </div>
   );
 };

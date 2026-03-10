@@ -37,7 +37,7 @@ export const TechList = ({ lang }) => {
     <div className="py-6 sm:py-8 lg:py-12 bg-gradient-to-r from-blue-900 to-purple-900 w-full">
       <div className="w-full px-2 sm:px-4 lg:px-8">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-center text-white mb-6 sm:mb-8 lg:mb-12">
-          {lang === "en" ? "Technologies I've Worked With" : "Tecnologías con las que he trabajado"}
+          {{ en: "Technologies I've Worked With", es: "Tecnologías con las que he trabajado", pt: "Tecnologias com as quais trabalhei" }[lang] || "Technologies I've Worked With"}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-6 xl:gap-8 w-full">
           {technologies.map((tech, index) => (

@@ -4,19 +4,21 @@ import { motion } from 'framer-motion';
 import { SiElastic, SiKibana, SiLogstash } from 'react-icons/si';
 
 const ElasticExperience = ({ lang }) => {
+  const t = (es, en, pt) => ({ es, en, pt })[lang] || en;
+
   // Calculate months of experience from Jan 1st to current date
   const startDate = new Date('2025-01-01');
   const currentDate = new Date();
-  const monthsDiff = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + 
+  const monthsDiff = (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
                      (currentDate.getMonth() - startDate.getMonth());
-  
+
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
   };
 
   return (
-    <motion.div 
+    <motion.div
       id="elastic-experience"
       className="bg-gradient-to-br from-gray-900 to-blue-900 rounded-xl p-6 shadow-xl border-2 border-blue-500 pt-10"
       initial="hidden"
@@ -34,25 +36,25 @@ const ElasticExperience = ({ lang }) => {
             className="object-contain"
           />
         </div>
-        
+
         <div className="text-right">
           <h3 className="text-xl md:text-2xl font-bold text-blue-400">
-            {lang === "es" ? `${monthsDiff} Meses desplegando y monitoreando` : `${monthsDiff} Months Deploying & monitoring`}
+            {t(`${monthsDiff} Meses desplegando y monitoreando`, `${monthsDiff} Months Deploying & monitoring`, `${monthsDiff} Meses implantando e monitorando`)}
           </h3>
-      
+
         </div>
       </div>
 
       <h3 className="text-xl md:text-2xl font-bold mb-4 text-blue-300">
-        {lang === "es" ? "Experiencia" : "Experience"}
+        {t("Experiencia", "Experience", "Experiência")}
       </h3>
-      
+
       <h3 className="text-lg md:text-xl font-semibold mb-4 text-blue-300">
-        {lang === "es" ? "Componentes de la Plataforma Elastic Stack" : "Elastic Stack Platform Components"}
+        {t("Componentes de la Plataforma Elastic Stack", "Elastic Stack Platform Components", "Componentes da Plataforma Elastic Stack")}
       </h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <motion.div 
+        <motion.div
           className="bg-gradient-to-br from-blue-950 to-blue-900 p-4 rounded-lg border border-blue-700 shadow cursor-pointer"
           whileHover={{ scale: 1.03 }}
           onClick={() => window.open("https://www.elastic.co/elasticsearch/", '_blank', 'noopener,noreferrer')}
@@ -62,19 +64,21 @@ const ElasticExperience = ({ lang }) => {
             <h4 className="font-medium text-base text-blue-200">Elasticsearch</h4>
           </div>
           <p className="text-xs md:text-sm text-gray-300">
-            {lang === "es" ? 
-              "Motor de búsqueda y análisis distribuido" : 
-              "Distributed search and analytics engine"}
+            {t(
+              "Motor de búsqueda y análisis distribuido",
+              "Distributed search and analytics engine",
+              "Motor de busca e análise distribuído"
+            )}
           </p>
           <div className="mt-2 text-xs text-gray-400 flex items-center">
             <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
             </svg>
-            {lang === "es" ? "Sitio oficial" : "Official site"}
+            {t("Sitio oficial", "Official site", "Site oficial")}
           </div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="bg-gradient-to-br from-blue-950 to-blue-900 p-4 rounded-lg border border-blue-700 shadow cursor-pointer"
           whileHover={{ scale: 1.03 }}
           onClick={() => window.open("https://www.elastic.co/kibana/", '_blank', 'noopener,noreferrer')}
@@ -84,19 +88,21 @@ const ElasticExperience = ({ lang }) => {
             <h4 className="font-medium text-base text-blue-200">Kibana</h4>
           </div>
           <p className="text-xs md:text-sm text-gray-300">
-            {lang === "es" ? 
-              "Visualización de datos y dashboards interactivos" : 
-              "Data visualization and interactive dashboards"}
+            {t(
+              "Visualización de datos y dashboards interactivos",
+              "Data visualization and interactive dashboards",
+              "Visualização de dados e dashboards interativos"
+            )}
           </p>
           <div className="mt-2 text-xs text-gray-400 flex items-center">
             <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
             </svg>
-            {lang === "es" ? "Sitio oficial" : "Official site"}
+            {t("Sitio oficial", "Official site", "Site oficial")}
           </div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="bg-gradient-to-br from-blue-950 to-blue-900 p-4 rounded-lg border border-blue-700 shadow cursor-pointer"
           whileHover={{ scale: 1.03 }}
           onClick={() => window.open("https://www.elastic.co/logstash/", '_blank', 'noopener,noreferrer')}
@@ -106,19 +112,21 @@ const ElasticExperience = ({ lang }) => {
             <h4 className="font-medium text-base text-blue-200">Logstash</h4>
           </div>
           <p className="text-xs md:text-sm text-gray-300">
-            {lang === "es" ? 
-              "Procesamiento y transformación de datos en tiempo real" : 
-              "Real-time data processing and transformation"}
+            {t(
+              "Procesamiento y transformación de datos en tiempo real",
+              "Real-time data processing and transformation",
+              "Processamento e transformação de dados em tempo real"
+            )}
           </p>
           <div className="mt-2 text-xs text-gray-400 flex items-center">
             <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
             </svg>
-            {lang === "es" ? "Sitio oficial" : "Official site"}
+            {t("Sitio oficial", "Official site", "Site oficial")}
           </div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="bg-gradient-to-br from-blue-950 to-blue-900 p-4 rounded-lg border border-blue-700 shadow cursor-pointer"
           whileHover={{ scale: 1.03 }}
           onClick={() => window.open("https://www.elastic.co/beats/", '_blank', 'noopener,noreferrer')}
@@ -130,32 +138,36 @@ const ElasticExperience = ({ lang }) => {
             <h4 className="font-medium text-base text-blue-200">Beats</h4>
           </div>
           <p className="text-xs md:text-sm text-gray-300">
-            {lang === "es" ? 
-              "Agentes ligeros para recolección de datos (Filebeat, Metricbeat)" : 
-              "Lightweight data collectors (Filebeat, Metricbeat)"}
+            {t(
+              "Agentes ligeros para recolección de datos (Filebeat, Metricbeat)",
+              "Lightweight data collectors (Filebeat, Metricbeat)",
+              "Agentes leves para coleta de dados (Filebeat, Metricbeat)"
+            )}
           </p>
           <div className="mt-2 text-xs text-gray-400 flex items-center">
             <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
             </svg>
-            {lang === "es" ? "Sitio oficial" : "Official site"}
+            {t("Sitio oficial", "Official site", "Site oficial")}
           </div>
         </motion.div>
       </div>
-      
+
       <h3 className="text-lg md:text-xl font-semibold mb-4 text-blue-300">
-        {lang === "es" ? "Habilidades Técnicas" : "Technical Skills"}
+        {t("Habilidades Técnicas", "Technical Skills", "Habilidades Técnicas")}
       </h3>
-      
+
       <ul className="space-y-3 mb-6 text-sm md:text-base">
         <li className="flex items-start">
           <svg className="w-5 h-5 text-blue-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span>
-            {lang === "es" ? 
-              "Configuración y optimización para búsquedas y análisis de datos" : 
-              "Configuration and optimization for data search and analysis"}
+            {t(
+              "Configuración y optimización para búsquedas y análisis de datos",
+              "Configuration and optimization for data search and analysis",
+              "Configuração e otimização para buscas e análise de dados"
+            )}
           </span>
         </li>
         <li className="flex items-start">
@@ -163,9 +175,11 @@ const ElasticExperience = ({ lang }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span>
-            {lang === "es" ? 
-              "Creación de dashboards para monitoreo y alertas" : 
-              "Dashboard creation for monitoring and alerts"}
+            {t(
+              "Creación de dashboards para monitoreo y alertas",
+              "Dashboard creation for monitoring and alerts",
+              "Criação de dashboards para monitoramento e alertas"
+            )}
           </span>
         </li>
         <li className="flex items-start">
@@ -173,13 +187,15 @@ const ElasticExperience = ({ lang }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span>
-            {lang === "es" ? 
-              "Despliegue y gestión en entornos Kubernetes usando Helm" : 
-              "Deployment and management in Kubernetes environments using Helm"}
+            {t(
+              "Despliegue y gestión en entornos Kubernetes usando Helm",
+              "Deployment and management in Kubernetes environments using Helm",
+              "Implantação e gestão em ambientes Kubernetes usando Helm"
+            )}
           </span>
         </li>
       </ul>
-      
+
 
     </motion.div>
   );

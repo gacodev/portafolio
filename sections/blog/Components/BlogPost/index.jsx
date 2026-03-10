@@ -29,13 +29,13 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
     return (
       <div className="py-20 text-center">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">
-          {lang === 'es' ? 'Artículo no encontrado' : 'Article not found'}
+          {{ es: 'Artículo no encontrado', en: 'Article not found', pt: 'Artigo não encontrado' }[lang] || 'Article not found'}
         </h2>
         <button
           onClick={onBack}
           className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg transition-colors duration-200"
         >
-          {lang === 'es' ? 'Volver al blog' : 'Back to blog'}
+          {{ es: 'Volver al blog', en: 'Back to blog', pt: 'Voltar ao blog' }[lang] || 'Back to blog'}
         </button>
       </div>
     );
@@ -228,7 +228,7 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
                 {/* Copy Link Feedback */}
                 {copied && (
                   <span className="text-green-600 text-sm font-medium order-last sm:order-first">
-                    {lang === 'es' ? '¡Enlace copiado!' : 'Link copied!'}
+                    {{ es: '¡Enlace copiado!', en: 'Link copied!', pt: 'Link copiado!' }[lang] || 'Link copied!'}
                   </span>
                 )}
 
@@ -244,7 +244,7 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
                     }`}
                   >
                     <LinkIcon className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm hidden sm:inline">{copied ? (lang === 'es' ? '¡Copiado!' : 'Copied!') : t.copyLink}</span>
+                    <span className="text-sm hidden sm:inline">{copied ? ({ es: '¡Copiado!', en: 'Copied!', pt: 'Copiado!' }[lang] || 'Copied!') : t.copyLink}</span>
                   </button>
 
                   {/* x Button */}

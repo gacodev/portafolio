@@ -17,6 +17,7 @@ const sectionLabels = {
     agile: 'Agile & CI/CD',
     aiml: 'AI/ML',
     timeline: 'Timeline',
+    migrations: 'Migraciones',
     blog: 'ADR - Registros de Decisiones'
   },
   en: {
@@ -33,6 +34,7 @@ const sectionLabels = {
     agile: 'Agile & CI/CD',
     aiml: 'AI/ML',
     timeline: 'Timeline',
+    migrations: 'Migrations',
     blog: 'Architecture Decision Records'
   },
   pt: {
@@ -49,6 +51,7 @@ const sectionLabels = {
     agile: 'Agile & CI/CD',
     aiml: 'IA/ML',
     timeline: 'Linha do Tempo',
+    migrations: 'Migrações',
     blog: 'ADR - Registros de Decisões de Arquitetura'
   }
 };
@@ -68,6 +71,7 @@ function buildSections(lang) {
     { id: 'metricas', name: labels.metrics, icon: 'chart', ref: 'performance-metrics' },
     { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
     { id: 'timeline', name: labels.timeline, icon: 'mail', ref: 'timeline' },
+    { id: 'migrations', name: labels.migrations, icon: 'refresh', ref: 'migrations' },
     { id: 'blog', name: labels.blog, icon: 'terminal', ref: 'blog', isExternal: true },
   ];
 }

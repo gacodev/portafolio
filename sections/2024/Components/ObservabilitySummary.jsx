@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 const ObservabilitySummary = ({ lang }) => {
   const router = useRouter();
   const translations = metricsTranslations[lang || 'en'];
+  const t = (es, en, pt) => ({ es, en, pt })[lang] || en;
 
   // Calcular métricas agregadas
   const aggregatedMetrics = projectsMetrics.reduce((acc, project) => {
@@ -51,18 +52,16 @@ const ObservabilitySummary = ({ lang }) => {
             <div className="flex items-center justify-center md:justify-start space-x-3">
               <div className="w-3 h-3 bg-[#00bfb3] rounded-full animate-pulse"></div>
               <h2 className="text-2xl md:text-3xl font-semibold text-[#e2e8f0]">
-                {lang === 'es' ? 'Observability & SRE' : 'Observability & SRE'}
+                {t('Observabilidad & SRE', 'Observability & SRE', 'Observabilidade & SRE')}
               </h2>
             </div>
             <span className="block text-center md:text-left text-sm text-[#a0aec0] ml-0 md:ml-6 mt-1">
-              {lang === 'es' 
-                ? 'Incidents, Metrics, Alerts, Logs Management' 
-                : 'Incidents, Metrics, Alerts, Logs Management'}
+              {t('Gestión de Incidentes, Métricas, Alertas y Logs', 'Incidents, Metrics, Alerts, Logs Management', 'Gestão de Incidentes, Métricas, Alertas e Logs')}
             </span>
           </div>
           <div className="flex items-center space-x-2 text-sm text-[#a0aec0]">
             <span className="bg-[#2d3748] px-3 py-1 rounded text-xs font-medium">
-              {lang === 'es' ? 'Tiempo Real' : 'Real-time'}
+              {t('Tiempo Real', 'Real-time', 'Tempo Real')}
             </span>
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
           </div>
@@ -82,16 +81,16 @@ const ObservabilitySummary = ({ lang }) => {
           <div className="flex items-center justify-between mb-3">
             <Activity className="h-6 w-6 text-[#00bfb3]" />
             <span className="text-xs bg-green-900 text-green-200 px-2 py-1 rounded font-medium">
-              {lang === 'es' ? 'EXCELENTE' : 'EXCELLENT'}
+              {t('EXCELENTE', 'EXCELLENT', 'EXCELENTE')}
             </span>
           </div>
           <div className="text-4xl font-bold text-white mb-2">{avgAvailability}%</div>
           <div className="text-sm text-[#a0aec0] uppercase tracking-wide">
-            {lang === 'es' ? 'Disponibilidad Promedio' : 'Average Availability'}
+            {t('Disponibilidad Promedio', 'Average Availability', 'Disponibilidade Média')}
           </div>
           <div className="mt-3 text-xs text-green-400 flex items-center">
             <TrendingUp className="h-3 w-3 mr-1" />
-            {lang === 'es' ? 'Por encima del SLO' : 'Above SLO target'}
+            {t('Por encima del SLO', 'Above SLO target', 'Acima do SLO')}
           </div>
         </motion.div>
 
@@ -111,10 +110,10 @@ const ObservabilitySummary = ({ lang }) => {
           </div>
           <div className="text-4xl font-bold text-white mb-2">{aggregatedMetrics.totalIncidents}</div>
           <div className="text-sm text-[#a0aec0] uppercase tracking-wide">
-            {lang === 'es' ? 'Incidentes Totales' : 'Total Incidents'}
+            {t('Incidentes Totales', 'Total Incidents', 'Incidentes Totais')}
           </div>
           <div className="mt-3 text-xs text-amber-400">
-            {lang === 'es' ? 'Últimos 30 días' : 'Last 30 days'}
+            {t('Últimos 30 días', 'Last 30 days', 'Últimos 30 dias')}
           </div>
         </motion.div>
 
@@ -134,11 +133,11 @@ const ObservabilitySummary = ({ lang }) => {
           </div>
           <div className="text-4xl font-bold text-white mb-2">{aggregatedMetrics.totalDeployments}</div>
           <div className="text-sm text-[#a0aec0] uppercase tracking-wide">
-            {lang === 'es' ? 'Deploys/Semana' : 'Deploys/Week'}
+            {t('Deploys/Semana', 'Deploys/Week', 'Deploys/Semana')}
           </div>
           <div className="mt-3 text-xs text-blue-400 flex items-center">
             <TrendingUp className="h-3 w-3 mr-1" />
-            {lang === 'es' ? 'Alta frecuencia' : 'High frequency'}
+            {t('Alta frecuencia', 'High frequency', 'Alta frequência')}
           </div>
         </motion.div>
 
@@ -158,10 +157,10 @@ const ObservabilitySummary = ({ lang }) => {
           </div>
           <div className="text-4xl font-bold text-white mb-2">{aggregatedMetrics.totalMonitors}</div>
           <div className="text-sm text-[#a0aec0] uppercase tracking-wide">
-            {lang === 'es' ? 'Monitores Activos' : 'Active Monitors'}
+            {t('Monitores Activos', 'Active Monitors', 'Monitores Ativos')}
           </div>
           <div className="mt-3 text-xs text-green-400">
-            {autoResolutionRate}% {lang === 'es' ? 'auto-resolución' : 'auto-resolution'}
+            {autoResolutionRate}% {t('auto-resolución', 'auto-resolution', 'auto-resolução')}
           </div>
         </motion.div>
       </div>
@@ -172,20 +171,20 @@ const ObservabilitySummary = ({ lang }) => {
           <div className="flex items-center justify-between">
             <div>
               <div className="text-sm text-[#a0aec0] mb-1">
-                {lang === 'es' ? 'Apdex Score' : 'Apdex Score'}
+                {t('Puntuación Apdex', 'Apdex Score', 'Pontuação Apdex')}
               </div>
               <div className="text-3xl font-bold text-white">{avgApdex}</div>
             </div>
             <div className="text-right">
               <div className="text-xs text-green-400 flex items-center justify-end">
                 <TrendingUp className="h-3 w-3 mr-1" />
-                {lang === 'es' ? 'Óptimo' : 'Optimal'}
+                {t('Óptimo', 'Optimal', 'Ótimo')}
               </div>
             </div>
           </div>
           <div className="mt-3 w-full bg-[#2d3748] rounded-full h-2">
-            <div 
-              className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full" 
+            <div
+              className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full"
               style={{ width: `${avgApdex * 100}%` }}
             ></div>
           </div>
@@ -195,13 +194,13 @@ const ObservabilitySummary = ({ lang }) => {
           <div className="flex items-center justify-between">
             <div>
               <div className="text-sm text-[#a0aec0] mb-1">
-                {lang === 'es' ? 'Proyectos Monitoreados' : 'Monitored Projects'}
+                {t('Proyectos Monitoreados', 'Monitored Projects', 'Projetos Monitorados')}
               </div>
               <div className="text-3xl font-bold text-white">{aggregatedMetrics.totalProjects}</div>
             </div>
             <div className="text-right">
               <div className="text-xs text-blue-400">
-                {lang === 'es' ? 'En producción' : 'In production'}
+                {t('En producción', 'In production', 'Em produção')}
               </div>
             </div>
           </div>
@@ -211,20 +210,20 @@ const ObservabilitySummary = ({ lang }) => {
           <div className="flex items-center justify-between">
             <div>
               <div className="text-sm text-[#a0aec0] mb-1">
-                {lang === 'es' ? 'Tasa Auto-resolución' : 'Auto-resolution Rate'}
+                {t('Tasa Auto-resolución', 'Auto-resolution Rate', 'Taxa de Auto-resolução')}
               </div>
               <div className="text-3xl font-bold text-white">{autoResolutionRate}%</div>
             </div>
             <div className="text-right">
               <div className="text-xs text-green-400 flex items-center justify-end">
                 <TrendingUp className="h-3 w-3 mr-1" />
-                {lang === 'es' ? 'Eficiente' : 'Efficient'}
+                {t('Eficiente', 'Efficient', 'Eficiente')}
               </div>
             </div>
           </div>
           <div className="mt-3 w-full bg-[#2d3748] rounded-full h-2">
-            <div 
-              className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full" 
+            <div
+              className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full"
               style={{ width: `${autoResolutionRate}%` }}
             ></div>
           </div>
@@ -234,71 +233,71 @@ const ObservabilitySummary = ({ lang }) => {
       {/* Herramientas de Monitoreo */}
       <div className="mt-8 pt-8 border-t border-slate-700">
         <h3 className="text-xl font-bold mb-6 text-center">
-          {lang === 'es' ? 'Stack de Observabilidad' : 'Observability Stack'}
+          {t('Stack de Observabilidad', 'Observability Stack', 'Stack de Observabilidade')}
         </h3>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
           <div className="text-center group">
             <div className="bg-slate-700 p-4 rounded-lg mb-2 hover:bg-slate-600 transition-all duration-300 transform group-hover:scale-105">
-              <Image 
-                src="/tecnologies/Pagerduty.webp" 
-                alt="PagerDuty" 
-                width={40} 
-                height={40} 
+              <Image
+                src="/tecnologies/Pagerduty.webp"
+                alt="PagerDuty"
+                width={40}
+                height={40}
                 className="mx-auto"
               />
             </div>
             <h4 className="font-semibold text-sm">PagerDuty</h4>
             <p className="text-xs text-slate-400">
-              {lang === 'es' ? 'Incident Management' : 'Incident Management'}
+              {t('Gestión de Incidentes', 'Incident Management', 'Gestão de Incidentes')}
             </p>
           </div>
-          
+
           <div className="text-center group">
             <div className="bg-slate-700 p-4 rounded-lg mb-2 hover:bg-slate-600 transition-all duration-300 transform group-hover:scale-105">
-              <Image 
-                src="/tecnologies/elastic.svg" 
-                alt="Elastic Stack" 
-                width={40} 
-                height={40} 
+              <Image
+                src="/tecnologies/elastic.svg"
+                alt="Elastic Stack"
+                width={40}
+                height={40}
                 className="mx-auto"
               />
             </div>
             <h4 className="font-semibold text-sm">ELK Stack</h4>
             <p className="text-xs text-slate-400">
-              {lang === 'es' ? 'Log Management' : 'Log Management'}
+              {t('Gestión de Logs', 'Log Management', 'Gestão de Logs')}
             </p>
           </div>
-          
+
           <div className="text-center group">
             <div className="bg-slate-700 p-4 rounded-lg mb-2 hover:bg-slate-600 transition-all duration-300 transform group-hover:scale-105">
-              <Image 
-                src="/tecnologies/kibana.svg" 
-                alt="Kibana" 
-                width={40} 
-                height={40} 
+              <Image
+                src="/tecnologies/kibana.svg"
+                alt="Kibana"
+                width={40}
+                height={40}
                 className="mx-auto"
               />
             </div>
             <h4 className="font-semibold text-sm">Kibana</h4>
             <p className="text-xs text-slate-400">
-              {lang === 'es' ? 'Synthetic Monitoring' : 'Synthetic Monitoring'}
+              {t('Monitoreo Sintético', 'Synthetic Monitoring', 'Monitoramento Sintético')}
             </p>
           </div>
-          
+
           <div className="text-center group">
             <div className="bg-slate-700 p-4 rounded-lg mb-2 hover:bg-slate-600 transition-all duration-300 transform group-hover:scale-105">
-              <Image 
-                src="/tecnologies/azure-monitor.svg" 
-                alt="Azure Monitor" 
-                width={40} 
-                height={40} 
+              <Image
+                src="/tecnologies/azure-monitor.svg"
+                alt="Azure Monitor"
+                width={40}
+                height={40}
                 className="mx-auto"
               />
             </div>
             <h4 className="font-semibold text-sm">Azure Monitor</h4>
             <p className="text-xs text-slate-400">
-              {lang === 'es' ? 'Cloud Observability' : 'Cloud Observability'}
+              {t('Observabilidad en la Nube', 'Cloud Observability', 'Observabilidade na Nuvem')}
             </p>
           </div>
         </div>
@@ -310,14 +309,16 @@ const ObservabilitySummary = ({ lang }) => {
             className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#00bfb3] to-[#0078d4] hover:from-[#00a89a] hover:to-[#0066b8] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <span>
-              {lang === 'es' ? 'Ver Métricas Detalladas por Proyecto' : 'View Detailed Metrics by Project'}
+              {t('Ver Métricas Detalladas por Proyecto', 'View Detailed Metrics by Project', 'Ver Métricas Detalhadas por Projeto')}
             </span>
             <ArrowRight className="h-5 w-5" />
           </button>
           <p className="text-sm text-slate-400 mt-3">
-            {lang === 'es' 
-              ? 'Explora SLOs, incidentes, DevOps, seguridad y costos de cada proyecto'
-              : 'Explore SLOs, incidents, DevOps, security and costs for each project'}
+            {t(
+              'Explora SLOs, incidentes, DevOps, seguridad y costos de cada proyecto',
+              'Explore SLOs, incidents, DevOps, security and costs for each project',
+              'Explore SLOs, incidentes, DevOps, segurança e custos de cada projeto'
+            )}
           </p>
         </div>
       </div>

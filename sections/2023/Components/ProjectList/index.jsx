@@ -7,6 +7,7 @@ import GravatarImage from "./GravatarImage";
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import ProjectModal from "./ProjectModal";
+import { Eye } from 'lucide-react';
 
 export const ProjectList = ({ lang }) => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -32,7 +33,7 @@ export const ProjectList = ({ lang }) => {
     <>
       <div className="w-full px-2 sm:px-4 lg:px-8" id="timeline">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-center text-white mb-6 sm:mb-8 lg:mb-12 drop-shadow-lg">
-          {lang === "en" ? "Software Projects Timeline" : "Línea de Tiempo de Proyectos de Software"}
+          {{ en: "Software Projects Timeline", es: "Línea de Tiempo de Proyectos de Software", pt: "Linha do Tempo de Projetos de Software" }[lang] || "Software Projects Timeline"}
         </h2>
         <VerticalTimeline layout="1-column">
           {sortedYears.map((year) => (
@@ -111,9 +112,10 @@ export const ProjectList = ({ lang }) => {
                       <div className="w-full md:w-auto flex-shrink-0 text-center md:text-right mt-4 md:mt-0 flex justify-center md:justify-end items-center">
                         <button
                           onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
-                          className="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-sm sm:text-base font-bold rounded-lg shadow-lg shadow-blue-900/40 transition-all duration-300 hover:shadow-blue-900/60 transform hover:-translate-y-0.5"
+                          className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-full shadow-lg shadow-blue-900/40 transition-all duration-300 hover:shadow-blue-900/60 transform hover:-translate-y-0.5 hover:scale-110"
+                          title={lang === "en" ? "View Details" : lang === "pt" ? "Ver Detalhes" : "Ver Detalles"}
                         >
-                          {lang === "en" ? "View Details" : lang === "pt" ? "Ver Detalhes" : "Ver Detalles"}
+                          <Eye size={20} />
                         </button>
                       </div>
                     </div>

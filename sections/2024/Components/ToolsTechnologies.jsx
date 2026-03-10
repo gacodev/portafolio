@@ -15,7 +15,7 @@ const tools = [
 ];
 
 const ToolsTechnologies = ({ lang = 'en' }) => {
-  const title = lang === 'en' ? 'Tools & Technologies' : 'Herramientas y Tecnologías';
+  const title = { en: 'Tools & Technologies', es: 'Herramientas y Tecnologías', pt: 'Ferramentas e Tecnologias' }[lang] || 'Tools & Technologies';
 
   return (
     <div id="tools-technologies" className="mb-20 px-4 pt-10">

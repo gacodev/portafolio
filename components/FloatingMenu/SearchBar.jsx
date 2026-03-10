@@ -14,7 +14,8 @@ const SearchBar = ({ onSearch, placeholder, isExpanded, lang = 'es'}) => {
   // Traducciones para los textos
   const placeholders = {
     es: 'Buscar...',
-    en: 'Search...'
+    en: 'Search...',
+    pt: 'Pesquisar...'
   };
 
   // Usar el placeholder proporcionado o el predeterminado según el idioma
