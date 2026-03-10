@@ -12,7 +12,7 @@ const AIMLExperience = dynamic(() => import("../../sections/2024/Components/AIML
 const KubernetesExperience = dynamic(() => import("../../sections/2024/Components/KubernetesExperience"), { ssr: false });
 const AIAgentsLeadership = dynamic(() => import("../../sections/2024/Components/AIAgentsLeadership"), { ssr: false });
 const ProjectList = dynamic(() => import("../../sections/2023/Components/ProjectList").then(mod => mod.ProjectList), { ssr: false });
-const TechList = dynamic(() => import("../../sections/2023/Components/TechList").then(mod => mod.TechList), { ssr: false });
+
 const MigrationComponent = dynamic(() => import("../../sections/2023/Components/Migrations").then(mod => mod.MigrationComponent), { ssr: false });
 
 export default function Home() {
@@ -32,7 +32,6 @@ export default function Home() {
       <CloudProviderList lang={lang} />
       <Journey2024 lang={lang} />
       <KubernetesExperience lang={lang} />
-      <TechList lang={lang} />
       <ProjectList lang={lang} />
       <MigrationComponent lang={lang} />
       <Footer lang={lang} />

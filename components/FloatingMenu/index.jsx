@@ -294,65 +294,68 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
         <div
           className={`${menuMode === 'floating'
             ? `bg-gray-900 bg-opacity-90 text-white shadow-xl transform transition-all duration-300 ease-in-out ${isMobile || isInternalMobile ? (isExpanded ? 'translate-x-0' : '-translate-x-full') : 'translate-x-0'}`
-            : 'w-full bg-gray-900 text-white'}`}
+            : 'w-full h-full bg-gray-900 text-white flex flex-col'}`}
           role="navigation"
         >
           <div className="px-3 mb-3 text-blue-400 text-xs uppercase font-semibold">
             {lang === 'en' ? 'Language / Idioma' : 'Idioma / Language'}
           </div>
-          
+
           {/* Botones de idioma */}
           <div className="flex justify-center space-x-1 mb-4 px-4">
             <LanguageButtons currentLang={lang} />
           </div>
-          
-          <div className="max-h-[70vh] overflow-y-auto px-2 hide-scrollbar">
-            {filteredItems.length > 0 ? (
-              filteredItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.ref, item.isExternal)}
-                  className={`w-full flex items-center p-3 mb-1 rounded-lg transition-all duration-200 ${
-                    activeSection === item.id
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                  }`}
-                >
-                  <span className="mr-3">{renderIcon(item.icon)}</span>
-                  <span className="font-medium flex-1 text-center">{item.name}</span>
-                  {item.isExternal && (
-                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  )}
-                </button>
-              ))
-            ) : (
-              <div className="text-center text-gray-400 py-4">
-                {labels.noResults} &quot;{searchTerm}&quot;
-              </div>
-            )}
-          </div>
-          
-          {/* Sección de Enlaces Externos */}
-          <div className="border-t border-gray-700 mt-4 pt-4">
-            <div className="px-3 mb-3 text-blue-400 text-xs uppercase font-semibold">
-              {{ en: 'More', es: 'Más', pt: 'Mais' }[lang] || 'More'}
-            </div>
-            
+
+          {/* Navigation items - flex-1 fills available space */}
+          <div className="flex-1 flex flex-col justify-between">
             <div className="px-2">
-              <Link
-                href={`/${lang}/blog`}
-                className="w-full flex items-center p-3 mb-1 rounded-lg transition-all duration-200 text-gray-300 hover:bg-gray-700 hover:text-white"
-                onClick={isMobile ? () => closeMenu() : undefined}
-              >
-                <span className="mr-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3v6m0 0l-3-3m3 3l3-3" />
-                  </svg>
-                </span>
-                <span className="font-medium">{labels.blog}</span>
-              </Link>
+              {filteredItems.length > 0 ? (
+                filteredItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.ref, item.isExternal)}
+                    className={`w-full flex items-center px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ${
+                      activeSection === item.id
+                        ? 'bg-blue-600 text-white'
+                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                    }`}
+                  >
+                    <span className="mr-3">{renderIcon(item.icon)}</span>
+                    <span className="font-medium flex-1 text-center">{item.name}</span>
+                    {item.isExternal && (
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    )}
+                  </button>
+                ))
+              ) : (
+                <div className="text-center text-gray-400 py-4">
+                  {labels.noResults} &quot;{searchTerm}&quot;
+                </div>
+              )}
+            </div>
+
+            {/* Sección de Enlaces Externos - pushed to bottom */}
+            <div className="border-t border-gray-700 mt-auto pt-4">
+              <div className="px-3 mb-3 text-blue-400 text-xs uppercase font-semibold">
+                {{ en: 'More', es: 'Más', pt: 'Mais' }[lang] || 'More'}
+              </div>
+
+              <div className="px-2">
+                <Link
+                  href={`/${lang}/blog`}
+                  className="w-full flex items-center p-3 mb-1 rounded-lg transition-all duration-200 text-gray-300 hover:bg-gray-700 hover:text-white"
+                  onClick={isMobile ? () => closeMenu() : undefined}
+                >
+                  <span className="mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3v6m0 0l-3-3m3 3l3-3" />
+                    </svg>
+                  </span>
+                  <span className="font-medium">{labels.blog}</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
