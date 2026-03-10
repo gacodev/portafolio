@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import CommandPalette from './CommandPalette';
 import { useRouter } from "next/router";
 import useLanguageStore from '../../store/useLanguageStore';
 
@@ -293,9 +292,6 @@ const FloatingMenu = ({ lang = 'es', menuMode = 'floating', isMobile = false, cl
             : 'w-full bg-gray-900 text-white'}`}
           role="navigation"
         >
-          {/* Integra el Command Palette (invisible modal, visible shortcut) */}
-          <CommandPalette lang={lang} sections={sections} />
-          
           <div className="px-3 mb-3 text-blue-400 text-xs uppercase font-semibold">
             {lang === 'en' ? 'Language / Idioma' : 'Idioma / Language'}
           </div>

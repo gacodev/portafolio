@@ -1,10 +1,15 @@
 import React from 'react';
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import styles from "../../styles/Home.module.css";
-import ProjectBreakdown from "../../sections/2024/Components/ProjectBreakdown";
 import { Footer } from "../../sections/page/Components/Footer";
 import { useRouter } from 'next/router';
 import { ArrowLeft } from 'lucide-react';
+
+const ProjectBreakdown = dynamic(
+  () => import("../../sections/2024/Components/ProjectBreakdown"),
+  { ssr: false, loading: () => <div className="w-full h-96 animate-pulse bg-gray-800 rounded-lg" /> }
+);
 
 export default function MetricsPage() {
   const router = useRouter();

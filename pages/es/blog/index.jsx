@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from "next/head";
-import styles from "../../styles/Home.module.css";
-import Blog from "../../sections/blog/Components/Blog";
-import { Footer } from "../../sections/page/Components/Footer";
+import styles from "../../../styles/Home.module.css";
+import Blog from "../../../sections/blog/Components/Blog";
+import { Footer } from "../../../sections/page/Components/Footer";
 
 export default function BlogPage() {
   return (

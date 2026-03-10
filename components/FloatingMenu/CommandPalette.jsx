@@ -1,40 +1,131 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { Search, Terminal, AlertCircle, Cloud, Activity, User, Briefcase, ChevronRight, X, GitCommit } from 'lucide-react';
 
-const CommandPalette = ({ lang = 'es', sections = [] }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const sectionLabels = {
+  es: {
+    profile: 'Perfil & Contacto',
+    summary: 'Resumen Profesional',
+    aiAgents: 'Operaciones AI (Agentes & Workflows)',
+    technologies: 'Herramientas y Tecnologías',
+    achievements: 'Logros Clave',
+    kubernetes: 'Experiencia Kubernetes',
+    kafka: 'Experiencia Kafka',
+    elastic: 'Experiencia Elastic',
+    metrics: 'Métricas de Rendimiento en proyectos',
+    metricsDetail: 'Métricas Detalladas por Proyecto',
+    agile: 'Agile & CI/CD',
+    aiml: 'AI/ML',
+    timeline: 'Timeline',
+    blog: 'ADR - Registros de Decisiones'
+  },
+  en: {
+    profile: 'Profile & Contact',
+    summary: 'Professional Summary',
+    aiAgents: 'AI Operations (Agents & Workflows)',
+    technologies: 'Tools & Technologies',
+    achievements: 'Key Achievements',
+    kubernetes: 'Kubernetes Experience',
+    kafka: 'Kafka Experience',
+    elastic: 'Elastic Experience',
+    metrics: 'Performance Metrics in projects',
+    metricsDetail: 'Detailed Metrics by Project',
+    agile: 'Agile & CI/CD',
+    aiml: 'AI/ML',
+    timeline: 'Timeline',
+    blog: 'Architecture Decision Records'
+  },
+  pt: {
+    profile: 'Perfil & Contato',
+    summary: 'Resumo Profissional',
+    aiAgents: 'Operações AI (Agentes & Workflows)',
+    technologies: 'Ferramentas e Tecnologias',
+    achievements: 'Principais Conquistas',
+    kubernetes: 'Experiência Kubernetes',
+    kafka: 'Experiência Kafka',
+    elastic: 'Experiência Elastic',
+    metrics: 'Métricas de Desempenho em projetos',
+    metricsDetail: 'Métricas Detalhadas por Projeto',
+    agile: 'Agile & CI/CD',
+    aiml: 'IA/ML',
+    timeline: 'Linha do Tempo',
+    blog: 'ADR - Registros de Decisões de Arquitetura'
+  }
+};
+
+function buildSections(lang) {
+  const labels = sectionLabels[lang] || sectionLabels.es;
+  return [
+    { id: 'profile', name: labels.profile, icon: 'user', ref: 'profile' },
+    { id: 'resumen', name: labels.summary, icon: 'mail', ref: 'professional-summary' },
+    { id: 'ai-agents', name: labels.aiAgents, icon: 'bot', ref: 'ai-agents' },
+    { id: 'aiml', name: labels.aiml, icon: 'code', ref: 'aiml' },
+    { id: 'tecnologias', name: labels.technologies, icon: 'refresh', ref: 'tools-technologies' },
+    { id: 'logros', name: labels.achievements, icon: 'award', ref: 'key-achievements' },
+    { id: 'kubernetes', name: labels.kubernetes, icon: 'cloud', ref: 'kubernetes-experience' },
+    { id: 'kafka', name: labels.kafka, icon: 'database', ref: 'kafka-experience' },
+    { id: 'elastic', name: labels.elastic, icon: 'search', ref: 'elastic-experience' },
+    { id: 'metricas', name: labels.metrics, icon: 'chart', ref: 'performance-metrics' },
+    { id: 'agile', name: labels.agile, icon: 'refresh', ref: 'agile-cicd' },
+    { id: 'timeline', name: labels.timeline, icon: 'mail', ref: 'timeline' },
+    { id: 'blog', name: labels.blog, icon: 'terminal', ref: 'blog', isExternal: true },
+  ];
+}
+
+const CommandPalette = ({ lang = 'es', sections: externalSections, isOpen: controlledOpen, onClose }) => {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isControlled = controlledOpen !== undefined;
+  const isOpen = isControlled ? controlledOpen : internalOpen;
+  const setIsOpen = isControlled ? (val) => { if (!val && onClose) onClose(); } : setInternalOpen;
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef(null);
   const router = useRouter();
 
+  const sections = useMemo(
+    () => externalSections || buildSections(lang),
+    [externalSections, lang]
+  );
+
   const t = {
     es: {
-      placeholder: "Buscar secciones, proyectos, herramientas (Cmd + K)",
+      placeholder: "Buscar secciones, proyectos, herramientas...",
+      placeholderShort: "Buscar...",
       empty: "No se encontraron resultados.",
-      instructions: "Navega con flechas, Enter para seleccionar.",
       sections: "SECCIONES",
       actions: "ACCIONES RÁPIDAS"
     },
     en: {
-      placeholder: "Search sections, projects, tools (Cmd + K)",
+      placeholder: "Search sections, projects, tools...",
+      placeholderShort: "Search...",
       empty: "No results found.",
-      instructions: "Navigate with arrows, Enter to select.",
       sections: "SECTIONS",
       actions: "QUICK ACTIONS"
+    },
+    pt: {
+      placeholder: "Pesquisar seções, projetos, ferramentas...",
+      placeholderShort: "Pesquisar...",
+      empty: "Nenhum resultado encontrado.",
+      sections: "SEÇÕES",
+      actions: "AÇÕES RÁPIDAS"
     }
   };
 
   const texts = t[lang] || t.es;
 
-  // Acciones rápidas adicionales (Ej: Descargar CV, Logros clave, etc.)
   const quickActions = [
-    { id: 'action-cv', name: lang === 'es' ? 'Descargar CV' : 'Download Resume', icon: 'User', action: () => alert('Descargando CV...') },
-    { id: 'action-contact', name: lang === 'es' ? 'Contactar (Email)' : 'Contact (Email)', icon: 'Terminal', action: () => window.location.href='mailto:gabriel.contrerasv3@gmail.com' }
+    { id: 'action-cv', name: lang === 'es' ? 'Descargar CV' : lang === 'pt' ? 'Baixar CV' : 'Download Resume', icon: 'User', action: () => {
+      const fileMap = { en: '/docs/cv.pdf', es: '/docs/hv.pdf', pt: '/docs/hv.pdf' };
+      const link = document.createElement('a');
+      link.href = fileMap[lang] || fileMap.es;
+      link.download = fileMap[lang]?.split('/').pop() || 'hv.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }},
+    { id: 'action-contact', name: lang === 'es' ? 'Contactar (Email)' : lang === 'pt' ? 'Contato (Email)' : 'Contact (Email)', icon: 'Terminal', action: () => window.location.href='mailto:gabriel.contrerasv3@gmail.com' }
   ];
 
-  // Icon mapping
   const renderIcon = (iconName) => {
     switch(iconName) {
       case 'user': return <User className="w-4 h-4" />;
@@ -46,8 +137,9 @@ const CommandPalette = ({ lang = 'es', sections = [] }) => {
     }
   };
 
-  // Keyboard listener (Cmd+K / Ctrl+K)
+  // Keyboard listener (Cmd+K / Ctrl+K) - only in uncontrolled mode
   useEffect(() => {
+    if (isControlled) return;
     const handleKeyDown = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
@@ -57,7 +149,7 @@ const CommandPalette = ({ lang = 'es', sections = [] }) => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [isControlled]);
 
   // Autofocus when opened
   useEffect(() => {
@@ -71,22 +163,19 @@ const CommandPalette = ({ lang = 'es', sections = [] }) => {
     }
   }, [isOpen]);
 
-  // Handle Search Filtering
-  const filteredSections = query === '' 
-    ? sections 
+  const filteredSections = query === ''
+    ? sections
     : sections.filter(s => s.name.toLowerCase().includes(query.toLowerCase()) || s.id.toLowerCase().includes(query.toLowerCase()));
-  
+
   const filteredActions = query === ''
     ? quickActions
     : quickActions.filter(a => a.name.toLowerCase().includes(query.toLowerCase()));
 
   const allItems = [...filteredSections, ...filteredActions];
 
-  // Up/Down Navigation
   useEffect(() => {
     const handleNavigation = (e) => {
       if (!isOpen) return;
-
       if (e.key === 'ArrowDown') {
         e.preventDefault();
         setSelectedIndex((prev) => (prev + 1) % allItems.length);
@@ -123,29 +212,17 @@ const CommandPalette = ({ lang = 'es', sections = [] }) => {
   };
 
   if (!isOpen) {
-    return (
-      <button 
-        onClick={() => setIsOpen(true)}
-        className="fixed top-4 right-4 z-[60] bg-slate-900/60 backdrop-blur-md border border-slate-700/50 text-slate-300 px-4 py-2 rounded-xl flex items-center gap-3 hover:bg-slate-800 hover:text-white transition-all shadow-lg"
-        title="Search (Cmd+K)"
-      >
-        <Search className="w-4 h-4" />
-        <span className="text-sm font-medium hidden md:block">Buscar...</span>
-        <kbd className="hidden md:inline-flex items-center gap-1 font-mono text-[10px] bg-slate-800 border border-slate-700 rounded px-1.5 py-0.5">
-          <span className="text-xs">⌘</span>K
-        </kbd>
-      </button>
-    );
+    return null;
   }
 
   return (
     <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4">
       {/* Backdrop */}
       <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
-      
+
       {/* Search Modal */}
       <div className="relative bg-slate-900 w-full max-w-2xl rounded-2xl shadow-2xl border border-slate-700/60 overflow-hidden flex flex-col max-h-[70vh] animate-in fade-in zoom-in-95 duration-200">
-        
+
         {/* Input Header */}
         <div className="flex items-center px-4 border-b border-slate-800">
           <Search className="w-5 h-5 text-blue-500 mr-3" />
@@ -235,15 +312,15 @@ const CommandPalette = ({ lang = 'es', sections = [] }) => {
             <span className="flex items-center gap-1.5">
               <kbd className="bg-slate-800 border border-slate-700 rounded px-1 text-[10px]">↑</kbd>
               <kbd className="bg-slate-800 border border-slate-700 rounded px-1 text-[10px]">↓</kbd>
-              navegar
+              {lang === 'en' ? 'navigate' : lang === 'pt' ? 'navegar' : 'navegar'}
             </span>
             <span className="flex items-center gap-1.5">
               <kbd className="bg-slate-800 border border-slate-700 rounded px-1.5 text-[10px]">Enter</kbd>
-              seleccionar
+              {lang === 'en' ? 'select' : lang === 'pt' ? 'selecionar' : 'seleccionar'}
             </span>
             <span className="flex items-center gap-1.5">
               <kbd className="bg-slate-800 border border-slate-700 rounded px-1.5 text-[10px]">Esc</kbd>
-              cerrar
+              {lang === 'en' ? 'close' : lang === 'pt' ? 'fechar' : 'cerrar'}
             </span>
           </div>
           <div>Portafolio O.S</div>

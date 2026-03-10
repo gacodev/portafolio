@@ -1,9 +1,11 @@
 import "../styles/globals.css";
-import FloatingMenu from "../components/FloatingMenu";
+import dynamic from "next/dynamic";
 import ScrollArrows from "../components/ScrollArrows";
 import { useRouter } from "next/router";
 import { useEffect, useState, useCallback } from "react";
 import useLanguageStore from "../store/useLanguageStore";
+
+const FloatingMenu = dynamic(() => import("../components/FloatingMenu"), { ssr: false });
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

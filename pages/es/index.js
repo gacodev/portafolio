@@ -1,17 +1,19 @@
 import React from 'react';
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import styles from "../../styles/Home.module.css";
 import { ProfileContainer } from "../../sections/profile/Components/Profile";
-import Journey2024 from "../../sections/2024/Components/Journey2024";
-import AIMLExperience from "../../sections/2024/Components/AIMLExperience";
-import KubernetesExperience from "../../sections/2024/Components/KubernetesExperience";
-import { TechList } from "../../sections/2023/Components/TechList";
 import { CloudProviderList } from "../../sections/profile/Components/CloudProviderList";
-import { ProjectList } from "../../sections/2023/Components/ProjectList";
-import { MigrationComponent } from "../../sections/2023/Components/Migrations";
-import AIAgentsLeadership from "../../sections/2024/Components/AIAgentsLeadership";
 import { Footer } from "../../sections/page/Components/Footer";
 import { useLang } from "../../store/useLanguageStore";
+
+const Journey2024 = dynamic(() => import("../../sections/2024/Components/Journey2024"), { ssr: false });
+const AIMLExperience = dynamic(() => import("../../sections/2024/Components/AIMLExperience"), { ssr: false });
+const KubernetesExperience = dynamic(() => import("../../sections/2024/Components/KubernetesExperience"), { ssr: false });
+const AIAgentsLeadership = dynamic(() => import("../../sections/2024/Components/AIAgentsLeadership"), { ssr: false });
+const ProjectList = dynamic(() => import("../../sections/2023/Components/ProjectList").then(mod => mod.ProjectList), { ssr: false });
+const TechList = dynamic(() => import("../../sections/2023/Components/TechList").then(mod => mod.TechList), { ssr: false });
+const MigrationComponent = dynamic(() => import("../../sections/2023/Components/Migrations").then(mod => mod.MigrationComponent), { ssr: false });
 
 export default function Home() {
   const lang = useLang();

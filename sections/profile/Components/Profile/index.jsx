@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { RoleChanger } from "../RoleChanger";
+import SearchTrigger from "../../../../components/SearchTrigger";
 import { CalendarLink } from "../CalendarButton";
 import profileData from "../../../data/profile";
 import SkillCard from "./SkillCard";
@@ -36,7 +36,7 @@ export const ProfileContainer = ({ lang }) => {
             width={120}
             height={120}
           />
-          <RoleChanger lang={lang} />
+          <SearchTrigger lang={lang} />
           
           {/* Profile Narrative */}
           <div className="mt-6 w-full px-2 sm:px-6">

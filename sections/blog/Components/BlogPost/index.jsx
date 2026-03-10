@@ -3,9 +3,26 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock, Tag, User, ArrowLeft, Share2, Link as LinkIcon, Linkedin } from 'lucide-react';
 import { SiX } from 'react-icons/si';
 import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import MermaidRenderer from '../../../../components/MermaidRenderer';
+import dynamic from 'next/dynamic';
+
+const SyntaxHighlighter = dynamic(
+  () => import('react-syntax-highlighter').then(mod => mod.Prism),
+  { ssr: false, loading: () => <div className="bg-gray-800 rounded-lg my-4 p-4 text-gray-400 animate-pulse h-24" /> }
+);
+
+const MermaidRenderer = dynamic(
+  () => import('../../../../components/MermaidRenderer'),
+  { ssr: false, loading: () => <div className="bg-gray-100 rounded-lg my-6 p-4 animate-pulse h-48" /> }
+);
+
+// Import the style lazily alongside the highlighter
+let tomorrowStyle = null;
+const getTomorrowStyle = () => {
+  if (!tomorrowStyle) {
+    tomorrowStyle = require('react-syntax-highlighter/dist/cjs/styles/prism').tomorrow;
+  }
+  return tomorrowStyle;
+};
 
 const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
   if (!article) {
@@ -74,22 +91,22 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
     code({ node, inline, className, children, ...props }) {
       const match = /language-(\w+)/.exec(className || '');
       const language = match ? match[1] : '';
-      
+
       // Handle Mermaid diagrams
       if (language === 'mermaid' && !inline) {
         const chartContent = String(children).replace(/\n$/, '');
-        
+
         return (
-          <MermaidRenderer 
+          <MermaidRenderer
             chart={chartContent}
             className="my-6"
           />
         );
       }
-      
+
       return !inline && match ? (
         <SyntaxHighlighter
-          style={tomorrow}
+          style={getTomorrowStyle()}
           language={match[1]}
           PreTag="div"
           className="rounded-lg my-4"
@@ -205,7 +222,7 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
               <span className="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded">
                 {article.category}
               </span>
-              
+
               {/* Sharing Section */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
                 {/* Copy Link Feedback */}
@@ -214,22 +231,22 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
                     {lang === 'es' ? '¡Enlace copiado!' : 'Link copied!'}
                   </span>
                 )}
-                
+
                 {/* Share Buttons Container */}
                 <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
                   {/* Copy Link Button */}
                   <button
                     onClick={handleCopyLink}
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 touch-manipulation ${
-                      copied 
-                        ? 'bg-green-100 text-green-700 scale-105' 
+                      copied
+                        ? 'bg-green-100 text-green-700 scale-105'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800 active:scale-95'
                     }`}
                   >
                     <LinkIcon className="h-4 w-4 flex-shrink-0" />
                     <span className="text-sm hidden sm:inline">{copied ? (lang === 'es' ? '¡Copiado!' : 'Copied!') : t.copyLink}</span>
                   </button>
-                  
+
                   {/* x Button */}
                   <button
                     onClick={handleShareOnx}
@@ -238,7 +255,7 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
                     <SiX className="h-4 w-4 flex-shrink-0" />
                     <span className="text-sm hidden sm:inline">X.com</span>
                   </button>
-                  
+
                   {/* LinkedIn Button */}
                   <button
                     onClick={handleShareOnLinkedin}
@@ -247,7 +264,7 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
                     <Linkedin className="h-4 w-4 flex-shrink-0" />
                     <span className="text-sm hidden sm:inline">LinkedIn</span>
                   </button>
-                  
+
                   {/* Facebook Button */}
                   <button
                     onClick={handleShareOnFacebook}
@@ -256,7 +273,7 @@ const BlogPost = ({ article, lang = 'es', onBack, shareUrl }) => {
                     <Share2 className="h-4 w-4 flex-shrink-0" />
                     <span className="text-sm hidden sm:inline">Facebook</span>
                   </button>
-                  
+
                   {/* Native Share Button (for mobile devices that support it) */}
                   <button
                     onClick={shareArticle}
